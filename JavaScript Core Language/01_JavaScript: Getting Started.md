@@ -2,6 +2,12 @@
 ## 1. JavaScript: Getting Started
 ### 1.1. Course Overview
 
+Course content:
+- JavaScript programming
+- Introduction to JS
+- JS features
+- Blackjack card game
+
 JavaScript is the programming language of the web. It is a multi-platform language.
 
 Applications:
@@ -30,13 +36,14 @@ git --version
 npm --version  
 code  
 
-Project initialization commands:  
+Project initialization commands:
+``` 
 git clone https://github.com/pluralsight/web-dev-starter.git  
 cd web-dev-starter  
 code .  
-npm install(for better practice run from cmd not from VS Code terminal)  
-npm run start(starts up light server, opens browser)
-
+npm install (for better practice run from cmd not from VS Code terminal)  
+npm run start (starts up light server, opens browser)
+```
 ### 1.3. JavaScript Beginnings
 
 Introduction:
@@ -46,6 +53,8 @@ Introduction:
 - Detecting and fixing errors
 - Case sensitivity
 - Commenting code
+
+**Adding JS code to HTML**
 
 We can add script tag in HTML files to run JS and change the markup. The usual starting page is index.html.
 ```html
@@ -66,11 +75,50 @@ This is wrong, older browsers can't handle it.
 <script src="./filename.js"/>
 ```
 
-For HTML manipulation we need to add scripts tags at the end of HTML file, for framework insertion etc. HTML <head> is a better option. 
+For HTML manipulation we need to add scripts tags at the end of HTML file where all the HTML is loaded, for framework insertion etc. HTML <head> is a better option. Library imports doesn't rely on the web page.
 
 White spaces are ignored, spaces, tabs, new lines.
 To check errors use f12 dev tools.
-JS is case-sensitive, can't mix up lower and upper cases.
+
+**Detecting and Fixing Errors**
+
+We are fetching CSS and module JS files at the header.
+
+Our index HTML:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carved Rock Fitness</title>
+    <link href="css/main.css" rel="stylesheet">
+    <script src="https://www.pluralsight.com/content/dam/pluralsight2/teach/author-tools/carved-rock-fitness/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="crf">
+    <!-- removed HTML content-->
+</div>
+
+<script src="./util.js"></script>
+<script src="./home.js"></script>
+
+</body>
+</html>
+```
+
+This is a sample JS file for error triggering. When we check the web browser console we can see "Uncaught ReferenceError: showMes is not defined".
+
+```js
+//home.js
+showMessage("Title...");
+showMes
+sage("Title2...");
+```
+
+**Case Sensitivity**
+- JS is case-sensitive, can't mix up lower and upper cases.
+
+**Commenting**
 
 ```js
 //single line comment
@@ -82,7 +130,7 @@ Multi line comment
 
 Summary
 
-Including JS in HTML  
+Including JS in HTML: Our HTML content stays in HTML, JS code stays in it's own file. 
 ```html
 <script></script>
 <script src="./filename.js"></script> 
