@@ -168,7 +168,7 @@ let total = 132.333;
 let product = 'Hiking Boots';
 let discounted = true;
 ```
-We declare a variable with let keyword and can use single quotes or double quotes for strings.
+We declare a variable with **let** keyword and can use single quotes or double quotes for strings.
 ```js
 let welcome = 'welcome';
 let hello = "hello"; 
@@ -323,7 +323,7 @@ let msg = 'Hello World';
 let msg2 = "Hello World";
 let msg3 = "Hello \"World\"";
 ```
-We can use backtick for string formatting. Message 4 and 5 are different strings, there are several whitespace differences between them. But if we use them in HTML tags like head whitespace converted into single space.
+We can use **backtick** for string formatting. Message 4 and 5 are different strings, there are several whitespace differences between them. But if we use them in HTML tags like head whitespace converted into single space.
 ```js
 let name = "Name";
 let msg4 = `Hello ${name}`; //interpolation 
