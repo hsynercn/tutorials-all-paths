@@ -374,20 +374,19 @@ null and undefined are two more types of JavaScript, **null** has one value **nu
 ```js
 let saved;//undefined, when they are not initialized
 saved = 10;
-saved = null;//null, programmer can set a variable to null to wipe out that value, this is a best practice
+saved = null;//Best practice: programmer can set a variable to null to wipe out that value instead of using undefined
 ```
 
 Objects and Symbols
 
-Last two types.
-
 ```js
 let person = {
+    //properties
     firstName: 'John',
     lastName: 'Adams'
 };
 console.log(typeof person);//prints object
-console.log(person.firstName);
+console.log(person.firstName);//gets the property
 ```
 Symbols are used for information hiding in objects.
 
@@ -425,12 +424,14 @@ Introduction
 - Loops: for, while, do...while
 
 Conditional if
+
+Conditionally executing code.
 ```js
 if (5 === 5) {
     console.log('Yes'); //prints
 }
 if (5 > 5) {
-    console.log('No');  //does not print
+    console.log('No'); //does not print
 }
 let state = 'FL';
 if (state !== 'FL') {
@@ -446,19 +447,19 @@ We do not use ==, if types are different == attempts to convert them to string, 
 |"" or '' (empty strings)|0.5|
 |null|"0"|
 |undefined||
-|Nan||
+|NaN||
 
 In some cases floating point arithmetic can give problematic results.
 ```js
 if (1.1 + 1.3 !== 2.4) {
-    console.log("They are not different");
+    console.log("They are different"); //prints message
 }
 ```
 To overcome this problem we can use **toFixed** method, but toFixed method returns a string. We can add a + sign to convert result string to number.  
 ```js
 //we need to convert returned string to number by adding a plus sign before the parenthesis
 if ( +(1.1 + 1.3).toFixed(2) === 2.4) {
-    console.log("They are different");
+    console.log("They are same"); //prints message
 }
 ```
 
@@ -495,7 +496,7 @@ The Ternary Operator
 let message = (price > 10) ? 'expensive' : 'cheap';
 ```
 
-Block Scope Using Let
+Block Scope Using let
 ```js
 if(true) {
     let const someValue = "test";
@@ -568,6 +569,7 @@ Introduction
 - Using functions to modify web pages
 
 Function Basics  
+Code block with a name.
 ```js
 function showMessage() { //function block
     console.log("in a function");
@@ -593,6 +595,7 @@ let myFunc = function testFunction() {
 }
 //testFunction(); gives Uncaught ReferenceError: testFunction is not defined
 ```
+We can still give name to a function to get a detailed stack trace in case of exception.
 
 Passing Information to Functions  
 
@@ -609,7 +612,7 @@ showMessage("Test", " this");
 
 ```js
 function myFunction(message, secondMessage) {
-    console.log(message);
+    console.log(message);//prints undefined
     console.log(secondMessage);//prints undefined
 }
 myFunction();
