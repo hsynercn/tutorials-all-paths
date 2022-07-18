@@ -711,7 +711,7 @@ person.age = 46;
 person['age'] = 47;
 ```
 
-We can use symbols to hide information.
+We can use symbols to hide information in object.
 ```js
 let mySymbol = Symbol();
 let person = {
