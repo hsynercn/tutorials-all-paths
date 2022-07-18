@@ -681,6 +681,7 @@ Introduction
 - Passing Objects to Functions
 - Standard Built-in Objects
 - The Document Object Model (DOM)
+- Styling DOM Elements
 - Detecting Button Clicks
 - Showing and Hiding DOM Elements
 
