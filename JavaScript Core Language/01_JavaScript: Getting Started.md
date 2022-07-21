@@ -800,8 +800,6 @@ button.addEventListener('click', function() {
 
 Showing and Hiding DOM Element
 
-
-
 ```js
 
 //we can add a handler for specific events
@@ -898,7 +896,6 @@ values.unshift('hello', 'world'); //hello, world, b, c, d, e
 
 slice() and splice()
 
-
 **slice** creates a new array original array stays same, **splice** inserts/deletes old array.
 ```js
 //slice
@@ -913,7 +910,7 @@ const values = ['a', 'b', 'c'];
 values.splice(1, 1); //delete start index, number of items we want to delete
 console.log(values); // a, c
 
-values.splice(1, 0 ,'foo'); // start index 1, we delete 0 element
+values.splice(1, 0 ,'foo'); // start index 1, we delete 0 element and we insert 'foo'
 console.log(values); //a, foo, c
 ```
 
