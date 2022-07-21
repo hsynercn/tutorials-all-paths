@@ -1,4 +1,4 @@
-# # pluralsight-js-path
+# JavaScript Core Language
 ## 1. JavaScript: Getting Started
 ### 1.1. Course Overview
 
