@@ -219,7 +219,7 @@ Difference for...in and for...of
 
 Both for...in and for...of are looping constructs which are used to iterate over data structures. The only difference between them is the entities they iterate over:
 - for...in iterates over all **enumerable property keys** of an object
-- for...of iterates over the **values of an iterable object** like **arrays, strings, and node lists**.
+- for...of iterates over the **values of an ITERABLE object** like **arrays, strings, and node lists**.
 
 If we use for...of with a non-iterable object we get 'object is not iterable' error
 
@@ -284,8 +284,9 @@ for(let index = 1; index <= 10; index++) {
 
 Specialized for loops for iteration
 - for/in for object properties/methods
+- for/of for iterable objects
 
-Break and continue controls floe
+Break and continue controls flow
 
 Label is a "goto" mechanism
 - Avoid at all costs
