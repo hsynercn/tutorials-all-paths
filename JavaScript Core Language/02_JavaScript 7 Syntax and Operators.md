@@ -512,6 +512,8 @@ function getFalse() {
 
 Order of Precedence
 
+We can use MDN.
+
 | Precedence | Operator type | Associativity |
 | :---: | :---: | :---: |
 | 19 | Grouping | n/a |
