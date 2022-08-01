@@ -642,7 +642,7 @@ function handleError(error) {
 ```
 
 Summary
-- Always add try...catch around risky code
+- Always add try...catch around dangerous code
 - Use finally block if required
 - Throw custom error to communicate specific info
 - Change how you handle errors based on the type of error
@@ -822,6 +822,8 @@ Module content:
 - Constructor functions
 
 Introduction to the 'this' Keyword
+
+Commonly used in object oriendted programming languages.
 
 Refers to an object.  
 That object in which the current code is running.  
