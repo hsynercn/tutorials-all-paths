@@ -1028,7 +1028,7 @@ let arr3 = arr.slice(0);
 ```
 
 Copy an Array of Objects
-
+- We can copy primite arrays with spread operator, objects are copied by reference.
 ```js
 let _products = [
     {id:1, name:"Tom"},
@@ -1096,6 +1096,8 @@ console.log(prod2.location.city);//17
 * More concise
 * Can make code harder to read
 * Not supported by all browsers
+
+**Course Summary**
 * switch statement simplifies our code
 * for/in and for/of provide specialized looping
 * Math, logical and comparison operators
