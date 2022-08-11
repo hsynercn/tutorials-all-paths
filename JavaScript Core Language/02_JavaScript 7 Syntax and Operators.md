@@ -825,20 +825,20 @@ Introduction to the 'this' Keyword
 
 Commonly used in object oriendted programming languages.
 
-Refers to an object.  
+**Refers to an object.**  
 That object in which the current code is running.  
 Sometimes the object can be changed.
 
 JS is running within the global window object.
 ```js
-//in HTML script block this=global window object
+//in HTML script block this = global window object
 console.log(this.toString());//prints [object Window]
 //
 ```
 
 ```js
 let person = {
-    //this=person object literal
+    //this = person object literal
     id: "100",
     name: "name",
     getName:function() {
@@ -849,7 +849,7 @@ let person = {
 
 ```js
 function Person(id, name) {
-    //current Person object
+    //this = current Person object
     this.id = id;
     this.name = name;
     this.getName = function() {
@@ -985,7 +985,7 @@ Summary:
     - Global object
     - HTML element
     - Method owner
-- 'use strict' makes 'this' undefined in functions
+- 'use strict' makes 'this' undefined in global functions
 - What is passed to call() and apply() methods becomes 'this'
 - constructor functions owner is 'this'
 
