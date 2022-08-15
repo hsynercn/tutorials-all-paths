@@ -300,7 +300,7 @@ Number.isSafeInteger(15); //true
 
 Understanding Symbols in JavaScript
 
-Symbols is a primitive datatype that can be used an identifier for object properties. Symbols are globally unique unguessable values.
+Symbols is a primitive datatype that can be used as an identifier for object properties. Symbols are globally unique unguessable values.
 
 Every symbol is unique.   
 ```js
@@ -316,8 +316,8 @@ id2 === id3; //false
 
 We can get existing symbols form registry.
 ```js
-let id = Symbol.for("y Id");
-let id2 = Symbol.for("y Id");
+let id = Symbol.for("My Id");
+let id2 = Symbol.for("My Id");
 
 id === id2; //true
 ```
