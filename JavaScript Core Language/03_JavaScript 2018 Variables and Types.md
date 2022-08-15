@@ -1,5 +1,5 @@
-# pluralsight-js-path
-## 1. JavaScript Variables and Types
+# JavaScript Core Language
+## 1. JavaScript 2018 Variables and Types
 ### 1.1. Course Overview
  
  Course content:
