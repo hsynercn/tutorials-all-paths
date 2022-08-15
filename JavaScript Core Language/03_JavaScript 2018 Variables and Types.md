@@ -41,7 +41,7 @@ For a better implementation we can use a template.
     name: "Tom",
     price: 130.0
  }
- //template literal preserves line breaks 
+ //template literal, preserves line breaks 
  let summaryText = `This is a template literal for data, 
  id:${data.id}, 
  name:${data.name}, 
@@ -49,7 +49,30 @@ For a better implementation we can use a template.
  console.log(summaryText);
  ```
 
- Create a Tagged Template Literal
+Create a Tagged Template Literal
+
+Tags allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions.
+
+```js
+const person = 'Mike';
+const age = 28;
+
+function myTag(strings, personExp, ageExp) {
+  const str0 = strings[0]; // "That "
+  const str1 = strings[1]; // " is a "
+  const str2 = strings[2]; // "."
+
+  const ageStr = ageExp > 99 ? 'centenarian' : 'youngster';
+
+  // We can even return a string built using a template literal
+  return `${str0}${personExp}${str1}${ageStr}${str2}`;
+}
+
+const output = myTag`That ${person} is a ${age}.`;
+
+console.log(output);
+// That Mike is a youngster.
+```
 
 We can use tagged template literals to prerender template.
 
@@ -58,7 +81,7 @@ We can use tagged template literals to prerender template.
 //also 'String.raw' is actually a tag for template literal
 let applicationCode = String.raw`\t${createApplicationId()}`;
 
-//add HTML breaks
+//we can use a tagged template, adds HTML breaks
 let summaryText = highlightText
         `Dear ${la.ApplicantName}, <br>
     your application for ${"$" + la.LoanAmount}, ${reviewText}.<br>
@@ -140,15 +163,14 @@ Keywords
    - No block scope
    - Can be redeclared anywhere
    - Can be used and reassigned anywhere
-
 - **let**
    - Block scope
-   - Can not be redeclared within scope
+   - Can NOT be redeclared within scope
    - Can be reassigned within scope
 - **const**
    - Block scope
-   - Can not be reassigned or redeclared
-   - The value it references can change inside
+   - Can NOT be reassigned or redeclared
+   - The value it references CAN change inside
 
 Destructing Syntax to Get Values from Arrays and Objects
 
@@ -167,12 +189,17 @@ let temp4 = myArray[3];
 We can use destructing. We can get a smaller part of original array. If original array can't populate all variables we get undefined variables. 
 ```js
 let myArray = [1, 2, 3, 4, 5, 6 ,7];
-
+//array deconstruction
 let[temp1, temp2, temp3, temp4] = myArray; //1, 2, 3, 4
 
 let myArray2 = [1, 2, 3];
 
-let[temp1, temp2, temp3, temp4] = myArray2; //1, 2, 3, undefined
+let[
+   temp1, 
+   temp2, 
+   temp3, 
+   temp4,
+] = myArray2; //1, 2, 3, undefined
 ```
 
 Array deconstruction with default values.
