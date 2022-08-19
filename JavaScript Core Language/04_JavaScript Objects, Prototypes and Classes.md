@@ -207,6 +207,7 @@ Using Object.create()
 Object literals and constructor functions use Object.create to create objects. This is a very verbose method.
 
 ```js
+//very verbose
 let person = Object.create(
     Object.prototype,{
         firstName: {value: "Jim", enumerable:true, writable:true, configurable:true},
@@ -219,14 +220,17 @@ let person = Object.create(
 
 Using Bracket Notation to Access Object Properties
 
-For property names that are not valid identifiers.
+Dot and bracket notations are same. We can use bracket notation for property names that are not valid identifiers.
 ```js
 let person = {
     firstName: 'Jim',
     lastName: 'Cooper',
     age: 29,
 };
+person.age = 30;
 person['hair color'] = 'Brown';
+let propertyName = 'firstName';
+console.log(person[propertyName]);//Jim
 ```
 
 Loop for all property names.
@@ -256,6 +260,7 @@ console.log(Object.getOwnPropertyDescriptor(person, "firstName"));
 
 Using the Writable Attribute
 
+Is property changeable after the initial value.
 ```js
 'use strict'
 let person = {
@@ -267,9 +272,28 @@ Object.defineProperty(person, 'firstName', {writable: false});
 //Uncaught TypeError: Cannot assign to read only property 'firstName' of object
 person.firstName = "Hello";
 ```
+We can change the nested properties.
+```js
+'use strict'
+let person = {
+    name : {
+        firstName: 'Jim',
+        lastName: 'Cooper',
+    },
+    age: 29,
+};
+Object.defineProperty(person, 'name', {writable: false});
+person.name.firstName = "Hello"; //this is OK
+
+//but if we use freeze on that object
+Object.freeze(person.name);
+//Uncaught TypeError: Cannot assign to read only property 
+person.name.firstName = 'Test';
+```
 
 Using the Enumerable Attribute
 
+As default all object properties are enumerable.
 If we set enumerable field of a variable to false we can't see that variable in JSON.stringify or Object.keys.
 ```js
 let person = {
@@ -288,6 +312,7 @@ for(let propertyName in person) {
 
 console.log(Object.keys(person)); //['lastName', 'age']
 console.log(JSON.stringify(person)); //{"lastName":"Cooper","age":29}
+//but still we can get that property by dot notation
 console.log(person.firstName);
 ```
 
@@ -299,21 +324,20 @@ let person = {
     firstName: 'Jim',
     lastName: 'Cooper',
     age: 29,
-};
-//we can't it to true again 
+}; 
 Object.defineProperty(person, 'firstName', {configurable: false});
+
+//we can't set configurable property to true
+Object.defineProperty(person, 'firstName', {configurable: true}); //Uncaught TypeError: Cannot redefine property: firstName
 
 //we can't change enumerable property
 Object.defineProperty(person, 'firstName', {enumerable: false}); //Uncaught TypeError: Cannot redefine property: firstName
-
-//we can't change configurable property
-Object.defineProperty(person, 'firstName', {configurable: true}); //Uncaught TypeError: Cannot redefine property: firstName
 
 //we can't delete property
 delete person.firstName;
 
 //except writable descriptor, we can change it
-Object.defineProperty(person, 'firstName', {enumerable: false});
+Object.defineProperty(person, 'firstName', {writable: false});
 ```
 
 Deleting a property.
