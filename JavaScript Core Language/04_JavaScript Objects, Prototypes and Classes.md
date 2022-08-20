@@ -301,7 +301,6 @@ let person = {
     lastName: 'Cooper',
     age: 29,
 };
-
 console.log(Object.keys(person)); //['firstName', 'lastName', 'age']
 
 Object.defineProperty(person, 'firstName', {enumerable: false});
