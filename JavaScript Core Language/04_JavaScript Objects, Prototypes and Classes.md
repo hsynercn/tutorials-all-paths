@@ -422,10 +422,17 @@ function Person(firstName, lastName) {
 Person.prototype.age = 22;
 
 let billy = new Person("Billy", "Rush");
+let sofia = new Person("Billy", "Rush");
 
 Person.prototype === billy.__proto__; //true, they are same object
 
 console.log(JSON.stringify(billy.__proto__)); //{"age":22}
+console.log(JSON.stringify(sofia.__proto__)); //{"age":22}
+
+sofia.__proto__ = 19;
+
+console.log(JSON.stringify(billy.__proto__)); //{"age":19}
+console.log(JSON.stringify(sofia.__proto__)); //{"age":19}
 ```
 
 Instance vs. Prototype Properties
@@ -459,7 +466,7 @@ console.log(billy.hasOwnProperty('age')); //false
 console.log(billy.age); //still we can get this value
 ```
 
-When we access an object's property JavaScript checks the object itself first, later checks the prototype. Instance property overrides the prototype property.
+When we access an object's property JavaScript checks the object itself first, later checks the prototype. **Instance property overrides the prototype property.**
 
 Changing a Function's Prototype
 
