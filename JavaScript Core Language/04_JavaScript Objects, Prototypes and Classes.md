@@ -482,11 +482,12 @@ Person.prototype.age = 22;
 let billy = new Person("Billy", "Rush"); //age: 22
 let jack = new Person("Jack", "Rush"); //age: 22
 
+//set a new object for prototype
 Person.prototype = { age: 18 };
 
 let newObject = new Person("New", "New"); //age: 18
 
-//billy and jack prototype object is a different instance
+//billy and jack prototype object is different than newObject
 console.log(billy.age); //22
 console.log(jack.age); //22
 console.log(newObject.age); //18
@@ -510,7 +511,7 @@ console.log(JSON.stringify(billy.__proto__)); //{}
 console.log(JSON.stringify(billy.__proto__.__proto__)); //{}
 console.log(JSON.stringify(billy.__proto__.__proto__.__proto__)); //null, end of the chain
 ```
-We can create a more meaningful inheritance chain.
+We can create a more meaningful inheritance chains.
 
 Creating Prototypal Inheritance Chains
 
@@ -706,7 +707,7 @@ console.log(jack.getCourses()); //Jack Black enrolled courses CS101
 
 Using Static Properties and Methods
 
- Static properties and methods are items that you can access on a class without having to first create an instance of that class.
+Static properties and methods are items that you can access on a class without having to first create an instance of that class.
 
 ```js
 'use strict';
