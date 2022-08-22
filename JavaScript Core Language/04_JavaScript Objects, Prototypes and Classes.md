@@ -1,4 +1,4 @@
-# pluralsight-js-path
+# JavaScript Core Language
 ## 1. JavaScript Objects, Prototypes, and Classes
 ### 1.1. Course Overview
 
