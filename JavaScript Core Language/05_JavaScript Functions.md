@@ -146,9 +146,9 @@ console.log(greeting.getMessage()); //Hello
 - Immediately Invoked function Expression
 - Closures
 
-Improving Readability With Arrow Functions
+## 2. Improving Readability With Arrow Functions
 
-- Arrow Functions - What and why
+- Arrow Functions - What and Why
 - Defining Arrow Functions
 - Behavior of **this** keyword
 
@@ -255,7 +255,7 @@ greeting.sayHi = function() {
 greeting.sayHi(); //{sayHi: ƒ}
 ```
 
-Constructor function example. When we invoke a function with a new keyword JavaScript implicitly creates an empty object within the function before returning it.
+Constructor function example. When we invoke a function with a **new** keyword JavaScript implicitly creates an empty object within the function before returning it.
 ```js
 function sayHi() {
     console.log(this);
@@ -375,7 +375,7 @@ hello("Bill"); //Hello Bill
 
 Constructing Rest Parameters
 
-... makes names a rest parameter, and it allows multiple parameters.
+'...' makes names a rest parameter, and it allows multiple parameters.
 
 ```js
 let print = function(...values) {
