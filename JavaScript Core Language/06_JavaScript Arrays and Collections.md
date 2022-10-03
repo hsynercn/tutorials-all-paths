@@ -50,7 +50,8 @@ Using Array.find and findIndex to Find a Value
 let sales = Array.of(1, 2, 3, 4, 5 ,6);
 let firstFind = sales.find(element => element === 3); // we need to supply a function to find
 console.log(firstFind); //3
-
+```
+```js
 let sales = Array.of(1, 2, 3, 4, 5 ,6);
 let secondFind = sales.find(element => element >= 3); // we get first proper element
 console.log(secondFind); //3
@@ -117,6 +118,15 @@ Introducing Sets
 
 Sets: Stores **unique** values of any type, whether primitive values or object references.
 
+Methods
+- Add
+- Clear
+- Delete
+- Entries
+- forEach
+- Has
+- Keys
+- Values
 
 Adding and Removing Values to Set
 
