@@ -316,6 +316,8 @@ console.log(buffer.byteLength === 16) //true
 
 Accessing Typed Arrays with Views
 
+We need to pay attention to value boundaries.
+
 ```js
 let buffer = new ArrayBuffer(16); ///16 bytes
 console.log(buffer.byteLength === 16) //true
