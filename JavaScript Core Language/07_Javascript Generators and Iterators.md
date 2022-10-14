@@ -68,6 +68,8 @@ while(!res.done) {
 //4
 ```
 
+Iterators and Iterable
+
 What is an Iterable?
 
 An object that allows iteration of itself.
