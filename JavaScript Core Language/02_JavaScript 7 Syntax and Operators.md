@@ -154,7 +154,7 @@ switch (id) {
 }
 ```
 
-**Summary**
+### **Summary**
 - Use switch statement for readability
 - More efficient than multiple if...else statements
 - Be careful with block level scope
@@ -197,6 +197,12 @@ let objects = [
 ];
 for(const item of objects) {
     console.log(JSON.stringify(item));
+    /* prints
+    {"name":"a"}
+    {"name":"b"}
+    {"name":"c"}
+    {"name":"d"}
+    */
 }
 ```
 
@@ -280,7 +286,7 @@ for(let index = 1; index <= 10; index++) {
 }
 ```
 
-**Summary**
+### **Summary**
 
 Specialized for loops for iteration
 - for/in for object properties/methods
@@ -414,7 +420,7 @@ delete value;
 delete useStrictSample;
 ```
 
-**Summary**
+### **Summary**
 
 Recognize the different operators
 * Math
@@ -530,7 +536,7 @@ We can use MDN.
 | 4 | Logical OR (&#124;&#124;) | left-to-right |
 | 2 | Assignment | right-to-left |
 
-**Summary**
+### **Summary**
 
 True
 - Boolean true
@@ -641,7 +647,7 @@ function handleError(error) {
 }
 ```
 
-Summary
+### **Summary**
 - Always add try...catch around dangerous code
 - Use finally block if required
 - Throw custom error to communicate specific info
@@ -660,7 +666,7 @@ Module content:
     - constructor property
     - instanceof operator
 
-Primitive Data Types
+**Primitive Data Types**
 
 | Data type | Description |
 | :---: | :---: |
@@ -670,7 +676,7 @@ Primitive Data Types
 | number | integers, decimals, float. etc. |
 | string | a series (array) of characters |
 
-Object Data Types
+**Object Data Types**
 | Data type | Description |
 | :---: | :---: |
 | new Array | A collection of values |
@@ -790,14 +796,17 @@ let value = "A simple string";
 //primitives are not objects
 console.log(prod instanceof Product);//true
 console.log(prod instanceof Object);//true
+
 console.log(date instanceof Date);//true
 console.log(date instanceof Object);//true
+
 console.log(name instanceof String);//true
+
 console.log(value instanceof String);//false, primitives are not objects
 console.log(value instanceof Object);//false
 ```
 
-**Summary**
+### **Summary**
 
 Important to understand the difference between primitives and Objects.
 
@@ -980,7 +989,7 @@ console.log(product1.grossProfit());//$100.00
 console.log(product2.grossProfit());//$50.00
 ```
 
-Summary:
+### **Summary**
 - Scope determines value of 'this'
     - Global object
     - HTML element
@@ -1090,14 +1099,14 @@ console.log(prod1.location.city);//17
 console.log(prod2.location.city);//17
 ```
 
-**Summary**
+### **Summary**
 
 * Spread operator simplifies code
 * More concise
 * Can make code harder to read
 * Not supported by all browsers
 
-**Course Summary**
+### **Course Summary**
 * switch statement simplifies our code
 * for/in and for/of provide specialized looping
 * Math, logical and comparison operators
