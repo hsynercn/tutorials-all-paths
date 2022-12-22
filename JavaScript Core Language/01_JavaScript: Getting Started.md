@@ -31,10 +31,12 @@ Starting:
 
 In VS Code ctrl+' opens the terminal
 
-Test commands:  
-git --version  
-npm --version  
-code  
+Test commands:
+```cmd 
+git --version
+npm --version
+code
+```
 
 Project initialization commands:
 ``` 
@@ -128,7 +130,7 @@ Multi line comment
 */
 ```
 
-Summary
+### **Summary**
 
 Including JS in HTML: Our HTML content stays in HTML, JS code stays in it's own file. 
 ```html
@@ -234,7 +236,7 @@ console.log(second); //prints undefined
 let first = 1;
 var second = 2;
 ```
-Summary
+### **Summary**
 
 Defined variables
 
@@ -298,7 +300,7 @@ price--;
 ```
 Operator Precedence
 
-MDN(Mozilla Developer Network) operator precedence  
+MDN([Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)) operator precedence  
     21: grouping ( ... )  
     15: multiplication/division/remainder -> left-to-right  
     14: addition/subtraction -> left-to-right  
@@ -390,7 +392,7 @@ console.log(person.firstName);//gets the property
 ```
 Symbols are used for information hiding in objects.
 
-**Summary**
+### **Summary**
 
 Numbers
 
@@ -438,7 +440,7 @@ if (state !== 'FL') {
     console.log("NOT FLORIDA")
 }
 ```
-We do not use ==, if types are different == attempts to convert them to string, number or boolean.
+Usually we don't use ==, if types are different == attempts to convert them to string, number or boolean.
 
 |falsy|truthy|
 | :---: |:---:|
@@ -477,14 +479,14 @@ Comparing == and ===
 
 JavaScript attempts to convert values while using ==. For better and safer comprasion we use identically equal to symbol ===. 
 ```js
-if(1 === "1") {
+if(1 === "1") { //not equal
     console.log("equal");
 } else {
-    console.log("not equal");//not equal
+    console.log("not equal");
 }
 
-if(1 == "1") {
-    console.log("equal");//they are equal
+if(1 == "1") { //they are equal
+    console.log("equal");
 } else {
     console.log("not equal");
 }
@@ -536,7 +538,7 @@ do {
 //1 2 3 4
 ```
 
-**Summary**
+### **Summary**
 
 if ... else Statements
 
@@ -657,7 +659,7 @@ function getCode(value) {
 let code = getCode(2);
 ```
 
-**Summary**
+### **Summary**
 
 Function
 - function name() {...} //declaration
@@ -817,7 +819,7 @@ button.addEventListener('click', function() {
 });
 ```
 
-**Summary**
+### **Summary**
 
 Object properties and methods
 - obj.propName
@@ -954,7 +956,7 @@ const containers = document.getElementsByClassName('container');
 containers[2].classList.add('d-none');
 ```
 
-Summary
+### **Summary**
 
 Creating and initializing arrays
 - const arr = [1, 2, 3]
@@ -1062,7 +1064,7 @@ let id = 1;
 console.log(id);
 ```
 
-**Summary**
+### **Summary**
 
 Global scope
 - All functions can access items
