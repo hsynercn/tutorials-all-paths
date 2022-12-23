@@ -19,8 +19,9 @@ Content:
 - Merging properties
 - Immutability
 
+```cmd
 git clone https://github.com/jmcooper/javascript-opc.git
-
+```
 Using Object Literals to Create JavaScript Objects
 
 Easiest way to create object in JavaScript is object literals.
@@ -220,7 +221,7 @@ let person = Object.create(
 
 Using Bracket Notation to Access Object Properties
 
-Dot and bracket notations are same. We can use bracket notation for property names that are not valid identifiers.
+Dot and bracket notations are same for access. We can use bracket notation for property names that are not valid identifiers.
 ```js
 let person = {
     firstName: 'Jim',
