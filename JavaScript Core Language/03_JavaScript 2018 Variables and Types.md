@@ -14,7 +14,7 @@ With this course you will know how to make your JS code more maintainable.
  How This Course Works
  - Install VS Code
  - Basic VS Code and JS web development
- - Use demo code: https://github.com/bmaluijb/GetYourLoanApp.git
+ - Use demo code: [link](https://github.com/bmaluijb/GetYourLoanApp.git)
  
  To use code open index.html with a browser.
 
@@ -26,9 +26,9 @@ Demo content
 - Difference between let and const
 - Destructuring syntax
 
- Using Template Literals
+Using Template Literals
 
-This is not the best way to create long string.
+This is not the best way for creating long strings.
 ```js
 let summaryText = "Dear" + la.ApplicationName + ", " + reviewText + " Your risk profile is " + riskProfile;
 ```
@@ -116,7 +116,7 @@ The Difference Between Let and Const
 
 **Block Scope**
 
-X has the same value inside and outside the block. Because var has a global and function scope, does not have a block scope. **let** is different, it has block scope. 
+X has the same value inside and outside the block. Because var has a global and function scope, **var** doesn't have a block scope. **let** has block scope. 
 ```js
 function myFunction() {
    var x = 10;
@@ -224,14 +224,14 @@ class LoanApplication() {
    LoanPurpose;
    LoanAmount;
 }
-
+//with a default value
 let {
    Id,
    ApplicantName = "Harry"
 } = myLoanApplication;
 ```
 
-**Summary**
+### **Summary**
 
 - Template literals
    - 'Dear ${name}'
@@ -335,7 +335,7 @@ console.log(loan[Symbol.for("income")]); //1500
 console.log(loan[Object.getOwnPropertySymbols(loan)[0]]); //1500
 ``` 
 
-**Summary**
+### **Summary**
 - Test strings for content
    - String.search and trim() and toLowercase()
    - String.startsWith
