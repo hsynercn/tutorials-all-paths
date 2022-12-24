@@ -15,9 +15,7 @@
 - Immediately Invoked Functions Expression (IIFE)
 - Closures
 
-Setting up the Environment
-
-Install VS Code.
+Set up the environment: Install VS Code
 
 Introducing Functions
 
@@ -139,7 +137,7 @@ let greeting = (function() {
 console.log(greeting.getMessage()); //Hello
 ```
 
-**Summary**
+### **Summary**
 - Function
 - Arguments
 - Block Scope
@@ -150,7 +148,7 @@ console.log(greeting.getMessage()); //Hello
 
 - Arrow Functions - What and Why
 - Defining Arrow Functions
-- Behavior of **this** keyword
+- Behavior of **this** Keyword
 
 Introducing Arrow Functions
 
@@ -203,22 +201,24 @@ Behavior of this Keyword
 
 Unlike regular functions, arrow functions do not have their own this value. Moreover, the value of this is always inherited from the enclosing scope.
 
-ES6 arrow functions can’t be bound to a **this*** keyword, so it will lexically go up a scope, and use the value of this in the scope in which it was defined.
+ES6 arrow functions can’t be bound to a **this** keyword, so it will lexically go up a scope, and use the value of this in the scope in which it was defined.
 
 ```js
-let message = {
-    name: "John",
-    regularFunction: function() {
-        console.log(this);
-        console.log("Hello " + this.name);
-    },
-    arrowFunction: () => console.log("Hi " + this.name)
+{
+    this.name = 'upper';
+    let message = {
+        name: "John",
+        regularFunction: function() {
+            console.log("Hello " + this.name);
+        },
+        arrowFunction: () => console.log("Hi " + this.name)
+    }
+    message.regularFunction(); //Hello John
+    message.arrowFunction(); //Hi, because this.name is undefined
 }
-message.regularFunction(); //Hello John
-message.arrowFunction(); //Hi, because this.name is undefined
 ```
 
-**Summary**
+### **Summary**
 - Arrow functions
 - Defining arrow functions
 - Behavior of this keyword
@@ -300,7 +300,8 @@ hello.apply(undefined, ["John", "student"]);// we are not changing the this valu
 hello.call(undefined, "John", "student");
 ```
 
-***apply**: array input with similar elements
+**apply**: array input with similar elements
+
 **call**: individual arguments of varying type
 
 What is bind Method?
@@ -354,7 +355,7 @@ console.log(escape(' ')) //%20
 console.log(unescape('%20')) // ' '
 ```
 
-**Summary**
+### **Summary**
 - apply and call
 - bind
 - Built-in functions
@@ -424,7 +425,7 @@ let myString = "test";
 //t
 ```
 
-**Summary**
+### **Summary**
 - Setting default parameters
 - Defining Rest parameters
 - Using the spread operator
