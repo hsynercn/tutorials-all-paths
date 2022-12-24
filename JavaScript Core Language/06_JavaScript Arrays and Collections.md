@@ -77,7 +77,7 @@ sales.forEach(element => total += element);
 console.log(total); //15
 ```
 
-**Summary**
+### **Summary**
 
 - Array.of
 - Spread operator
@@ -192,7 +192,7 @@ let myWeakSet = new WeakSet();
 myWeakSet.add(hiking);
 console.log(myWeakSet.has(hiking)); //true
 ```
-**Summary**
+### **Summary**
 - Data collections
 - Intro to sets
 - Adding/removing values
@@ -225,7 +225,7 @@ monthlySales.delete('sale1');
 console.log(monthlySales.has('sale1')); //false
 ```
 
-Iterating through a Map
+Iterating Through a Map
 
 ```js
 const monthlySales = new Map();
@@ -265,7 +265,7 @@ WeakMap
 - Garbage collected
 - Not enumerable
 
-**Summary**
+### **Summary**
 - Maps
 - Add/remove values
 - Iterate a map
@@ -337,7 +337,7 @@ view3.setInt8(1, 11);
 console.log(view1); //Int8Array(16) [32, 0, 43, 0, 0, 1, 0, 11, 11, 0, 0, 0, 0, 0, 0, 0, buffer: ArrayBuffer(16), byteLength: 16, byteOffset: 0, length: 16]
 ```
 
-**Summary**
+### **Summary**
 - Intro to typed arrays
 - Typed arrays vs. standard arrays
 - Creating array buffers
