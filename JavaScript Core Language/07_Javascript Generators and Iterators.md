@@ -234,7 +234,7 @@ Iterator result interface:
 
 This tutorial is shitty, so I didn't take extra notes.
 
-**Summary**
+### **Summary**
 
 - Defined iterables and iterators
 - Built in iterables
@@ -385,7 +385,7 @@ console.log(errorIt.next());//{value: 1, done: false}
 console.log(errorIt.next());//{value: undefined, done: true}
 ```
 
-**Summary**
+### **Summary**
 - Generator functions return iterators
 - The 'yield' keyword
 - Yield delegation (yield*)
@@ -414,7 +414,7 @@ delay(5000).then( function on Elapsed(){
 });
 ```
 
-**Summary**
+### **Summary**
 - Using generator functions for async flows
 - CAF.cancelToken()
 - CAF.delay()
