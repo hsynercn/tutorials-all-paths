@@ -247,3 +247,75 @@ Ways to Queue Promises
 - race
 
 ## 5. Iterating with Async/Await
+
+Promises are older now. Async/Await is syntactic sugar does the some thing.
+
+Return value is wrapped in a promise.
+```js
+const getNames = async () => {
+  return [];
+}
+```
+
+Await
+- Must be used inside of async
+- Only blocks current function
+
+```js
+export async function get() {
+  const {data} = await axios.get("http://localhost:3000/orders/1");
+}
+```
+
+Handling errors with async/await.
+```js
+export async function get() {
+  try {
+    const {data} = await axios.get("http://localhost:3000/orders/1");
+  } catch (error) {
+    console.log(error);
+  }
+}
+```
+
+Chaining Async/Await
+
+```js
+axios.get("orders/1")
+  .then(({data}) => {
+    return axios.get(`/addresses/${data.shippingAddress}`);
+  })
+  .then(({data}) => {
+    console.log(data.city);
+  })
+```
+
+Awaiting Concurrent Requests
+
+```js
+export async function concurrent () {
+  const orderStatus = axios.get ("http://localhost:3000/orderStatuses")
+  const orders = axios.get("http://localhost:3000/orders");
+
+  const {data: statuses} = await orderStatus;
+  const {data: order} = await orders;
+}
+```
+
+Awaiting Parallel Calls
+
+```js
+await Promise.all([
+  (async () => {
+    const orderStatus = axios.get ("http://localhost:3000/orderStatuses")
+  })(),
+  (async () => {
+    const orders = axios.get("http://localhost:3000/orders");
+  })()
+]);
+```
+
+**Summary**
+- Pending
+- Fulfilled
+- Rejected
