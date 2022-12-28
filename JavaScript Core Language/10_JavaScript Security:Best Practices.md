@@ -141,4 +141,67 @@ Fixing the Code
 
 ## 4. Defending Against Prototype Pollution
 
+Overview
+- JavaScript prototypal inheritance
+- Modifying the prototype chain
+  - Parsin JSON data
+  - Dynamic property keys
+- Impact of prototype pollution
+- Hardening code against attacks
+
+Prototype Pollution Attacks
+1. Attacker sends a malicious JSON
+2. API code parses the JSON
+3. Merges parsed data with application objects
+4. Modified code acts differently
+
+Inheritance Models
+- Classes: Static hierarchy of types
+- Prototypes: Dynamic chain of objects
+
+Each JS object has a prototype, the chain ends with **null**. Inherited properties comes from chain. Only own properties are mutated.
+
+```js
+const parent = { a: 99 };
+const child = Object.create(parent);
+console.log(child.a); //99
+console.log(child.__proto__ === parent);
+```
+
+JavaScript classes make it easier to set up prototype chains.
+
+Dangers of Prototype Pollution
+- Denial of service
+- fon-in loop manipulation
+- Property injection
+  - Security check bypass
+  - SQL abd NoSQL injections
+- Remote code execution
+
+Example:
+```js
+const user = { name: 'Full Name' };   //Regular user
+const malicious = { isAdmin: true };  //isAdmin is true for admin
+user['__proto__'] = malicious;        //Pollution
+console.log(user.isAdmin);            //true, escalation of privilage
+```
+
+Finding Prototype Pollution
+- Property mutation with untrusted key and value
+- Recursive object merging
+- Object cloning
+- Property access by path
+
+Fixing the Code
+- Validata JSON schema
+- Freeze the prototype
+  - Object.freeze
+- Create objects without prototype
+  - Object.create(null,...)
+- Use Map instead of {}
+
+Introducing Prototype Pollution With 3rd Party
+- Utility libraries
+- Merging, cloning, extending
+
 ## 5. Testing Your Code
