@@ -45,4 +45,66 @@ webHeading!.textContent = new Message;
 
 TypeScript Compiler: tsc
 
+tsconfig.json: TypeScript configuration file
+
 ## 4. Writing TypeScript Applications
+
+Type Inference
+```ts
+let firstName: string = "Alice";    //inferred as a string
+let age = 72;               //inferred as a number
+let activeMember = true;    //inferred as a boolean
+
+//firstName = 123; we can't do this
+```
+
+Type Information in Functions:
+```ts
+function simpleFunction(name: string, isActive: boolean): number {
+    //code
+    return 0;
+}
+```
+
+TypeScript class:
+```ts
+class Customer {
+    name: string;
+    isActive: boolean;
+    constructor (name: string) {
+        this.name = name;
+        this.isActive = true;
+    }
+    announce() {
+        return "Hello, my name is + this.name;
+    }
+}
+// create a new instance
+let first Customer = new Customer ("Alice");
+```
+
+Inheritance:
+```ts
+class Customer {
+    name: string;
+    isActive: boolean;
+    constructor (name: string) {
+        this.name = name;
+        this.isActive = true;
+    }
+    announce() {
+        return "Hello, my name is + this.name";
+    }
+}
+
+class SpecialCustomer extends Customer {
+    // ...
+}
+```
+
+Access Modifiers
+- public
+- private
+- protected
+
+Working with Modules: TS supports several module mechanism
