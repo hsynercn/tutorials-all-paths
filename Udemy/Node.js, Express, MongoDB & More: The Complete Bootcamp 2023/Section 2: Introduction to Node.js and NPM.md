@@ -31,4 +31,25 @@ Node.js Pros
 
 ### 2.6. Running JavaScript Outside the Browser
 
+Running JavaScript on terminal:
 
+```cmd
+node
+> const name = 'test'
+> name
+'test'
+> 7 + 5
+12
+> .exit
+```
+
+Underscore (_) represents previous result:
+
+```js
+> 3 * 8
+24
+> _+6
+30
+```
+
+### 2.7. Using Modules 1: Core Modules
