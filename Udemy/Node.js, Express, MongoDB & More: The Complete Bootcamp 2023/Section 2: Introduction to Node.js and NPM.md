@@ -26,8 +26,8 @@ Node.js Pros
 | USE NODE.JS                                    | DON'T USE                                                      |
 | ---------------------------------------------- | -------------------------------------------------------------- |
 | API with database behind it (preferably NoSQL) | Applications with heavy server-side processing (CPU-intensive) |
-|Data streaming||
-|Real-time chat application||
+| Data streaming                                 |                                                                |
+| Real-time chat application                     |                                                                |
 
 ### 2.6. Running JavaScript Outside the Browser
 
@@ -43,7 +43,7 @@ node
 > .exit
 ```
 
-Underscore (_) represents previous result:
+Underscore (\_) represents previous result:
 
 ```js
 > 3 * 8
@@ -57,7 +57,7 @@ Underscore (_) represents previous result:
 Sample JavaScript file, index.js:
 
 ```js
-const hello = 'Hello world';
+const hello = "Hello world";
 console.log(hello);
 ```
 
@@ -67,4 +67,70 @@ How to run the file:
 node index.js
 ```
 
-On the node environment provides additional functionality with modules.
+On the node environment provides additional functionality with modules. We can access the [documentation](https://nodejs.org/docs/latest-v16.x/api/).
+
+### 2.8. Reading and Writing Files
+
+Using file operations:
+
+```js
+const fs = require("fs");
+
+const textInput = fs.readFileSync("./txt/input.txt", "utf8");
+console.log(textInput);
+
+const textOut = `Information about avocado: ${textInput}\nCreated on ${Date.now()}`;
+
+fs.writeFileSync("./txt/output.txt", textOut);
+```
+
+### 2.9. Blocking and Non-blocking: Asynchronous Nature of Node.js
+
+Synchronous VS. Asynchronous (Blocking vs Non-Blocking)
+
+Synchronous: blocking, execution waits until completion
+
+```js
+const fs = require('fs');
+
+const input = fs.readFileSync('input.txt', 'utf8');
+console.log(input);
+```
+
+Asynchronous: non-blocking, we will provide a callback function for after operation
+
+```js
+const fs = require('fs');
+
+const input = fs.readFile('input.txt', 'utf8', (err, data)=> {
+    console.log(data);
+});
+console.log('Reading the file');
+```
+
+Node.js has single thread where our code is executed, only one. On this case when we execute a synchronous time consuming process it will block the other operations. It is better to use asynchronous implementation for time consuming operations like I/O operations, Node.js will wait until the result finalization and execute the addressed callback for these type of operations.
+
+- Node.js has a non-blocking I/O model
+- This is why we use so many callback functions in Node.js
+
+Note: Not all callbacks are asynchronous.
+
+Callback Hell: Asynchronous implementation could result in callback hell, left pyramid on the sample code represents this behavior.
+
+```js
+const fs = require('fs');
+fs.readFile('start.txt', 'utf-8', (err, datal) => {
+    fs.readFile(`${data1}.txt`, 'utf-8', (err, data2) => {
+        fs.readFile('append.txt', 'utf-8', (err, data3) => {
+            fs.writeFile('final.txt', `${data2} ${data3}`, 'utf-8', (err) => {
+                if (err) throw err;
+                console.log('Your file has been saved :D');
+            });
+        });
+    });
+});
+```
+
+We could avoid this problem by using the **Promises** or **Async/Await**.
+
+### 2.10. Reading and Writing Files Asynchronously
