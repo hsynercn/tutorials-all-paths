@@ -53,3 +53,18 @@ Underscore (_) represents previous result:
 ```
 
 ### 2.7. Using Modules 1: Core Modules
+
+Sample JavaScript file, index.js:
+
+```js
+const hello = 'Hello world';
+console.log(hello);
+```
+
+How to run the file:
+
+```cmd
+node index.js
+```
+
+On the node environment provides additional functionality with modules.
