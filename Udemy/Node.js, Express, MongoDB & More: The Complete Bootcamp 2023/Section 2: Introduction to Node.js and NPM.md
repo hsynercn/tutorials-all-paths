@@ -152,4 +152,19 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
 console.log('Will read the file');
 ```
 
-### 2.10. Reading and Writing Files Asynchronously
+### 2.11. Creating a Simple Web Server
+
+We can user http module to create a simple web server.
+
+```js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    console.log(req);
+    res.end('Hello from the server!')
+});
+
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Listening on port 8000');
+});
+```
