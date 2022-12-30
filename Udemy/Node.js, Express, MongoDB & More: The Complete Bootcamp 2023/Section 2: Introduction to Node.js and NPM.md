@@ -154,7 +154,7 @@ console.log('Will read the file');
 
 ### 2.11. Creating a Simple Web Server
 
-We can user http module to create a simple web server.
+We can user http module to create a simple web server. With the handler method we can see the details of request.
 
 ```js
 const http = require('http');
@@ -166,5 +166,38 @@ const server = http.createServer((req, res) => {
 
 server.listen(8000, '127.0.0.1', () => {
     console.log('Listening on port 8000');
+});
+```
+
+### 2.12. Routing
+
+We can create a simple routing mechanism with a switch case statement. For error message we can return 404 and a error HTML.
+
+```js
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  const pathName = req.url;
+
+  switch (pathName) {
+    case "/":
+    case "/overview":
+      res.end("This is overview");
+      break;
+    case "/product":
+      res.end("This is product");
+      break;
+    default:
+      res.writeHead(404, { 
+        "Content-Type": "text/html",
+        "my-own-header": "myOwnHeader"
+      });
+      res.end('<h1>Page not found</h1>');
+      break;
+  }
+});
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening on port 8000");
 });
 ```
