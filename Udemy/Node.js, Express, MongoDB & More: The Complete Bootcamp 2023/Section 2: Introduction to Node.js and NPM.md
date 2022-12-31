@@ -91,21 +91,21 @@ Synchronous VS. Asynchronous (Blocking vs Non-Blocking)
 Synchronous: blocking, execution waits until completion
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
-const input = fs.readFileSync('input.txt', 'utf8');
+const input = fs.readFileSync("input.txt", "utf8");
 console.log(input);
 ```
 
 Asynchronous: non-blocking, we will provide a callback function for after operation
 
 ```js
-const fs = require('fs');
+const fs = require("fs");
 
-const input = fs.readFile('input.txt', 'utf8', (err, data)=> {
-    console.log(data);
+const input = fs.readFile("input.txt", "utf8", (err, data) => {
+  console.log(data);
 });
-console.log('Reading the file');
+console.log("Reading the file");
 ```
 
 Node.js has single thread where our code is executed, only one. On this case when we execute a synchronous time consuming process it will block the other operations. It is better to use asynchronous implementation for time consuming operations like I/O operations, Node.js will wait until the result finalization and execute the addressed callback for these type of operations.
@@ -118,16 +118,16 @@ Note: Not all callbacks are asynchronous.
 Callback Hell: Asynchronous implementation could result in callback hell, left pyramid on the sample code represents this behavior.
 
 ```js
-const fs = require('fs');
-fs.readFile('start.txt', 'utf-8', (err, datal) => {
-    fs.readFile(`${data1}.txt`, 'utf-8', (err, data2) => {
-        fs.readFile('append.txt', 'utf-8', (err, data3) => {
-            fs.writeFile('final.txt', `${data2} ${data3}`, 'utf-8', (err) => {
-                if (err) throw err;
-                console.log('Your file has been saved :D');
-            });
-        });
+const fs = require("fs");
+fs.readFile("start.txt", "utf-8", (err, datal) => {
+  fs.readFile(`${data1}.txt`, "utf-8", (err, data2) => {
+    fs.readFile("append.txt", "utf-8", (err, data3) => {
+      fs.writeFile("final.txt", `${data2} ${data3}`, "utf-8", (err) => {
+        if (err) throw err;
+        console.log("Your file has been saved :D");
+      });
     });
+  });
 });
 ```
 
@@ -138,18 +138,18 @@ We could avoid this problem by using the **Promises** or **Async/Await**.
 ```js
 //Callback hell example
 //err, data parameter pattern is common on Node.js
-fs.readFile('./txt/start.txt', 'utf-8', (err, data1) => {
-    fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2) => {
-        console.log(data2);
-        fs.readFile(`./txt/append.txt`, 'utf-8', (err, data3) => {
-            console.log(data3);
-            fs.writeFile('./txt/final.txt', `${data2}\n${data3}`,'utf-8', (err) => {
-                console.log('Your file was successfully written');
-            });
-        });
+fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
+  fs.readFile(`./txt/${data1}.txt`, "utf-8", (err, data2) => {
+    console.log(data2);
+    fs.readFile(`./txt/append.txt`, "utf-8", (err, data3) => {
+      console.log(data3);
+      fs.writeFile("./txt/final.txt", `${data2}\n${data3}`, "utf-8", (err) => {
+        console.log("Your file was successfully written");
+      });
     });
+  });
 });
-console.log('Will read the file');
+console.log("Will read the file");
 ```
 
 ### 2.11. Creating a Simple Web Server
@@ -157,15 +157,15 @@ console.log('Will read the file');
 We can user http module to create a simple web server. With the handler method we can see the details of request.
 
 ```js
-const http = require('http');
+const http = require("http");
 
 const server = http.createServer((req, res) => {
-    console.log(req);
-    res.end('Hello from the server!')
+  console.log(req);
+  res.end("Hello from the server!");
 });
 
-server.listen(8000, '127.0.0.1', () => {
-    console.log('Listening on port 8000');
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening on port 8000");
 });
 ```
 
@@ -187,12 +187,14 @@ const server = http.createServer((req, res) => {
     case "/product":
       res.end("This is product");
       break;
+    case "/api":
+      break;
     default:
-      res.writeHead(404, { 
+      res.writeHead(404, {
         "Content-Type": "text/html",
-        "my-own-header": "myOwnHeader"
+        "my-own-header": "myOwnHeader",
       });
-      res.end('<h1>Page not found</h1>');
+      res.end("<h1>Page not found</h1>");
       break;
   }
 });
@@ -200,4 +202,21 @@ const server = http.createServer((req, res) => {
 server.listen(8000, "127.0.0.1", () => {
   console.log("Listening on port 8000");
 });
+```
+
+### 2.13. Building a (Very) Simple API
+
+In Node.js '.' represents the current directory, if we execute the node command somewhere else it will represent another directory.
+
+```js
+fs.readFile("./dev-data/data.json", (err, data) => {
+  if (err) throw err;
+  res.end(data.toString());
+});
+```
+
+We can use this expression for better implementation. '__dirname' points the current file location.
+
+```js
+fs.readFile(`${__dirname}/dev-data/data.json` , (err, data) => ...
 ```
