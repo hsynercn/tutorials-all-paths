@@ -215,7 +215,7 @@ fs.readFile("./dev-data/data.json", (err, data) => {
 });
 ```
 
-We can use this expression for better implementation. '__dirname' points the current file location.
+We can use this expression for better implementation. '\_\_dirname' points the current file location.
 
 ```js
 fs.readFile(`${__dirname}/dev-data/data.json` , (err, data) => ...
@@ -261,5 +261,15 @@ const server = http.createServer((req, res) => {
 server.listen(8000, "127.0.0.1", () => {
   console.log("Listening on port 8000");
 });
+```
 
+### 2.14. HTML Templating: Building the Templates
+
+We cam create placeholder strings to render populated data on the page.
+
+```html
+<div class="card__emoji">{%IMAGE%}{%IMAGE%}</div>
+<div class="card__title-box">
+    <h2 class="card__title">{%PRODUCTNAME%}</h2>
+</div>
 ```
