@@ -273,3 +273,6 @@ We cam create placeholder strings to render populated data on the page.
     <h2 class="card__title">{%PRODUCTNAME%}</h2>
 </div>
 ```
+
+### 2.15. HTML Templating: Filling the Templates
+
