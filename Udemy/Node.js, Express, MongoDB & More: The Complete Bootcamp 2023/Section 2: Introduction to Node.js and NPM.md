@@ -480,3 +480,109 @@ npm init
 ```
 
 This command will create a package.json file with the default values. We can change the default values by answering the questions.
+
+### 2.19. Types of Packages and Installs
+
+There are two types of packages.
+
+- **Dependencies**: Packages that our project depends on to run.
+- **Dev Dependencies**: Packages that our project depends on to develop.
+
+We are going to use slugify as a dependency.
+
+```bash
+npm install slugify
+```
+
+After executing the install command we can see the slugify package in the package.json file.
+
+```json
+{
+  "name": "node-farm",
+  "version": "1.0.0",
+  "description": "Learn node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Huseyin Can Ercan",
+  "license": "ISC",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  }
+}
+```
+
+Development dependencies are tools for development testing, code bundling, etc. We are going to use nodemon as a development dependency.
+
+```bash
+npm install nodemon --save-dev
+```
+
+This command will create the dev dependency section.
+
+```json
+{
+  "name": "node-farm",
+  "version": "1.0.0",
+  "description": "Learn node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Huseyin Can Ercan",
+  "license": "ISC",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
+```
+
+Also we can install packages globally, for some common packages it will prevent us from installing the same package in multiple projects.
+
+```bash
+npm install -g nodemon
+```
+
+Previously we stared the Node application by running the following command.
+
+```bash
+node index.js
+```
+
+But with nodemon we can start the application by running the following command.
+
+```bash
+nodemon index.js
+```
+
+We need to add the start script to the package.json file.
+
+```json
+{
+  "name": "node-farm",
+  "version": "1.0.0",
+  "description": "Learn node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index_server.js"
+  },
+  "author": "Huseyin Can Ercan",
+  "license": "ISC",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
+```
+
+When we run the following command, nodemon will start the application.
+
+```bash
+npm start
+```
