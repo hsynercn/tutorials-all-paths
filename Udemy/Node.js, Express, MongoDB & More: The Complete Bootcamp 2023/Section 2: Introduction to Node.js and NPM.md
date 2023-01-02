@@ -276,3 +276,82 @@ We cam create placeholder strings to render populated data on the page.
 
 ### 2.15. HTML Templating: Filling the Templates
 
+We have created placeholder strings on the page HTML with specific keywords. At this point we can fill them with data from the JSON file or any other object.
+
+At the first step we need to read template HTML files and data from the JSON file. We shouldn't read these files continuously for every request. Instead we should use the cached data.
+
+We can create a replace method to replace placeholder strings with data from the JSON file, 'replaceTemplate' method uses regex patterns to find placeholder strings globally on the template HTMLs. We replace the placeholder string with product property.
+
+Also we need add app products, for this case we are creating a card list string with join method and replacing the placeholder string on the overview template.
+
+```js const http = require("http");
+const fs = require("fs");
+
+const tempOverview = fs.readFileSync(
+  `${__dirname}/templates/template-overview.html`,
+  "utf-8"
+);
+const tempCard = fs.readFileSync(
+  `${__dirname}/templates/template-card.html`,
+  "utf-8"
+);
+const tempProduct = fs.readFileSync(
+  `${__dirname}/templates/template-product.html`,
+  "utf-8"
+);
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
+const dataObj = JSON.parse(data);
+
+//initialize the replaceTemplate method
+const replaceTemplate = (temp, product) => {
+  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
+  output = output.replace(/{%IMAGE%}/g, product.image);
+  output = output.replace(/{%PRICE%}/g, product.price);
+  output = output.replace(/{%FROM%}/g, product.from);
+  output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
+  output = output.replace(/{%QUANTITY%}/g, product.quantity);
+  output = output.replace(/{%DESCRIPTION%}/g, product.description);
+  output = output.replace(/{%ID%}/g, product.id);
+
+  if (!product.organic) {
+    output = output.replace(/{%ORGANIC%}/g, "not-organic");
+  }
+  return output;
+};
+
+const server = http.createServer((req, res) => {
+  const pathName = req.url;
+
+  switch (pathName) {
+    case "/":
+    case "/overview":
+      res.writeHead(200, { "Content-Type": "text/html" });
+      const cardsHtml = dataObj
+        .map((el) => replaceTemplate(tempCard, el))
+        .join("");
+      const output = tempOverview.replace(/{%PRODUCT_CARDS%}/g, cardsHtml);
+      res.end(output);
+      break;
+    case "/product":
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end(tempProduct);
+      break;
+    case "/api":
+      const productData = JSON.parse(data);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(data);
+      break;
+    default:
+      res.writeHead(404, {
+        "Content-Type": "text/html",
+        "my-own-header": "myOwnHeader",
+      });
+      res.end("<h1>Page not found</h1>");
+      break;
+  }
+});
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening on port 8000");
+});
+```
