@@ -439,7 +439,7 @@ server.listen(8000, "127.0.0.1", () => {
 });
 ```
 
-### 2.16. Using Modules 2: Our Own Modules
+### 2.17. Using Modules 2: Our Own Modules
 
 On the Node.js environment each file can act as a module and we can export and import variables and methods from one file to another. We can create a module file and export the replaceTemplate method and import it in the server file.
 
