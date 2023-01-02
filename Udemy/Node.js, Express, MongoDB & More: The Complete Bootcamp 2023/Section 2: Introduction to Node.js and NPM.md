@@ -468,3 +468,15 @@ On the consumer side we can import the replaceTemplate method.
 ```javascript
 const replaceTemplate = require('./modules/replaceTemplate');
 ```
+
+### 2.18. Introduction to NPM and package.json File
+
+npm automatically comes with the Node.js, we install and manage open source packages. Package repository [npmjs](https://www.npmjs.com/).
+
+We can create a package.json file by running the following command.
+
+```bash
+npm init
+```
+
+This command will create a package.json file with the default values. We can change the default values by answering the questions.
