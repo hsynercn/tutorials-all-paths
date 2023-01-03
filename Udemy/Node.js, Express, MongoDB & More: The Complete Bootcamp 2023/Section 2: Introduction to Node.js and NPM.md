@@ -650,3 +650,31 @@ We don't share the node_modules folder with the other developers, we share the p
 
 Package lock file is a file that keeps track of the exact versions of the packages that we have installed. It is automatically created when we install a package.
 
+### 2.21. Setting up Prettier in VS Code
+
+For each of the extensions, read the overview page in order to learn how to use it.
+
+`Prettier` to automatically format code (there is a video in the course on how to set it up). [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+`ESLint` to automatically find errors in code (there is a video in the course on how to set it up). [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+`DotENV` to enable syntax highlighting for .env files. [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
+
+`Pug beautify` to automatically format Pug code. [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-pugbeautify)
+
+`TODO Highlight` to highlight annotations in code. [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
+
+`Image previews` for previews on image hover and in the gutter. [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview)
+
+`TabNine` to autocomplete everything, code and text. [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode)
+
+`Path Intellisense` to autocomplete filenames. [Link &rarr;](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
+
+For Prettier configuration, create a file named `.prettierrc` in the root folder of the project and following sample code is a sample configuration.
+
+```json
+{
+  "singleQuote": true,
+  "trailingComma": "all"
+}
+```
