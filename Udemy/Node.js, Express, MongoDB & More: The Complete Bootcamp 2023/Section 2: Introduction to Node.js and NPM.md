@@ -678,3 +678,12 @@ For Prettier configuration, create a file named `.prettierrc` in the root folder
   "trailingComma": "all"
 }
 ```
+
+### 2.23. Recap and What's Next
+
+We have learned:
+
+- Read and write files
+- Import modules
+- How to create a web server
+- Simple website with routing
