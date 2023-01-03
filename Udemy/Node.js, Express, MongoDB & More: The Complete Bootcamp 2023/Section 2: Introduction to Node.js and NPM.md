@@ -619,4 +619,34 @@ Slugify could generate slugs from the product names, instead of using URL parame
 
 ### 2.21. Package Versioning and Updating
 
-Semantic versioning is a standard for versioning packages. The version number consists of three parts: major, minor and patch.
+Semantic versioning is a standard for versioning packages. The version number consists of three parts: major, minor and patch. Patch is used for bug fixes, minor is used for new features and major is used for breaking changes.
+
+- '^' symbol means that we accept greater patch and minor versions but not major versions.
+
+- '~' symbol means that we accept greater patch versions but not minor and major versions.
+
+- '>' symbol means that we accept greater versions.
+
+- '<' symbol means that we accept lower versions.
+
+- '=' symbol means that we accept the exact version.
+
+- '*' symbol means that we accept any version even with the breaking changes.
+
+npm outdated command will show us the outdated packages.
+
+```bash
+npm outdated
+```
+
+For installing and uninstalling a package we can use the following command.
+
+```bash
+npm i express
+npm uninstall express
+```
+
+We don't share the node_modules folder with the other developers, we share the package.json file :).
+
+Package lock file is a file that keeps track of the exact versions of the packages that we have installed. It is automatically created when we install a package.
+
