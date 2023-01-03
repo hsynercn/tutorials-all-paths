@@ -586,3 +586,37 @@ When we run the following command, nodemon will start the application.
 ```bash
 npm start
 ```
+
+### 2.20. Using Modules 3: 3rd Party Modules
+
+Usually we require core modules first, 3rd party modules second and our own modules last.
+
+```javascript
+//core modules
+const http = require("http");
+const fs = require("fs");
+const url = require("url");
+//3rd party modules
+const slugify = require('slugify');
+//own modules
+const replaceTemplate = require('./modules/replaceTemplate');
+
+console.log(slugify('Fresh Avocados', { lower: true })); //fresh-avocados
+
+const slugs = dataObj.map((el) => slugify(el.productName, { lower: true }));
+console.log(slugs);
+/* will print something like
+[
+  'fresh-avocados',
+  'goat-and-sheep-cheese',
+  'apollo-broccoli',
+  'baby-carrots',
+  'sweet-corncobs'
+]*/
+```
+
+Slugify could generate slugs from the product names, instead of using URL parameters we can create specific URLs by using slugs.
+
+### 2.21. Package Versioning and Updating
+
+Semantic versioning is a standard for versioning packages. The version number consists of three parts: major, minor and patch.
