@@ -650,7 +650,7 @@ We don't share the node_modules folder with the other developers, we share the p
 
 Package lock file is a file that keeps track of the exact versions of the packages that we have installed. It is automatically created when we install a package.
 
-### 2.21. Setting up Prettier in VS Code
+### 2.22. Setting up Prettier in VS Code
 
 For each of the extensions, read the overview page in order to learn how to use it.
 
