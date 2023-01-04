@@ -56,3 +56,10 @@ We are going to use Node.js, and MongoDB.
 
 Static website contains only HTML, CSS, and JavaScript. It is not connected to a database and it doesn't need any back-end.
 
+Dynamic websites are different than static websites, we build the page on the server side with dynamic resources.
+
+With powerful browsers we start to build applications on the API(Application Programming Interface). Web application is rendered by the browser, but the data is fetched from the server.
+
+Server-side rendering is when the server sends the complete HTML to the browser. Client-side rendering is when the browser fetches the data from an API and renders the page.
+
+We can user an API from anywhere, we can use it from a mobile app, a desktop app, or a website.
