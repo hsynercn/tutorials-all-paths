@@ -42,3 +42,17 @@ We can inspect the network tab in the browser to see the request and response, h
 
 ### 3.27. Front-End vs Back-End Development
 
+Front-end uses HTML, CSS, and JavaScript. Back-end uses server-side languages like Node.js, PHP, Python, Ruby, Java, etc. Back-end is responsible for storing and retrieving data, processing data, and sending data to the front-end.
+
+A server is responsible for storing and retrieving data, processing data, and sending data to the front-end. A server is a computer that is always on and connected to the internet.
+
+Static server is a server that only serves static files. Dynamic content is content that is generated on the fly. Dynamic server is a server that can serve both static and dynamic content.
+
+Any serious application needs a database. A database is a collection of data that is stored in a structured way and can be accessed easily.
+
+We are going to use Node.js, and MongoDB.
+
+### 3.28. Static vs Dynamic vs API
+
+Static website contains only HTML, CSS, and JavaScript. It is not connected to a database and it doesn't need any back-end.
+
