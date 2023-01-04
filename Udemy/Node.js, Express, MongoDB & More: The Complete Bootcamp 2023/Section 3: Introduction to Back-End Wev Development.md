@@ -2,7 +2,7 @@
 
 ## 3. Section 3: Introduction to Back-End Wev Development
 
-### 3.24. Section Intro 
+### 3.24. Section Intro
 
 Before we dive to tech stack, we could mention.
 
@@ -16,13 +16,13 @@ Before we dive to tech stack, we could mention.
 
 Each time we open a web site in our browser, we are making a request to a server. The server then sends back a response. This is the request response model or client-server architecture.
 
-https://www.google.com/maps
+<https://www.google.com/maps>
 
 First part is the protocol (HTTP or HTTPS), then the domain name (www.google.com), then the path/resource (/maps).
 
 Domain name is translated to IP address by DNS (Domain Name System) by DNS lookup. Domain name is easier to remember than IP address.
 
-https://216.58.211.206:443
+<https://216.58.211.206:443>
 
 Port number is optional. 80 is the default port for HTTP, 443 is the default port for HTTPS.
 
@@ -38,7 +38,7 @@ TCP breaks down the data into small packets and sends them to the server. The se
 
 ### 3.26. HTTP in Action
 
-We can inspect the network tab in the browser to see the request and response, https://www.udemy.com/. At the top we can see the first request, other requests are initiated by the first response. If we inspect the request we can see header, body, and preview.
+We can inspect the network tab in the browser to see the request and response, <https://www.udemy.com/>. At the top we can see the first request, other requests are initiated by the first response. If we inspect the request we can see header, body, and preview.
 
 ### 3.27. Front-End vs Back-End Development
 
