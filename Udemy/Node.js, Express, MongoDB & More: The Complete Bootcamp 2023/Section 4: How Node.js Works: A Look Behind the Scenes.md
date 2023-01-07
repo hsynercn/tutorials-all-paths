@@ -196,3 +196,20 @@ server.listen(8000, '127.0.0.1', () => {
     console.log('Waiting for requests');
 });
 ```
+
+### 4.36. Introduction to Streams
+
+Streams: Used to process (read and write) data piece by piece without completing the whole completing the whole read or write operation, and therefore without keeping all the data in memory.
+
+- Readable streams: Used for read operations.
+  - HTTP requests
+  - fs read streams
+- Writable streams: Used for write operations.
+  - HTTP responses
+  - fs write streams
+- Duplex streams: Used for read and write operations.
+  - net web socket
+- Transform streams: Used to modify or transform the data as it is written or read.
+  - zlib Gzip creation
+
+### 4.37. Streams in Practice
