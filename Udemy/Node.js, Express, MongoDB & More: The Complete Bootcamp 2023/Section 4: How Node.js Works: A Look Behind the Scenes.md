@@ -332,3 +332,156 @@ Returning exports:
 - We can use module.exports to export multiple variables: (exports.add = (a+b) => a + b)
 
 Caching: Modules are executed once, when we require same module we will receive a cached result.
+
+### 4.39. Requiring Modules in Practice
+
+If we expose the parameters of a IIFE module function:
+
+module.js file:
+
+```js
+//contains all arguments of the function 
+console.log(arguments);
+```
+
+We will receive this output:
+
+```json
+[Arguments] {
+  '0': {},
+  '1': [Function: require] {
+    resolve: [Function: resolve] { paths: [Function: paths] },
+    main: Module {
+      ...
+  },
+  '2': Module {
+    id: '.',
+    path: '/Users/huseyincanercan/hobby_workspace/tutorials-all-paths/Udemy/Node.js, 
+    ...
+  },
+  '3': '.../modules.js',
+  '4': '.../starter'
+}
+```
+
+First values is the exports, we are not exporting anything. Second values is require function. Third one is the module, number 3 and 4 are file and directory.
+
+If we inspect the Node `module` module wrapper function:
+
+```js
+console.log(require('module').wrapper);
+```
+
+We will receive:
+
+```bash
+[
+  '(function (exports, require, module, __filename, __dirname) { ',
+  '\n});'
+]
+```
+
+Creating a test module, test-module-1.js:
+
+```js
+class Calculator {
+    add(a, b) {
+        return a + b;
+    }
+    multiply(a, b) {
+        return a * b;
+    }
+    divide(a, b) {
+        return a / b;
+    }
+}
+
+module.exports = Calculator;
+```
+
+alternatively:
+
+```js
+module.exports = class {
+    add(a, b) {
+        return a + b;
+    }
+    multiply(a, b) {
+        return a * b;
+    }
+    divide(a, b) {
+        return a / b;
+    }
+}
+```
+
+Using the module:
+
+```js
+//exported entity is a class, we use uppercase for class name
+const Calculator = require('./test-module-1');
+const calc1 = new Calculator();
+console.log(calc1.add(1, 2));
+```
+
+Directly using the `exports`:
+
+test-module-2.js file:
+
+```js
+exports.add = (a, b) => a + b;
+exports.multiply = (a,b) => a*b;
+exports.subtract = (a,b) => a-b;
+exports.divide = (a,b) => a/b;
+```
+
+We can consume the second module by this way:
+
+```js
+//module exports
+//for classes we use uppercase
+const Calculator = require('./test-module-1');
+const calc1 = new Calculator();
+console.log(calc1.add(1, 2));
+
+//exports
+const calc2 = require('./test-module-2');
+console.log(calc2.add(1, 2));
+```
+
+Commonly we use destructuring for module exports:
+
+```js
+//destructure
+const {add, multiply, divide, subtract} = require('./test-module-2');
+console.log(multiply(4, 2));
+```
+
+Caching mechanism example:
+
+test-module-3.js file:
+
+```js
+console.log('Hello form the module');
+
+module.exports = () => { 
+    console.log('Log this text');
+}
+```
+
+If we require same module multiple times:
+
+```js
+require('./test-module-3')();
+require('./test-module-3')();
+require('./test-module-3')();
+```
+
+We will get this result, module is only loaded once:
+
+```bash
+Hello form the module
+Log this text
+Log this text
+Log this text
+```
