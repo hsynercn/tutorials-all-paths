@@ -60,6 +60,8 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
 });
 ```
 
+### 5.43. Building Promises
+
 If we chose to return promises from our handler functions we can create event chains.
 
 ```js
@@ -108,3 +110,5 @@ readFilePro(`${__dirname}/dog.txt`)
 ```
 
 Every handler method should return a promise, by this way we can use then to consume the promise return value in the next handler. This is a flat structure.
+
+### 5.44. Consuming Promises with Async/Await
