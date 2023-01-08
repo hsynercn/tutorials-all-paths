@@ -113,4 +113,53 @@ Every handler method should return a promise, by this way we can use then to con
 
 ### 5.44. Consuming Promises with Async/Await
 
+We can use async/await for cleaner syntax.
 
+```js
+const fs = require('fs');
+const superagent = require('superagent');
+
+const readFilePro = (file) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+const writeFilePro = (file, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, data, 'utf8', (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+};
+
+//async: that is a special function, this code will run at the background without blocking the event loop
+const getDocPic = async () => {
+  try {
+    //this code will wait until read promise is resolved
+    const data = await readFilePro(`${__dirname}/dog.txt`);
+    console.log(`Breed: ${data}`);
+    const res = await superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    await writeFilePro('dog-img.txt', res.body.message);
+    console.log('Done');
+  } catch (error) {
+    console.log(err);
+  }
+};
+
+getDocPic();
+```
+
+We can use await expression under async functions. This implementation will look synchronously, it is a syntactic sugar.
