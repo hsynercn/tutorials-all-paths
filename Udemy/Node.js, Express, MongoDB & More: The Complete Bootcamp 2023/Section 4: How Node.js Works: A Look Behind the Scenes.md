@@ -213,3 +213,72 @@ Streams: Used to process (read and write) data piece by piece without completing
   - zlib Gzip creation
 
 ### 4.37. Streams in Practice
+
+We can start with a whole file read operation for the entire test file, but our test file is too large. Node process will go out of resources and fail.
+
+```js
+const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) => {
+    //solution 1
+    //the problem is that the file is read in the memory and then sent to the client
+    //file is too big and the server will crash
+    fs.readFile('test-file.txt', (err, data) => {
+        if (err) console.log(err);
+        res.end(data);
+    });
+});
+
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Waiting for requests');
+});
+```
+
+We can try to use a readable stream. In this case there is a problem, we cannot send the data as fast as read speed. This will create back pressure.
+
+```js
+const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) => {
+    //solution 2
+    //this will create a readable stream
+    //we can get the data chunk by chunk
+    const readable = fs.createReadStream('test-file.txt');
+    readable.on('data', (chunk) => {
+        res.write(chunk);
+    });
+    readable.on('end', () => {
+        res.end();
+    });
+    readable.on('error', (err) => {
+        console.log(err);
+        res.status = 500;
+        res.end('File not found');
+    });
+});
+
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Waiting for requests');
+});
+```
+
+As a best practice solution we can use the pipe operator. Below example will act as a duplex or transform stream. We can transfer the data in a balance between read and write speed, `readableSource.pipe(writableDestination)`.
+
+```javascript
+const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) => {
+    //solution 3
+    const readable = fs.createReadStream('test-file.txt');
+    readable.pipe(res);
+    //readableSource.pipe(writableDestination); we can say this is a duplex or a transform stream
+
+});
+
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Waiting for requests');
+});
+```
