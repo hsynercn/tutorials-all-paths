@@ -282,3 +282,53 @@ server.listen(8000, '127.0.0.1', () => {
     console.log('Waiting for requests');
 });
 ```
+
+### 4.38. How Requiring Modules Really Works
+
+- Each JavaScript file is treated as a module.
+- Node uses CommonJS module system: require(), exports() or module.exports
+- ES module system is used in browsers: import/export
+- There have been attempts to bring ES modules to node.js
+
+What happens when we call the require:
+
+- Resolving and Loading
+  - Core modules
+  - Developer modules
+  - 3rd-party modules
+- Wrapping
+  - Wraps the module in a IIFE(Immediately Invoked Function Expression) expression
+  - Each module has its own scope
+- Execution
+- Returning exports
+- Caching
+
+Path resolving: How Node decides which module to load
+
+1. Start with the core modules
+2. If begins with './' or '../' tries to load developer module
+3. In no file found tries to find folder with index.js in it
+4. Else goes to node_modules and try to find module there
+
+```js
+(function exports, require, module, __filename, __dirname) {
+  //module code
+});
+```
+
+- require: function to require module
+- module: reference to current module
+- exports: a reference to module.exports, used to export object from a module
+- __filename: absolute path of the current module's file
+- __dirname: directory name of the current module
+
+After wrapping the module code is executed.
+
+Returning exports:
+
+- require function returns exports of the required module
+- module.exports is the returned object
+- We can use module.exports to export one single variable: one class or one function (module.exports = Calculator)
+- We can use module.exports to export multiple variables: (exports.add = (a+b) => a + b)
+
+Caching: Modules are executed once, when we require same module we will receive a cached result.
