@@ -134,3 +134,36 @@ For example, BAD use case:
 Normal use case:
 
 - GET /tours/page/6 > Web server respond with page 6 content.
+
+### 6.52. Starting Our API: Handling GET Requests
+
+We start with API and we will implement the dynamically generated pages.
+
+We are going to follow JSend specification.
+
+In this example we are serving the tours content form api/v1/tours endpoint from a local file.
+
+```javascript
+const express = require('express');
+const fs = require('fs');
+
+const app = express();
+
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, 'utf-8'));
+
+app.get('/api/v1/tours', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    requestedAt: req.requestTime,
+    results: tours.length,
+    data: {
+      tours
+    }
+  });
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+```
