@@ -225,3 +225,43 @@ const getDocPic = async () => {
 ```
 
 At the end we are wrapping the code with a async function, we are using await to wait for the return value of `getDocPic`. We can get the same result with `then` also.
+
+### 5.46. Waiting for Multiple Promises Simultaneously
+
+We can wait for multiple promises together.
+
+```javascript
+const getDocPic = async () => {
+  try {
+    //this code will wait until read promise is resolved
+    const data = await readFilePro(`${__dirname}/dog.txt`);
+    console.log(`Breed: ${data}`);
+
+    //if we want to get more than one picture
+    const res1Pro = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+
+    const res2Pro = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+
+    const res3Pro = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+
+    const all = await Promise.all([res1Pro, res2Pro, res3Pro]);
+
+    const images = all.map(element => element.body.message)
+    console.log(all.length);
+    console.log(images);
+
+    await writeFilePro('dog-img.txt', images.join('\n'));
+    console.log('Done');
+  } catch (error) {
+    console.log(err);
+  }
+  return '2: Ready';
+};
+```
+At this point `await Promise.all` will be resolved after all the promises have been resolved.
