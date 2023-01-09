@@ -44,3 +44,93 @@ app.listen(port, () => {
 
 We can see the response from Postman if we submit a GET request to localhost:3000.
 
+### 6.51. APIs and RESTful API Design
+
+API: Application Programming Interface, a piece of software that can be used by another piece of software, in order to allow applications to talk to each other.
+
+- Web APIs
+- Node.js fs or http APIs
+- Browser's DOM JavaScript API
+- With object oriented programming when exposing methods to the public, we are creating an API
+
+API has a wider definition.
+
+We will focus on the web API part.
+
+REST Architecture:
+
+- Separate API into logical resources
+- Expose structured resource-based URLs
+- Use HTTP methods (verbs)
+- Send data as JSON (usually)
+- Be stateless
+
+Resource: Object or representation of something, which has data associated to it. Any information can be named can be a resource.
+
+Important: Endpoints should contain only resources (nouns) and should use HTTP methods for actions.
+
+Bad Practice:
+
+<https://www.natours.com/addNewTour>
+
+- /getTour
+- /updateTour
+- /deleteTour
+- /getTourByUser
+- /deleteTourByUser
+
+Better implementation, CRUD operations:
+
+READ:
+
+- GET /tours
+- GET /tours/7 > with tour id
+
+CREATE:
+
+- POST /tours
+
+UPDATE:
+
+- PUT /tour > client sends the whole updated object
+- PATCH /tour > client sends the updated parts of the object
+
+DELETE:
+
+- DELETE /tour/7
+
+We needs authentication for these type operations.
+
+We can map HTTP methods to CRUD operations.
+
+JSON: JavaScript Object Notation, it is the common way to transfer data.
+
+We will use JSend, JSend is a specification that lays down some rules for how JSON responses from web servers should be formatted.
+
+```json
+{
+  "status": "success",
+  "data": {
+    "id": 5,
+    "tourName": "The Park Camper"
+  }
+}
+```
+
+There are other standers for JSON response formatting:
+
+- JSOPN:API
+- OData JSON Protocol
+
+A RESTful API should be stateless.
+
+Stateless RESTful API: All state is handled on the client side. This means that each request must contain all the information necessary to process a certain request. The server should not have to remember previous requests.
+
+For example, BAD use case:
+
+- GET /tours/nextPage > Web server should remember the last page 
+- `nextPage = currentPage + 1`
+
+Normal use case:
+
+- GET /tours/page/6 > Web server respond with page 6 content.
