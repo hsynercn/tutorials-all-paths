@@ -163,3 +163,65 @@ getDocPic();
 ```
 
 We can use await expression under async functions. This implementation will look synchronously, it is a syntactic sugar.
+
+### 5.45. Returning Values from Async Functions
+
+We can return values from async functions and we can reach that value with promise resolution.
+
+```javascript
+const fs = require('fs');
+const superagent = require('superagent');
+
+const readFilePro = (file) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+const writeFilePro = (file, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, data, 'utf8', (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+};
+
+//async: that is a special function, this code will run at the background without blocking the event loop
+const getDocPic = async () => {
+  try {
+    //this code will wait until read promise is resolved
+    const data = await readFilePro(`${__dirname}/dog.txt`);
+    console.log(`Breed: ${data}`);
+    const res = await superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    await writeFilePro('dog-img.txt', res.body.message);
+    console.log('Done');
+  } catch (error) {
+    console.log(err);
+  }
+  return '2: Ready';
+};
+(async () => {
+    try {
+        console.log('1: Will get dog pics');
+        const a = await getDocPic();// this code is offloaded, execution continues with the next line
+        console.log(a);
+        console.log('3: Done getting dog pics');
+    } catch (error) {
+        console.log('Error');
+    }
+})();
+```
+
+At the end we are wrapping the code with a async function, we are using await to wait for the return value of `getDocPic`. We can get the same result with `then` also.
