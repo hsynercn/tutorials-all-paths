@@ -264,4 +264,5 @@ const getDocPic = async () => {
   return '2: Ready';
 };
 ```
+
 At this point `await Promise.all` will be resolved after all the promises have been resolved.
