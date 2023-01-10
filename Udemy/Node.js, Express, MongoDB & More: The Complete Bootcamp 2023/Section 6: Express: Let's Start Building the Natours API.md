@@ -216,3 +216,49 @@ app.listen(port, () => {
 
 On this sample we are receiving the new tour objects from the POST endpoint and saving them to a local file. Each time we modify the file service will restart because of the `nodemon`, we can see the updated tour list when we consume the GET endpoint. Even if we don't modify the file, we can see the updated tour list because we are changing the `tours` variable.
 
+### 6.54. Responding to URL Parameters
+
+We will define and use parameter on the URL. We need to define a route that can accept parameters, like this <http://localhost:3000/api/v1/tours/5>.
+
+```js
+app.get('/api/v1/tours/:id/:x/:y/:t?', (req, res) => {
+  console.log(req.params);
+  res.status(200).json({
+    status:'success',
+    requestedAt: req.requestTime,
+    id: req.params.id,
+    data: {
+      tours
+    }
+  });
+});
+```
+
+On the Express framework we can use `:` to define a parameter, we can use multiple parameters and we can use `?` to make a parameter optional. In this example we need to give id, x, and y as parameters on the URL, otherwise we will get a 404 error.
+
+In a better implementation we can use input validation. We can check the id value exists in the tours array, for invalid values we return an error.
+
+```js
+app.get('/api/v1/tours/:id', (req, res) => {
+  console.log(req.params);
+
+  const id = req.params.id * 1; //a trick to convert string to number
+  const tour = tours.find((tour) => tour.id === id);
+
+  if (!tour) {
+    return res.status(404).json({
+      status: 'error',
+      message: 'Tour not found',
+    });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    requestedAt: req.requestTime,
+    id: req.params.id,
+    data: {
+      tour: tour,
+    },
+  });
+});
+```
