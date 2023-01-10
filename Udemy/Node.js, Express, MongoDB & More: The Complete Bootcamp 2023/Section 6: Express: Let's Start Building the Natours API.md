@@ -262,3 +262,29 @@ app.get('/api/v1/tours/:id', (req, res) => {
   });
 });
 ```
+
+### 6.55. Handling PATCH Requests
+
+We can use PATCH or PUT requests to update a resource. Main difference between them is that PUT request is used to update the whole resource, while PATCH request is used to update a part of the resource.
+
+In this example we will implement the PATCH request to update a tour without paying attention to local file.
+
+```js
+app.patch('/api/v1/tours/:id', (req, res) => {
+  const id = req.params.id * 1; //a trick to convert string to number
+
+  if(!tours.find((tour) => tour.id === id)) {
+    return res.status(404).json({
+      status: 'error',
+      message: 'Tour not found',
+    });
+  }
+  //this is showcase implementation we are nopt changing anything on the file
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: 'updated tour',
+    },
+  });
+});
+```
