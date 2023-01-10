@@ -167,3 +167,52 @@ app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
 ```
+
+### 6.53. Handling POST Requests
+
+We will implement the POST request for creating a new tour. Also we will need a middleware. A middleware can modify the incoming request data. Without using middleware we can't access the request body.
+
+```javascript
+const express = require('express');
+const fs = require('fs');
+const app = express();
+
+app.use(express.json());
+
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, 'utf-8'));
+
+app.get('/api/v1/tours', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    requestedAt: req.requestTime,
+    results: tours.length,
+    data: {
+      tours
+    }
+  });
+});
+
+app.post('/api/v1/tours', (req, res) => {
+  //console.log(req.body);
+  const newId = tours[tours.length - 1].id + 1;
+  const newTour = Object.assign({ id: newId }, req.body);
+
+  tours.push(newTour);
+  fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), err => {
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: newTour
+      }
+    });
+  });
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+```
+
+On this sample we are receiving the new tour objects from the POST endpoint and saving them to a local file. Each time we modify the file service will restart because of the `nodemon`, we can see the updated tour list when we consume the GET endpoint. Even if we don't modify the file, we can see the updated tour list because we are changing the `tours` variable.
+
