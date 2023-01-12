@@ -439,7 +439,21 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
-````
+```
 
 With above implementation we are using a simpler way to implement the routes. We are using the route method to group the routes with the same path.
 
+### 6.58. Middleware and the Request-Response Cycle
+
+We call it middleware because it is executed receiving the request and sending the response. In Express every thing is middleware, routing, parser etc.
+
+All the middleware functions are called as middleware stack. Middleware order is defined on the code.
+
+**Middleware Stack**: Middleware_1>Middleware_2>Middleware_3>...>Middleware_N
+
+- middleware: ... next() > parsing body
+- middleware: ... next() > logging
+- middleware: ... next() > setting headers
+- middleware: ... next() > router
+
+**Request-Response Cycle**: Incoming Request>Middleware Stack>Response
