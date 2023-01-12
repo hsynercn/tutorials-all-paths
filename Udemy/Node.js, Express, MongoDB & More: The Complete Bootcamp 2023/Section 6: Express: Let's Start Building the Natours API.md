@@ -501,3 +501,31 @@ app.use((req, res, next) => {
 In this case if we consume the get API we can't see the message in the console. Because the middleware is called after the route middleware. On the route middleware we are ending the request-response cycle.
 
 We define global middleware functions before the route middleware.
+
+### 6.60. Using 3rd-Party Middleware
+
+Morgan is a popular logging middleware.
+
+```js
+const fs = require('fs');
+const express = require('express');
+const morgan = require('morgan');
+const app = express();
+
+app.use(morgan('dev'));
+
+//this is a middleware function
+app.use(express.json());
+````
+
+We can use morgan middleware to log the request to the console. Last line is the output of the request.
+
+```bash
+App running on port 3000...
+Hello from the middleware
+2023-01-12T20:44:56.451Z
+GET /api/v1/tours 200 2.018 ms - 8555
+```
+
+### 6.61. Implementing the "Users" Routes
+
