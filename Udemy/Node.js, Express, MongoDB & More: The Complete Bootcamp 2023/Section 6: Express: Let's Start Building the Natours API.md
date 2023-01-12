@@ -457,3 +457,47 @@ All the middleware functions are called as middleware stack. Middleware order is
 - middleware: ... next() > router
 
 **Request-Response Cycle**: Incoming Request>Middleware Stack>Response
+
+### 6.59. Creating Our Own Middleware
+
+We can create our own middleware functions.
+
+```javascript
+//this is a middleware function
+app.use(express.json());
+
+//we can create our own middleware functions
+app.use((req, res, next) => {
+  console.log('Hello from the middleware');
+  //we need to call next function to move to the next middleware, otherwise the request will be stuck here
+  next();
+});
+```
+
+In this example we are creating a middleware function that will log a message to the console. We are calling the next function to move to the next middleware. Calling the next function is critical, otherwise the request will be stuck in the middleware.
+
+Middleware function order is important.
+
+```js
+//this is a middleware function
+app.use(express.json());
+
+app.route('/api/v1/tours').get(getAllTours).post(createTour);
+
+app
+  .route('/api/v1/tours/:id')
+  .get(getTour)
+  .patch(updateTour)
+  .delete(deleteTour);
+
+//we can create our own middleware functions
+app.use((req, res, next) => {
+  console.log('Hello from the middleware');
+  //we need to call next function to move to the next middleware, otherwise the request will be stuck here
+  next();
+});
+```
+
+In this case if we consume the get API we can't see the message in the console. Because the middleware is called after the route middleware. On the route middleware we are ending the request-response cycle.
+
+We define global middleware functions before the route middleware.
