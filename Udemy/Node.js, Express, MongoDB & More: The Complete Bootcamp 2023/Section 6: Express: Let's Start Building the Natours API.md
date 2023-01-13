@@ -577,3 +577,131 @@ app
 ```
 
 At this point all of the code located under one file.
+
+### 6.62. Creating and Mounting Multiple Routers
+
+We need to create separate routers for tours and users for each resource.
+
+```javascript
+const tourRouter = express.Router();
+
+tourRouter.route('/').get(getAllTours).post(createTour);
+
+tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
+
+const userRouter = express.Router();
+
+userRouter.route('/').get(getAllUsers).post(createUser);
+
+userRouter.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
+
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
+```
+
+We are creating two routers for tours and users. We are using the route method to group the routes with the same path.
+
+### 6.63. A Better File Structure
+
+We can migrate the resource specific logic to separated files.
+
+app.js:
+
+```js
+const express = require('express');
+const morgan = require('morgan');
+const app = express();
+
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
+
+app.use(morgan('dev'));
+
+//this is a middleware function
+app.use(express.json());
+
+//we can create our own middleware functions
+app.use((req, res, next) => {
+  console.log('Hello from the middleware');
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
+//routers
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+```
+
+App.js is mainly used for middleware declaration and routing. We are using the tourRouter and userRouter to handle the requests. Router definitions are also middleware.
+
+Basic file structure:
+
+```bash
+.
+├── app.js
+├── controllers
+│   ├── tourController.js
+│   └── userController.js
+├── package-lock.json
+├── package.json
+├── routes
+│   ├── tourRoutes.js
+│   └── userRoutes.js
+└── server.js
+```
+
+We are creating a controllers folder to store the controller functions. We are creating a routes folder to store the route definitions. As a common practice we will store express related details in the app.js file. server.js file is used to start the server.
+
+app.js:
+
+```js
+const express = require('express');
+const morgan = require('morgan');
+const app = express();
+
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
+
+app.use(morgan('dev'));
+
+//this is a middleware function
+app.use(express.json());
+
+//we can create our own middleware functions
+app.use((req, res, next) => {
+  console.log('Hello from the middleware');
+  //we need to call next function to move to the next middleware, otherwise the request will be stuck here
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
+//routers
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
+
+module.exports = app;
+```
+
+server.js:
+
+```js
+const app = require('./app');
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+```
+
