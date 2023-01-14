@@ -751,3 +751,34 @@ module.exports = router;
 
 We will consume the middleware function before router definitions.
 
+### 6.65. Chaining Multiple Middleware Functions
+
+We will introduce a new middleware function to check the body of the request. We will check the name and price properties of the body.
+
+tourController.js:
+
+```js
+exports.checkBody = (req, res, next) => {
+    if (!req.body.name || !req.body.price) {
+        return res.status(400).json({
+            status: 'fail',
+            message: 'Missing name or price'
+        });
+    }
+    next();
+};
+```
+
+We will use this middleware function in the tourRoutes.js file.
+
+tourRoutes.js:
+
+```js
+router
+  .route('/')
+  .get(tourController.getAllTours)
+  .post(tourController.checkBody ,tourController.createTour);
+```
+
+Last line will use the checkBody middleware function before the createTour function.
+
