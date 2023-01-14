@@ -705,3 +705,49 @@ app.listen(port, () => {
 });
 ```
 
+### 6.64. Param Middleware
+
+We can use param middleware to handle the parameters in the url. In previous sample we checked the id parameter value validity in the handler function. With this middleware we can check the validity of the id parameter value from one location.
+
+```js
+exports.checkID = (req, res, next, val) => {
+  console.log(`Tour id is: ${val}`);
+  const id = req.params.id * 1; //a trick to convert string to number
+  const tour = tours.find((tour) => tour.id === id);
+  if (!tour) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
+  next();
+};
+```
+
+We will export this function from tourController.js and use it in the tourRoutes.js file.
+
+```js
+const express = require('express');
+const tourController = require('./../controllers/tourController');
+
+const router = express.Router();
+
+//if we don't send the id, the middleware will not be called
+router.param('id', tourController.checkID);
+
+router
+  .route('/')
+  .get(tourController.getAllTours)
+  .post(tourController.createTour);
+
+router
+  .route('/:id')
+  .get(tourController.getTour)
+  .patch(tourController.updateTour)
+  .delete(tourController.deleteTour);
+
+module.exports = router;
+```
+
+We will consume the middleware function before router definitions.
+
