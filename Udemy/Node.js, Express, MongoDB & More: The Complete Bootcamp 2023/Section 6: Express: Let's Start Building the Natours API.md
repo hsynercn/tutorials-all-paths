@@ -807,4 +807,107 @@ Last line will serve the content of the public folder.
 - <http://localhost:3000/tour.html>
 - <http://localhost:3000/overview.html>
 
-These URLs will becme available after adding the static middleware function.
+These URLs will became available after adding the static middleware function.
+
+### 6.67. Environment Variables
+
+Node.js can run in different environments. We might want to use different configurations, log levels, databases for different environments.
+
+Express sets the environment development by default.
+
+Environment variables are outside of the application. Thus we will use server.js instead of app.js.
+
+```js
+const app = require('./app');
+
+console.log(app.get('env'));
+console.log(process.env);
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+```
+
+We will get a output like this:
+
+```bash
+development
+{
+  NVM_INC: '.../include/node',
+  MANPATH: '...//share/man:',
+  TERM_PROGRAM: 'vscode',
+  ...
+}
+```
+
+These environment variables come from the process core module.
+
+If we execute the nodemon with a environment variable, we can access it in the application.
+
+```bash
+NODE_ENV=development nodemon server.js 
+```
+
+```js 
+console.log(process.env.NODE_ENV);
+```
+
+It will have the `development` value. But overloading the parameters on the command is not a good idea. We can use config.env file to store the environment variables.
+
+config.env:
+
+```env
+NODE_ENV = development
+PORT = 8000
+USERNAME = jonas
+PASSWORD = 123456
+````
+
+server.js:
+
+```js
+const app = require('./app');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './config.env' });
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+```
+
+`dotenv` package will read the config.env file and add the environment variables to the process.env object.
+
+We can use the environment variables in the application.
+
+On the app.js file:
+
+```js
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+```
+
+We can enable the morgan middleware function only in the development environment.
+
+Lastly we can set environment from the package.json file.
+
+```json
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js"
+  },
+}
+```
+
+```bash
+npm run start:dev
+npm run start:prod
+```
+
+Will run different environment variables.
+
