@@ -782,3 +782,29 @@ router
 
 Last line will use the checkBody middleware function before the createTour function.
 
+### 6.66. Serving Static Files
+
+We can use express.static middleware function to serve static files. Can serve the content of the public folder.
+
+```bash
+.
+├── css
+│   └── style.css
+├── overview.html
+└── tour.html
+```
+
+We can add the following line to the app.js file.
+
+```js
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
+```
+
+Last line will serve the content of the public folder.
+
+- <http://localhost:3000/tour.html>
+- <http://localhost:3000/overview.html>
+
+These URLs will becme available after adding the static middleware function.
