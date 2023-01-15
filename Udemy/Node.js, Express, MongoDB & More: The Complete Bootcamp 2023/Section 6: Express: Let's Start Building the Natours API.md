@@ -28,12 +28,12 @@ We will execute `npm init` and create a project. We will install Express and Nod
 After that we can create simple app.js file:
 
 ```javascript
-const express = require('express');
+const express = require("express");
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello from the server side');
+app.get("/", (req, res) => {
+  res.status(200).send("Hello from the server side");
 });
 
 const port = 3000;
@@ -128,7 +128,7 @@ Stateless RESTful API: All state is handled on the client side. This means that 
 
 For example, BAD use case:
 
-- GET /tours/nextPage > Web server should remember the last page 
+- GET /tours/nextPage > Web server should remember the last page
 - `nextPage = currentPage + 1`
 
 Normal use case:
@@ -144,21 +144,23 @@ We are going to follow JSend specification.
 In this example we are serving the tours content form api/v1/tours endpoint from a local file.
 
 ```javascript
-const express = require('express');
-const fs = require('fs');
+const express = require("express");
+const fs = require("fs");
 
 const app = express();
 
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, 'utf-8'));
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, "utf-8")
+);
 
-app.get('/api/v1/tours', (req, res) => {
+app.get("/api/v1/tours", (req, res) => {
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     results: tours.length,
     data: {
-      tours
-    }
+      tours,
+    },
   });
 });
 
@@ -173,39 +175,45 @@ app.listen(port, () => {
 We will implement the POST request for creating a new tour. Also we will need a middleware. A middleware can modify the incoming request data. Without using middleware we can't access the request body.
 
 ```javascript
-const express = require('express');
-const fs = require('fs');
+const express = require("express");
+const fs = require("fs");
 const app = express();
 
 app.use(express.json());
 
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, 'utf-8'));
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, "utf-8")
+);
 
-app.get('/api/v1/tours', (req, res) => {
+app.get("/api/v1/tours", (req, res) => {
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     results: tours.length,
     data: {
-      tours
-    }
+      tours,
+    },
   });
 });
 
-app.post('/api/v1/tours', (req, res) => {
+app.post("/api/v1/tours", (req, res) => {
   //console.log(req.body);
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
 
   tours.push(newTour);
-  fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), err => {
-    res.status(201).json({
-      status: 'success',
-      data: {
-        tour: newTour
-      }
-    });
-  });
+  fs.writeFile(
+    `${__dirname}/dev-data/data/tours-simple.json`,
+    JSON.stringify(tours),
+    (err) => {
+      res.status(201).json({
+        status: "success",
+        data: {
+          tour: newTour,
+        },
+      });
+    }
+  );
 });
 
 const port = 3000;
@@ -221,15 +229,15 @@ On this sample we are receiving the new tour objects from the POST endpoint and 
 We will define and use parameter on the URL. We need to define a route that can accept parameters, like this <http://localhost:3000/api/v1/tours/5>.
 
 ```js
-app.get('/api/v1/tours/:id/:x/:y/:t?', (req, res) => {
+app.get("/api/v1/tours/:id/:x/:y/:t?", (req, res) => {
   console.log(req.params);
   res.status(200).json({
-    status:'success',
+    status: "success",
     requestedAt: req.requestTime,
     id: req.params.id,
     data: {
-      tours
-    }
+      tours,
+    },
   });
 });
 ```
@@ -239,7 +247,7 @@ On the Express framework we can use `:` to define a parameter, we can use multip
 In a better implementation we can use input validation. We can check the id value exists in the tours array, for invalid values we return an error.
 
 ```js
-app.get('/api/v1/tours/:id', (req, res) => {
+app.get("/api/v1/tours/:id", (req, res) => {
   console.log(req.params);
 
   const id = req.params.id * 1; //a trick to convert string to number
@@ -247,13 +255,13 @@ app.get('/api/v1/tours/:id', (req, res) => {
 
   if (!tour) {
     return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
+      status: "error",
+      message: "Tour not found",
     });
   }
 
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     id: req.params.id,
     data: {
@@ -270,20 +278,20 @@ We can use PATCH or PUT requests to update a resource. Main difference between t
 In this example we will implement the PATCH request to update a tour without paying attention to local file.
 
 ```js
-app.patch('/api/v1/tours/:id', (req, res) => {
+app.patch("/api/v1/tours/:id", (req, res) => {
   const id = req.params.id * 1; //a trick to convert string to number
 
-  if(!tours.find((tour) => tour.id === id)) {
+  if (!tours.find((tour) => tour.id === id)) {
     return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
+      status: "error",
+      message: "Tour not found",
     });
   }
   //this is showcase implementation we are nopt changing anything on the file
   res.status(200).json({
-    status: 'success',
+    status: "success",
     data: {
-      tour: 'updated tour',
+      tour: "updated tour",
     },
   });
 });
@@ -294,19 +302,19 @@ app.patch('/api/v1/tours/:id', (req, res) => {
 For DELETE requests e will apply the id validation, we will return 204 status with no content, null data.
 
 ```js
-app.delete('/api/v1/tours/:id', (req, res) => {
+app.delete("/api/v1/tours/:id", (req, res) => {
   const id = req.params.id * 1; //a trick to convert string to number
 
-  if(!tours.find((tour) => tour.id === id)) {
+  if (!tours.find((tour) => tour.id === id)) {
     return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
+      status: "error",
+      message: "Tour not found",
     });
   }
   //this is showcase implementation we are not changing anything on the file
   //usually we will return 204 status code with null data
   res.status(204).json({
-    status: 'success',
+    status: "success",
     data: null,
   });
 });
@@ -317,19 +325,19 @@ app.delete('/api/v1/tours/:id', (req, res) => {
 We will reorganize the the routes for a better implementation.
 
 ```js
-const express = require('express');
-const fs = require('fs');
+const express = require("express");
+const fs = require("fs");
 const app = express();
 
 app.use(express.json());
 
 const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, 'utf-8')
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`, "utf-8")
 );
 
 const getAllTours = (req, res) => {
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     results: tours.length,
     data: {
@@ -346,13 +354,13 @@ const getTour = (req, res) => {
 
   if (!tour) {
     return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
+      status: "error",
+      message: "Tour not found",
     });
   }
 
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     id: req.params.id,
     data: {
@@ -372,7 +380,7 @@ const createTour = (req, res) => {
     JSON.stringify(tours),
     (err) => {
       res.status(201).json({
-        status: 'success',
+        status: "success",
         data: {
           tour: newTour,
         },
@@ -389,15 +397,15 @@ const updateTour = (req, res) => {
 
   if (!tours.find((tour) => tour.id === id)) {
     return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
+      status: "error",
+      message: "Tour not found",
     });
   }
   //this is showcase implementation we are nopt changing anything on the file
   res.status(200).json({
-    status: 'success',
+    status: "success",
     data: {
-      tour: 'updated tour',
+      tour: "updated tour",
     },
   });
 };
@@ -407,14 +415,14 @@ const deleteTour = (req, res) => {
 
   if (!tours.find((tour) => tour.id === id)) {
     return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
+      status: "error",
+      message: "Tour not found",
     });
   }
   //this is showcase implementation we are not changing anything on the file
   //usually we will return 204 status code with null data
   res.status(204).json({
-    status: 'success',
+    status: "success",
     data: null,
   });
 };
@@ -427,10 +435,10 @@ app.patch('/api/v1/tours/:id', updateTour);
 app.delete('/api/v1/tours/:id', deleteTour);
 */
 
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
+app.route("/api/v1/tours").get(getAllTours).post(createTour);
 
 app
-  .route('/api/v1/tours/:id')
+  .route("/api/v1/tours/:id")
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
@@ -468,7 +476,7 @@ app.use(express.json());
 
 //we can create our own middleware functions
 app.use((req, res, next) => {
-  console.log('Hello from the middleware');
+  console.log("Hello from the middleware");
   //we need to call next function to move to the next middleware, otherwise the request will be stuck here
   next();
 });
@@ -482,17 +490,17 @@ Middleware function order is important.
 //this is a middleware function
 app.use(express.json());
 
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
+app.route("/api/v1/tours").get(getAllTours).post(createTour);
 
 app
-  .route('/api/v1/tours/:id')
+  .route("/api/v1/tours/:id")
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
 
 //we can create our own middleware functions
 app.use((req, res, next) => {
-  console.log('Hello from the middleware');
+  console.log("Hello from the middleware");
   //we need to call next function to move to the next middleware, otherwise the request will be stuck here
   next();
 });
@@ -507,16 +515,16 @@ We define global middleware functions before the route middleware.
 Morgan is a popular logging middleware.
 
 ```js
-const fs = require('fs');
-const express = require('express');
-const morgan = require('morgan');
+const fs = require("fs");
+const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 //this is a middleware function
 app.use(express.json());
-````
+```
 
 We can use morgan middleware to log the request to the console. Last line is the output of the request.
 
@@ -534,43 +542,43 @@ We are going to implement the users routes with empty handlers.
 ```js
 const getAllUsers = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
+    status: "error",
+    message: "This route is not yet defined",
   });
 };
 
 const getUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
+    status: "error",
+    message: "This route is not yet defined",
   });
 };
 
 const createUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
+    status: "error",
+    message: "This route is not yet defined",
   });
 };
 
 const updateUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
+    status: "error",
+    message: "This route is not yet defined",
   });
 };
 
 const deleteUser = (req, res) => {
   res.status(500).json({
-    status: 'error',
-    message: 'This route is not yet defined',
+    status: "error",
+    message: "This route is not yet defined",
   });
 };
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
+app.route("/api/v1/users").get(getAllUsers).post(createUser);
 
 app
-  .route('/api/v1/users/:id')
+  .route("/api/v1/users/:id")
   .get(getUser)
   .patch(updateUser)
   .delete(deleteUser);
@@ -585,18 +593,18 @@ We need to create separate routers for tours and users for each resource.
 ```javascript
 const tourRouter = express.Router();
 
-tourRouter.route('/').get(getAllTours).post(createTour);
+tourRouter.route("/").get(getAllTours).post(createTour);
 
-tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
+tourRouter.route("/:id").get(getTour).patch(updateTour).delete(deleteTour);
 
 const userRouter = express.Router();
 
-userRouter.route('/').get(getAllUsers).post(createUser);
+userRouter.route("/").get(getAllUsers).post(createUser);
 
-userRouter.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
+userRouter.route("/:id").get(getUser).patch(updateUser).delete(deleteUser);
 
-app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/users', userRouter);
+app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/users", userRouter);
 ```
 
 We are creating two routers for tours and users. We are using the route method to group the routes with the same path.
@@ -608,21 +616,21 @@ We can migrate the resource specific logic to separated files.
 app.js:
 
 ```js
-const express = require('express');
-const morgan = require('morgan');
+const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
-const tourRouter = require('./routes/tourRoutes');
-const userRouter = require('./routes/userRoutes');
+const tourRouter = require("./routes/tourRoutes");
+const userRouter = require("./routes/userRoutes");
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 //this is a middleware function
 app.use(express.json());
 
 //we can create our own middleware functions
 app.use((req, res, next) => {
-  console.log('Hello from the middleware');
+  console.log("Hello from the middleware");
   next();
 });
 
@@ -632,8 +640,8 @@ app.use((req, res, next) => {
 });
 
 //routers
-app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/users', userRouter);
+app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/users", userRouter);
 
 const port = 3000;
 app.listen(port, () => {
@@ -664,21 +672,21 @@ We are creating a controllers folder to store the controller functions. We are c
 app.js:
 
 ```js
-const express = require('express');
-const morgan = require('morgan');
+const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
-const tourRouter = require('./routes/tourRoutes');
-const userRouter = require('./routes/userRoutes');
+const tourRouter = require("./routes/tourRoutes");
+const userRouter = require("./routes/userRoutes");
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 //this is a middleware function
 app.use(express.json());
 
 //we can create our own middleware functions
 app.use((req, res, next) => {
-  console.log('Hello from the middleware');
+  console.log("Hello from the middleware");
   //we need to call next function to move to the next middleware, otherwise the request will be stuck here
   next();
 });
@@ -689,8 +697,8 @@ app.use((req, res, next) => {
 });
 
 //routers
-app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/users', userRouter);
+app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/users", userRouter);
 
 module.exports = app;
 ```
@@ -698,7 +706,7 @@ module.exports = app;
 server.js:
 
 ```js
-const app = require('./app');
+const app = require("./app");
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
@@ -716,8 +724,8 @@ exports.checkID = (req, res, next, val) => {
   const tour = tours.find((tour) => tour.id === id);
   if (!tour) {
     return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
+      status: "fail",
+      message: "Invalid ID",
     });
   }
   next();
@@ -727,21 +735,21 @@ exports.checkID = (req, res, next, val) => {
 We will export this function from tourController.js and use it in the tourRoutes.js file.
 
 ```js
-const express = require('express');
-const tourController = require('./../controllers/tourController');
+const express = require("express");
+const tourController = require("./../controllers/tourController");
 
 const router = express.Router();
 
 //if we don't send the id, the middleware will not be called
-router.param('id', tourController.checkID);
+router.param("id", tourController.checkID);
 
 router
-  .route('/')
+  .route("/")
   .get(tourController.getAllTours)
   .post(tourController.createTour);
 
 router
-  .route('/:id')
+  .route("/:id")
   .get(tourController.getTour)
   .patch(tourController.updateTour)
   .delete(tourController.deleteTour);
@@ -759,13 +767,13 @@ tourController.js:
 
 ```js
 exports.checkBody = (req, res, next) => {
-    if (!req.body.name || !req.body.price) {
-        return res.status(400).json({
-            status: 'fail',
-            message: 'Missing name or price'
-        });
-    }
-    next();
+  if (!req.body.name || !req.body.price) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Missing name or price",
+    });
+  }
+  next();
 };
 ```
 
@@ -775,9 +783,9 @@ tourRoutes.js:
 
 ```js
 router
-  .route('/')
+  .route("/")
   .get(tourController.getAllTours)
-  .post(tourController.checkBody ,tourController.createTour);
+  .post(tourController.checkBody, tourController.createTour);
 ```
 
 Last line will use the checkBody middleware function before the createTour function.
@@ -797,7 +805,7 @@ We can use express.static middleware function to serve static files. Can serve t
 We can add the following line to the app.js file.
 
 ```js
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 ```
@@ -818,9 +826,9 @@ Express sets the environment development by default.
 Environment variables are outside of the application. Thus we will use server.js instead of app.js.
 
 ```js
-const app = require('./app');
+const app = require("./app");
 
-console.log(app.get('env'));
+console.log(app.get("env"));
 console.log(process.env);
 
 const port = 3000;
@@ -846,10 +854,10 @@ These environment variables come from the process core module.
 If we execute the nodemon with a environment variable, we can access it in the application.
 
 ```bash
-NODE_ENV=development nodemon server.js 
+NODE_ENV=development nodemon server.js
 ```
 
-```js 
+```js
 console.log(process.env.NODE_ENV);
 ```
 
@@ -862,15 +870,15 @@ NODE_ENV = development
 PORT = 8000
 USERNAME = jonas
 PASSWORD = 123456
-````
+```
 
 server.js:
 
 ```js
-const app = require('./app');
-const dotenv = require('dotenv');
+const app = require("./app");
+const dotenv = require("dotenv");
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: "./config.env" });
 
 const port = 3000;
 app.listen(port, () => {
@@ -885,8 +893,8 @@ We can use the environment variables in the application.
 On the app.js file:
 
 ```js
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
 ```
 
@@ -900,7 +908,7 @@ Lastly we can set environment from the package.json file.
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js"
-  },
+  }
 }
 ```
 
@@ -910,4 +918,56 @@ npm run start:prod
 ```
 
 Will run different environment variables.
+
+### 6.68. Setting up ESLint + Prettier in VS Code
+
+ESLint provides linting for JavaScript. Prettier provides code formatting. We will use both of them in our project.
+
+We need these packages:
+
+```json
+"devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.0",
+    "markdown-notes-tree": "^1.12.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.3"
+  }
+```
+
+We need a .eslintrc.json file in the root folder:
+
+```json
+{
+  "extends": ["airbnb", "prettier", "plugin:node/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "spaced-comment": "off",
+    "no-console": "warn",
+    "consistent-return": "off",
+    "func-names": "off",
+    "object-shorthand": "off",
+    "no-process-exit": "off",
+    "no-param-reassign": "off",
+    "no-return-await": "off",
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }]
+  }
+}
+```
+
+After installing the packages, we can restart the VS Code to see alerts.
+
+We can follow the Airbnb style guide. Our configuration extends the airbnb, prettier and node recommended rules. For specific rules we can override them. `no-unused-vars` rule is an important one and can prevent some bugs, but we want to ignore the `req`, `res`, `next` and `val` variables, because they are used in the express application middleware functions commonly.
+
+We can check the rules on the [ESLint website](https://eslint.org/docs/rules/).
 
