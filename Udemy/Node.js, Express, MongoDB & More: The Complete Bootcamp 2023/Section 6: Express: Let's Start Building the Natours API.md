@@ -970,4 +970,3 @@ After installing the packages, we can restart the VS Code to see alerts.
 We can follow the Airbnb style guide. Our configuration extends the airbnb, prettier and node recommended rules. For specific rules we can override them. `no-unused-vars` rule is an important one and can prevent some bugs, but we want to ignore the `req`, `res`, `next` and `val` variables, because they are used in the express application middleware functions commonly.
 
 We can check the rules on the [ESLint website](https://eslint.org/docs/rules/).
-
