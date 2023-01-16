@@ -74,3 +74,23 @@ SKIP
 SKIP
 
 ### 7.79. Using Compass App for CRUD Operations
+
+Compass is a GUI for MongoDB. We can use Compass to create, read, update, and delete documents.
+
+### 7.80. Creating a Hosted Database with Atlas
+
+We are going to use MongoDB Atlas, which is a cloud database service. We are not going to use local MongoDB for the project.
+
+MongoDB Atlas is a cloud database service for MongoDB. It is a fully managed database as a service. It is free for small databases.
+
+We can create a free account on [link](https://www.mongodb.com/cloud/atlas), and then create a project with a free cluster.
+
+### 7.81. Connecting to Our Hosted Database
+
+On the Atlas dashboard first we need to be sure we have a database cluster. Then we need to create a new database user and whitelist our IP address.
+
+After that we can use `Connect` button from the cluster dashboard, we can choose the Atlas connection. UI will provide the required connection string.
+
+We can allow IP access from anywhere, or we can whitelist our IP address.
+
+UI changes by time, these notes could become outdated.
