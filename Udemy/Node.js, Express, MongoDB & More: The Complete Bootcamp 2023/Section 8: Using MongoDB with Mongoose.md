@@ -61,4 +61,10 @@ We should see the success message on the console. On the connection string we ar
 
 ### 8.84. What is Mongoose
 
+- Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js, it provides higher level of abstraction.
+- Mongoose allows for rapid and simple development of mongoDB database interactions.
+- Features: schemas to model data and relationships, easy data validation, simple query API, middleware, etc.
+- Mongoose schema: where we model our data, by describing the structure of the data, default values, and validation.
+- Mongoose model: a wrapper for the schema, providing an interface to the database for CRUD operations.
+
 
