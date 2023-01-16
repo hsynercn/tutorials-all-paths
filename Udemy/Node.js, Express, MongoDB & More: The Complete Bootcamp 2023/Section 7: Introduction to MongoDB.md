@@ -41,4 +41,36 @@ Embedding/Denormalizing: Including related data into a single document. This all
 
 Normalization: Using multiple documents to store related data. Relational databases use this approach.
 
+### 7.71. No Need to Install MongoDB Locally
 
+We don't need to install MongoDB locally. We can use MongoDB Atlas, which is a cloud database service. We can continue from section 79.
+
+### 7.72. Installing MongoDB on macOS
+
+SKIP
+
+### 7.73. Installing MongoDB on Windows
+
+SKIP
+
+### 7.74. Creating a Database
+
+SKIP
+
+### 7.75. Creating a Documents
+
+SKIP
+
+### 7.76. CRUD: Querying (Reading) Documents
+
+SKIP
+
+### 7.77. CRUD: Updating Documents
+
+SKIP
+
+### 7.78. CRUD: Deleting Documents
+
+SKIP
+
+### 7.79. Using Compass App for CRUD Operations
