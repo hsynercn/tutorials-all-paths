@@ -29,17 +29,17 @@ DATABASE=mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.8cjdopq.mongodb.net/natour
 On the server.js file we will connect to the database:
 
 ```js
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: "./config.env" });
 
-const app = require('./app');
+const app = require("./app");
 
 const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
+  "<PASSWORD>",
   process.env.DATABASE_PASSWORD
-).replace('<USERNAME>', process.env.DATABASE_USERNAME);
+).replace("<USERNAME>", process.env.DATABASE_USERNAME);
 
 mongoose
   .connect(DB, {
@@ -48,7 +48,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log('DB connection successful!');
+    console.log("DB connection successful!");
   });
 
 const port = process.env.PORT || 3000;
@@ -67,4 +67,97 @@ We should see the success message on the console. On the connection string we ar
 - Mongoose schema: where we model our data, by describing the structure of the data, default values, and validation.
 - Mongoose model: a wrapper for the schema, providing an interface to the database for CRUD operations.
 
+### 8.85. Creating a Simple Tour Model
+
+We will define the tour model:
+
+```js
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "A tour must have a name"],
+    unique: true,
+  },
+  rating: {
+    type: Number,
+    default: 4.5,
+  },
+  price: {
+    type: Number,
+    required: [true, "A tour must have a price"],
+  },
+});
+
+//we use uppercase for model names
+const Tour = mongoose.model("Tour", tourSchema);
+```
+
+In this example we have used validators and several configurations for the entity properties.
+
+### 8.86. Creating Documents and Testing the Model
+
+We are going to create a document and test the model:
+
+```js
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "./config.env" });
+
+const app = require("./app");
+
+const DB = process.env.DATABASE.replace(
+  "<PASSWORD>",
+  process.env.DATABASE_PASSWORD
+).replace("<USERNAME>", process.env.DATABASE_USERNAME);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log("DB connection successful!");
+  });
+
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "A tour must have a name"],
+    unique: true,
+  },
+  rating: {
+    type: Number,
+    default: 4.5,
+  },
+  price: {
+    type: Number,
+    required: [true, "A tour must have a price"],
+  },
+});
+
+//we use uppercase for model names
+const Tour = mongoose.model("Tour", tourSchema);
+
+const testTour = new Tour({
+  name: "The Forest Hiker",
+  rating: 4.7,
+  price: 497,
+});
+
+testTour
+  .save()
+  .then((doc) => {
+    console.log(doc);
+    console.log("Document saved!");
+  })
+  .catch((err) => {
+    console.log("ERROR: ", err);
+  });
+```
+
+In this if we run `npm start` once we will see the saved document on the MongoDB collection. Previously we deleted the collection and the documents. When we run this file and save the document MongoDB will create the collection and save the document.
+
+If we pay attention to schema we can see that we have defined the `name` property as unique. If we try to save a document with the same name we will get an error. We can also see that we have defined the `price` property as required. If we try to save a document without the price we will get an error.
 
