@@ -201,3 +201,69 @@ Business Logic
 
 Fat model/thin controller: offload as much logic as possible from the controller and into the model, and keep the controllers as simple as possible.
 
+### 8.88. Refactoring the MVC
+
+We will remove all `fs` related code and add a models folder Tour model to our project.
+
+tourModel.js:
+
+```js
+const mongoose = require('mongoose');
+
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'A tour must have a name'],
+    unique: true,
+  },
+  rating: {
+    type: Number,
+    default: 4.5,
+  },
+  price: {
+    type: Number,
+    required: [true, 'A tour must have a price'],
+  },
+});
+
+//we use uppercase for model names
+const Tour = mongoose.model('Tour', tourSchema);
+
+module.exports = Tour;
+```
+
+Our folder structure should look like this:
+
+```bash
+.
+├── app.js
+├── config.env
+├── controllers
+│   ├── tourController.js
+│   └── userController.js
+├── models
+│   └── tourModel.js
+├── package-lock.json
+├── package.json
+├── routes
+│   ├── tourRoutes.js
+│   └── userRoutes.js
+└── server.js
+```
+
+Our controller doesn't return data:
+
+```js
+exports.getTour = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    requestedAt: req.requestTime,
+    id: req.params.id,
+    /*
+    data: {
+      tour: tour,
+    },
+    */
+  });
+};
+```
