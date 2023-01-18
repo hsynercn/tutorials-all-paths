@@ -161,3 +161,43 @@ In this if we run `npm start` once we will see the saved document on the MongoDB
 
 If we pay attention to schema we can see that we have defined the `name` property as unique. If we try to save a document with the same name we will get an error. We can also see that we have defined the `price` property as required. If we try to save a document without the price we will get an error.
 
+### 8.87. Intro to Back-End Architecture: MVC, Types of Logic, and More
+
+MVC is a software design pattern that separates the application into three main logical components:
+
+- Model: Business Logic
+- View: Presentation Logic
+- Controller: Application Logic
+
+The model is the data, the view is the presentation of the data, and the controller is the logic that decides what the user sees and does.
+
+```mermaid
+graph LR
+A[Request] --> B[Router]
+B --> C[Controller]
+C --> D[Model]
+D --> C
+C --> F[Response]
+C --> E[View]
+E --> C
+```
+
+Application Logic
+
+- Code that is concerned about the applications's implementation, not the underlying business problem we're trying to solve(e.g. showing and selling tours).
+- Concerned about managing requests and responses.
+- About the app's more technical aspects.
+- Bridge between model and view layers.
+
+Business Logic
+
+- Code that actually solves the business problem we set out to solve.
+- Directly related to business rules how the business works, and business needs.
+- Examples:
+  - Creating new tours in the database
+  - Checking if user's password is correct
+  - Validating user input data
+  - Ensuring only users who bought a tour can review it.
+
+Fat model/thin controller: offload as much logic as possible from the controller and into the model, and keep the controllers as simple as possible.
+
