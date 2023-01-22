@@ -369,3 +369,26 @@ exports.updateTour = async (req, res) => {
 
 ### 8.92. Deleting Documents
 
+We will use the following code to delete documents:
+
+```js
+exports.deleteTour = async (req, res) => {
+  try {
+    await Tour.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+`Tour.findByIdAndDelete()` deletes the document with the specified id, as a common practice we return `null` in the response.
+
+### 8.93. Modeling the Tours
+
