@@ -267,3 +267,27 @@ exports.getTour = (req, res) => {
   });
 };
 ```
+
+### 8.89. Another Way of Creating Documents
+
+We will create a new document using the `create` method of the model:
+
+```js
+exports.createTour = async (req, res) => {
+  try {
+    const newTour = await Tour.create(req.body);
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: newTour,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
