@@ -337,8 +337,35 @@ exports.getTour = async (req, res) => {
 };
 ```
 
-
 `Tour.find()` returns all documents from the collection. `Tour.findById()` returns a document with the specified id, it is the same as `Tour.findOne({ _id: req.params.id })`.
 
 ### 8.91. Updating Documents
+
+We will use the following code to update documents:
+
+```js
+exports.updateTour = async (req, res) => {
+  try {
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+`Tour.findByIdAndUpdate()` updates the document with the specified id. The third parameter is an object with options. `new: true` returns the updated document. `runValidators: true` runs the validators defined in the schema.
+
+### 8.92. Deleting Documents
 
