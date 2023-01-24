@@ -583,3 +583,57 @@ const tours = await Tour.find()
 ```
 
 These lines could give the same result.
+
+### 8.96. Making the API Better: Advanced Filtering
+
+We will use the following code to filter the documents:
+
+```js
+exports.getAllTours = async (req, res) => {
+  console.log(req.query);
+  try {
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    console.log(queryStr);
+
+    const query = Tour.find(JSON.parse(queryStr));
+    const tours = await query;
+
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+We need to translate the request query to a mongoose query. We can use the following code to do that:
+
+```js
+queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+```
+
+We can use the following url to test the code:
+
+```bash
+http://localhost:{{PORT}}/api/v1/tours?duration[gte]=5&difficulty=easy&sort=1&limit=10&price[lt]=1500
+```
+
+The replace method will put a dollar sign before the operators for the mongoose query.
+
+For real world applications we need to define documentation for the API.
+
+### 8.97. Making the API Better: Sorting
