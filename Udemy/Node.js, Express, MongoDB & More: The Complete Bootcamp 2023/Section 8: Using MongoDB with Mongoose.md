@@ -208,12 +208,12 @@ We will remove all `fs` related code and add a models folder Tour model to our p
 tourModel.js:
 
 ```js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const tourSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'A tour must have a name'],
+    required: [true, "A tour must have a name"],
     unique: true,
   },
   rating: {
@@ -222,12 +222,12 @@ const tourSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: [true, 'A tour must have a price'],
+    required: [true, "A tour must have a price"],
   },
 });
 
 //we use uppercase for model names
-const Tour = mongoose.model('Tour', tourSchema);
+const Tour = mongoose.model("Tour", tourSchema);
 
 module.exports = Tour;
 ```
@@ -256,7 +256,7 @@ Our controller doesn't return data:
 ```js
 exports.getTour = (req, res) => {
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     id: req.params.id,
     /*
@@ -278,14 +278,14 @@ exports.createTour = async (req, res) => {
     const newTour = await Tour.create(req.body);
 
     res.status(201).json({
-      status: 'success',
+      status: "success",
       data: {
         tour: newTour,
       },
     });
   } catch (error) {
     res.status(400).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -303,7 +303,7 @@ exports.getAllTours = async (req, res) => {
   try {
     const tours = await Tour.find();
     res.status(200).json({
-      status: 'success',
+      status: "success",
       requestedAt: req.requestTime,
       results: tours.length,
       data: {
@@ -312,7 +312,7 @@ exports.getAllTours = async (req, res) => {
     });
   } catch (error) {
     res.status(404).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -322,7 +322,7 @@ exports.getTour = async (req, res) => {
   try {
     const tour = await Tour.findById(req.params.id);
     res.status(200).json({
-      status: 'success',
+      status: "success",
       requestedAt: req.requestTime,
       data: {
         tour,
@@ -330,7 +330,7 @@ exports.getTour = async (req, res) => {
     });
   } catch (error) {
     res.status(404).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -351,14 +351,14 @@ exports.updateTour = async (req, res) => {
       runValidators: true,
     });
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: {
         tour,
       },
     });
   } catch (error) {
     res.status(400).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -376,12 +376,12 @@ exports.deleteTour = async (req, res) => {
   try {
     await Tour.findByIdAndDelete(req.params.id);
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: null,
     });
   } catch (error) {
     return res.status(400).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -398,21 +398,21 @@ We have changed the schema of the Tour model:
 const tourSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'A tour must have a name'],
+    required: [true, "A tour must have a name"],
     unique: true,
     trim: true,
   },
   duration: {
     type: Number,
-    required: [true, 'A tour must have a duration'],
+    required: [true, "A tour must have a duration"],
   },
   maxGroupSize: {
     type: Number,
-    required: [true, 'A tour must have a group size'],
+    required: [true, "A tour must have a group size"],
   },
   difficulty: {
     type: String,
-    required: [true, 'A tour must have a difficulty'],
+    required: [true, "A tour must have a difficulty"],
   },
   ratingsAverage: {
     type: Number,
@@ -424,13 +424,13 @@ const tourSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: [true, 'A tour must have a price'],
+    required: [true, "A tour must have a price"],
   },
   priceDiscount: Number,
   summary: {
     type: String,
     trim: true,
-    required: [true, 'A tour must have a description'],
+    required: [true, "A tour must have a description"],
   },
   description: {
     type: String,
@@ -438,7 +438,7 @@ const tourSchema = new mongoose.Schema({
   },
   imageCover: {
     type: String,
-    required: [true, 'A tour must have a cover image'],
+    required: [true, "A tour must have a cover image"],
   },
   images: [String],
   createdAt: {
@@ -456,17 +456,17 @@ We have added new fields to the schema. We have also added validators to some fi
 We will import the development data using the following code:
 
 ```js
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const fs = require('fs');
-const Tour = require('../../models/tourModel');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const fs = require("fs");
+const Tour = require("../../models/tourModel");
 
-dotenv.config({ path: './../../config.env' });
+dotenv.config({ path: "./../../config.env" });
 
 const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
+  "<PASSWORD>",
   process.env.DATABASE_PASSWORD
-).replace('<USERNAME>', process.env.DATABASE_USERNAME);
+).replace("<USERNAME>", process.env.DATABASE_USERNAME);
 
 mongoose
   .connect(DB, {
@@ -475,13 +475,13 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log('DB connection successful!');
+    console.log("DB connection successful!");
   });
 
 const deleteData = async () => {
   try {
     await Tour.deleteMany();
-    console.log('Deleted all tours!');
+    console.log("Deleted all tours!");
     process.exit();
   } catch (error) {
     console.log(error);
@@ -491,21 +491,21 @@ const deleteData = async () => {
 const importData = async () => {
   const fileContent = fs.readFileSync(
     `${__dirname}/tours-simple.json`,
-    'utf-8'
+    "utf-8"
   );
   const tours = JSON.parse(fileContent);
   try {
     await Tour.create(tours);
-    console.log('Data successfully loaded!');
+    console.log("Data successfully loaded!");
     process.exit();
   } catch (err) {
     console.log(err);
   }
 };
 
-if (process.argv[2] === '--import') {
+if (process.argv[2] === "--import") {
   importData();
-} else if (process.argv[2] === '--delete') {
+} else if (process.argv[2] === "--delete") {
   deleteData();
 }
 ```
@@ -523,3 +523,63 @@ for importing the development data:
 ```bash
 node dev-data/data/import-dev-data.js --import
 ```
+
+### 8.95. Making the API Better: Filtering
+
+We will use the following code to filter the documents:
+
+```js
+exports.getAllTours = async (req, res) => {
+  console.log(req.query);
+  try {
+    const queryObj = { ...req.query };
+    const excludedFields = ["page", "sort", "limit", "fields"];
+    excludedFields.forEach((el) => delete queryObj[el]);
+    console.log(req.query, queryObj);
+    const tours = await Tour.find(queryObj);
+    res.status(200).json({
+      status: "success",
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+```
+
+If we access the following url:
+
+```bash
+http://localhost:{{PORT}}/api/v1/tours?duration=5&difficulty=easy&sort=1&limit=10
+```
+
+We can see the following output:
+
+```bash
+{ duration: '5', difficulty: 'easy', sort: '1', limit: '10' }
+{ duration: '5', difficulty: 'easy' }
+```
+
+Mongoose will apply the remaining query parameters to the query.
+
+```js
+const tours = await Tour.find({
+  duration: 5,
+  difficulty: "easy",
+});
+
+const tours = await Tour.find()
+  .where("duration")
+  .equals(5)
+  .where("difficulty")
+  .equals("easy");
+```
+
+These lines could give the same result.
