@@ -593,7 +593,7 @@ exports.getAllTours = async (req, res) => {
   console.log(req.query);
   try {
     const queryObj = { ...req.query };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    const excludedFields = ["page", "sort", "limit", "fields"];
     excludedFields.forEach((el) => delete queryObj[el]);
 
     let queryStr = JSON.stringify(queryObj);
@@ -604,7 +604,7 @@ exports.getAllTours = async (req, res) => {
     const tours = await query;
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       requestedAt: req.requestTime,
       results: tours.length,
       data: {
@@ -613,7 +613,7 @@ exports.getAllTours = async (req, res) => {
     });
   } catch (error) {
     res.status(404).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -637,3 +637,61 @@ The replace method will put a dollar sign before the operators for the mongoose 
 For real world applications we need to define documentation for the API.
 
 ### 8.97. Making the API Better: Sorting
+
+We will use the following code to sort the documents:
+
+```js
+exports.getAllTours = async (req, res) => {
+  console.log(req.query);
+  try {
+    const queryObj = { ...req.query };
+    const excludedFields = ["page", "sort", "limit", "fields"];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    console.log(queryStr);
+
+    let query = Tour.find(JSON.parse(queryStr));
+
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      console.log(sortBy);
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort("-createdAt");
+    }
+
+    const tours = await query;
+
+    res.status(200).json({
+      status: "success",
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
+```
+
+We will convert the sort query parameter to a mongoose query:
+
+```js
+if (req.query.sort) {
+  const sortBy = req.query.sort.split(",").join(" ");
+  query = query.sort(sortBy);
+} else {
+  query = query.sort("-createdAt");
+}
+```
+
+We are using createdAt as a default sort parameter.
+
+### 8.98. Making the API Better: Limiting Fields
