@@ -695,3 +695,94 @@ if (req.query.sort) {
 We are using createdAt as a default sort parameter.
 
 ### 8.98. Making the API Better: Limiting Fields
+
+We will use the following code to limit the fields of the documents:
+
+```js
+exports.getAllTours = async (req, res) => {
+  console.log(req.query);
+  try {
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    //1) Filtering
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    console.log(queryStr);
+
+    let query = Tour.find(JSON.parse(queryStr));
+
+    //2) Sorting
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+      console.log(sortBy);
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt');
+    }
+
+    //3) Field limiting
+    if (req.query.fields) {
+      const fields = req.query.fields.split(',').join(' ');
+      query = query.select(fields);
+    } else {
+      query = query.select('-__v');
+    }
+
+    const tours = await query;
+
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+We will convert the fields query parameter to a mongoose query:
+
+```js
+if (req.query.fields) {
+  const fields = req.query.fields.split(',').join(' ');
+  query = query.select(fields);
+} else {
+  query = query.select('-__v');
+}
+```
+
+MongoDB will return the __v field by default. We will exclude it. We can use the following url to test the code:
+
+```bash
+http://localhost:{{PORT}}/api/v1/tours?fields=name,duration,difficulty,price
+```
+
+Mongo will return the listed fields, we only need to separate them with spaces.
+
+Also we can change the model properties to be private:
+
+```js
+
+const tourSchema = new mongoose.Schema({
+  //...
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+    select: false,
+  },
+  //...
+});
+```
+
+select: false will exclude the property from the response.
+
+### 8.99. Making the API Better: Pagination
