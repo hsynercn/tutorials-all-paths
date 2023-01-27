@@ -876,3 +876,135 @@ if (req.query.page) {
 ```
 
 Simply we are calculating the skip value and then we are using the skip and limit methods of mongoose.
+
+### 8.100. Making the API Better: Aliasing
+
+We may use specific URL cases to easily access specific result sets:
+
+```URL
+http://localhost:{{PORT}}/api/v1/tours?sort=price,ratingsAverage,price&limit=5
+```
+
+```js
+exports.aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,difficulty,ratingsAverage,summary';
+  next();
+};
+```
+
+We can use a middleware to insert specific parameter into the query.
+
+```js
+router
+  .route('/top-5-tours')
+  .get(tourController.aliasTopTours, tourController.getAllTours);
+```
+
+We can wire the parameters to a specific endpoint from the router.
+
+### 8.101. Refactoring API Features
+
+We will separate the API features into a separate file:
+
+```js
+class APIFeatures {
+  constructor(query, queryString) {
+    this.query = query;
+    this.queryString = queryString;
+  }
+
+  filter() {
+    console.log('filter');
+    const queryObj = { ...this.queryString };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+
+    //we will manipulate the query object
+    this.query = this.query.find(JSON.parse(queryStr));
+    return this;
+  }
+
+  sort() {
+    if (this.queryString.sort) {
+      const sortBy = this.queryString.sort.split(',').join(' ');
+      this.query = this.query.sort(sortBy);
+    } else {
+      this.query = this.query.sort('-createdAt');
+    }
+    return this;
+  }
+
+  limitFields() {
+    if (this.queryString.fields) {
+      const fields = this.queryString.fields.split(',').join(' ');
+      this.query = this.query.select(fields);
+    } else {
+      this.query = this.query.select('-__v');
+    }
+    return this;
+  }
+
+  paginate() {
+    const page = this.queryString.page * 1 || 1;
+    const limit = this.queryString.limit * 1 || 100;
+    const skip = (page - 1) * limit;
+    this.query = this.query.skip(skip).limit(limit);
+
+    return this;
+  }
+}
+
+module.exports = APIFeatures;
+```
+
+We can use our new class on the controller:
+
+```js
+exports.getAllTours = async (req, res) => {
+  try {
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const tours = await features.query;
+
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+This example shows the simplified version of the controller.
+
+```javascript
+const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+```
+
+These lines are equivalent to previous versions of tour controller.
+
