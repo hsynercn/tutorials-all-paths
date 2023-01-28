@@ -1008,3 +1008,233 @@ const features = new APIFeatures(Tour.find(), req.query)
 
 These lines are equivalent to previous versions of tour controller.
 
+### 8.102 Aggregation Pipeline: Matching and Grouping
+
+We can use aggregation pipelines to use different strategies to extract data:
+
+```js
+exports.getTourStats = async (req, res) => {
+  try {
+    const stats = await Tour.aggregate([
+      {
+        $match: { ratingsAverage: { $gte: 4.5 } },
+      },
+      {
+        $group: {
+          _id: { $toUpper: '$difficulty' },
+          numOfTours: { $sum: 1 },
+          numRating: { $sum: '$ratingsQuantity' },
+          avgRating: { $avg: '$ratingsAverage' },
+          avgPrice: { $avg: '$price' },
+          minPrice: { $min: '$price' },
+          maxPrice: { $max: '$price' },
+        },
+      },
+      {
+        $sort: { avgPrice: 1 },
+      },
+    ]);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        stats,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+We are using greater than for ratings average property. Grouping the results with uppercase difficulty. We are counting the number of records with sum 1. We can use $sum, $avg, $min and $max operators on properties.
+
+In this sample we will receive the following output:
+
+```json
+{
+    "status": "success",
+    "data": {
+        "stats": [
+            {
+                "_id": "EASY",
+                "numOfTours": 4,
+                "numRating": 159,
+                "avgRating": 4.675,
+                "avgPrice": 1272,
+                "minPrice": 397,
+                "maxPrice": 1997
+            },
+            {
+                "_id": "MEDIUM",
+                "numOfTours": 3,
+                "numRating": 70,
+                "avgRating": 4.8,
+                "avgPrice": 1663.6666666666667,
+                "minPrice": 497,
+                "maxPrice": 2997
+            },
+            {
+                "_id": "DIFFICULT",
+                "numOfTours": 2,
+                "numRating": 41,
+                "avgRating": 4.6,
+                "avgPrice": 1997,
+                "minPrice": 997,
+                "maxPrice": 2997
+            }
+        ]
+    }
+}
+```
+
+### 8.103. Aggregation Pipeline: Unwinding and Projecting
+
+We will use the following lines to generate a report for yearly tours:
+
+```js
+exports.getMonthlyPlan = async (req, res) => {
+  try {
+    const year = req.params.year * 1;
+
+    const plan = await Tour.aggregate([
+      {
+        $unwind: '$startDates',
+      },
+      {
+        $match: {
+          startDates: {
+            $gte: new Date(`${year}-01-01`),
+            $lte: new Date(`${year}-12-31`),
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { $month: '$startDates' },
+          numOfTourStarts: { $sum: 1 },
+          tours: { $push: '$name' },
+        },
+      },
+      {
+        $addFields: { month: '$_id' },
+      },
+      {
+        $project: {
+          _id: 0,
+        },
+      },
+      {
+        $sort: { numOfTourStarts: -1 },
+      },
+      {
+        $limit: 12,
+      },
+    ]);
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        plan,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
+```
+
+$unwind operator will return multiplied result of tour objects. With this aggregation pipeline we can this result:
+
+```json
+{
+    "status": "success",
+    "data": {
+        "plan": [
+            {
+                "numOfTourStarts": 3,
+                "tours": [
+                    "The Forest Hiker",
+                    "The Sea Explorer",
+                    "The Sports Lover"
+                ],
+                "month": 7
+            },
+            {
+                "numOfTourStarts": 2,
+                "tours": [
+                    "The Forest Hiker",
+                    "The Star Gazer"
+                ],
+                "month": 10
+            },
+            {
+                "numOfTourStarts": 2,
+                "tours": [
+                    "The Sea Explorer",
+                    "The Park Camper"
+                ],
+                "month": 8
+            },
+            {
+                "numOfTourStarts": 2,
+                "tours": [
+                    "The Sea Explorer",
+                    "The City Wanderer"
+                ],
+                "month": 6
+            },
+            {
+                "numOfTourStarts": 2,
+                "tours": [
+                    "The Forest Hiker",
+                    "The Wine Taster"
+                ],
+                "month": 4
+            },
+            {
+                "numOfTourStarts": 2,
+                "tours": [
+                    "The Wine Taster",
+                    "The Sports Lover"
+                ],
+                "month": 9
+            },
+            {
+                "numOfTourStarts": 2,
+                "tours": [
+                    "The City Wanderer",
+                    "The Star Gazer"
+                ],
+                "month": 3
+            },
+            {
+                "numOfTourStarts": 1,
+                "tours": [
+                    "The City Wanderer"
+                ],
+                "month": 5
+            },
+            {
+                "numOfTourStarts": 1,
+                "tours": [
+                    "The Northern Lights"
+                ],
+                "month": 12
+            },
+            {
+                "numOfTourStarts": 1,
+                "tours": [
+                    "The Wine Taster"
+                ],
+                "month": 2
+            }
+        ]
+    }
+}
+```
