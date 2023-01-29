@@ -887,9 +887,9 @@ http://localhost:{{PORT}}/api/v1/tours?sort=price,ratingsAverage,price&limit=5
 
 ```js
 exports.aliasTopTours = (req, res, next) => {
-  req.query.limit = '5';
-  req.query.sort = '-ratingsAverage,price';
-  req.query.fields = 'name,price,difficulty,ratingsAverage,summary';
+  req.query.limit = "5";
+  req.query.sort = "-ratingsAverage,price";
+  req.query.fields = "name,price,difficulty,ratingsAverage,summary";
   next();
 };
 ```
@@ -898,7 +898,7 @@ We can use a middleware to insert specific parameter into the query.
 
 ```js
 router
-  .route('/top-5-tours')
+  .route("/top-5-tours")
   .get(tourController.aliasTopTours, tourController.getAllTours);
 ```
 
@@ -916,9 +916,9 @@ class APIFeatures {
   }
 
   filter() {
-    console.log('filter');
+    console.log("filter");
     const queryObj = { ...this.queryString };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    const excludedFields = ["page", "sort", "limit", "fields"];
     excludedFields.forEach((el) => delete queryObj[el]);
 
     let queryStr = JSON.stringify(queryObj);
@@ -931,20 +931,20 @@ class APIFeatures {
 
   sort() {
     if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.split(',').join(' ');
+      const sortBy = this.queryString.sort.split(",").join(" ");
       this.query = this.query.sort(sortBy);
     } else {
-      this.query = this.query.sort('-createdAt');
+      this.query = this.query.sort("-createdAt");
     }
     return this;
   }
 
   limitFields() {
     if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' ');
+      const fields = this.queryString.fields.split(",").join(" ");
       this.query = this.query.select(fields);
     } else {
-      this.query = this.query.select('-__v');
+      this.query = this.query.select("-__v");
     }
     return this;
   }
@@ -968,7 +968,7 @@ We can use our new class on the controller:
 exports.getAllTours = async (req, res) => {
   try {
     const queryObj = { ...req.query };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    const excludedFields = ["page", "sort", "limit", "fields"];
     excludedFields.forEach((el) => delete queryObj[el]);
 
     const features = new APIFeatures(Tour.find(), req.query)
@@ -980,7 +980,7 @@ exports.getAllTours = async (req, res) => {
     const tours = await features.query;
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       requestedAt: req.requestTime,
       results: tours.length,
       data: {
@@ -989,7 +989,7 @@ exports.getAllTours = async (req, res) => {
     });
   } catch (error) {
     res.status(404).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -1000,10 +1000,10 @@ This example shows the simplified version of the controller.
 
 ```javascript
 const features = new APIFeatures(Tour.find(), req.query)
-      .filter()
-      .sort()
-      .limitFields()
-      .paginate();
+  .filter()
+  .sort()
+  .limitFields()
+  .paginate();
 ```
 
 These lines are equivalent to previous versions of tour controller.
@@ -1021,13 +1021,13 @@ exports.getTourStats = async (req, res) => {
       },
       {
         $group: {
-          _id: { $toUpper: '$difficulty' },
+          _id: { $toUpper: "$difficulty" },
           numOfTours: { $sum: 1 },
-          numRating: { $sum: '$ratingsQuantity' },
-          avgRating: { $avg: '$ratingsAverage' },
-          avgPrice: { $avg: '$price' },
-          minPrice: { $min: '$price' },
-          maxPrice: { $max: '$price' },
+          numRating: { $sum: "$ratingsQuantity" },
+          avgRating: { $avg: "$ratingsAverage" },
+          avgPrice: { $avg: "$price" },
+          minPrice: { $min: "$price" },
+          maxPrice: { $max: "$price" },
         },
       },
       {
@@ -1035,14 +1035,14 @@ exports.getTourStats = async (req, res) => {
       },
     ]);
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: {
         stats,
       },
     });
   } catch (error) {
     res.status(400).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
@@ -1055,38 +1055,38 @@ In this sample we will receive the following output:
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "stats": [
-            {
-                "_id": "EASY",
-                "numOfTours": 4,
-                "numRating": 159,
-                "avgRating": 4.675,
-                "avgPrice": 1272,
-                "minPrice": 397,
-                "maxPrice": 1997
-            },
-            {
-                "_id": "MEDIUM",
-                "numOfTours": 3,
-                "numRating": 70,
-                "avgRating": 4.8,
-                "avgPrice": 1663.6666666666667,
-                "minPrice": 497,
-                "maxPrice": 2997
-            },
-            {
-                "_id": "DIFFICULT",
-                "numOfTours": 2,
-                "numRating": 41,
-                "avgRating": 4.6,
-                "avgPrice": 1997,
-                "minPrice": 997,
-                "maxPrice": 2997
-            }
-        ]
-    }
+  "status": "success",
+  "data": {
+    "stats": [
+      {
+        "_id": "EASY",
+        "numOfTours": 4,
+        "numRating": 159,
+        "avgRating": 4.675,
+        "avgPrice": 1272,
+        "minPrice": 397,
+        "maxPrice": 1997
+      },
+      {
+        "_id": "MEDIUM",
+        "numOfTours": 3,
+        "numRating": 70,
+        "avgRating": 4.8,
+        "avgPrice": 1663.6666666666667,
+        "minPrice": 497,
+        "maxPrice": 2997
+      },
+      {
+        "_id": "DIFFICULT",
+        "numOfTours": 2,
+        "numRating": 41,
+        "avgRating": 4.6,
+        "avgPrice": 1997,
+        "minPrice": 997,
+        "maxPrice": 2997
+      }
+    ]
+  }
 }
 ```
 
@@ -1101,7 +1101,7 @@ exports.getMonthlyPlan = async (req, res) => {
 
     const plan = await Tour.aggregate([
       {
-        $unwind: '$startDates',
+        $unwind: "$startDates",
       },
       {
         $match: {
@@ -1113,13 +1113,13 @@ exports.getMonthlyPlan = async (req, res) => {
       },
       {
         $group: {
-          _id: { $month: '$startDates' },
+          _id: { $month: "$startDates" },
           numOfTourStarts: { $sum: 1 },
-          tours: { $push: '$name' },
+          tours: { $push: "$name" },
         },
       },
       {
-        $addFields: { month: '$_id' },
+        $addFields: { month: "$_id" },
       },
       {
         $project: {
@@ -1135,106 +1135,114 @@ exports.getMonthlyPlan = async (req, res) => {
     ]);
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: {
         plan,
       },
     });
   } catch (error) {
     res.status(400).json({
-      status: 'fail',
+      status: "fail",
       message: error,
     });
   }
 };
 ```
 
-$unwind operator will return multiplied result of tour objects. With this aggregation pipeline we can this result:
+`$unwind` operator will return multiplied result of tour objects. With this aggregation pipeline we can this result:
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "plan": [
-            {
-                "numOfTourStarts": 3,
-                "tours": [
-                    "The Forest Hiker",
-                    "The Sea Explorer",
-                    "The Sports Lover"
-                ],
-                "month": 7
-            },
-            {
-                "numOfTourStarts": 2,
-                "tours": [
-                    "The Forest Hiker",
-                    "The Star Gazer"
-                ],
-                "month": 10
-            },
-            {
-                "numOfTourStarts": 2,
-                "tours": [
-                    "The Sea Explorer",
-                    "The Park Camper"
-                ],
-                "month": 8
-            },
-            {
-                "numOfTourStarts": 2,
-                "tours": [
-                    "The Sea Explorer",
-                    "The City Wanderer"
-                ],
-                "month": 6
-            },
-            {
-                "numOfTourStarts": 2,
-                "tours": [
-                    "The Forest Hiker",
-                    "The Wine Taster"
-                ],
-                "month": 4
-            },
-            {
-                "numOfTourStarts": 2,
-                "tours": [
-                    "The Wine Taster",
-                    "The Sports Lover"
-                ],
-                "month": 9
-            },
-            {
-                "numOfTourStarts": 2,
-                "tours": [
-                    "The City Wanderer",
-                    "The Star Gazer"
-                ],
-                "month": 3
-            },
-            {
-                "numOfTourStarts": 1,
-                "tours": [
-                    "The City Wanderer"
-                ],
-                "month": 5
-            },
-            {
-                "numOfTourStarts": 1,
-                "tours": [
-                    "The Northern Lights"
-                ],
-                "month": 12
-            },
-            {
-                "numOfTourStarts": 1,
-                "tours": [
-                    "The Wine Taster"
-                ],
-                "month": 2
-            }
-        ]
-    }
+  "status": "success",
+  "data": {
+    "plan": [
+      {
+        "numOfTourStarts": 3,
+        "tours": ["The Forest Hiker", "The Sea Explorer", "The Sports Lover"],
+        "month": 7
+      },
+      {
+        "numOfTourStarts": 2,
+        "tours": ["The Forest Hiker", "The Star Gazer"],
+        "month": 10
+      },
+      {
+        "numOfTourStarts": 2,
+        "tours": ["The Sea Explorer", "The Park Camper"],
+        "month": 8
+      },
+      {
+        "numOfTourStarts": 2,
+        "tours": ["The Sea Explorer", "The City Wanderer"],
+        "month": 6
+      },
+      {
+        "numOfTourStarts": 2,
+        "tours": ["The Forest Hiker", "The Wine Taster"],
+        "month": 4
+      },
+      {
+        "numOfTourStarts": 2,
+        "tours": ["The Wine Taster", "The Sports Lover"],
+        "month": 9
+      },
+      {
+        "numOfTourStarts": 2,
+        "tours": ["The City Wanderer", "The Star Gazer"],
+        "month": 3
+      },
+      {
+        "numOfTourStarts": 1,
+        "tours": ["The City Wanderer"],
+        "month": 5
+      },
+      {
+        "numOfTourStarts": 1,
+        "tours": ["The Northern Lights"],
+        "month": 12
+      },
+      {
+        "numOfTourStarts": 1,
+        "tours": ["The Wine Taster"],
+        "month": 2
+      }
+    ]
+  }
 }
+```
+
+### 8.104 Virtual Properties
+
+We can define virtual properties on our models. These properties are not stored in the database. We can use these properties to calculate values on the fly.
+
+```js
+const mongoose = require('mongoose');
+
+const tourSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'A tour must have a name'],
+      unique: true,
+      trim: true,
+    },
+    //...
+    images: [String],
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      select: false,
+    },
+    startDates: [Date],
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+
+// we can't use virtual properties in queries
+tourSchema.virtual('durationWeeks').get(function () {
+  return this.duration / 7;
+});
 ```
