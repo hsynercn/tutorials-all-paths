@@ -1216,13 +1216,13 @@ exports.getMonthlyPlan = async (req, res) => {
 We can define virtual properties on our models. These properties are not stored in the database. We can use these properties to calculate values on the fly.
 
 ```js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const tourSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'A tour must have a name'],
+      required: [true, "A tour must have a name"],
       unique: true,
       trim: true,
     },
@@ -1242,7 +1242,36 @@ const tourSchema = new mongoose.Schema(
 );
 
 // we can't use virtual properties in queries
-tourSchema.virtual('durationWeeks').get(function () {
+tourSchema.virtual("durationWeeks").get(function () {
   return this.duration / 7;
 });
 ```
+
+### 8.105 Document Middleware
+
+There are 4 types of middleware on the mongoose:
+
+- Document Middleware
+- Query Middleware
+- Aggregation Middleware
+- Model Middleware
+
+Document middleware runs before and after save and create commands. We can use this middleware to encrypt passwords.
+
+```js
+
+// DOCUMENT MIDDLEWARE: runs before .save() and .create()
+tourSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
+
+tourSchema.pre('save', (next) => {
+  console.log('Will save document...');
+  next();
+});
+```
+
+With this sample we can introduce a slug property to our tour objects when we create them.
+
+### 8.106 Query Middleware
