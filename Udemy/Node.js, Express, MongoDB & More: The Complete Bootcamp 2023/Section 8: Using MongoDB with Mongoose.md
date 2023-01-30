@@ -1387,3 +1387,42 @@ minLength, maxLength, enum, min, max are some of the built-in validators.
 
 ### 8.109 Data Validation: Custom Validators
 
+We can create or use custom validators for our model properties. `validator` is a package that we can use for specific string validations like email, url, etc.
+
+Also we can create `validator` functions for our models.
+
+```js
+const mongoose = require('mongoose');
+const slugify = require('slugify');
+const validator = require('validator');
+
+const tourSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'A tour must have a name'],
+      unique: true,
+      trim: true,
+      maxlength: [40, 'A tour name must have less or equal then 40 characters'],
+      minlength: [10, 'A tour name must have more or equal then 10 characters'],
+      validate: [validator.isAlpha, 'Tour name must only contain characters'],
+    },
+    //...
+    priceDiscount: {
+      type: Number,
+      validate: {
+        validator: function (value) {
+          // this only points to current doc on NEW document creation
+          return value < this.price;
+        },
+        message: 'Discount price ({VALUE}) should be below regular price',
+      },
+    },
+    //...
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+```
