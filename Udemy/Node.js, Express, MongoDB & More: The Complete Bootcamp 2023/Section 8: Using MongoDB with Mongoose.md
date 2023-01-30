@@ -1275,3 +1275,22 @@ tourSchema.pre('save', (next) => {
 With this sample we can introduce a slug property to our tour objects when we create them.
 
 ### 8.106 Query Middleware
+
+We can use custom functions before or after a certain query executed.
+
+```js
+tourSchema.pre(/^find/, function (next) {
+  this.find({ secretTour: { $ne: true } });
+  this.start = Date.now();
+  next();
+});
+
+tourSchema.post(/^find/, function (docs, next) {
+  console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+  next();
+});
+```
+
+With this sample we can hide secret tours from our queries. We can measure the time of the query. We have used a regex to match all queries that start with find.
+
+### 8.107 Aggregation Middleware
