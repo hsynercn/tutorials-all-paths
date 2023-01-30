@@ -1294,3 +1294,15 @@ tourSchema.post(/^find/, function (docs, next) {
 With this sample we can hide secret tours from our queries. We can measure the time of the query. We have used a regex to match all queries that start with find.
 
 ### 8.107 Aggregation Middleware
+
+We can use aggregation middleware to hide secret tours from aggregation queries.
+
+```js
+tourSchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  next();
+});
+```
+
+### 8.108 Data Validation: Built-In Validators
+
