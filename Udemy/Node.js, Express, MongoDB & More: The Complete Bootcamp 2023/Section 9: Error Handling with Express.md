@@ -88,3 +88,34 @@ Problems that we can predict will happen at some point, so we just need to handl
 We are going to use a error handling middleware to handle errors. Client can decide what to do with the error.
 
 ### 9.114. Implementing a Global Error Handling Middleware
+
+We can create a global error handling middleware that will handle all errors in our application. We can do this by using the `app.use` method:
+
+```js
+//if we are here, it means that the route is not defined
+app.all('*', (req, res, next) => {
+  const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+  err.status = 'fail';
+  err.statusCode = 404;
+
+  //passing the error to the next middleware, express will know that this is an error
+  next(err);
+});
+
+//four arguments are required for error handling middleware, express will know that this is an error handling middleware
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+});
+```
+
+Passing a parameter to the `next` function will tell express that this is an error. Express will then redirect the error to the error handling middleware.
+
+`app.use` with an error parameter is an error handling middleware. It will be called only if an error is passed to the `next` function.
+
+### 9.115. Better Errors and Refactoring
