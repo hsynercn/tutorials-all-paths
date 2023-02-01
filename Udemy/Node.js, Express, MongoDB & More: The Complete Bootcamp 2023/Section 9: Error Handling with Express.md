@@ -68,3 +68,23 @@ In this example we have used the àll` method at the end of the middleware stack
 
 ### 9.113. An Overview of Error Handling
 
+`Operational errors` are errors that we can predict and handle. For example, if a user tries to access a route that does not exist, we can handle this error.
+
+Problems that we can predict will happen at some point, so we just need to handle them in advance.
+
+- Invalid path accessed
+- Invalid user input (validator error from mongoose)
+- Failed to connect to server
+- Failed to connect to database
+- Request timeout
+
+`Programming errors` bugs that we developers introduce to our code. Difficult to find and handle.
+
+- Reading properties on undefined
+- Passing a number where an object is expected
+- Using await without async
+- Using req.query instead of req.body
+
+We are going to use a error handling middleware to handle errors. Client can decide what to do with the error.
+
+### 9.114. Implementing a Global Error Handling Middleware
