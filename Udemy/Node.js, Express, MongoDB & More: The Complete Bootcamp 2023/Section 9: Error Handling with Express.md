@@ -230,3 +230,30 @@ exports.createTour = catchAsync(async (req, res, next) => {
   });
 });
 ```
+
+### 9.117. Adding 404 Not Found Errors
+
+We will add more reasonable messages for specific cases:
+
+```js
+exports.getTour = catchAsync(async (req, res, next) => {
+  const tour = await Tour.findById(req.params.id);
+
+  if (!tour) {
+    return next(new AppError('No tour found with that ID', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    requestedAt: req.requestTime,
+    data: {
+      tour,
+    },
+  });
+});
+```
+
+In this sample we are checking if the tour exists, if not we are passing an error to the next middleware.
+
+### 9.118. Errors During Development vs Production
+
