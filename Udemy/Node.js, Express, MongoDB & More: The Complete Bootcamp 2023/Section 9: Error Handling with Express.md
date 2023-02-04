@@ -119,3 +119,85 @@ Passing a parameter to the `next` function will tell express that this is an err
 `app.use` with an error parameter is an error handling middleware. It will be called only if an error is passed to the `next` function.
 
 ### 9.115. Better Errors and Refactoring
+
+We have can create a error class to store error information:
+
+appError.js:
+
+```js
+class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    this.isOperational = true;
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+module.exports = AppError;
+```
+
+Our class wil extend the Error class, it will hold the message also we will add the status code and status. This class will handle operational errors. Also we will store the stack trace of the error.
+
+Additionally we will move the error handler function to a separate file:
+
+errorController.js:
+
+```js
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+};
+module.exports = errorHandler;
+```
+
+Again we are using a 4 parameter function.
+
+Lastly we will use our new class and function:
+
+app.js:
+
+```js
+//if we are here, it means that the route is not defined
+app.all('*', (req, res, next) => {
+  const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+  err.status = 'fail';
+  err.statusCode = 404;
+
+  //passing the error to the next middleware, express will know that this is an error
+  next(err);
+});
+
+//four arguments are required for error handling middleware, express will know that this is an error handling middleware
+app.use((err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+});
+```
+
+New implementation:
+  
+```js
+//if we are here, it means that the route is not defined
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+//four arguments are required for error handling middleware, express will know that this is an error handling middleware
+app.use(globalErrorHandler);
+```
+
+### 9.116. Catching Errors in Async Functions
