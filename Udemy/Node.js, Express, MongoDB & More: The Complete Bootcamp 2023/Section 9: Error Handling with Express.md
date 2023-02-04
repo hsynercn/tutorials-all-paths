@@ -257,3 +257,55 @@ In this sample we are checking if the tour exists, if not we are passing an erro
 
 ### 9.118. Errors During Development vs Production
 
+We will follow different strategies for development and production. In development we will send the stack trace to the client, in production we will not send the stack trace.
+
+Production will contain less details about the error:
+
+```js
+const sendErrorDev = (err, res) => {
+  res.status(err.statusCode).json({
+    status: err.status,
+    error: err,
+    message: err.message,
+    stack: err.stack,
+  });
+};
+
+const sendErrorProd = (err, res) => {
+  if (err.isOperational) {
+    return res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message,
+    });
+  }
+  console.error('ERROR', err);
+  //Programming or other unknown error: don't leak error details
+  return res.status(500).json({
+    status: 'error',
+    message: 'Something went wrong',
+  });
+};
+
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  if (process.env.NODE_ENV === 'development') {
+    sendErrorDev(err, res);
+  } else if (process.env.NODE_ENV === 'production') {
+    sendErrorProd(err, res);
+  }
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+};
+module.exports = errorHandler;
+```
+
+In this sample we can see that the error handler for development will send the stack trace to the client, but in production we will not send the stack trace.
+
+### 9.119. Handling Invalid Database IDs
