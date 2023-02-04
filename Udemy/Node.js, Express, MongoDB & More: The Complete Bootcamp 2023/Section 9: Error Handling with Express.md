@@ -201,3 +201,32 @@ app.use(globalErrorHandler);
 ```
 
 ### 9.116. Catching Errors in Async Functions
+
+We need a standard way to handle asynchronous exceptions, previously we were using the `try catch` block for every controller method.
+
+```js
+// eslint-disable-next-line arrow-body-style
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch(next);
+  };
+};
+module.exports = catchAsync;
+```
+
+Upper example will wrap our asynchronous functions and will pass the error to the next middleware, and in this case we are calling the next from catch block with an error parameter.
+
+We can use the `catchAsync` function to wrap our asynchronous functions:
+
+```js
+exports.createTour = catchAsync(async (req, res, next) => {
+  const newTour = await Tour.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    data: {
+      tour: newTour,
+    },
+  });
+});
+```
