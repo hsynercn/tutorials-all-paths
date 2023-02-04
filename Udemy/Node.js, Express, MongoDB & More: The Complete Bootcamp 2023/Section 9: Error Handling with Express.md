@@ -377,3 +377,38 @@ const handleCastErrorDB = (err) => {
 ```
 
 This method will replace the MongoDB cast error with a proper error message with less details.
+
+### 9.120. Handling Duplicate Database Fields
+
+We will handle duplicate database fields:
+
+```js
+const handleDuplicateFieldsDB = (err) => {
+  const message = `Duplicate field value: ${err.keyValue.name}. Please use another value`;
+  return new AppError(message, 400);
+};
+
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  if (process.env.NODE_ENV === 'development') {
+    sendErrorDev(err, res);
+  } else if (process.env.NODE_ENV === 'production') {
+    let error = { ...err };
+    if (err.name === 'CastError') error = handleCastErrorDB(error);
+    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+
+    sendErrorProd(error, res);
+  }
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+};
+```
+
+We will look for the specific error code and replace it with a more meaningful error message.
