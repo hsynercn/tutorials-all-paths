@@ -277,4 +277,3 @@ If these properties aren't present, then typeof x.name and typeof x.coolness wil
 It may also be appropriate to use type assertions when you have other things in your codebase - notably tests - ensuring that they will always be true. Suppose your application depends on some JSON data stored somewhere in your source code, and that you have a test ensuring that this data is of the right form. When you import this data in your run-time code, it would be unnecessary - and inefficient - to validate it just to make the compiler happy, so a type assertion may instead be preferable.
 
 From a practical point of view, you might use type assertions when you're in a hurry. In real-world application development, deadlines need to be met, and type assertions may enable you to cut some necessary corners. In this case, they should be considered as (deliberate) technical debt, to be paid off at a later time.
-
