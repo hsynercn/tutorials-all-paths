@@ -488,3 +488,27 @@ In this case we can see errors similar to this:
   "message": "Invalid input data: A tour name must have more or equal then 10 characters. Difficulty is either: easy, medium, difficult"
 }
 ```
+
+### 9.122. Errors Outside Express: Unhandled Rejections
+
+We can face exceptions outside Express, for example when we cannot connect to the database. We can handle this with the `unhandledRejection` event:
+
+```js
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+
+//safety net for unhandled rejections
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  console.log('UNHANDLED REJECTION! Shutting down...');
+  server.close(() => {
+    process.exit(1);
+  });
+});
+```
+
+Event listener for `process.on('unhandledRejection')` will catch the error and shut down the server gracefully.
+
+### 9.123. Catching Uncaught Exceptions
