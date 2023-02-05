@@ -29,16 +29,16 @@ ndb app.js
 It is better to return a specific message when a user tries to access a route that does not exist. We can do this by using the `all` method:
 
 ```js
-const express = require('express');
-const morgan = require('morgan');
+const express = require("express");
+const morgan = require("morgan");
 
 const app = express();
 
-const tourRouter = require('./routes/tourRoutes');
-const userRouter = require('./routes/userRoutes');
+const tourRouter = require("./routes/tourRoutes");
+const userRouter = require("./routes/userRoutes");
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
 
 app.use(express.json());
@@ -50,13 +50,13 @@ app.use((req, res, next) => {
 });
 
 //routers
-app.use('/api/v1/tours', tourRouter);
-app.use('/api/v1/users', userRouter);
+app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/users", userRouter);
 
 //if we are here, it means that the route is not defined
-app.all('*', (req, res, next) => {
+app.all("*", (req, res, next) => {
   res.status(404).json({
-    status: 'fail',
+    status: "fail",
     message: `Can't find ${req.originalUrl} on this server!`,
   });
 });
@@ -93,9 +93,9 @@ We can create a global error handling middleware that will handle all errors in 
 
 ```js
 //if we are here, it means that the route is not defined
-app.all('*', (req, res, next) => {
+app.all("*", (req, res, next) => {
   const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  err.status = 'fail';
+  err.status = "fail";
   err.statusCode = 404;
 
   //passing the error to the next middleware, express will know that this is an error
@@ -105,7 +105,7 @@ app.all('*', (req, res, next) => {
 //four arguments are required for error handling middleware, express will know that this is an error handling middleware
 app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
   res.status(err.statusCode).json({
     status: err.status,
@@ -129,7 +129,7 @@ class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
-    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    this.status = `${statusCode}`.startsWith("4") ? "fail" : "error";
     this.isOperational = true;
     Error.captureStackTrace(this, this.constructor);
   }
@@ -149,7 +149,7 @@ const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
   res.status(err.statusCode).json({
     status: err.status,
@@ -167,9 +167,9 @@ app.js:
 
 ```js
 //if we are here, it means that the route is not defined
-app.all('*', (req, res, next) => {
+app.all("*", (req, res, next) => {
   const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  err.status = 'fail';
+  err.status = "fail";
   err.statusCode = 404;
 
   //passing the error to the next middleware, express will know that this is an error
@@ -179,7 +179,7 @@ app.all('*', (req, res, next) => {
 //four arguments are required for error handling middleware, express will know that this is an error handling middleware
 app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
   res.status(err.statusCode).json({
     status: err.status,
@@ -189,10 +189,10 @@ app.use((err, req, res, next) => {
 ```
 
 New implementation:
-  
+
 ```js
 //if we are here, it means that the route is not defined
-app.all('*', (req, res, next) => {
+app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
@@ -223,7 +223,7 @@ exports.createTour = catchAsync(async (req, res, next) => {
   const newTour = await Tour.create(req.body);
 
   res.status(201).json({
-    status: 'success',
+    status: "success",
     data: {
       tour: newTour,
     },
@@ -240,11 +240,11 @@ exports.getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
 
   if (!tour) {
-    return next(new AppError('No tour found with that ID', 404));
+    return next(new AppError("No tour found with that ID", 404));
   }
 
   res.status(200).json({
-    status: 'success',
+    status: "success",
     requestedAt: req.requestTime,
     data: {
       tour,
@@ -278,11 +278,11 @@ const sendErrorProd = (err, res) => {
       message: err.message,
     });
   }
-  console.error('ERROR', err);
+  console.error("ERROR", err);
   //Programming or other unknown error: don't leak error details
   return res.status(500).json({
-    status: 'error',
-    message: 'Something went wrong',
+    status: "error",
+    message: "Something went wrong",
   });
 };
 
@@ -290,11 +290,11 @@ const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === "production") {
     sendErrorProd(err, res);
   }
 
@@ -313,7 +313,7 @@ In this sample we can see that the error handler for development will send the s
 We can convert MongoDB errors to our custom errors:
 
 ```js
-const AppError = require('../utils/appError');
+const AppError = require("../utils/appError");
 
 const handleCastErrorDB = (err) => {
   const message = `Invalid ${err.path}: ${err.value}`;
@@ -336,11 +336,11 @@ const sendErrorProd = (err, res) => {
       message: err.message,
     });
   }
-  console.error('ERROR', err);
+  console.error("ERROR", err);
   //Programming or other unknown error: don't leak error details
   return res.status(500).json({
-    status: 'error',
-    message: 'Something went wrong',
+    status: "error",
+    message: "Something went wrong",
   });
 };
 
@@ -348,13 +348,13 @@ const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === "production") {
     let error = { ...err };
-    if (err.name === 'CastError') error = handleCastErrorDB(error);
+    if (err.name === "CastError") error = handleCastErrorDB(error);
 
     sendErrorProd(error, res);
   }
@@ -392,13 +392,13 @@ const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === "production") {
     let error = { ...err };
-    if (err.name === 'CastError') error = handleCastErrorDB(error);
+    if (err.name === "CastError") error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
 
     sendErrorProd(error, res);
@@ -412,3 +412,79 @@ const errorHandler = (err, req, res, next) => {
 ```
 
 We will look for the specific error code and replace it with a more meaningful error message.
+
+### 9.121. Handling Mongoose Validation Errors
+
+We will extract the Mongoose error for better readability on the prod:
+
+```js
+const AppError = require("../utils/appError");
+
+const handleCastErrorDB = (err) => {
+  const message = `Invalid ${err.path}: ${err.value}`;
+  return new AppError(message, 400);
+};
+
+const handleDuplicateFieldsDB = (err) => {
+  const message = `Duplicate field value: ${err.keyValue.name}. Please use another value`;
+  return new AppError(message, 400);
+};
+
+const handleValidationErrorDB = (err) => {
+  const errors = Object.values(err.errors).map((el) => el.message);
+  const message = `Invalid input data: ${errors.join(". ")}`;
+  return new AppError(message, 400);
+};
+
+const sendErrorDev = (err, res) => {
+  res.status(err.statusCode).json({
+    status: err.status,
+    error: err,
+    message: err.message,
+    stack: err.stack,
+  });
+};
+
+const sendErrorProd = (err, res) => {
+  if (err.isOperational) {
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message,
+    });
+  }
+  console.error("ERROR", err);
+  //Programming or other unknown error: don't leak error details
+  res.status(500).json({
+    status: "error",
+    message: "Something went wrong",
+  });
+};
+
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || "error";
+
+  if (process.env.NODE_ENV === "development") {
+    sendErrorDev(err, res);
+  } else if (process.env.NODE_ENV === "production") {
+    let error = { ...err };
+    if (err.name === "CastError") error = handleCastErrorDB(error);
+    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+    if (err.name === "ValidationError") error = handleValidationErrorDB(error);
+
+    sendErrorProd(error, res);
+  }
+};
+module.exports = errorHandler;
+```
+
+In this case we can see errors similar to this:
+
+```json
+{
+  "status": "fail",
+  "message": "Invalid input data: A tour name must have more or equal then 10 characters. Difficulty is either: easy, medium, difficult"
+}
+```
