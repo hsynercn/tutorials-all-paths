@@ -12,22 +12,22 @@ The most straightforward kind of control flow analysis applies type narrowing in
 
 ```ts
 function partition(array: (string | number)[]): [string[], number[]] {
-  const strings: string[] = []
-  const numbers: number[] = []
+  const strings: string[] = [];
+  const numbers: number[] = [];
 
   array.forEach((x) => {
     if (typeof x === "string") {
       // x's type has been narrowed to 'string' here
       // so the compiler will let us push it onto an array of strings
-      strings.push(x)
+      strings.push(x);
     } else {
       // x's type has been narrowed to 'number' here
       // so the compiler will let us push it onto an array of numbers
-      numbers.push(x)
+      numbers.push(x);
     }
-  })
+  });
 
-  return [strings, numbers]
+  return [strings, numbers];
 }
 ```
 
@@ -35,21 +35,21 @@ TypeScript's control flow analysis also works on switch statements, and understa
 
 ```ts
 function partition(array: (string | number)[]): [string[], number[]] {
-  const strings: string[] = []
-  const numbers: number[] = []
+  const strings: string[] = [];
+  const numbers: number[] = [];
 
   array.forEach((x) => {
     switch (typeof x) {
       case "string":
-        strings.push(x)
-        break
+        strings.push(x);
+        break;
       case "number":
-        numbers.push(x)
-        break
+        numbers.push(x);
+        break;
     }
-  })
+  });
 
-  return [strings, numbers]
+  return [strings, numbers];
 }
 ```
 
@@ -67,7 +67,7 @@ function whatAmI(numberOrString: number | string) {
     // numberOrString's type is narrowed to 'number'
   }
 
-  let str: string = "this is a string"
+  let str: string = "this is a string";
   if (numberOrString === str) {
     // numberOrString's type is narrowed to 'string'
   }
@@ -80,11 +80,11 @@ Similarly, TypeScript can narrow the type of a variable if you have just set it 
 
 ```ts
 function whatAmI(numberOrString: number | string) {
-  numberOrString = 12
+  numberOrString = 12;
   // numberOrString's type is narrowed to 'number'
 
-  let str: string = "this is a string"
-  numberOrString = str
+  let str: string = "this is a string";
+  numberOrString = str;
   // numberOrString's type is narrowed to 'string'
 }
 ```
@@ -126,8 +126,8 @@ To narrow between different class types, you can use instanceof expressions.
 
 ```ts
 class Antelope {
-  name: string
-  horns: number
+  name: string;
+  horns: number;
 
   constructor(name: string, horns: number) {
     // ...
@@ -135,8 +135,8 @@ class Antelope {
 }
 
 class Cheetah {
-  name: string
-  spots: number
+  name: string;
+  spots: number;
 
   constructor(name: string, spots: number) {
     // ...
@@ -160,14 +160,14 @@ More generally, to narrow between different object types you can use the in oper
 
 ```ts
 type Antelope = {
-  name: string
-  horns: number
-}
+  name: string;
+  horns: number;
+};
 
 type Cheetah = {
-  name: string
-  spots: number
-}
+  name: string;
+  spots: number;
+};
 
 function whatAmI(animal: Antelope | Cheetah) {
   if ("horns" in animal) {
@@ -218,16 +218,16 @@ Predicate functions take a single parameter, and return true or false, depending
 In the example below, the isAntelope function is not given a type predicate as its return type, so the compiler is not able to use this function to narrow the type of any animal variables (it is not smart enough to work this out by itself). In contrast, the isCheetah function is given a type predicate as its return type, giving the compiler the extra information it needs to use this function as a type guard.
 
 ```ts
-type Antelope = { horns: number }
+type Antelope = { horns: number };
 
-type Cheetah = { spots: number }
+type Cheetah = { spots: number };
 
 function isAntelope(animal: Antelope | Cheetah): boolean {
-  return "horns" in animal
+  return "horns" in animal;
 }
 
 function isCheetah(animal: Antelope | Cheetah): animal is Cheetah {
-  return "spots" in animal
+  return "spots" in animal;
 }
 
 function whatAmI(animal: Antelope | Cheetah) {
@@ -254,9 +254,9 @@ const animals: (Antelope | Cheetah)[] = [
   { horns: 2 },
   { spots: 157 },
   // etc.
-]
+];
 
-const cheetahs: Cheetah[] = animals.filter((animal) => "spots" in animal)
+const cheetahs: Cheetah[] = animals.filter((animal) => "spots" in animal);
 // Error: Type '(Antelope | Cheetah)[]' is not assignable to type 'Cheetah[]'
 ```
 
@@ -267,13 +267,13 @@ const animals: (Antelope | Cheetah)[] = [
   { horns: 2 },
   { spots: 157 },
   // etc.
-]
+];
 
 function isCheetah(animal: Antelope | Cheetah): animal is Cheetah {
-  return "spots" in animal
+  return "spots" in animal;
 }
 
-const cheetahs: Cheetah[] = animals.filter(isCheetah) // no error
+const cheetahs: Cheetah[] = animals.filter(isCheetah); // no error
 ```
 
 ### Type Narrowing with Tagged Unions
@@ -282,24 +282,24 @@ When working with unions of object types, a useful pattern is to include a discr
 
 ```ts
 type Antelope = {
-  name: string
-  horns: number
-}
+  name: string;
+  horns: number;
+};
 
 type Bonobo = {
-  name: string
-  age: number
-}
+  name: string;
+  age: number;
+};
 
 type Cheetah = {
-  name: string
-  spots: number
-}
+  name: string;
+  spots: number;
+};
 
 type Animal =
   | { tag: "Antelope"; value: Antelope }
   | { tag: "Bonobo"; value: Bonobo }
-  | { tag: "Cheetah"; value: Cheetah }
+  | { tag: "Cheetah"; value: Cheetah };
 ```
 
 TypeScript will also use tests against the value of this discriminating property as a way of narrowing the type. This works with any kind of control flow analysis, but is particularly common with switch statements that range over the possible values of the discriminating property.
@@ -309,13 +309,13 @@ function whatAmI(animal: Animal) {
   switch (animal.tag) {
     case "Antelope":
       // animal.value's type is narrowed to 'Antelope'
-      break
+      break;
     case "Bonobo":
       // animal.value's type is narrowed to 'Bonobo'
-      break
+      break;
     case "Cheetah":
       // animal.value's type is narrowed to 'Cheetah'
-      break
+      break;
   }
 }
 ```
@@ -325,16 +325,16 @@ function whatAmI(animal: Animal) {
 When writing a switch statement over a union type, you will often want to ensure that all possible subtypes are considered. In some cases - notably when returning a value from a function in each case - the compiler will tell you if you miss one of the possible values, since it will be able to determine that undefined will be implicitly returned in that case.
 
 ```ts
-type Animal = Antelope | Bonobo | Cheetah
+type Animal = Antelope | Bonobo | Cheetah;
 
 // Error: Function lacks ending return statement and return type does not include 'undefined'
 function whatDoIEat(animal: Animal): string {
   switch (animal.tag) {
     case "Antelope":
-      return "grass"
+      return "grass";
     // oops, we forgot about bonobos
     case "Cheetah":
-      return "antelopes"
+      return "antelopes";
   }
 }
 ```
@@ -342,22 +342,22 @@ function whatDoIEat(animal: Animal): string {
 But in other cases - for example when switching inside a void function - there will be nothing in the logic of the situation to force an error if possible values are forgotten. In these cases, there is a standard trick you can apply that takes advantage of type narrowing, and makes use of the never type.
 
 ```ts
-type Animal = Antelope | Bonobo | Cheetah
+type Animal = Antelope | Bonobo | Cheetah;
 
 function makeSomeNoise(animal: Animal): void {
   switch (animal.tag) {
     case "Antelope":
-      console.log("baa")
-      break
+      console.log("baa");
+      break;
     case "Bonobo":
-      console.log("waah")
-      break
+      console.log("waah");
+      break;
     case "Cheetah":
-      console.log("meow")
-      break
+      console.log("meow");
+      break;
     default:
-      const exhaustivenessCheck: never = animal
-      break
+      const exhaustivenessCheck: never = animal;
+      break;
   }
 }
 ```

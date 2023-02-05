@@ -8,28 +8,28 @@ In the absence of any type annotations or assertions in your code, TypeScript wi
 
 Primitive values are inferred to have the corresponding primitive type, array literals are inferred to be arrays of unions of the inferred types of their elements, and object literals are inferred to be objects where each property in the literal has the inferred type of its value.
 
-|expression|inferred type|
-|----------|-------------|
-|'Skiller Whale'|string|
-|182|number|
-['Clamazon', 'Sharks and Spencer', 'Skiller Whale']|string[]|
-['Clamazon', 47, true]| (string \| number \| boolean\)[]|
-|{ name: 'Skiller Whale', coolness: 1000000 }|{ name: string, coolness: number }|
+| expression                                          | inferred type                      |
+| --------------------------------------------------- | ---------------------------------- |
+| 'Skiller Whale'                                     | string                             |
+| 182                                                 | number                             |
+| ['Clamazon', 'Sharks and Spencer', 'Skiller Whale'] | string[]                           |
+| ['Clamazon', 47, true]                              | (string \| number \| boolean\)[]   |
+| { name: 'Skiller Whale', coolness: 1000000 }        | { name: string, coolness: number } |
 
 The inferred types of your variables depend on the value of the initial assignment, and whether the variable is declared with let or const. In most cases, the inferred type is simply the inferred type of the initially assigned value. When const variables are assigned a primitive value, however, their inferred type is the corresponding literal type (reflecting the fact that its value can never be changed).
 
 ```ts
-let companyName = "Clamazon" // companyName has type 'string'
-const clamazonCoolness = -12 // clamazonCoolness has type '-12'
+let companyName = "Clamazon"; // companyName has type 'string'
+const clamazonCoolness = -12; // clamazonCoolness has type '-12'
 
 // companyNames has type 'string[]'
-const companyNames = ["Clamazon", "Sharks and Spencer", "Skiller Whale"]
+const companyNames = ["Clamazon", "Sharks and Spencer", "Skiller Whale"];
 
 // coolCompany has type '{ name: string, coolness: number }'
 const coolCompany = {
   name: "Skiller Whale",
   coolness: 1000000,
-}
+};
 ```
 
 If you declare a let variable without an initial assignment, its inferred type will be any. Similarly, if you initialise an array variable with any empty array, its inferred type will be any[]. Moreover, these are special cases that do not trigger compiler errors even when the noImplicitAny flag is enabled. Instead, the compiler will update the types of these variables on the fly, when you do assign a value or add an element to the array.
@@ -44,17 +44,17 @@ When you use dot notation to access properties of objects that do not exist on t
 
 ```ts
 type Company = {
-  name: string
-  coolness: number
-}
+  name: string;
+  coolness: number;
+};
 
 const clamazon: Company = {
   name: "Clamazon",
   coolness: -12,
-}
+};
 
 // Error: Property 'taxReturns' does not exist on type 'Company'.
-clamazon.taxReturns
+clamazon.taxReturns;
 ```
 
 When you use square bracket notation, TypeScript also gives you an error (by default), but of a different kind. Instead of rejecting the property lookup itself, it allows the lookup but gives the resulting value an inferred type of any. This then triggers an error, as long as you have the noImplicitAny flag enabled:
@@ -62,7 +62,7 @@ When you use square bracket notation, TypeScript also gives you an error (by def
 ```ts
 // Error: Element implicitly has an 'any' type because expression
 // of type '"taxReturns"' can't be used to index type 'Company'.
-clamazon["taxReturns"]
+clamazon["taxReturns"];
 ```
 
 Something similar happens when you try to access non-existent properties on your arrays using square bracket notation instead of dot notation:
@@ -72,14 +72,14 @@ const companyNames: string[] = [
   "Clamazon",
   "Sharks and Spencer",
   "Skiller Whale",
-]
+];
 
 // Error: Property 'lungth' does not exist on type 'number[]'.
-companyNames.lungth
+companyNames.lungth;
 
 // Error: Element implicitly has an 'any' type because index
 // expression is not of type 'number'.
-companyNames["lungth"]
+companyNames["lungth"];
 ```
 
 With the noImplicitAny flag enabled, this behaviour makes no practical difference: you still get errors in all the same places, just with slightly different messages.
@@ -89,16 +89,17 @@ If you disable the noImplicitAny flag, however, the errors arising from square b
 This practice is not recommended in general (and nor is disabling the noImplicitAny flag, on which it depends). The possibility exists simply to allow you to introduce TypeScript into your JavaScript project incrementally.
 
 ### const Assertions
+
 You can narrow the types of your literal values using a const assertion, by writing as const at the end of the value.
 
 For primitive values, this will change the type from the corresponding primitive type to a literal type. You can use this to change the inferred type of a let variable:
 
 ```ts
 // the inferred type of companyName is 'string'
-let companyName = "Skiller Whale"
+let companyName = "Skiller Whale";
 
 // the inferred type of coolCompanyName is '"Skiller Whale"'
-let coolCompanyName = "Skiller Whale" as const
+let coolCompanyName = "Skiller Whale" as const;
 ```
 
 There is not much point in doing this, however, since you could achieve the same thing more simply by assigning the value to a const variable instead.
@@ -112,14 +113,14 @@ const companyNames = [
   "Clamazon" as const,
   "Sharks and Spencer" as const,
   "Skiller Whale" as const,
-]
+];
 
 // the inferred type of company is
 // '{ name: "Skiller Whale", coolness: 1000000 }'
 const company = {
   name: "Skiller Whale" as const,
   coolness: 1000000 as const,
-}
+};
 ```
 
 Or, more commonly, you can narrow the type of the whole array or object at once:
@@ -131,14 +132,14 @@ const companyNames = [
   "Clamazon",
   "Sharks and Spencer",
   "Skiller Whale",
-] as const
+] as const;
 
 // the inferred type of coolCompany is
 // '{ readonly name: "Skiller Whale", readonly coolness: 1000000 }'
 const coolCompany = {
   name: "Skiller Whale",
   coolness: 1000000,
-} as const
+} as const;
 ```
 
 This will give all the properties in your objects a literal type, and also make them readonly (though making them readonly has no practical difference, since the literal type already constrains the element or property to a single value). For array literals, it changes the types to (readonly) tuples of literal types.
@@ -148,13 +149,13 @@ This will give all the properties in your objects a literal type, and also make 
 You can narrow or widen the types of any literals or variables using a type assertion.
 
 ```ts
-type CompanyName = "Clamazon" | "Sharks and Spencer" | "Skiller Whale"
+type CompanyName = "Clamazon" | "Sharks and Spencer" | "Skiller Whale";
 
 // narrow companyName's type from 'string' to 'CompanyName'
-let companyName = "Sharks and Spencer" as CompanyName
+let companyName = "Sharks and Spencer" as CompanyName;
 
 // widen someOtherName's type from 'CompanyName' to 'string'
-let someOtherName = companyName as string
+let someOtherName = companyName as string;
 ```
 
 Type assertions do not coerce or change the actual type of the run-time value. They have no run-time effect whatsoever, they simply change the type that the compiler assumes the value to have.
@@ -170,13 +171,13 @@ const clamazon: Company = {
   // Error: Object literal may only specify known properties, but
   // 'caresAboutItsEmployees' does not exist in type 'Company'.
   caresAboutItsEmployees: false,
-}
+};
 
 const skilerWhale: Company = {
   name: "Skiller Whale",
   coolness: 1000000,
   learnsFromItsMistakes: true, // no error
-} as Company
+} as Company;
 ```
 
 Type assertions can also be chained together. This has one very powerful - but very dangerous! - implication. Although you cannot directly assert that a value has a completely different type from its default type, you can do this indirectly by first widening the type (e.g. to any or unknown) and then narrowing it down to something completely different.
@@ -184,10 +185,10 @@ Type assertions can also be chained together. This has one very powerful - but v
 ```ts
 // Error: Conversion of type 'number' to type 'string' may be a mistake
 // because neither type sufficiently overlaps with the other.
-let companyName: string = 187 as string
+let companyName: string = 187 as string;
 
 // no error!
-let anotherCompanyName: string = 187 as unknown as string
+let anotherCompanyName: string = 187 as unknown as string;
 ```
 
 ### The Non-null Assertion Operator
@@ -198,13 +199,13 @@ Consider the following example:
 
 ```ts
 type Company = {
-  name: string
-  coolness?: number
-}
+  name: string;
+  coolness?: number;
+};
 
 function isCool(company: Company): boolean {
   // Error: Object is possibly 'undefined'.
-  return company.coolness > 1000
+  return company.coolness > 1000;
 }
 ```
 
@@ -212,7 +213,7 @@ Here TypeScript complains that you cannot compare the coolness property with 100
 
 ```ts
 function isCool(company: Company): boolean {
-  return company.coolness! > 1000 // no error
+  return company.coolness! > 1000; // no error
 }
 ```
 
@@ -223,11 +224,11 @@ const companyNames: string[] = [
   "Clamazon",
   "Sharks and Spencer",
   "Skiller Whale",
-]
+];
 
 // the default type of fourthCompanyName is 'string'
 // with `noUncheckedIndexedAccess` enabled, its type is 'string | undefined'
-const fourthCompanyName = companyNames[3]
+const fourthCompanyName = companyNames[3];
 ```
 
 While this greater type safety may be desirable in some cases, it can be irritating in situations when you know there will necessarily be an element at the index in question. For example:
@@ -235,7 +236,7 @@ While this greater type safety may be desirable in some cases, it can be irritat
 ```ts
 for (let i = 0; i < companyNames.length; i += 1) {
   // Error: Object is possibly 'undefined'.
-  console.log(companyNames[i].toUpperCase())
+  console.log(companyNames[i].toUpperCase());
 }
 ```
 
@@ -243,7 +244,7 @@ It is precisely because cases like these are so common that the noUncheckedIndex
 
 ```ts
 for (let i = 0; i < companyNames.length; i += 1) {
-  console.log(companyNames[i]!.toUpperCase())
+  console.log(companyNames[i]!.toUpperCase());
 }
 ```
 
@@ -259,14 +260,17 @@ For example:
 
 ```ts
 type Company = {
-  name: string
-  coolness: number
-}
+  name: string;
+  coolness: number;
+};
 
 function isCompany(x: unknown): x is Company {
-  return typeof x === "object" && x !== null
-    && typeof (x as Company).name === "string"
-    && typeof (x as Company).coolness === "number"
+  return (
+    typeof x === "object" &&
+    x !== null &&
+    typeof (x as Company).name === "string" &&
+    typeof (x as Company).coolness === "number"
+  );
 }
 ```
 
