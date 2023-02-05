@@ -512,3 +512,51 @@ process.on('unhandledRejection', (err) => {
 Event listener for `process.on('unhandledRejection')` will catch the error and shut down the server gracefully.
 
 ### 9.123. Catching Uncaught Exceptions
+
+In previous example we handled unhandled rejections. We can also handle uncaught exceptions:
+
+```js
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: './config.env' });
+
+const app = require('./app');
+
+process.on('uncaughtException', (err) => {
+  console.log('UNCAUGHT EXCEPTION! Shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
+
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+).replace('<USERNAME>', process.env.DATABASE_USERNAME);
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log('DB connection successful!');
+  });
+
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
+
+//safety net for unhandled rejections
+process.on('unhandledRejection', (err) => {
+  console.log('UNHANDLED REJECTION! Shutting down...');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+```
+
+We have placed the `process.on('uncaughtException')` before all of the operations that can throw an error. We can test this by changing the database password in the `config.env` file.
