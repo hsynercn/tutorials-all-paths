@@ -99,3 +99,47 @@ router.post('/signup', authController.signup);
 ```
 
 ### 10.127. Managing Passwords
+
+We will introduce some rules to user schema:
+
+```js
+const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+
+const userSchema = new mongoose.Schema({
+  //...
+  passwordConfirm: {
+    type: String,
+    required: [true, 'A user must have a password confirmation'],
+    trim: true,
+    maxlength: [
+      40,
+      'A user password confirmation must have less or equal then 40 characters',
+    ],
+    minlength: [
+      10,
+      'A user password confirmation must have more or equal then 10 characters',
+    ],
+    validate: {
+      // this only works with SAVE, when we create a new object
+      validator: function (element) {
+        return element === this.password;
+      },
+      message: 'Passwords are not the same',
+    },
+  },
+});
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  this.passwordConfirm = undefined;
+  next();
+});
+
+const User = mongoose.model('User', userSchema);
+module.exports = User;
+```
+
+We will compare the password and confirm password. Also we will use bcrypt to create a hash of the password, we are using `saltround` 12 value for CPU intensive hashing.
