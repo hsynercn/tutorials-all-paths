@@ -1,4 +1,4 @@
-# SkillerFish
+# ResourcefulFish
 
 ## Introduction to Generics
 
