@@ -65,3 +65,37 @@ module.exports = User;
 ```
 
 We will use a minimum of 10 characters rule for passwords.
+
+### 10.126. Creating New Users
+
+We will introduce a sign up endpoint to users controller÷
+
+```js 
+const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
+
+exports.signup = catchAsync(async (req, res, next) => {
+  const newUser = await User.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    data: {
+      user: newUser,
+    },
+  });
+});
+```
+
+Again we are using `catchAsync` handler for DB schema operation. On the router side we will create a new endpoint:
+
+```js
+const express = require('express');
+const userController = require('../controllers/userController');
+const authController = require('../controllers/authController');
+
+const router = express.Router();
+
+router.post('/signup', authController.signup);
+```
+
+### 10.127. Managing Passwords
