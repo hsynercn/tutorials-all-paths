@@ -172,13 +172,12 @@ sequenceDiagram
 
 ### 10.129. Signing Up Users
 
-
 We will add the following JWT implementation:
 
 ```js
-const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
-const catchAsync = require('../utils/catchAsync');
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
+const catchAsync = require("../utils/catchAsync");
 
 exports.signup = catchAsync(async (req, res, next) => {
   //safe implementation
@@ -196,7 +195,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   res.status(201).json({
-    status: 'success',
+    status: "success",
     token,
     data: {
       user: newUser,
@@ -209,4 +208,75 @@ We can check the https://jwt.io/ token and inspect the response.
 
 ### 10.130. Logging in Users
 
+For the logging flow we will compare the existing user password with the provided password. If the password is correct we will create a JWT token and send it back to the client. Password is hashed previously when we sign up a user, again we need to compare the hashed versions of the original user password and provided password.
 
+```js
+exports.login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return next(new AppError("Please provide email and password", 400));
+  }
+
+  const user = await User.findOne({ email }).select("+password");
+  console.log(">>>>user", user);
+  let correct = false;
+  if (user) {
+    correct = await user.correctPassword(password, user.password);
+  }
+  if (!user || !correct) {
+    return next(new AppError("Incorrect email or password", 401));
+  }
+
+  const token = signToken(user._id);
+
+  res.status(200).json({
+    status: "success",
+    token,
+  });
+});
+```
+
+This is the login method, `user.correctPassword` is a method we will add to the user model, it will become a instance method, with this method we will compare the passwords.
+
+`signToken` is a helper function we will JWT.
+
+```js
+function signToken(id) {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+}
+```
+
+On the user model we will hide the password field from the standard output, and we will add a method to compare the passwords, we will fetch the password as a specific property with `select('+password')` and send both passwords to instance compare method:
+
+```js
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
+```
+
+Hidden properties:
+
+```js
+  password: {
+    ...
+    select: false,
+    ...
+  },
+  passwordConfirm: {
+    ...
+    select: false,
+    ...
+  },
+```
+
+Additionally we need to add login path:
+
+```js
+router.post("/login", authController.login);
+```
