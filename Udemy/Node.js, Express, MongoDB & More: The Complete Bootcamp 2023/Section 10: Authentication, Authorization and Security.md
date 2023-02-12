@@ -280,3 +280,47 @@ Additionally we need to add login path:
 ```js
 router.post("/login", authController.login);
 ```
+
+### 10.131. Protecting Tour Routes - Part 1
+
+We will create a basic middleware to protect the routes, we will check if the user is logged in, and if the user is logged in we will check if the user has a valid JWT token.
+
+```js
+exports.protect = catchAsync(async (req, res, next) => {
+  //1) Getting token and check if it exists
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  console.log('>>>>token', token);
+
+  if (!token) {
+    return next(
+      new AppError('You are not logged in! Please log in to get access.', 401)
+    );
+  }
+
+  //2) Verification token
+
+  //3) Check if user still exists
+
+  //4) Check if user changed password after the JWT was issued
+  next();
+});
+```
+
+This is the initial version of the `protect` middleware, we will check if the token exists, and if it exists we will verify the token.
+
+```js
+router
+  .route('/')
+  .get(authController.protect, tourController.getAllTours)
+  .post(tourController.createTour);
+  ```
+
+We will add the `protect` middleware to the `getAllTours` route for test purpose and test the endpoint with Postman by including the JWT token in the header as bearer token.
+
