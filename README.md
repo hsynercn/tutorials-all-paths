@@ -3,4 +3,3 @@
 
 One repo for all tutorials.
 
-- Java Script Core Language
