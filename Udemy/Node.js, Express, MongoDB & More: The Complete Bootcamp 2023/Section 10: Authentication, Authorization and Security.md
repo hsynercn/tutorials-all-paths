@@ -410,3 +410,11 @@ passwordChangedAt: Date,
 ```
 
 ### 10.133. Advanced Postman Setup
+
+![image](https://user-images.githubusercontent.com/28985966/218653591-d0c581bc-636e-4b15-90ab-d72a5a0c1d44.png)
+
+![image](https://user-images.githubusercontent.com/28985966/218653681-aad7bc48-f340-485a-adbb-d7e088f9eab5.png)
+
+![image](https://user-images.githubusercontent.com/28985966/218653752-707c99ca-130f-4bc7-ac45-1a9871bde01a.png)
+
+
