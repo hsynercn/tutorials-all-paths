@@ -291,16 +291,16 @@ exports.protect = catchAsync(async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
+    req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(' ')[1];
+    token = req.headers.authorization.split(" ")[1];
   }
 
-  console.log('>>>>token', token);
+  console.log(">>>>token", token);
 
   if (!token) {
     return next(
-      new AppError('You are not logged in! Please log in to get access.', 401)
+      new AppError("You are not logged in! Please log in to get access.", 401)
     );
   }
 
@@ -317,10 +317,10 @@ This is the initial version of the `protect` middleware, we will check if the to
 
 ```js
 router
-  .route('/')
+  .route("/")
   .get(authController.protect, tourController.getAllTours)
   .post(tourController.createTour);
-  ```
+```
 
 We will add the `protect` middleware to the `getAllTours` route for test purpose and test the endpoint with Postman by including the JWT token in the header as bearer token.
 
@@ -334,14 +334,14 @@ exports.protect = catchAsync(async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
+    req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(' ')[1];
+    token = req.headers.authorization.split(" ")[1];
   }
 
   if (!token) {
     return next(
-      new AppError('You are not logged in! Please log in to get access.', 401)
+      new AppError("You are not logged in! Please log in to get access.", 401)
     );
   }
 
@@ -353,7 +353,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   if (!currentUser) {
     return next(
       new AppError(
-        'The user belonging to this token does no longer exist.',
+        "The user belonging to this token does no longer exist.",
         401
       )
     );
@@ -362,7 +362,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   //4) Check if user changed password after the JWT was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
     return next(
-      new AppError('User recently changed password! Please log in again.', 401)
+      new AppError("User recently changed password! Please log in again.", 401)
     );
   }
 
@@ -377,24 +377,23 @@ We are checking the decoded user data with waiting the response of decoded token
 Also we will add the user into to req.
 
 We will add 2 new cases to error handler:
-  
-```js
 
+```js
 const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 
   err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  err.status = err.status || "error";
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === "production") {
     let error = { ...err };
-    if (err.name === 'CastError') error = handleCastErrorDB(error);
+    if (err.name === "CastError") error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
-    if (err.name === 'ValidationError') error = handleValidationErrorDB(error);
-    if (err.name === 'JsonWebTokenError') error = handleJWTError();
-    if (err.name === 'TokenExpiredError') error = handleJWTExpiredError();
+    if (err.name === "ValidationError") error = handleValidationErrorDB(error);
+    if (err.name === "JsonWebTokenError") error = handleJWTError();
+    if (err.name === "TokenExpiredError") error = handleJWTExpiredError();
 
     sendErrorProd(error, res);
   }
@@ -426,3 +425,48 @@ pm.environment.set("jwt", pm.response.json().token);
 ![image](https://user-images.githubusercontent.com/28985966/218653752-707c99ca-130f-4bc7-ac45-1a9871bde01a.png)
 
 ### 10.134. Authorization: User Roles and Permissions
+
+Most of the cases we will allow a specific user role/roles to take some actions. This requires restricting access to certain routes for certain users. We will create a middleware to check if the user has the correct role to access the route.
+
+```js
+exports.restrictTo =
+  (...roles) =>
+  (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError("You do not have permission to perform this action", 403)
+      );
+    }
+    next();
+  };
+```
+
+This is a higher order function, we will pass the roles as arguments and return a middleware function. We will check if the user role is included in the roles array, if not we will throw an error.
+
+```js
+router
+  .route("/:id")
+  .get(tourController.getTour)
+  .patch(tourController.updateTour)
+  .delete(
+    authController.protect,
+    authController.restrictTo("admin", "lead-guide"),
+    tourController.deleteTour
+  );
+```
+
+Addtionally we will add the role enumeration to `userModel`:
+
+```js
+const userSchema = new mongoose.Schema({
+  ...
+  role: {
+    type: String,
+    enum: ['user', 'guide', 'lead-guider', 'admin'],
+    default: 'user',
+  },
+  ...
+});
+```
+
+### 10.135. Password Reset Functionality: Reset Token
