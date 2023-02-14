@@ -470,3 +470,41 @@ const userSchema = new mongoose.Schema({
 ```
 
 ### 10.135. Password Reset Functionality: Reset Token
+
+We will add a reset function to user model, it will create a reset token with a 10 minutes expiration time:
+
+```js
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  return resetToken;
+};
+```
+
+We will create 2 new routes for password reset:
+
+```js
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1) Get the user with posted email
+  const user = await User.findOne({ email: req.user.email });
+  if (!user) {
+    return next(new AppError('There is no user with email address', 404));
+  }
+
+  // 2) Generate random reset token
+  const resetToken = user.createPasswordResetToken();
+
+  await User.save({ validateBeforeSAve: false });
+
+  // 3) send it to user's email address
+});
+exports.resetPassword = (req, res, next) => {};
+```
+
+We will use `crypto` module to generate a random token and `sha256` to hash the token. We will also add a 10 minutes expiration time to the token.
+
+### 10.136. Password Reset Functionality: Setting New Password
