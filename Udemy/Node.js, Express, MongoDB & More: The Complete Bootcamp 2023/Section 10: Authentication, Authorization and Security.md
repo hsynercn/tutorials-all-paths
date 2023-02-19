@@ -508,3 +508,108 @@ exports.resetPassword = (req, res, next) => {};
 We will use `crypto` module to generate a random token and `sha256` to hash the token. We will also add a 10 minutes expiration time to the token.
 
 ### 10.136. Password Reset Functionality: Setting New Password
+
+First we need to send the password reset token with a email, we will use nodemailer to send the email:
+
+```js
+const nodemailer = require('nodemailer');
+
+const sendEmail = async (options) => {
+  // 1) Create a transporter
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  // 2) Define the email options
+  const mailOptions = {
+    from: 'Huseyin Can Ercan <uscanercan@gmail.com>',
+    to: options.email,
+    subject: options.subject,
+    text: options.message,
+    // html
+  };
+
+  // 3) Actually send the email
+  await transporter.sendMail(mailOptions);
+};
+
+module.exports = sendEmail;
+```
+
+At the moment we are using mailtrap to catch the emails, we will use sendgrid to send the emails in production. Out config file will look like this:
+
+```config
+NODE_ENV = development
+PORT = 8000
+DATABASE_PASSWORD=******
+DATABASE_USERNAME=******
+DATABASE=*****
+JWT_EXPIRES_IN=1d
+EMAIL_USERNAME=******
+EMAIL_PASSWORD=******
+EMAIL_HOST=sandbox.smtp.mailtrap.io
+EMAIL_PORT=2525
+```
+
+At this point we need to improve the forgot password handler, we need to use email service to send the reset token to the user:
+
+```js
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1) Get the user with posted email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('There is no user with email address', 404));
+  }
+
+  // 2) Generate random reset token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSAve: false });
+
+  // 3) send it to user's email address
+  const resetURL = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/reserPassword/${resetToken}`;
+
+  const message = `Forgot your password? Submit a PATCH request with your new password and 
+  password confirmation to: ${resetURL}\nOtherwise ignore this email.`;
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Your password reset token (valid for 10 min)',
+      message,
+    });
+  } catch (error) {
+    console.log('>>>>error', error);
+    user.createPasswordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    user.save({ validateBeforeSave: false });
+    return next(
+      new AppError(
+        'There was an error sending the email. Try again later!',
+        500
+      )
+    );
+  }
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Token sent to email',
+  });
+});
+```
+
+In case of an error we will reset the token and expiration time.
+
+### 10.137. Password Reset Functionality: Setting New Password
+
+As the basic steps we need to do these:
+
+1) Get user based on the token
+2) If token has not expired, and there is user, set the new password
+3) Update changedPasswordAt property for the user
+4) Log the user in, send JWT
