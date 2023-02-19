@@ -613,3 +613,72 @@ As the basic steps we need to do these:
 2) If token has not expired, and there is user, set the new password
 3) Update changedPasswordAt property for the user
 4) Log the user in, send JWT
+
+Out reset password handler will look like this:
+
+```js
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  // 1) Get user based on the token
+
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.token)
+    .digest('hex');
+
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+
+  // 2) If token has not expired, and there is user, set the new password
+
+  if (!user) {
+    return next(new AppError('Token is invalid or has expired', 400));
+  }
+
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+
+  await user.save();
+
+  // 3) Update changedPasswordAt property for the user
+
+  // 4) Log the user in, send JWT
+  const token = signToken(user._id);
+  res.status(200).json({
+    status: 'success',
+    token,
+  });
+});
+```
+
+At this point we are using save method, it will provide some cover for us.
+
+We will use some additional checks on the model:
+  
+```js
+userSchema.pre('save', async function (next) {
+  // Only run this function if password was actually modified
+  if (!this.isModified('password')) return next();
+
+  // Hash the password with cost of 12
+  this.password = await bcrypt.hash(this.password, 12);
+
+  // Delete passwordConfirm field
+  this.passwordConfirm = undefined;
+  next();
+});
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+```
+
+We can provide one additional property to user, `passwordChangedAt` to keep track of the password changes. Both of the pre save hooks will run before the save method when we update the password.
+
+### 10.138. Updating the Current User: Password
