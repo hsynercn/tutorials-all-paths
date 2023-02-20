@@ -682,3 +682,41 @@ userSchema.pre('save', function (next) {
 We can provide one additional property to user, `passwordChangedAt` to keep track of the password changes. Both of the pre save hooks will run before the save method when we update the password.
 
 ### 10.138. Updating the Current User: Password
+
+We may want to update the user password with the current password, we will add a new handler for this:
+
+```js
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  // 1) Get user from collection
+  const user = await User.findById(req.user.id).select('+password');
+
+  // 2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError('Your current password is wrong', 401));
+  }
+
+  // 3) If so, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  await user.save();
+  // 4) Log user in, send JWT
+  const token = signToken(user._id);
+  res.status(200).json({
+    status: 'success',
+    token,
+  });
+});
+```
+
+We need to provide the new route:
+
+```js
+router.patch(
+  '/updateMyPassword',
+  authController.protect,
+  authController.updatePassword
+);
+```
+
+### 10.139. Updating the Current User: Data
+
