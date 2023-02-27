@@ -720,3 +720,41 @@ router.patch(
 
 ### 10.139. Updating the Current User: Data
 
+We will introduce a new handler to update the non-critical user information:
+  
+```js
+exports.updateMe = catchAsync(async (req, res, next) => {
+  // 1) Create error if user POSTs password data
+  if (req.body.password || req.body.passwordConfirm) {
+    return next(
+      new AppError(
+        'This route is not for password updates. Please use /updateMyPassword.',
+        400
+      )
+    );
+  }
+
+  // 2) Filter unwanted properties and update user document
+  const filteredBody = filterObj(req.body, 'name', 'email');
+  console.log(filteredBody);
+  const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: updatedUser,
+    },
+  });
+});
+```
+
+In this handler we will sanitize the request body, and update the user information. Also we will apply the protect middleware to this route:
+
+```js
+router.patch('/updateMe', authController.protect, userController.updateMe);
+```
+
+### 10.140. Deleting the Current User
