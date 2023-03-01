@@ -839,3 +839,37 @@ Other best practices and suggestions
 - Keep user logged in with refresh tokens
 - Implement two-factor authentication
 - Prevent parameter pollution causing Uncaught Exceptions
+
+### 10.142. Sending JWT via Cookie
+
+We will send the JWT via cookie:
+
+```js
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  res.cookie('jwt', token, cookieOptions);
+
+  // Remove password from output
+  user.password = undefined;
+
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user,
+    },
+  });
+};
+```
+
+On this sample we will set a expiration date for the cookie, and we will set the `httpOnly` flag to true. This will prevent the cookie to be accessed or modified by the browser. Also we will use secure flag only in production mode to use HTTPS only cookies.
+
+### 10.143. Implementing Rate Limiting
