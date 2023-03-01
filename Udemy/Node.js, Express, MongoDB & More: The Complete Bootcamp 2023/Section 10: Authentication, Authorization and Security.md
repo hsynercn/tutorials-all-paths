@@ -758,3 +758,41 @@ router.patch('/updateMe', authController.protect, userController.updateMe);
 ```
 
 ### 10.140. Deleting the Current User
+
+We will introduce the delete operation for users and we will add a active flag to the user model:
+
+User model:
+
+```js
+const userSchema = new mongoose.Schema({
+...
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
+});
+```
+
+We will add a new handler to delete the user:
+
+User routes:
+
+```js
+router.delete('/deleteMe', authController.protect, userController.deleteMe);
+
+```
+
+Also we need to hide inactive users from the queries:
+
+User model:
+
+```js
+userSchema.pre(/^find/, function (next) {
+  // this points to the current query
+  this.find({ active: { $ne: false } });
+  next();
+});
+```
+
+### 10.141. Security Best Practices
