@@ -873,3 +873,23 @@ const createSendToken = (user, statusCode, res) => {
 On this sample we will set a expiration date for the cookie, and we will set the `httpOnly` flag to true. This will prevent the cookie to be accessed or modified by the browser. Also we will use secure flag only in production mode to use HTTPS only cookies.
 
 ### 10.143. Implementing Rate Limiting
+
+We will use the `express-rate-limit` package to implement rate limiting. We will create a new middleware:
+
+```js
+//...
+const rateLimit = require('express-rate-limit');
+
+const app = express();
+
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!'
+});
+app.use('/api', limiter);
+```
+
+In this example we are creating a limiter with a maximum of 100 requests per hour. We will apply this middleware to the `/api` route.
+
+After that when we send a request we can see the counts on the response header:
