@@ -874,7 +874,7 @@ On this sample we will set a expiration date for the cookie, and we will set the
 
 ### 10.143. Implementing Rate Limiting
 
-We will use the `express-rate-limit` package to implement rate limiting. We will create a new middleware:
+We will use the `express-rate-limit` package to implement rate limiting. We will create a new middleware after installing the `express-rate-limit` package:
 
 ```js
 //...
@@ -895,4 +895,29 @@ In this example we are creating a limiter with a maximum of 100 requests per hou
 After that when we send a request we can see the counts on the response header:
 
 ![image](https://user-images.githubusercontent.com/28985966/223035087-b8ae4cad-8cfb-4f96-b00e-7ed13500c031.png)
+
+### 10.144. Setting Security HTTP Headers
+
+We will use the `helmet` package to set security HTTP headers. We will install the package and create a new middleware:
+
+```js
+const express = require('express');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+
+const app = express();
+
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
+
+// 1) GLOBAL MIDDLEWARES
+// Set security HTTP headers
+app.use(helmet());
+```
+
+We will us the helmet before all of the middlewares. After that we can see the security headers on the response:
+
 
