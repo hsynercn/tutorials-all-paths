@@ -955,3 +955,29 @@ app.use(xss());
 Additionally we will use the `xss-clean` package to sanitize the user input against XSS attacks. Malicious users can try to inject malicious HTML and JavaScript code into the input fields, these two middlewares will prevent this.
 
 ### 10.146. Preventing Parameter Pollution
+
+We will use hpp package to prevent parameter pollution. We will install the package and create a new middleware:
+
+```js
+// Prevent parameter pollution
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'ratingsQuantity',
+      'ratingsAverage',
+      'maxGroupSize',
+      'difficulty',
+      'price',
+    ],
+  })
+);
+```
+
+Main idea behind the middleware is to prevent parameter pollution. For example if we send a request with this query:
+
+```js
+/api/v1/tours?sort=price&sort=duration
+```
+
+In this scenario we are using a singular sort option for our API features, multiple sort options will not work. This middleware will create error. To prevent this we will use the hpp package. For this specific case it will use the last sort option. Also we can exclude some sort options from the middleware.
