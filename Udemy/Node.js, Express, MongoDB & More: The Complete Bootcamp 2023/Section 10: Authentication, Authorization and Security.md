@@ -920,4 +920,5 @@ app.use(helmet());
 
 We will us the helmet before all of the middlewares. After that we can see the security headers on the response:
 
+![image](https://user-images.githubusercontent.com/28985966/223037976-8af9a2f8-fc97-41c7-bd49-b2d29ee41440.png)
 
