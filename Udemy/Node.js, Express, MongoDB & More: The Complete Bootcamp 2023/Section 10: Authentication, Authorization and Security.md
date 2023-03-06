@@ -923,3 +923,35 @@ We will us the helmet before all of the middlewares. After that we can see the s
 ![image](https://user-images.githubusercontent.com/28985966/223037976-8af9a2f8-fc97-41c7-bd49-b2d29ee41440.png)
 
 ### 10.145. Data Sanitization
+
+We will use express-mongo-sanitize and xss-clean packages.
+
+Data sanitization is the process of cleaning the user input from malicious code. For some cases a malicious user can try to execute a malicious query against the database. For example if we try a login request with this body:
+
+```json
+{
+  "email": {
+    "$gt": ""
+  },
+  "password": "pass1234"
+}
+```
+
+This request will work without a real user email, and guessing a password is not hard.
+
+We will use the `express-mongo-sanitize` package to sanitize the user input. We will install the package and create a new middleware:
+
+```js
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+```
+
+Additionally we will use the `xss-clean` package to sanitize the user input against XSS attacks. Malicious users can try to inject malicious HTML and JavaScript code into the input fields, these two middlewares will prevent this.
+
+### 10.146. Preventing Parameter Pollution
