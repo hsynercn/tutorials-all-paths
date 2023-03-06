@@ -893,3 +893,6 @@ app.use('/api', limiter);
 In this example we are creating a limiter with a maximum of 100 requests per hour. We will apply this middleware to the `/api` route.
 
 After that when we send a request we can see the counts on the response header:
+
+![image](https://user-images.githubusercontent.com/28985966/223035087-b8ae4cad-8cfb-4f96-b00e-7ed13500c031.png)
+
