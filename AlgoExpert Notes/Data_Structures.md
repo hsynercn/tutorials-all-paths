@@ -85,5 +85,34 @@ Pointers: A pointer is a variable whose value is the address of another variable
 
 ## Big O Notation
 
-We can't use the time duration to express time complexity.
+We can't use the time duration to express time complexity. Mostly time cost of the algorithm effected by the size of the input.
 
+```
+f1(a) => 1 + a[0]   O(1)
+f2(a) => sum(a)     O(N)
+f3(a) => pair(a)    O(N^2)
+f4(a) => f1 + f3    O(N^2)
+f5(a) => 2*f1       O(N^2)
+```
+
+Asymptotic analysis: The process of evaluating the time and space complexity of an algorithm.
+
+Better to worse time complexity:
+
+```
+O(1)
+O(log(N))
+O(N)
+O(N*log(N))
+O(N^2)
+O(N^3)
+O(N^4)
+O(2^N)
+O(N!)
+```
+
+We cannot simplify the different factors in the Big O notation:
+
+```
+O(M^2 + N)
+```
