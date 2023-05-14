@@ -116,3 +116,24 @@ We cannot simplify the different factors in the Big O notation:
 ```
 O(M^2 + N)
 ```
+
+### Big O Notation Definition
+
+The notation used to describe the time complexity and space complexity of algorithms.
+
+Variables used in Big O notation denote the sizes of inputs to algorithms. For example O(n) might be the time complexity of an algorithm that traverses through an array of length n. Similarly, O(n + m) might be the time complexity of an algorithm that traverses through an array of length n and through a string of length m.
+
+The following are examples of common complexities and their Big O notations, ordered from fastest to slowest:
+
+- Constant: O(1)
+- Logarithmic: O(log(N))
+- Linear: O(N)
+- Log-Linear: O(Nlog(N))
+- Quadratic: O(N^2)
+- Cubic: O(N^3)
+- Exponential: O(2^N)
+- Factorial: O(N!)
+
+Note that in the context of coding interviews, Big O notation is usually understood to describe the worst-case complexity of an algorithm, even though the worst-case complexity might differ from the average-case complexity.
+
+
