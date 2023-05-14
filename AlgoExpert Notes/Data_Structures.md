@@ -74,7 +74,6 @@ In the context of coding interviews, it's important to note following points:
 - The amount of memory that a machine has is bounded, making it valuable to limit how much memory an algorithm takes up.
 - Accessing a byte or a fixed number of bytes (like 4 bytes or 8 bytes in the case of 32-bit and 64-bit integers) is an elementary operation, which can be loosely treated as a single unit of operational work.
 
-
 Endianness: The order in which bytes are stored in computer memory.
 
 - Big Endian: The most significant byte (the "big end") of the data is placed at the byte with the lowest address.
@@ -83,3 +82,8 @@ Endianness: The order in which bytes are stored in computer memory.
 Most of the time we deal with fixed size data types. For example, in Java, int is 4 bytes, long is 8 bytes, char is 2 bytes, boolean is 1 byte.
 
 Pointers: A pointer is a variable whose value is the address of another variable, i.e., direct address of the memory location.
+
+## Big O Notation
+
+We can't use the time duration to express time complexity.
+
