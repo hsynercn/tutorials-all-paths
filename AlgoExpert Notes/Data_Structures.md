@@ -136,4 +136,26 @@ The following are examples of common complexities and their Big O notations, ord
 
 Note that in the context of coding interviews, Big O notation is usually understood to describe the worst-case complexity of an algorithm, even though the worst-case complexity might differ from the average-case complexity.
 
+## Logarithm
 
+logb(x) = y if and only if b^y = x
+
+log2(8) = 3
+
+In computer science base of the logarithm is 2.
+
+log(N) complexity is better than O(N) complexity. For each input duplication the time cost is only increased by 1.
+
+### Logarithm Definition
+
+A mathematical concept that's widely used in Computer Science and that's defined by the following equation:
+
+logb(x) = y if and only if b^y = x
+
+In the context of coding interviews, the logarithm is used the complexity analysis of algorithms, and its usage always implies a logarithm of base 2. In other words, the logarithm used in the context of coding interviews is defined by the following equation:
+
+log(N) = y if and only if 2^y = N
+
+In plain English, if an algorithm has a logarithmic time complexity (O(log(n))), where n is the size of the input, then whenever the algorithm's input doubles in size (i.e., whenever n doubles), the number of operations needed to complete the algorithm only increases by one unit. Conversely, an algorithm with a linear time complexity would see its number of operations double if its input size doubled.
+
+As an example, a linear-time-complexity algorithm with an input of size n = 1,000 might take roughly 1,000 operations to complete, whereas a logarithmic-time-complexity algorithm with the same input would take roughly 10 operations to complete, since 2^10 ~= 1,000.
