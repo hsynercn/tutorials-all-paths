@@ -162,4 +162,8 @@ As an example, a linear-time-complexity algorithm with an input of size n = 1,00
 
 ## Arrays
 
+Static Array: An array that has a fixed length. We specify the length of the array when we initialize it, OS allocates the memory for the array.
+
+Dynamic Array: An array whose length is flexible. 
+
 
