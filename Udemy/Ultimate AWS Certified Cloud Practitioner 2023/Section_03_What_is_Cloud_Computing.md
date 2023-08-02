@@ -59,3 +59,39 @@ Gmail, Dropbox, Netflix, Facebook, Instagram, Twitter, etc. are all cloud comput
   - Control over sensitive assets in your private infrastructure.
 - Flexibility and cost-effectiveness of the public cloud.
 
+The Five Characteristics of Cloud Computing:
+
+- On-demand self-service: Users can provision resources and use them without human interaction from the service provider.
+- Broad network access: Resources available over the network, and can be accessed by diverse client platforms.
+- Multi-tenancy and resource pooling:
+  - Multiple customers share the same physical resources, while still being logically separated.
+  - Multiple customers are serviced from the same physical resources.
+- Rapid elasticity and scalability:
+  - Automatically and quickly acquire and dispose resources when needed.
+  - Quickly and easily scale based on demand.
+- Measured service:
+  - Usage is measured, users pay correctly for what they have used.
+
+Six Advantages of Cloud Computing:
+
+- Trade capital expense (CAPEX) for operational expense (OPEX).
+  - Pay On-Demand: Don't own hardware
+  - Reduced Total Cost of Ownership (TCO) & Operational Expense (OPEX)
+- Benefit from massive economies of scale.
+  - Prices are reduced as AWS is more efficient due to large scale.
+- Stop guessing capacity
+  - Scale based on actual measured usage.
+- Increase speed and agility.
+- Stop spending money running and maintaining data centers.
+- Go global in minutes: leverage the AWS global infrastructure.
+
+Problems solved by the Cloud
+
+- Flexibility: Change resource types when needed
+- Cost-Effectiveness: Pay as you go, for what you use
+- Scalability: Accommodate larger loads by making hardware stronger or adding additional nodes.
+- Elasticity: Ability to scale out and scale-in when needed
+- High-availability and fault-tolerance: Build across data centers
+- Agility: Rapidly develop, test and launch software applications
+
+
