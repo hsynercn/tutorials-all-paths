@@ -29,3 +29,7 @@
 - Chapter 25 Generating Rules
 - Chapter 26 Algorithms and Approaches
 - Chapter 27 Meaning
+
+## Preface
+
+Mostly devs focus on creating a main hero story for their creations. But real life doesn't care about individuals. Generation makes roguelikes replayable.
