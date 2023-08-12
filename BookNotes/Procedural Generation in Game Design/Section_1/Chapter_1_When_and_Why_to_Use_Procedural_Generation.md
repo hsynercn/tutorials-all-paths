@@ -1,4 +1,4 @@
-## When and Why to Use Procedural Generation
+## Chaper 1 When and Why to Use Procedural Generation
 
 Procedural Generation Techniques(PCG) are now used widely through game design and development.From content drafting to on-the-fly generation, graphical effects to responsive narrative.
 
