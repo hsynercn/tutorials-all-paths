@@ -10,5 +10,6 @@ Establishing the Rules: When we create a grid-and-tile-based approach we could f
 
 Also blurring the boundaries between regions can help to create a more natural look. We can create soft transitions between regions, music change, weather change, and so on.
 
+Tile-based procedural generation could provide the fresh challenge for user, aslo we can keep that under control. One problematic idea could be hand crafting the tiles to increase the variaty of the results. This could be time consuming and hard to debug.
 
 
