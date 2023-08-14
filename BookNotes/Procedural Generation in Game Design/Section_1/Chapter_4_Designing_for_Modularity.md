@@ -41,3 +41,5 @@ We are operating on modules and assembly mechanisms. Gestalts are out of our dir
 In one case we can mention the Caves of Qud faction system as an example. In this case design introduces a faction system between factions and it generates relations between factions which uses some random reasons to fabricate a relation status. By this way we can break the player hostile environment and create fun encounters/batteles between different faction groups.
 
 ### Inserting Memorable Asymmetry
+
+In the systemization of the module, we can provide similar mechanics to player. It could be a balanced loot system which provides equal power and stats for the weapon. But this could be a boring factor for the user. In addition we can add unique weapons to classes which adds unique mechanics.
