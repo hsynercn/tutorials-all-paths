@@ -18,3 +18,6 @@ Each room in each level also has an associated data file. These files contain th
 
 After that we will calculate the finish time and rewards.
 
+### Conclusion
+
+Most people don't notice that the levels are procedurally generated. This could be both good and bad. It can mean levels are good enough for play, or it can show lack of content.
