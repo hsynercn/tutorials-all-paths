@@ -35,3 +35,23 @@ Once this is done:
 - We can add door to long empty walls.
 - We can add secret doors.
 
+### Crypt Generation
+
+Similarly we want to arrange areas procedurally, this time we want to create tight catacomb style areas interspersed with chambers for breathing room.
+
+Each room is a 7 x 7 block. Rooms have some additional data for treasure and other objects.
+
+Steps:
+
+1. Place a starter room. This is a random room tile with at least 2 exits.
+2. Pick a room placed in the level that has an open exit.
+3. Place that new room perfectly adjacent to the fırst.
+4. Once we have no room wıth avaılable exits we can evaluate the dungeon. We can chec kfor total room count to evaluate the result.
+
+### Best Practices
+
+Keep the data sımple: Use the sımplest possıble data format for your project. A text file is perfect.
+
+Keep the data lean and purposeful, rely on your procedural systems to popupate them with creatures, treasures, and traps.
+
+Don't write an editor: Easily you can get lost in that way Notepad is just fine.
