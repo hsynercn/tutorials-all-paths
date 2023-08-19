@@ -1,3 +1,5 @@
+# Procedural Generation In Game Design
+
 ## Chapter 2 Managing OutputBoredom versus Chaos
 
 Humans are natural pattern-finding machines, and a procedural generation algorithm is often a pattern-creating machine.
@@ -26,7 +28,7 @@ We can break patterns to make the game more interesting.
 - When spawning pieces of you environment, make them less similar. If you have 3 rocks rotate them randomly, clump them together, and scale them randomly.
 - When constructing an environment out of tiles, try using nonstandard shapes instead of squares.
 IMPORTANT: Herringbone Wang tiles are a great example. This method is not too hard to implement.
-- When creating heightmaps or other maps with Perlin or other kinds of noise, try multiplying each pixel by several layers of other noise. Which also multiplied by a scalar to adjust the other noises' intensity.
+- When creating height maps or other maps with Perlin or other kinds of noise, try multiplying each pixel by several layers of other noise. Which also multiplied by a scalar to adjust the other noises' intensity.
 IMPORTANT: By this way we can break the repeating patterns.
 - Spawn characters with randomized looks. Use props, clothing, and other accessories to make them look different.
 - Random circumstances, not random outcomes. Player is ok with unpredictable environment, but not with unpredictable outcomes.

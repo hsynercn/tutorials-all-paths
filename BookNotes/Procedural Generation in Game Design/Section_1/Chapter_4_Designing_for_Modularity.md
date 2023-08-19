@@ -1,3 +1,4 @@
+# Procedural Generation In Game Design
 ## Chapter 4 Designing for Modularity
 
 Modularity is the use of discrete units called modules, to assemble larger sutructures, which we wll call gestalts. One example could be the RPG inventory system. The assembly mechanism is the users's choice of equipment with several constraints. The gestalt is the entire equipment loadout.
