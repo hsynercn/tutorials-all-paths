@@ -1,6 +1,6 @@
 # Procedural Generation In Game Design
 
-## Chapter 2 Managing OutputBoredom versus Chaos
+## Chapter 2 Managing Output Boredom versus Chaos
 
 Humans are natural pattern-finding machines, and a procedural generation algorithm is often a pattern-creating machine.
 

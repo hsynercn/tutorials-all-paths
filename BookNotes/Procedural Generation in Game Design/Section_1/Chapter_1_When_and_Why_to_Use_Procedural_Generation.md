@@ -30,7 +30,7 @@ When PCG is a bad idea, it could be a black hole
   - Re-Playability: One generator can make similar but varied content. Rogue like get benefits from this.
   - Reusable code: Generators can get reused between applications.
   - Rules enforcement: We can enforce rules to ensure connectivity between elements or certain standards maintained across all output.
-  - Modeling reality: Oftenly we use simulations techniques in PCG.
+  - Modeling reality: We use simulations techniques in PCG.
   - Scales and detail hard to do by hand: Small teams can't create large scale content and details.
   - Overcome technical limitations: Early games leveraged PCG approach to overcome hardware limitations. This is not applied to modern conditions.
 - Unique

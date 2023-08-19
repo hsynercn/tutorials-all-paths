@@ -1,6 +1,8 @@
-## Chapter 8 Level Design III Arhitecture and Destruction
+# Procedural Generation In Game Design
 
-Windforge is a dieselpunk game which provides building functionality around the map. In this content it is logicall to use procedural content.
+## Chapter 8 Level Design III Architecture and Destruction
+
+Windforge is a diesel punk game which provides building functionality around the map. In this content it is logical to use procedural content.
 
 - Area definition and landmark placement
 - Playable world areas
@@ -26,13 +28,13 @@ Bounding box defined where the architecture should be places, and what its maxim
 
 ### Step 2: Split the Box into Regions
 
-We can use axis-aligned binary splits to divide the space defined by he bounding box into smaller regions. This is a recursive process, we typically stop dividing if dimensions became too small.
+We can use axis-aligned binary splits to divide the space defined by the bounding box into smaller regions. This is a recursive process, we typically stop dividing if dimensions became too small.
 
 Some simple approaches for dividing:
 
-- Split along a random axis: Generates the most variesy, but it is the most unpredictable.
+- Split along a random axis: Generates the most variety, but it is the most unpredictable.
 - Always split the shorter axis: Generates long narrow regions, it works well with hybrid solutions to provide more variety.
-- Always split the longer axis: Regions are simlar and mostly have square aspect ratios.
+- Always split the longer axis: Regions are similar and mostly have square aspect ratios.
 
 We can apply a weighted random selection as a hybrid solution. We can also terminate the splitting early to generate larger regions.
 
@@ -40,11 +42,11 @@ We can apply a weighted random selection as a hybrid solution. We can also termi
 
 It would be boring if every structure found in game were a perfect rectangle. We can remove perimeter regions to get some variations.
 
-For dungeons embedded into islands, we can typically remove a random percentage of the regions along the perimeter of bounding box. We can use top-down region removal or we can use traversing and avoid adjacent visited regions if possible. And then remove regions that weren't visited. Also we should remove the floating regions.
+For dungeons embedded into islands, we can typically remove a random percentage of the regions along the perimeter of bounding box. We can use top-down region removal, or we can use traversing and avoid adjacent visited regions if possible. And then remove regions that weren't visited. Also, we should remove the floating regions.
 
 ### Step 4: Place Connections
 
-We will connect the generated zones. First we will start with a graph which contains all connections, we can use traversal to create doorss. Random treversal is one possibility.
+We will connect the generated zones. First we will start with a graph which contains all connections, we can use traversal to create doors. Random traversal is one possibility.
 
 Nodes can be:
 
@@ -61,7 +63,7 @@ We will assign each region a type.
 
 - Treasure room
 - Boss room
-- Enterance room
+- Entrance room
 - Hub region
 - Trap region
 
@@ -85,7 +87,7 @@ We will populate the previous results, player will be able to see regions after 
 1. Generate the walls and connections between the regions.
 2. Generate the contents of each region.
 
-This step will divide the region into subregions. Subdivision approach is similar to perviously mentioned region splitting. This time the sub division will be more flexible and open-ended. Also we will place objects on these subregions. This method will prevent overlapping.
+This step will divide the region into subregions. Subdivision approach is similar to previously mentioned region splitting. This time the subdivision will be more flexible and open-ended. Also, we will place objects on these subregions. This method will prevent overlapping.
 
 ### Discussion
 
