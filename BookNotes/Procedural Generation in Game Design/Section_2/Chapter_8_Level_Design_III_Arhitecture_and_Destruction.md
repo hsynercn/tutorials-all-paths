@@ -92,4 +92,3 @@ This step will divide the region into subregions. Subdivision approach is simila
 ### Discussion
 
 By this approach we can generate fine content for a large world. But for some instances we can polish a result to create a specific quest area.
-
