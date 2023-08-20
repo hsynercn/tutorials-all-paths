@@ -42,3 +42,42 @@ We can apply several graph transformation rules.
 - Adding a lock to map and add a key at midpoint.
 
 Our main goal is keeping the player engaged. We can use a lot of different patterns to achieve this goal.
+
+### Implementation
+
+Graph transformation and model-driven engineering are powerful methods, but to make them work in the way we wanted, we still had to add a couple of things.
+
+The most important addition to the graph transformation rules are the attributes attached to nodes and edges in the graph.
+
+### Aside: Lock and Key Attributes
+
+Locks could be permanent, reversible, temporary, or collapsing.
+
+- Permanent: A door remains unlocked forever.
+- Temporary: Unlocked for a short period of time.
+- Reversible: A door can be locked and unlocked multiple times.
+- Collapsing: Collapses after use.
+
+Locks might be valves or asymmetrical.
+
+- Valve: Locks allow you to cross only in one direction.
+- Asymmetrical: Opened from one direction.
+
+Locks and keys can be safe or unsafe.
+
+- Safe: A safe lock always has a solution.
+- Unsafe: An unsafe lock might not have a solution.
+
+Keys can be single purpose or multipurpose.
+
+- Single purpose: A key can only open one lock.
+- Multipurpose: A key can open multiple locks, it can be a multipurpose item.
+
+Keys might be consumed or persistent.
+
+- Consumed: A key is consumed after use. Consumed keys tend to be less safe.
+- Persistent: A key is not consumed after use. Persistent keys tend to be more safe.
+
+### Discussion
+
+Cycles are very useful, most people prefer a walk or hike that not involve any backtracking.
