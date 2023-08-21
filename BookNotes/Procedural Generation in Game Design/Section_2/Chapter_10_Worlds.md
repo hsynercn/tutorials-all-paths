@@ -44,4 +44,22 @@ There are 3 main reasons to generate rather than handmake a world:
 
 ### Exploration
 
-In a fixed world we can provide exploration at the first run.
+In a fixed world we can provide exploration at the first run. Some games deal with this by difficulty, like Souls series. In procedural worlds exploration can be consistent.
+
+Procedural world generation therefore ensures that exploration remains a game mechanic that can deliver gameplay experiences on every playthrough, rather than just the first.
+
+### Expansive or Complex Worlds
+
+Handmade results cannot compete with procedural results. Even for same cases PCG creates entire galaxies like No Man's Sky.
+
+### Gameplay Variation
+
+Procedural worlds push increased gameplay varıatıon on the player. Each generation could bring new challanges to player, it will force player to follow different styles, new ways to achieve their goals.
+
+### Qualitative Procedural Generation
+
+When we talk about generation we can include different aspects: societies, cultures, politics, religions, institutions, social norms, aesthetics, terrain, environment.
+
+Systemic procedural worlds hinge in part upon the interactions between parge numbers of complex systems that have to be uncovered by the player.
+
+Qualitative procedural generation is a major future step in the generation of procedural worlds, both for the sake of the complexity and for the sake of innovative gameplay.
