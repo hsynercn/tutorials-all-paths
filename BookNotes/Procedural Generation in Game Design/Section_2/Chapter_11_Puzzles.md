@@ -34,5 +34,42 @@ Puzzle generation depends massively on the rules of your game.
 
 - Random Start State: We can create a random initial state, that's enough. Minesweeper is a good example.
 - Backward from Goal State: Start from a specific randomly generated goal states and repeatedly undo atomic player actions at random until you reach the desired complexity.
-- Heuristics:  
+- Heuristics: We can get benefit from heuristic approaches. With clever heuristic choices we can create richer and more intresting puzzles. Often, heuristic approach disqualifies the puzzle and forces generator to start again or redo a particular generation step if they're triggered.
 
+For minesweeper example:
+
+- We can pay attention to initial move pattern of player and make these sections empty in next puzzles.
+- We can make the first move safe always.
+- When we detect a discontinuous state we can reposition the mines.
+
+### Extra Bonus: Permutations
+
+We can increase our puzzle space by permutation on a valid puzzle element. But we ned to provide a large pool at the beginning to prevent too much similarty.
+
+### Desktop Dungeons, The Puzzle Roguelike
+
+It started with a 48-hour prototype, developers rebuilt it after the first version.
+
+### More Puzzle than Roguelike?
+
+DD is primarrily composed of randomly generated single-screen dungeons, each 20x20 tiles. In this game we are using static enemies, our attacks are 100% predictable. Our main resource is the explored area, exploration will generate health and mana.
+
+### More Roguelike than Puzzle?
+
+DD is a resource management sim at its core like most roguelikes. DD keeps the tension up for significant player experience.
+
+### Player Hope As A Resource
+
+We attempt to train player to kkep trying.
+
+### Guaranteeing Solvability
+
+It is important to create solvable runs. This could be hard. With every move player is making irreversible decisions. During the process algorithm generated a walkable area, and added enemies and items. In some cases this total random generation could bring near impossible difficulty.
+
+### Generating Hope
+
+Result, they didn't change the random start-state generation. They added several heuristic steps. Providing a clear area around the start point, locating boss on a fair distance. Adding map editing skills for a fair cost also increases the success raito.
+
+### Conclusion
+
+Start from somewhere.
