@@ -6,7 +6,7 @@ Keep Talking and Nobody Explodes uses procedural generation. In this case we are
 
 Game contains complex puzzles which solved by multiple players in co-op mode.
 
-### Usula Approach to Procedural Generation
+### Usual Approach to Procedural Generation
 
 We can combine multiple puzzles with several basic parameters and create hard or easy puzzles.
 
@@ -16,10 +16,10 @@ The rules of the Keep Talking and Nobody Explodes are the meat of the game. And 
 
 ### How The Rule Logic Is Generated
 
-In the simplest versions we need to scramble list of possibilites. For more complex puzzles we need to generation logical quaries.
+In the simplest versions we need to scramble list of possibilities. For more complex puzzles we need to generation logical queries.
 
-- Trivial Case: Blinking led will provide mors codes and we will translate them to words. These word will be translated to frequencies.
-- Countable Problems: We could add a fairly complex logic with cable colors, symbols, led state. And we can construct a Venn diagram around these possilities.
+- Trivial Case: Blinking led will provide mors codes, and we will translate them to words. These word will be translated to frequencies.
+- Countable Problems: We could add a fairly complex logic with cable colors, symbols, led state. And we can construct a Venn diagram around these possibilities.
 
 ### Not So Trivial: Procedural Logic
 
@@ -33,32 +33,34 @@ Some examples:
 - Otherwise, if there is more than one yellow wire, cut the last wire.
 - Otherwise, cut the second wire.
 
-These rules are constructed with queries and a solution. We can generate rules for a puzzle with various types of quaries and solutions.
+These rules are constructed with queries and a solution. We can generate rules for a puzzle with various types of queries and solutions.
 
-### Quaries: Asking Questions
+### Queries: Asking Questions
 
 A query is designed to ask a yes or no question: Is the wire red?
 
 A query has a textual representation that can be used within the generated manual and is also tied to logic in the game that evaluates the question.
 
 Query:
+
 - Text used in manual: "there (is:are) more than (batteryCount) (battery|batteries) on the bomb"
 - Function used in game: MoreThanXBatteries
 - Arguments: batteryCound
 
 ### Solutions: Taking Action
 
-When quaries are satisfied, the player must perform an action to solve the puzzle.
+When queries are satisfied, the player must perform an action to solve the puzzle.
 
 Solution:
-- Text used in manual: "cut ht ethird wire"
+
+- Text used in manual: "cut the third wire"
 - Function used in game: CutWire3
 
 ### Improving the Process
 
-- Better Quaries: Creating interesting quaries is a vital part of the design process. We wish to increase communication.
-- Compound Quaries: We need to avoid complex quaries.
-- Query Context: We should avoit quaries directly related to bomb itself.
+- Better Queries: Creating interesting queries is a vital part of the design process. We wish to increase communication.
+- Compound Queries: We need to avoid complex queries.
+- Query Context: We should avoid queries directly related to bomb itself.
 
 ### Conclusion
 
