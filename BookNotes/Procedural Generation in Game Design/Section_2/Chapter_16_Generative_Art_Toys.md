@@ -17,3 +17,20 @@ The automation has taken away a bit of freedom, but has given us a faster more r
 ### Kasparov's Centaur
 
 Garry Kasparov lost a game to IBM Deep Blue, in 1988 he played first game of "advanced chess" against Vaselin Toplaov: each player used a computer as a partner. This cyborg play style, sometimes called "centaur chess", created better players than individual humans or machines.
+
+### Design and Construction of Art Toys
+
+Each art toy has three kinds of elements:
+
+- Inputs: Can be anything from simple keyboards input or scrool wheels, tablet pens, full body tracking.
+- Transformation: An art toy takes that input can can either render it directly or transform it to diffenre kinds of data.
+- Rendering: Visual result of the interaction.
+  - Alvy Ray Smith - Varieties of Digital Painting
+
+### Outside the Generator: Judgment, Sharing, and Curation
+
+Often most powerful interactions happen outside the generator.
+
+### Conclusion
+
+Procedural content make art toys more powerful, suprising, generative, and welcoming to new users.
