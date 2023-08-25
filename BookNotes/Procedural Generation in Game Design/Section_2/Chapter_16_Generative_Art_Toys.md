@@ -14,3 +14,6 @@ The central idea behind an art toy is that user is trading away control and gain
 
 The automation has taken away a bit of freedom, but has given us a faster more reliable way to get to satisfying results.
 
+### Kasparov's Centaur
+
+Garry Kasparov lost a game to IBM Deep Blue, in 1988 he played first game of "advanced chess" against Vaselin Toplaov: each player used a computer as a partner. This cyborg play style, sometimes called "centaur chess", created better players than individual humans or machines.
