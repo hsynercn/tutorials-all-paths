@@ -23,7 +23,7 @@ Garry Kasparov lost a game to IBM Deep Blue, in 1988 he played first game of "ad
 Each art toy has three kinds of elements:
 
 - Inputs: Can be anything from simple keyboards input or scrool wheels, tablet pens, full body tracking.
-- Transformation: An art toy takes that input can can either render it directly or transform it to diffenre kinds of data.
+- Transformation: An art toy takes that input can either render it directly or transform it to different kinds of data.
 - Rendering: Visual result of the interaction.
   - Alvy Ray Smith - Varieties of Digital Painting
 
@@ -33,4 +33,4 @@ Often most powerful interactions happen outside the generator.
 
 ### Conclusion
 
-Procedural content make art toys more powerful, suprising, generative, and welcoming to new users.
+Procedural content make art toys more powerful, surprising, generative, and welcoming to new users.
