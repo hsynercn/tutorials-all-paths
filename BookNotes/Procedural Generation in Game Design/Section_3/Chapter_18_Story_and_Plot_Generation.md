@@ -40,6 +40,8 @@ We can create concrete actions and events:
 
 Grammars are often used as procedural content generators by taking one or more symbols as a starting set and then randomly applying a number of valid random rules until either a point is reached where no more rules can be applied or a certain number of rules have been applied.
 
+### Game World
 
+Stories are based around character relations, and specifically about conflicts between characters.
 
-
+For this purpose we need to model the game world in an explicit way. We can use a social network, a directed graph where the nodes are characters and the edges are relationships between characters. Relations could change over time.
