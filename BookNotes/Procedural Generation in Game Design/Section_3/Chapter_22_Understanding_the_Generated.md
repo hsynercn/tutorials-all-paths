@@ -63,3 +63,17 @@ Metrics versus Requirements: How often does your generator hit the requirements 
 
 ### Qualities of the Generator
 
+We can say we have n-dimensional generative space. We can use metrics to describe the generator's behavior in this space.
+
+- Variety
+- Unintentional Bias
+- Responsiveness
+- Content Families
+
+### Visualizing Expressive Range
+
+Histograms: We can use histograms to visualize the distribution of a metric across a set of generated content.
+
+### Conclusion
+
+We can use systematic methods to understand generator's capabilities. "Understanding the generated" can help with both the design and development of generative systems.
