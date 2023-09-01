@@ -35,7 +35,7 @@ In this case designing our vocabulary becomes  a subset of game design.
 
 ### Recurring Strategies
 
-- Combining output form several layers of simulation or gameplay. 
+- Combining output form several layers of simulation or gameplay.
 - Bringing character into every interaction.
 - Juxtaposing event and interpretation.
 - Callbacks to earlier events.
