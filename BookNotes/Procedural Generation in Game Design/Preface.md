@@ -26,6 +26,7 @@
   - Chapter 19 Emergent Narratives and Story Volumes
   - Chapter 20 Poetry Generation
   - Chapter 21 Characters and Personalities
+- Section IV The Procedural Future
   - Chapter 22 Understanding the Generated
   - Chapter 23 Content Tools Case Study
   - Chapter 24 Automated Game Tuning
