@@ -32,3 +32,34 @@ Also we can imagine:
 
 ### Formalizing Qualities into Metrics
 
+We need to create normalized metrics to insights on a specific quality we care about.
+
+#### Example
+
+- Linearity: We can capture the average vertical change in the level.
+
+We will calculate the mid points of each platform as a data point, and perform linear regression to find a line of best fit through platform midpoints. We can then calculate how far off from that line each platform is.
+
+**Linearity**
+$${\sum_{p=1}^n |y - y_e|} \over n$$
+
+Because we divide by the number of platforms in the level, we can compare levels.
+
+- Leniency: We can create a metric for harm levels of the level.
+
+|Leniency|Element|
+|---|---|
+|0.0|Gaps, enemies, long falls|
+|0.25|Springs, stompers|
+|0.75|Moving platforms|
+|1.0|Jumps without a gap|
+
+**Leniency**
+$${\sum_{e=1}^n leniency(e)} \over n$$
+
+Summing the score for each level component and dividing by the total number of components gets us a leniency score between 0 and 1. Still we are losing some data points, we will get same result for consecutive enemies and gaps.
+
+Metrics versus Requirements: How often does your generator hit the requirements you specify for it? Perhaps some of these metrics will move to the generator's fitness function at a later point.
+
+### Qualities of the Generator
+
