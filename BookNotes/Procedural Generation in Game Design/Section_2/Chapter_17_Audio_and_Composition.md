@@ -20,5 +20,5 @@ Skipping Stones is an experimental game in which player throws found rocks from 
 
 It is better to understand music theory to build an engine.
 
-- Making Music by Denniz DeSantis
+- Making Music by Dennis DeSantis
 - Improvise for Real by David Reed
