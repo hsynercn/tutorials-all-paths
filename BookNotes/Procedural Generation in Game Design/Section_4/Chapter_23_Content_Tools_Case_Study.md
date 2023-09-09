@@ -2,7 +2,7 @@
 
 ## Chapter 23 Content Tools Case Study
 
-Hand crafted elements can create memorable moments in procedural levels and break player-perceived patterns. For this purpose we need to create a tool that can create hand crafted elements.
+Handcrafted elements can create memorable moments in procedural levels and break player-perceived patterns. For this purpose we need to create a tool that can create handcrafted elements.
 
 - Easy visualization: Better for coordination, editor could be used by anyone on the team.
 - Conditional elements: We can use conditional modifications.
