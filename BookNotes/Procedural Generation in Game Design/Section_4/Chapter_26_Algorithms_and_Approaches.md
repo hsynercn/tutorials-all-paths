@@ -41,7 +41,32 @@ Some examples of using hash function on a game:
 
 - A game allows player to enter an easily memorable seed value, like watermelons.
 - A game generates a string describing the current date to provide a shared seed value.
-- A game generates a string combining the current world seed and a specific solar system's identifying information, "Worldseed51234 Galaxy 5 Solar System 118".
+- A game generates a string combining the current world seed and a specific solar system's identifying information, "Worldseed51234 Galaxy 5 Solar System 118". This will allow the solar system to be generated again exactly the same way if the player later visits it again.
 
 ### Rolling Dice
 
+We can say getting random number is like rolling a dice. We can use this analogy to explain the concept of probability.
+
+- d100s are commonly used as percentile success roll, checking if that roll is less than or equal to the percentage chance of something happening.
+- Small dice pools can be used for any numbers that need to have highly tunable ranges.
+
+### Normal Distribution
+
+It is often useful to generate a normal "bell curve" or "Gaussian" distribution of numbers instead of a linear one.
+
+```
+GaussianRandomNumber(mean,std) {
+    A = random number between 0 and 1
+    B = random number between 0 and 1
+    C = sqrt(-2 * ln(A)) * cos(2 * pi * B)
+    return C * std + mean
+}
+```
+
+There are faster known algorithms like [Ziggurat algorithm](https://en.wikipedia.org/wiki/Ziggurat_algorithm).
+
+Some examples of using normal distribution:
+
+- Generating a random temperature for particular day of the year.
+- Deciding what time a NPC prefers to go bed.
+- Deciding the size of a planet in a solar system.
