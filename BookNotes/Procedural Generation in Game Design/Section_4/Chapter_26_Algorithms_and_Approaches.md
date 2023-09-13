@@ -70,3 +70,13 @@ Some examples of using normal distribution:
 - Generating a random temperature for particular day of the year.
 - Deciding what time a NPC prefers to go bed.
 - Deciding the size of a planet in a solar system.
+
+### Weighted Distribution
+
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
