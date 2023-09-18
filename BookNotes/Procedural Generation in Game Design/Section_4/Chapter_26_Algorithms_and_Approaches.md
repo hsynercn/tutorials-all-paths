@@ -154,4 +154,57 @@ Rules for a simplistic 2D cave map generator:
 - Open: 6 - 8 wall neighbors -> wall
 - Wall: 0 - 4 wall neighbors -> open
 
+Caves of Qud is using cellular automata to create caves. Algorithm begins with a 55% chance to contain a wall, and it runs above rules for 2 iterations.
+
+Some applications:
+
+- Simulating grow patterns for spreading plants and forests.
+- Simulating spreading fire.
+- Simulating migration and proliferation patterns for animals.
+
+#### Settling
+
+A settling algorithm takes a set of assorted shapes that are generated with some overlap. A physic simulation is run to allow the shapes to settle into a stable configuration.
+
+Some applications:
+
+- Generating a pile of randomly sized dungeons rooms with larger physics colliders than the interior rooms to allow them to settle into a stable configuration.
+- Generating a pile of very randomly shaped areas and allowing them to settle out, creating a cave system.
+- Generating a sewer system from piles of straight and curved sections.
+
+#### Wang Tiles
+
+Wang tiles are a set of square tiles with colored edges. The tiles are placed in a grid such that the edges of adjacent tiles match. The tiles are chosen randomly from a set of tiles that have the same edge colors.
+
+Some applications:
+
+- The placement of hand-built tiles with predefined edge connections for 2D platformer levels.
+- Adding hand-built details to a room.
+- Creating large forests of trees.
+
+### Partitioning Space
+
+It is often the case in generating procedural content that you have an open, unidentified space that you need to partition into set of regions.
+
+#### Binary Space Partition
+
+A binary partition takes a given space and splits it in half, and then takes two areas that were created and splits those in half, and repeats until some threshold is reached.
+
+Caves of Qud builds the internal structure of many types of ruins by using a simple binary space partition space. Each time the area is split, a door is placed in the wall between the two new areas.
+
+Example use cases:
+
+- To create a traditional Rogue-style room layout, you can place a smaller rectangular room inside the borders of each generated region and connecting to the adjacent regions with hallways.
+- Filling an area with walls and doors to form connected rooms.
+
+#### Voronoi Diagrams
+
+A Voronoi diagram is a constructed by taking a set of seed points on a plane and partitioning plane so that the region containing each seed contains only the points on the plane closest to the seed. Mostly we use them to partition space into regions.
+
+Some use cases:
+
+- Generating the areas of farmed fields from the placement of farmhouses in a countryside.
+- Generate territorial control of dragons from the placement of their lairs.
+
+#### Dijkstra Maps
 
