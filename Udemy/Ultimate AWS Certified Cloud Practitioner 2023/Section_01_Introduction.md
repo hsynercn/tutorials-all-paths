@@ -6,10 +6,10 @@
 - It will cover 40 AWS services out of 200.
 - This is a hands-on course.
 
-We need an AWS account. Free tier should be fine.
+Certificates:
 
 - Foundational: Six months of experience with AWS.
 - Associate: One year of experience with AWS.
 - Professional: Two years of experience with AWS.
 
-
+We need an AWS account. Free tier support should be fine.

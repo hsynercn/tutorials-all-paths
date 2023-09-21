@@ -1,6 +1,8 @@
+# Ultimate AWS Certified Cloud Practitioner 2023
+
 ## Section 03 - What is Cloud Computing?
 
-We will use a network to access a server/resource. For addressing we will IP addresses.
+We will use the network to access a server/resource, website. For addressing we will use IP addresses. Clients and server owns an IP address.
 
 What is server composed of?
 
@@ -12,7 +14,7 @@ What is server composed of?
 
 IT Terminology
 
-- Network: Cables, routers and servers connected with each other
+- Network: Cables, routers and servers connected with each other.
 - Router: A networking device that forwards data packets between computer networks. They know where to send your packets on the internet.
 - Switch: Takes a packet and send it to the correct server/client on your network.
 
@@ -25,7 +27,7 @@ Traditional IT infrastructure requires physical servers, storage and network. Th
 - Hire 24/7 team to monitor the infrastructure
 - Requires disaster recovery
 
-Can we externalize the this?
+Can we externalize the this? > CLOUD
 
 ### What is Cloud Computing?
 
@@ -36,16 +38,16 @@ Can we externalize the this?
 - Simple way to access servers, storage, databases and a set of application services.
 - Amazon Web Services owns and maintains the network-connected hardware required for these application services, while you provision and use what you need via a web application.
 
-Gmail, Dropbox, Netflix, Facebook, Instagram, Twitter, etc. are all cloud computing.
+Gmail, Dropbox, Netflix, Facebook, Instagram, Twitter, etc. are all cloud services.
 
 ### The Deployment Models of the Cloud
 
-- Private Cloud
+- Private Cloud: Rackspace
   - Cloud services used by a single organization, not exposed to the public.
   - Complete control.
   - Security for sensitive applications.
   - Meet specific business needs.
-- Public Cloud
+- Public Cloud: Azure, AWS, GCP
   - Cloud resources owned and operated by a third-party cloud service provider delivered over the Internet.
   - Six advantages of public cloud:
     - No upfront infrastructure investment.
@@ -54,10 +56,10 @@ Gmail, Dropbox, Netflix, Facebook, Instagram, Twitter, etc. are all cloud comput
     - No need to maintain hardware.
     - Global in minutes.
     - Focus on your core business.
-- Hybrid Cloud
+- Hybrid Cloud: 
   - Keeps some servers on premises and extend some capabilities to the cloud.
   - Control over sensitive assets in your private infrastructure.
-- Flexibility and cost-effectiveness of the public cloud.
+  - Flexibility and cost-effectiveness of the public cloud.
 
 The Five Characteristics of Cloud Computing:
 
