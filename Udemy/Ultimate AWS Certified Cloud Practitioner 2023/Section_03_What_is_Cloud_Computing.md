@@ -40,7 +40,7 @@ Can we externalize the this? > CLOUD
 
 Gmail, Dropbox, Netflix, Facebook, Instagram, Twitter, etc. are all cloud services.
 
-### The Deployment Models of the Cloud
+The Deployment Models of the Cloud
 
 - Private Cloud: Rackspace
   - Cloud services used by a single organization, not exposed to the public.
@@ -95,5 +95,20 @@ Problems solved by the Cloud
 - Elasticity: Ability to scale out and scale-in when needed
 - High-availability and fault-tolerance: Build across data centers
 - Agility: Rapidly develop, test and launch software applications
+
+### The Different Types of Cloud Computing
+
+Types of Cloud Computing:
+
+- Infrastructure as a Service (IaaS)
+  - Provides building blocks for cloud IT.
+  - Provides networking, computers, data storage space.
+  - Highest level of flexibility.
+  - Easy parallel with traditional on-premises IT.
+- Platform as a Service (PaaS)
+  - Removes the need for your organization to manage the underlying infrastructure.
+  - Focus on the deployment and management of your applications.
+- Software as a Service (SaaS)
+  - Completed product that is run and managed by the service provider.
 
 
