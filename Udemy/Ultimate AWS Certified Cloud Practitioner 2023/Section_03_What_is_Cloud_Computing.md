@@ -156,3 +156,50 @@ Pricing of the Cloud - Quick Overview
 
 ### AWS Cloud Overview
 
+Use cases:
+
+- Build sophisticated, scalable applications.
+- Enterprise IT applications, storage, big data analytics.
+
+AWS Regions:
+
+- AWS has regions all around the world.
+- Names can be us-east-1, eu-west-3, ap-southeast-2, etc.
+- A region is a cluster of data centers.
+- Most AWS services are region-scoped.
+
+How to choose a region?
+
+- Compliance with data governance and legal requirements.
+- Proximity to customers.
+- Available services within a region.
+- Pricing.
+
+AWS Availability Zones
+
+- Each region has many availability zones, usually 3, min 3, max 6.
+  - Example: ap-southeast-2a, ap-southeast-2b, ap-southeast-2c
+- Each availability zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity.
+- They are separate from each other, so that they are isolated from disasters.
+- They are connected with high bandwidth, ultra-low latency networking.
+
+AWS Edge Locations
+
+- AWS has 400+ edge locations worldwide.
+- Content is delivered with low latency to end users.
+
+Tour of the AWS Console
+
+- AWS has global services:
+  - Identity and Access Management (IAM)
+  - Route 53 (DNS service)
+  - CloudFront (Content Delivery Network)
+  - WAF (Web Application Firewall)
+- Most services are region-scoped:
+  - EC2 (Elastic Compute Cloud)
+  - Elastic Beanstalk (Platform as a Service)
+  - Lambda (Functions as a Service)
+  - Rekognition (Software as a Service)
+- Region table: [link](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)
+
+
