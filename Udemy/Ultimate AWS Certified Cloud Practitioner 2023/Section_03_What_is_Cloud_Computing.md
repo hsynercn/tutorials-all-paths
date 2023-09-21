@@ -111,4 +111,48 @@ Types of Cloud Computing:
 - Software as a Service (SaaS)
   - Completed product that is run and managed by the service provider.
 
+Managed by you:
+
+- On-premise
+  - Applications
+  - Data
+  - Runtime
+  - Middleware
+  - O/S
+  - Virtualization
+  - Servers
+  - Storage
+  - Networking
+- IaaS
+  - Applications
+  - Data
+  - Runtime
+  - Middleware
+  - O/S
+- PaaS
+  - Applications
+  - Data
+- SaaS
+  - None
+
+Example of Cloud Computing Types
+
+- Infrastucture as a Service (IaaS)
+  - Amazon EC2
+  - GCP, Azure, RaskSpace, DigitalOcean, Linode
+- Platform as a Service (PaaS)
+  - AWS Elastic Beanstalk
+  - Heroku, Google App Engine (CGP), Windows Azure (Microsoft)
+- Software as a Service (SaaS)
+  - Many AWS services (ex: Rekognition for Machine Learning)
+  - Google Apps, Dropbox, Zoom
+
+Pricing of the Cloud - Quick Overview
+
+- AWS has 3 pricing fundamentals, following the pay-as-you-go pricing model.
+- Compute: Pay for the compute time you consume.
+- Storage: Pay for the amount of data you store.
+- Data Transfer OUT: Pay for the amount of data you transfer out of AWS.
+
+### AWS Cloud Overview
 
