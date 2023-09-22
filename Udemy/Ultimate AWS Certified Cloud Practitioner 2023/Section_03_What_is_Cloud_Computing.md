@@ -202,4 +202,31 @@ Tour of the AWS Console
   - Rekognition (Software as a Service)
 - Region table: [link](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)
 
+IMPORTANT NOTE: It is important to stay on same region for the whole course.
+
+Shared Responsibility Model
+
+CUSTOMER = RESPONSIBILITY FOR THE SECURITY IN THE CLOUD
+
+AWS = RESPONSIBILITY FOR THE SECURITY OF THE CLOUD
+
+| Owner | Responsibility |
+| --- | --- |
+| Customer | Customer Data |
+| Customer | Platform, Applications, Identity, Access Management|
+| Customer | Operating System, Network, Firewall |
+| Customer | Client-Side Data Encryption, Server-Side Encyption, Networking Traffic Protection |
+| AWS | Software |
+| AWS | Compute, Storage, Database, Networking |
+| AWS | Hardware/AWS Global Infrastructure |
+| AWS | Regions, Availability Zones, Edge Locations |
+
+AWS Acceptable Use Policy
+
+- No illegal, harmful, or offensive use of the services.
+- No security violations.
+- No network abuse.
+- No email or other message abuse.
+
+
 
