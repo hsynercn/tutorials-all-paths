@@ -184,3 +184,6 @@ MFA device options in AWS:
 - Hardware Key Fob MFA Device for AWS GovCloud (US)
   - SurePassID (USB device)
 
+### IAM MFA Hands On
+
+We can create custom policies from IAM > Account settings > Edit password policy. We can enable expiration, password change, password reuse, minimum password length etc.
