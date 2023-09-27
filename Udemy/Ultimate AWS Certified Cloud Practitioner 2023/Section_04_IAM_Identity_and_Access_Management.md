@@ -65,4 +65,46 @@ With this link we can go to account login page and login with our recently creat
 
 ### IAM Policies
 
+IAM Policies are written in JSON. They are attached to users, groups or roles. They define the permissions of the user.
+
+Consists of:
+
+- Version: policy language version, always 2012-10-17.
+- Id: an identifier for the policy (optional).
+- Statement: one or more individual statements (required).
+
+Statement consists of:
+
+- Sid: an identifier for the statement (optional).
+- Effect: whether the statement allows or denies access (Allow, Deny).
+- Principal: account/user/role to which this policy applied to.
+- Action: list of actions this policy allows or denies.
+- Resource: list of resources to which the actions apply to.
+- Condition: conditions for when this policy is in effect (optional).
+
+Policies have the following structure:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Id": "S3-Account-Permissions",
+  "Statement": [
+    {
+      "Sid": "Stmt1234567890",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:user/root"
+      },
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": ["arn:aws:s3:::mybucket/*"]
+    }
+  ]
+}
+```
+
+### IAM Policies Hands On
+
 
