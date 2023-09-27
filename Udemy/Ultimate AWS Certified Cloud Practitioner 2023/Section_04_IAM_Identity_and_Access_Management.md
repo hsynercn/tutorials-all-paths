@@ -151,3 +151,36 @@ Policy for IAMReadOnlyAccess:
 We can create custom policies from IAM > Policies > Create policy.
 
 ### IAM - Password Policy
+
+We have 2 defence protect users:
+
+- Password Policy
+  - Strong passwords = higher security for your account.
+  - In AWS, you can setup a password policy.
+    - Set a minimum password length.
+    - Require specific character types.
+      - including uppercase letters
+      - lowercase letters
+      - numbers
+      - non-alphanumeric characters
+    - Allow all IAM users to change their own passwords.
+    - Require users to change their password after some time.
+    - Prevent password reuse.
+- Multi Factor Authentication (MFA)
+  - Users have to access to your account and can change AWS resources.
+  - We need to protect our Root Accounts and IAM users.
+  - MFA = password you know + security device you own.
+  - Main benefit of MFA: If a password is stolen or hacked, the account is not compromised.
+
+MFA device options in AWS:
+
+- Virtual MFA device
+  - Google Authenticator (phone only)
+  - Authy (multi-device)
+- Universal 2nd Factor (U2F) Security Key
+  - YubiKey (USB device)
+- Hardware Key Fob MFA Device
+  - Gemalto (USB device)
+- Hardware Key Fob MFA Device for AWS GovCloud (US)
+  - SurePassID (USB device)
+
