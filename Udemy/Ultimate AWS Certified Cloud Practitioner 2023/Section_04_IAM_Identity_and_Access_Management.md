@@ -107,4 +107,47 @@ Policies have the following structure:
 
 ### IAM Policies Hands On
 
+We can remove users from user groups. For our admin user example we can remove that user from the admin group and attach a policy to the user directly.
 
+From the IAM dashboard we can see the added permissions to that user. We can see different policies which comes from different user groups or directly attached to the user.
+
+Policy JSON for AdministratorAccess:
+
+```JSON
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+Policy for IAMReadOnlyAccess:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GenerateCredentialReport",
+                "iam:GenerateServiceLastAccessedDetails",
+                "iam:Get*",
+                "iam:List*",
+                "iam:SimulateCustomPolicy",
+                "iam:SimulatePrincipalPolicy"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+We can create custom policies from IAM > Policies > Create policy.
+
+### IAM - Password Policy
