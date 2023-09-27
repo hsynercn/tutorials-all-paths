@@ -189,3 +189,35 @@ MFA device options in AWS:
 We can create custom policies from IAM > Account settings > Edit password policy. We can enable expiration, password change, password reuse, minimum password length etc.
 
 We can add our MFA device to our root user from IAM > Users > Security credentials > Assigned MFA device > Manage.
+
+### AWS Access Keys, CLI and SDK
+
+How can users access AWS?
+
+- AWS Management Console (protected by password + MFA)
+- AWS Command Line Interface (CLI): protected by access keys.
+- AWS Software Developer Kit (SDK): protected by access keys.
+
+Access keys are generated through the AWS console. Access keys are secret like password.
+
+What's the AWS CLI?
+
+- A tool that enables you to interact with AWS services using commands in your command-line shell.
+- Direct access to the public APIs of AWS services.
+- You can create scripts to manage your resources.
+- It is open sourced [https://github.com/aws/aws-cli](https://github.com/aws/aws-cli)
+- Alternative to using AWS Management Console.
+
+What's the AWS SDK?
+
+- AWS Software Development Kit (SDK)
+- Language specific APIs
+- Enables you to access and manage AWS services programmatically.
+- Embedded within your application.
+- Supports
+  - SDKs (JavaScript, Python, PHP, Ruby, .NET, Go, C++, etc.)
+  - Mobile SDKs (iOS, Android)
+  - IoT SDKs (Arduino, JavaScript, Python, etc.)
+  - Example: AWS CLI is using the AWS SDK for Python
+
+
