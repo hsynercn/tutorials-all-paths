@@ -187,3 +187,5 @@ MFA device options in AWS:
 ### IAM MFA Hands On
 
 We can create custom policies from IAM > Account settings > Edit password policy. We can enable expiration, password change, password reuse, minimum password length etc.
+
+We can add our MFA device to our root user from IAM > Users > Security credentials > Assigned MFA device > Manage.
