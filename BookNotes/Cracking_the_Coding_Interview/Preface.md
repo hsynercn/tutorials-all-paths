@@ -4,7 +4,7 @@
 
 Interview process requires special skills that you can learn and practice, and this book is designed to teach you those skills. They are not taught in school, and they are not taught in work. They are not about programming, but about how to solve problems.
 
-### Interview Process
+### I Interview Process
 
 Algorithm and coding problems form the largest component of the interview process at most of tech companies.
 
@@ -26,3 +26,12 @@ Problem solving skills are valuable.
 
 Basic data structures and algorithm knowledge is useful.
 
+- Learning CS scope is helpful for problem solving. Tress, graphs, linked lists will be helpful.
+
+Whiteboard lets you focus on what matters.
+
+- Main goal is not writing the perfect code on the board, but we need to write some code with minimal errors.
+
+Whiteboard interviews not for everyone and every company.
+
+### II Behind the Scenes
