@@ -273,4 +273,40 @@ We can do this course without cloud shell.
   - Lambda Function Roles
   - Roles For CloudFormation
 
+### IAM Roles Hands On
+
+We need to open IAM > Roles > Create role. Trusted entity type will be AWS service. 
+
+- We will select EC2 as the only use case.
+- We will only give IAMReadOnlyAccess permission to this role.
+- We will set the role name as "DemoRoleForEC2".
+
+### IAM Security Tools
+
+- IAM credentials report
+  - Report that lists all your account's users and the status of their various credentials.
+- IAM Access Advisor
+  - Access advisor shows the service permissiıns granted to a user and when those services were last accessed.
+  - We can review used permissions and remove unused permissions.
+
+### IAM Security Tools Hands On
+
+IAM > Credential report > Generate report. We can download the report as a csv file.
+
+We can get information about password last used, access key last used, access key last rotated etc.
+
+IAM > Users > Specific user > Access Advisor. We can see the services that user used and when they used it. We can consider removing unused permissions.
+
+### IAM Best Practices
+
+- Do not user root account except for AWS account setup.
+- One physical user = One AWs user
+- Assign users to groups and assign permissions to groups.
+- Create a strong password policy.
+- Use and enforce the use of MFA.
+- Create and use Roles for giving permissions to AWS services.
+- Use Access Keys for Programmatic Access (CLI/SDK).
+- Audit permissions of your account using ISM Credentials Report & IAM Access Advisor.
+- Never share IAM users & Access Keys.
+
 
