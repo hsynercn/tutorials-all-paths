@@ -309,4 +309,34 @@ IAM > Users > Specific user > Access Advisor. We can see the services that user 
 - Audit permissions of your account using ISM Credentials Report & IAM Access Advisor.
 - Never share IAM users & Access Keys.
 
+### Shared Responsibility Model for IAM
 
+CCP exam will ask about shared responsibility model for IAM.
+
+What AWS is responsible for, what the customer is responsible for.
+
+AWS:
+
+- Infrastructure (global network security)
+- Configuration and vulnerability analysis
+- Compliance validation
+
+User:
+
+- Users, groups, roles, policies management and monitoring
+- Enable MFA for all users
+- Key rotation
+- IAM tools to apply appropriate permissions
+- Analyze access patterns and review permissions
+
+### IAM Summary
+
+- Users: mapped to a physical user, has a password to login to AWS console.
+- Groups: contains users only, no groups of groups.
+- Policies: JSON documents that define permissions of users or groups.
+- Roles: for EC2 instances, Lambda functions, CloudFormation, etc.
+- Security: MFA + password policy
+- AWS CLI: command line tool
+- AWS SDK: programmatic access
+- Access Keys: access AWS using CLI or SDK
+- Audit: IAM Credentials Report, IAM Access Advisor
