@@ -229,3 +229,43 @@ Run this command to check if it is installed correctly:
 ```bash
 aws --version
 ```
+
+### AWS CLI Hands On
+
+We will go to IAM > Users > Specific user > Security credentials > Create access key. We will create a new access key for CLI. We will note the access key details.
+
+After installation we can set the access key details with this command:
+
+```bash
+aws configure
+```
+
+We will enter the access key details and default region name and default output format.
+
+We can check if it is working with this command:
+
+```bash
+aws iam list-users
+```
+
+We should see the list of users in our account. AWS CLI and console will act similarly with the same permissions.
+
+### AWS Cloud Shell
+
+We can use cloud shell as an alternative to CLI. This service is not available in all regions.
+
+We can issue commands from the console:
+
+```bash
+aws iam list-users
+```
+
+If we create files or resources from the cloud shell, they will stay. We can download or upload files.
+
+We can do this course without cloud shell.
+
+### IAM Roles for Services
+
+
+
+
