@@ -220,4 +220,12 @@ What's the AWS SDK?
   - IoT SDKs (Arduino, JavaScript, Python, etc.)
   - Example: AWS CLI is using the AWS SDK for Python
 
+### AWS CLI Setup on Windows
 
+Go to [installation page](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) download and run msi installer.
+
+Run this command to check if it is installed correctly:
+
+```bash
+aws --version
+```
