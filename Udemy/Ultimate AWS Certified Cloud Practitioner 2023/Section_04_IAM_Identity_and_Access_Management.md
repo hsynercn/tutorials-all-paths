@@ -266,6 +266,11 @@ We can do this course without cloud shell.
 
 ### IAM Roles for Services
 
-
+- Some AWS services will need to perform actions on your behalf.
+- We need to assign permissions to AWS services with IAM Roles.
+- Common roles:
+  - EC2 Instance Roles
+  - Lambda Function Roles
+  - Roles For CloudFormation
 
 
