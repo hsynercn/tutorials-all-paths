@@ -47,3 +47,43 @@ EC2 User Data
 
 There are lots of EC2 instance types. We will use t2.micro, it is a free tier eligible instance up to 750 hours per month.
 
+### Create an EC2 Instance with EC2 User Data to have a Website Hands On
+
+- We will launch our first virtual server using the AWS Console.
+- We'll get a first high-level approach to the various parameters.
+- We will see that our web server is launched using EC2 user data.
+- We will learn how to start / stop / terminate our instance.
+
+We can launch our first instance with EC2 > Instances > Launch an instance.
+
+- We can set name as "My First Instance".
+- We can select Amazon Linux 2 AMI (HVM), it is free tier eligible.
+- We will select instance type t2.micro.
+- We need to add a SHH key pair.
+  - Set a name "EC2 Tutorial".
+  - Select RSA.
+  - Select .pem for new Windows or Mac OS versions.
+- We enable HTTP traffic.
+
+We will provide this script to user data:
+
+```bash
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+```
+
+We can create tne instance now, it will take 20 seconds to be ready. We can see the details of the instance in the EC2 dashboard, public IPv4, private IPv4, etc.
+
+We can access the server with HTTP and ip of the instance and our service will return a Hello World message.
+
+We can stop the instance and start it again BUT we will lose the public IPv4 address.
+
+
+
+
