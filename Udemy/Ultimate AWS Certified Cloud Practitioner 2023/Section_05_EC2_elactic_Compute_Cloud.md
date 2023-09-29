@@ -84,6 +84,52 @@ We can access the server with HTTP and ip of the instance and our service will r
 
 We can stop the instance and start it again BUT we will lose the public IPv4 address.
 
+### EC2 Instance Types Basics
+
+We can use different types of EC2 instances that are optimized for different use cases.
+
+- General purpose
+- Compute optimized
+- Memory optimized
+- Accelerated computing
+- Storage optimized
+- Instance features
+- Measuring instance performance
+
+AWS has a naming convention for EC2 instance types:
+
+- m5.2xlarge
+  - m: instance class
+  - 5: generation
+  - 2xlarge: size within the instance class
+
+
+Instance type details:
+
+- General purpose (m): Great for diversity of workloads such as web servers.
+  - Balance between compute, memory and networking
+  - During the course we will use t2.micro which is a general purpose instance.
+
+- Compute optimized (c): Great for compute-intensive tasks that require high performance processors.
+  - Batch processing workloads
+  - Media transcoding
+  - High performance web servers
+  - High performance computing (HPC)
+  - Scientific modeling and machine learning
+  - Gaming servers
+
+- Memory optimized (r): Good for processing large data sets.
+  - High performance, relational/non-relational databases
+  - Distributed web scale cache stores
+  - In-memory databases optimized for BI (business intelligence)
+  - Applications performing real-time processing of big unstructured data.
+
+- Storage optimized (l): Great for storage-intensive tasks that require high, sequential read and write access to large data sets on local storage.
+  - High frequency online transaction processing (OLTP) systems
+  - Relational and NoSQL databases
+  - Cache for in-memory databases (Redis, Memcached)
+  - Data warehousing applications
+  - Distributed file systems
 
 
 
