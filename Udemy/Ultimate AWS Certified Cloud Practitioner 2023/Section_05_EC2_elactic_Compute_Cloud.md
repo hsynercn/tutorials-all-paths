@@ -166,5 +166,13 @@ Classic Ports to know:
 - 443 = HTTPS - access secured websites
 - 3389 = RDP (Remote Desktop Protocol) - log into a Windows instance
 
+### Security Groups Hands On
 
+We can access the inbound rule details from EC2 > Security Groups > some security group > Edit inbound rules.
+
+Timeouts mostly caused by security group configurations.
+
+### SSH Overview
+
+Mac, Linux and Windows 10 have SSH clients installed by default. Before Windows 10 we need to install Putty.
 
