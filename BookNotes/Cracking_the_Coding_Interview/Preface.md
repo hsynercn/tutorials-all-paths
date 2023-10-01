@@ -35,3 +35,14 @@ Whiteboard lets you focus on what matters.
 Whiteboard interviews not for everyone and every company.
 
 ### II Behind the Scenes
+
+Mostly companies follow similar interview processes.
+
+- Microsoft
+- Google
+- Apple
+- Facebook
+- Palantir
+
+Usually there are 5-6 interviews, each 45-60 minutes long. They start with a phone screen, then 4-5 on-site interviews.
+
