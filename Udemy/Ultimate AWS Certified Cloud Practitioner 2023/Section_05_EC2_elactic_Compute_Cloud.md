@@ -189,3 +189,18 @@ We can check the SSH support with command `ssh` in the terminal.
 
 Be careful with the instance IP, if we stop and start the instance it could change.
 
+### EC2 Instance Connect
+
+EC2 > Instances > some instance > Connect to instance, we can use console to connect to the instance. And this method will use a temporary SSH key.
+
+Example command:
+
+```bash
+whoami
+```
+
+REMINDER: We need an active SSH port in the security group.
+
+### EC2 Instance Roles Demo
+
+
