@@ -176,3 +176,16 @@ Timeouts mostly caused by security group configurations.
 
 Mac, Linux and Windows 10 have SSH clients installed by default. Before Windows 10 we need to install Putty.
 
+### How to SSH Using  Windows 10
+
+We can check the SSH support with command `ssh` in the terminal.
+
+- Go th .pem file location.
+- Execute:
+  
+  ```bash
+  ssh -i "EC2 Tutorial.pem"  ec2-user@3.23.85.11
+  ```
+
+Be careful with the instance IP, if we stop and start the instance it could change.
+
