@@ -203,4 +203,34 @@ REMINDER: We need an active SSH port in the security group.
 
 ### EC2 Instance Roles Demo
 
+After connecting the EC2 session we can check the instance role with command:
+
+```bash
+aws --version
+aws iam list-users
+```
+
+At this we will see there is no credentials configured.
+
+One bad option is to configure the credentials in the EC2 instance, but it is not recommended. Anybody who has access to the instance will have access to the credentials.
+
+For a better option we can go EC2 instances, select the instance, Actions > Security > Modify IAM role > Create new role > Select DemoRoleForEC2 and update the role.
+
+After this we can see the result of the command:
+
+```bash
+aws iam list-users
+```
+
+### EC2 Instances Purchasing Options
+
+- On-Demand Instances: short workload, predictable pricing, pay by second
+- Reserved (1-3 years):
+  - Reserved Instances: long workloads
+  - Convertible Reserved Instances: long workloads with flexible instances
+- Saving Plans (1-3 years): commitment to an amount of usage, long workload
+- Spot Instances: Short workloads, for cheap, can lose instances (less reliable)
+- Dedicated Hosts: book an entire physical server, control instance placement
+- Dedicated Instances: no other customers will share our hardware
+- Capacity Reservation: reserve capacity in a specific AZ for any duration
 
