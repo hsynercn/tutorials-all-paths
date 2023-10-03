@@ -234,3 +234,114 @@ aws iam list-users
 - Dedicated Instances: no other customers will share our hardware
 - Capacity Reservation: reserve capacity in a specific AZ for any duration
 
+EC2 On Demand
+
+- Pay for what you use:
+  - Linux or Windows: billing per second, after the first minute
+  - All other operating systems: billing per hour
+- Has the highest cost but no upfront payment
+- No long-term commitment
+- Recommended for short-term and un-interrupted workloads, where we can't predict how the application will behave
+
+EC2 Reserved Instances
+
+- Up to 75% discount compared to On-Demand
+- You reserve a specific instance configuration in a specific region (we can't change the region)
+- Reservation period can be 1 or 3 years
+- Payment options: No Upfront, Partial Upfront, All Upfront
+- Reserved instance scope: regional or zonal
+- Recommended for long-term workloads (think database)
+- You can buy and sell in the Reserved Instance Marketplace
+
+Convertible Reserved Instances
+
+- Can change the EC2 instance type, instance family, OS, scope and tenancy
+- Up to 54% discount
+
+EC2 Saving Plans
+
+- Get a discount based on long-term usage
+- Commit to a certain type of usage
+- Usage beyond EC2 Savings Plan is billed at the On-Demand rate
+- Locked to specific instance family & AWS region
+- Flexible across:
+  - Instance size
+  - OS (Linux, Windows)
+  - Tenancy (Host, Dedicated, Default)
+
+EC2 Spot Instances
+
+- Can get a discount of up to 90% compared to On-Demand
+- Instances that you can "lose" at any point of time if your max price is less than the current spot price
+- The MOST cost-efficient instances in AWS
+- Useful for workloads that are resilient to failure:
+  - Batch jobs
+  - Data analysis
+  - Image processing
+  - Any distributed workloads
+  - Workloads with a flexible start and end time
+- Not great for critical jobs or databases
+
+EC2 Dedicated Hosts
+
+- A physical EC2 server dedicated for our use
+- Allows you address compliance requirements and use your existing server-bound software licenses
+- Purchasing Options:
+  - On-demand: pay per second for active Dedicated Host
+  - Reserved: 1 to 3 years (No Upfront, Partial Upfront, All Upfront)
+- The most expensive option
+-Useful for software that have complicated licensing model (BYOL - Bring Your Own License)
+- Or for companies that have strong regulatory or compliance needs
+
+Dedicated Instances
+
+- Instances run on hardware that's dedicated to you
+- May share hardware with other instances in the same account
+- No control over instance placement (can move hardware after stop/start)
+
+|Characteristic|Dedicated Instances|Dedicated Hosts|
+|---|---|---|
+|Enables the use of dedicated physical servers|Yes|Yes|
+|Per instance billing(subject to a $2 per region fee)|Yes||
+|Per host billing||Yes|
+|Visibility of sockets, cores, and threads||Yes|
+|Affinity between a host and an instance||Yes|
+|Targeted instance placement||Yes|
+|Automatic instance placement|Yes|Yes|
+|Add capacity using an allocation request||Yes|
+
+EC2 Capacity Reservations
+
+- Reserve capacity for EC2 instances in a specific AZ for any duration
+- You always have access to EC2 capacity when you need it
+- No time commitment (create/cancel anytime), no billing discount
+- Combine with regional reserved instances and saving plans to benefit from billing discounts
+- You are charged at On-Demand rate whether you run instances or not
+- Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ
+
+### Shared Responsibility Model for EC2
+
+AWS is responsible for:
+
+- Infrastructure (global network security)
+- Isolation on physical hosts
+- Replacing faulty hardware
+- Compliance validation
+
+We are responsible for:
+
+- Security group rules
+- Operating system patches and updates
+- Software and utilities installed on the EC2 instance
+- IAM Role assigned to the instance and IAM user access management
+- Data security on your instance
+
+### EC2 Summary
+
+- EC2 Instance: AMI (OS) + Instance Size (CPU + RAM) + Storage + Security Group + EC2 User Data
+- Security Groups: Firewall attached to the EC2 instance
+- EC2 User Data: Script launched at the first start of an instance
+- SSH: Start a terminal into an EC2 instance, port 22
+- EC2 Instance Role: link to IAM roles
+- Purchasing Options: On-Demand, Spot, Reserved (Standard + Convertible + Scheduled), Dedicated Host, Dedicated Instance
+
