@@ -66,3 +66,20 @@ EBS Snapshots Features
   - Setup rules to retain deleted snapshots so you can recover them after an accidental deletion
   - Specify retention (from 1 day to 1 year)
 
+We can create a snapshot from EC2 > Volumes > some volume id > Actions > Create Snapshot.
+
+We can create a new volume on a different AZ from a snapshot from EC2 > Snapshots > some snapshot id > Actions > Create Volume.
+
+We can go to recycle bin from EC2 > Snapshots > Recycle Bin and create a retention rule for deleted snapshots.
+
+We can create a demo retention rule:
+
+- Retention rule name: DemoRetentionRule
+- Resource type: EBS Snapshots
+- Name: DemoRetentionRule
+
+Let's delete the snapshot from EC2 > Snapshots > some snapshot id, we can see its Storage tier is "Standard". After deleting it we can see that it is moved to Recycle Bin and we can recover it.
+
+### AMI Overview
+
+
