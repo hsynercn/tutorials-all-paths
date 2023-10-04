@@ -42,3 +42,13 @@ This behavior can be controlled by the "Delete on Termination" flag from AWS con
 Use case: preserve root volume when instance is terminated
 
 ### EBS Hands On
+
+We can list the existing volumes from EC2 > Volumes > some volume id, and we can see the volume type, size, availability zone, state, etc.
+
+Also we can create a new volume from EC2 > Volumes > Create Volume. We should create the volume in the same AZ as the instance we want to attach it to.
+
+After the creation we can attach the volume to an instance from same AZ. After this part we can that EBS available for the OS of the instance by formatting it.
+
+Under the instance details Storage part contains the EBS volume details. During the instance creation we have kept the default Delete on Termination flag as true, so when we terminate the instance the EBS volume will be deleted as well.
+
+
