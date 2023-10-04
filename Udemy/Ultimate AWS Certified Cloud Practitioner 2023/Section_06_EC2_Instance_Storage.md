@@ -51,4 +51,18 @@ After the creation we can attach the volume to an instance from same AZ. After t
 
 Under the instance details Storage part contains the EBS volume details. During the instance creation we have kept the default Delete on Termination flag as true, so when we terminate the instance the EBS volume will be deleted as well.
 
+### EBS Snapshots Overview
+
+- Make a backup (snapshot) of your EBS volume at a point in time
+- Not necessary to detach volume to do snapshot, but recommended
+- Can copy snapshots across AZ or Region
+
+EBS Snapshots Features
+
+- EBS Snapshot Archive
+  - Move a Snapshot to an "archive tier" that is 75% cheaper
+  - Takes within 24 to 72 hours for restoring the archive
+- Recycle Bin for EBS Snapshots
+  - Setup rules to retain deleted snapshots so you can recover them after an accidental deletion
+  - Specify retention (from 1 day to 1 year)
 
