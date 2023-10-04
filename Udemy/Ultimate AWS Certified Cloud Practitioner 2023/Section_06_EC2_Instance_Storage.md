@@ -82,4 +82,23 @@ Let's delete the snapshot from EC2 > Snapshots > some snapshot id, we can see it
 
 ### AMI Overview
 
+- AMI = Amazon Machine Image
+- AMI are a customization of an EC2 instance
+  - We add our own software, configuration, operating system, monitoring
+  - Faster boot / configuration time because all our software is pre-packaged
+- AMI are built for a specific region (and can be copied across regions)
+- We can launch EC2 instances from:
+  - A Public AMI: AWS provided
+  - Your own AMI: you make and maintain them yourself
+  - An AWS Marketplace AMI: an AMI someone else made
+
+AMI Process (from an EC2 instance)
+
+- Start an EC2 instance and customize it
+- Stop the instance (for data integrity)
+- Build an AMI - this will also create EBS snapshots
+- Launch instances from other AMIs
+
+### AMI Hands On
+
 
