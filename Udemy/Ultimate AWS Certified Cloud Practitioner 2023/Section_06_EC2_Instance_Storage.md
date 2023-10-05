@@ -101,4 +101,27 @@ AMI Process (from an EC2 instance)
 
 ### AMI Hands On
 
+We will start with creating an instance:
+
+- Select the existing security group: `launch-wizard-1`
+- We will user data:
+
+```bash
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+```
+
+We need to wait for script after initialization to complete.
+
+We can use Instances dropdown > Image and templates > Create image to create an AMI from the instance with 'DemoImage' name.
+
+We need to wait to complete the AMI creation process, after that we can use that image from EC2 > AMIs > DemoImage > Launch instance from AMI or Instances > Launch instances > My AMIs > DemoImage.
+
+If create a new instance only providing the index.html file in user data is enough to see a web page from the instance public IP. Because other tools are already installed in the AMI.
+
 
