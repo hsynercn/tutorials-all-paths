@@ -124,4 +124,19 @@ We need to wait to complete the AMI creation process, after that we can use that
 
 If create a new instance only providing the index.html file in user data is enough to see a web page from the instance public IP. Because other tools are already installed in the AMI.
 
+### EC2 Image Builder Overview
+
+- Used to automate the creation of Virtual Machines or container images.
+- Automate the creation, maintain, validate and test EC2 AMIs(Amazon Machine Images)
+- Can be run on a schedule (weekly, whenever the packages are updated)
+- Free service, only pay for underlying resources
+
+Process looks like:
+
+1. EC2 Image Builder create a Builder EC2 Instance
+2. Builder EC2 Instance create the new AMI, build applied components
+3. Test EC2 Instance tests the new AMI
+4. AMI can be distributed among multiple regions
+
+### EC2 Instance Store
 
