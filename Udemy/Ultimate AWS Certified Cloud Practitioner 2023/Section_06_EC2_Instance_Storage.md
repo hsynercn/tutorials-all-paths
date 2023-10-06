@@ -182,3 +182,25 @@ EFS Infrequent Access (EFS IA)
 
 ### Amazon FSx - Overview
 
+- Launch 3rd party high-performance file system on AWS
+- Fully manages service
+- FSx for Lustre
+- FSx for Windows File Server
+- FSx for NetApp ONTAP
+
+Amazon FSx for Windows File Server
+
+- A fully managed, highly reliable, and scalable Windows native file system
+- Built on Windows File Server
+- Supports SMB protocol & Windows NTFS
+- Integrated with Microsoft Active Directory
+- Can be accessed from on-premise infrastructure
+
+Amazon FSx for Lustre
+
+- A fully managed, high-performance, scalable file storage for High Performance Computing (HPC)
+- The name Lustre is derived from "Linux" and "cluster"
+- Machine Learning, Analytics, Video Processing, Financial Modeling, Electronic Design Automation
+- Scales up to 100s GB/s, millions of IOPS, sub-ms latencies
+
+### EC2 Instance Storage - Summary
