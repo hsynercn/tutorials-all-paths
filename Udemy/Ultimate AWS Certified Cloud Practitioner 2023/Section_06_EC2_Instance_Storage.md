@@ -173,4 +173,12 @@ EFS Infrequent Access (EFS IA)
 
 ### Shared Responsibility Model for EC2 Storage
 
+|AWS Managed|Customer Managed|
+|---|---|
+|Infrastructure|Setting up backup / snapshot procedures|
+|Replication for data for EBS volumes & EFS drives|Setting up data encryption|
+|replacing faulty hardware|Responsibility of any data on the drives|
+|Ensuring their employees cannot access your data|Understanding the risk of using EC2 Instance Store|
+
+### Amazon FSx - Overview
 
