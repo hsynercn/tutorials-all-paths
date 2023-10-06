@@ -149,3 +149,28 @@ Process looks like:
 - Backup and Replication are your responsibility
 
 Local EC2 instance storage has better read and write IOPS number.
+
+### EFS - Elastic File System
+
+- Managed NFS (Network File System) that can be mounted on 100s of EC2
+- EFS works with Linux EC2 instances in multi-AZ
+- Highly available, scalable, expensive (3x gp2), pay per use, no capacity planning
+- Security groups can be used to restrict access to EFS
+
+EBS and EFS
+
+- We need take snapshots for EBS, but not for EFS
+- EFS can be mounted on many EC2 instances across AZs, it is a shared file system
+
+EFS Infrequent Access (EFS IA)
+
+- Storage class that is cost-optimized for files not accessed every day
+- Up to 92% lower cost compared to EFS Standard
+- EFS automatically moves files to EFS IA based on last accessed time
+- We need to enable Lifecycle Management to use EFS IA
+- For example move files that are not accessed for 60 days to EFS IA
+- Transparent to the applications accessing EFS
+
+### Shared Responsibility Model for EC2 Storage
+
+
