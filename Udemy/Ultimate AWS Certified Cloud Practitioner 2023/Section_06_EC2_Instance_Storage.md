@@ -204,3 +204,27 @@ Amazon FSx for Lustre
 - Scales up to 100s GB/s, millions of IOPS, sub-ms latencies
 
 ### EC2 Instance Storage - Summary
+
+- EBS volumes:
+  - Network drives attached to one EC2 instance at a time
+  - Locked to an AZ
+  - Can use EBS Snapshots for backups / transferring EBS volumes across AZ
+- AM: create ready-to-use EC2 instances with our customizations
+- EC2 Image Builder: automatically build, test and distribute AMIs
+- EC2 Instance Store:
+  - High performance hardware disk attached to our EC2 instance
+  - Lost if the instance is stopped / terminated
+- EFS: network file system that can be attached to 100s of EC2 instances
+- EFS-IA: cost-optimized storage class for infrequently accessed files
+- FSx: fully managed 3rd party file system
+- FSx for Windows: Network File System for Windows servers
+- FSx for Lustre: High Performance Computing Linux file system
+
+### Section Cleanup
+
+We can delete listed resources from EC2 Dashboard:
+
+- Volumes
+- Snapshots
+- Instances
+- AMIs
