@@ -170,4 +170,41 @@ EC2 > Target groups > demo-tg-alb should display 2 healthy instances. If we cann
 
 ### Auto Scaling Groups (ASG) Strategies
 
+- Manual Scaling: Update the size of an ASG manually
+- Dynamic Scaling: Respond to changing demand
+  - Simple / Step Scaling
+    - When a CloudWatch alarm triggered (example CPU > 70%), then add 2 units
+    - When a CloudWatch alarm triggered (example CPU < 30%), then remove 1 unit
+  - Target Tracking Scaling
+    - Example target: average CPU usage across instances in ASG
+  - Scheduled Scaling
+    - Anticipate a scaling based on known usage patterns
+    - Example: increase the min capacity to 10 at 5pm on Fridays
+- Predictive Scaling
+  - Uses machine learning to predict future traffic
 
+### Section Cleanup
+
+- First we need to delete the Auto Scaling Group (ASG)
+- After that we can delete the Application Load Balancer (ALB)
+- We can delete the instances
+
+### ELB & ASG Summary
+
+- High Availability: Run instances across multiple AZ's
+- Vertical Scaling: Increase instance size (scale up/down)
+- Horizontal Scaling: Increase number of instances (scale out/in)
+- Elasticity: Scale up and down
+- Agility: Create and get rid of resources very quickly
+- ELB (Elastic Load Balancer): 
+  - Distribute traffic across multiple instances
+  - Support health checks
+  - 4 types:
+    - Application Load Balancer (HTTP / HTTPS only) - Layer 7
+    - Network Load Balancer (ultra-high performance, allows for TCP) - Layer 4
+    - Gateway Load Balancer - Layer 3
+    - Classic Load Balancer (RETIRED in 2023) - Layer 4 & 7
+- ASG (Auto Scaling Group):
+  - Implement elasticity for your application, across multiple AZ's
+  - Scale EC2 instances based on the demand on your system, replace unhealthy
+  - Integrated with ELB
