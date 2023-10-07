@@ -140,6 +140,34 @@ Our load balancer redirects traffic to our auto scaling group.
 
 ### Auto Scaling Groups (ASG) Hands On
 
+We need to delete existing EC2 instances first.
 
+After we can create a new Auto Scaling Group (ASG) from EC2 > Auto Scaling > Auto Scaling Groups > Create Auto Scaling Group:
+
+- Use "DemoASG" as name
+- Create launch template, "DemoLaunchTemplate"
+  - Template will say ASG to how to create EC2 instances
+  - We w,ll select Amazon Linux 2023 AMI
+  - t2.micro as instance type
+  - Select the existing security group "launch-wizard-1"
+- After creating the launch template we can select it from the ASG creation page
+- We will select 3 AZ and select subnets
+
+In the next page we should see advanced settings.
+
+- We will select the existing load balancer "demo-tg-alb"
+- No VPC Lattice service
+- Turn on Elastic Load Balancing health checks
+
+Configure group size and scaling policies:
+
+- Group size:
+  - Desired capacity: 2
+  - Minimum capacity: 1
+  - Maximum capacity: 4
+
+EC2 > Target groups > demo-tg-alb should display 2 healthy instances. If we cannot get the health status we can edit the health check options form settings and increase the interval and timeout durations.
+
+### Auto Scaling Groups (ASG) Strategies
 
 
