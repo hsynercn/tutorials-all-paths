@@ -124,6 +124,21 @@ We will create an Application Load Balancer (ALB) to distribute the traffic betw
 
 If we go to the ALB DNS name we should see the Apache pages from the instances, after several refreshes we should see the pages from both instances.
 
+### Auto Scaling Groups (ASG) Overview
+
+- In real life, the load on your websites and applications can change
+- In the cloud (AWS) we can create and get rid of servers very quickly
+- The goal of an Auto Scaling Group (ASG) is to:
+  - Scale out (add EC2 instances) to match an increased load
+  - Scale in (remove EC2 instances) to match a decreased load
+  - Ensure we have a minimum and a maximum number of machines running
+  - Automatically register new instances to a load balancer
+  - Replace unhealthy instances
+- Cost Savings: only run at an optimal capacity (principle of the cloud)
+
+Our load balancer redirects traffic to our auto scaling group.
+
+### Auto Scaling Groups (ASG) Hands On
 
 
 
