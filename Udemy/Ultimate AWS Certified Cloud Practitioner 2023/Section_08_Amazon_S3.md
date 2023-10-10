@@ -173,3 +173,16 @@ We need to upload the index.html file to the bucket and we can open the website 
 
 ### S3 Versioning Overview
 
+- You can version your files in Amazon S3
+- In is enabled at the bucket level
+- Same key overwrite will change the "version": 1, 2, 3
+- It is best practice to version your buckets
+  - Protect against unintended deletes (ability to restore a version)
+  - Easy roll back to previous version
+- Notes:
+  - Any file that is not versioned prior to enabling versioning will have version "null"
+  - Suspending versioning does not delete the previous versions
+
+### S3 Versioning Hands On
+
+
