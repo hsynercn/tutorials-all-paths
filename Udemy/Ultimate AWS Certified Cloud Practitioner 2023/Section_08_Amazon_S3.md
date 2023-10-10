@@ -185,4 +185,11 @@ We need to upload the index.html file to the bucket and we can open the website 
 
 ### S3 Versioning Hands On
 
+We need to go properties of the bucket and enable versioning.
+
+We will edit the index.html file and upload it again, if we enable the "Show version" option we can see the previous version of the file.
+
+If we delete the file, we can see the previous version of the file.
+
+### Replication Overview
 
