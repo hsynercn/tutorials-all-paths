@@ -61,4 +61,80 @@ S3 Objects
 
 ### S3 Hands On
 
+- We will go to Amazon S3 > Buckets > Create bucket
+- We will create a bucket with a globally unique name, "huseyin-demo-bucket"
+- We will close AWS Region, bucket will be created in one region
+- We don't touch any other settings, we will click "Create bucket"
+
+We can upload a file to this folder, from the course resources we can upload the coffee.jpg file.
+
+- We can open the image from the Amazon S3 > Buckets > huseyin-demo-bucket > coffee.jpg > Open, it will open the image with the browser and with a URL token.
+- Also we can try to use the global Object URL, but it will be forbidden, because we didn't set any permissions yet.
+
+We can go back to S3 bucket and create a folder "images", and upload beach.jpg file to this folder and delete this folder.
+
+### S3 Security: Bucket Policy
+
+- User-Based
+  - IAM Policies - which API calls should be allowed for specific user from IAM
+
+- Resource-Based
+  - Bucket Policies - bucket wide rules from the S3 console - allows cross account
+  - Object Access Control List (ACL) - finer grain (can be disabled)
+  - Bucket Access Control List (ACL) - less common (can be disabled)
+
+- Note: an IAM principal can access an S3 object if
+  - The user IAM permissions ALLOW it OR the resource policy ALLOWS it
+  - AND there is no explicit DENY
+
+- Encryption: encrypt objects in Amazon S3 using encryption keys
+
+S3 Bucket Policy Structure
+
+JSON based policies:
+
+- Resources: buckets and objects
+- Effect: Allow / Deny
+- Actions: Set of API to Allow or Deny
+- Principal: The account or user to apply the policy to
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicRead",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::huseyin-demo-bucket/*"
+    }
+  ]
+}
+```
+
+Use S3 bucket for policy to:
+
+- Grant public access to bucket
+- Force objects to be encrypted at upload
+- Grant access to another account (Cross Account)
+
+Examples:
+
+- Public Access: S3 bucket allows public access
+- IAM permissions: IAM user has S3 permissions
+- EC2 instance access: Uses IAM roles to access S3 buckets
+- Cross Account Access: Bucket policy allows another account to access S3 bucket
+- Block Public Access:
+  - These settings we created to prevent company data leaks
+  - If you know your bucket should be never be public, leave these settings on
+  - Can be set at the account level (all buckets)
+  - Block all public access
+    - Block public access to buckets and objects granted through new access control lists (ACLs)
+    - Block public access to buckets and objects granted through any access control lists (ACLs)
+    - Block public access to buckets and objects granted through new public bucket or access point policies
+    - Block public and cross-account access to buckets and objects through any public bucket or access point policies
+
+### S3 Security: Bucket Policy Hands On
+
 
