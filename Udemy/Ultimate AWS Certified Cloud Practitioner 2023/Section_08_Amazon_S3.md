@@ -137,4 +137,18 @@ Examples:
 
 ### S3 Security: Bucket Policy Hands On
 
+We can make our previous bucket public, Amazon S3 > Buckets > huseyin-demo-bucket > Permissions > Bucket public access > Edit and disable all settings.
+
+
+We will open to edit bucket policy and go to policy generator:
+
+- We will use "*" for principal
+- Select "GetObject" for action
+- We will use "arn:aws:s3:::huseyin-demo-bucket/*" for Amazon Resource Name (ARN), we can get the bucket name form the bucket page
+
+We will add statement and copy it to the bucket policy and save it.
+
+With these changes we should be able to see the resources with public URL, [https://huseyin-demo-bucket.s3.us-east-2.amazonaws.com/coffee.jpg](https://huseyin-demo-bucket.s3.us-east-2.amazonaws.com/coffee.jpg).
+
+### S3 Website Overview
 
