@@ -139,7 +139,6 @@ Examples:
 
 We can make our previous bucket public, Amazon S3 > Buckets > huseyin-demo-bucket > Permissions > Bucket public access > Edit and disable all settings.
 
-
 We will open to edit bucket policy and go to policy generator:
 
 - We will use "*" for principal
@@ -152,3 +151,18 @@ With these changes we should be able to see the resources with public URL, [http
 
 ### S3 Website Overview
 
+- S3 can host static websites and have them accessible on the internet
+
+The website URL will be:
+
+- [http://bucket-name.s3-website-aws-region.amazonaws.com](http://bucket-name.s3-website-aws-region.amazonaws.com)
+
+OR
+
+- [http://bucket-name.s3-website.aws-region.amazonaws.com](http://bucket-name.s3-website.aws-region.amazonaws.com)
+
+depending on the region.
+
+- If you get a 403 Forbidden error, make sure the bucket policy allows public reads.
+
+### S3 Website Hands On
