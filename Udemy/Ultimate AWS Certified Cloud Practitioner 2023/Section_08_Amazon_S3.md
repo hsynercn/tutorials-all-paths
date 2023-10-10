@@ -193,3 +193,15 @@ If we delete the file, we can see the previous version of the file.
 
 ### Replication Overview
 
+- Must enable versioning in source and destination
+- CRR: Cross Region Replication
+- SRR: Same Region Replication
+- Buckets can be in different accounts
+- Copying is asynchronous
+- Must give proper IAM permissions to S3
+-Use cases:
+  - CRR: Compliance, lower latency access, replication across accounts
+  - SRR: Log aggregation, live replication between production and test accounts
+
+### S3 Replication Hands On
+
