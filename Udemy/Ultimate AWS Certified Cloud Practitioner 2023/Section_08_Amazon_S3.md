@@ -219,3 +219,26 @@ After creation it will ask the replication of existing objects. We need to wait 
 
 ### S3 Storage Classes Overview
 
+- Amazon S3 Standard - General Purpose
+- Amazon S3 Standard - Infrequent Access (IA)
+- Amazon S3 One Zone - Infrequent Access
+- Amazon S3 Glacier Instant Retrieval
+- Amazon S3 Glacier Flexible Retrieval
+- Amazon S3 Glacier Deep Archive
+- Amazon S3 Intelligent Tiering
+
+We can move between classes manually or using S3 Lifecycle configurations.
+
+Durability:
+
+- High durability: 99.999999999, 11 nines, of objects across multiple AZ
+- If you store 10,000,000 objects with Amazon S3, you can on average expect to incur a loss of a single object once every 10,000 years
+- Same for all storage classes
+
+Availability:
+
+- Measures how readily available a service is
+- Varies depending on storage class
+- Example: S3 standard has 99.99% availability = not available 53 minutes per year
+
+
