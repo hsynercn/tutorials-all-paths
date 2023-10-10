@@ -166,3 +166,10 @@ depending on the region.
 - If you get a 403 Forbidden error, make sure the bucket policy allows public reads.
 
 ### S3 Website Hands On
+
+Open the related bucket and go to Properties > Static website hosting > Edit > Enable > Save changes and set the index document to "index.html".
+
+We need to upload the index.html file to the bucket and we can open the website with the URL [http://huseyin-demo-bucket.s3-website.us-east-2.amazonaws.com/](http://huseyin-demo-bucket.s3-website.us-east-2.amazonaws.com/).
+
+### S3 Versioning Overview
+
