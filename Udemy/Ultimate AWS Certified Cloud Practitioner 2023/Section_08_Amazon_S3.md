@@ -205,3 +205,17 @@ If we delete the file, we can see the previous version of the file.
 
 ### S3 Replication Hands On
 
+Let's create a new bucket for replication, "huseyin-demo-bucket-origin-v2", enable versioning. Upload a file to this bucket.
+
+We will create a new bucket for replication, "huseyin-demo-bucket-replica-v2", enable versioning.
+
+We need to go to origin bucket > Management > Create replication rule:
+
+- We can use "DemoREplicationRule"
+- We need to set the destination bucket, "huseyin-demo-bucket-replica-v2"
+- IAM role: Create new role
+
+After creation it will ask the replication of existing objects. We need to wait for a while to see the replication, if we check the destination bucket we can see the replicated file with same version.
+
+### S3 Storage Classes Overview
+
