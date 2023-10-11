@@ -399,3 +399,25 @@ AWS Snowmobile
 |Migration size|Up to 24 TB, online and offline|Up to 80 TB, offline|Up to exabytes, offline|
 |DataSync agent|Pre-installed|||
 
+Snow Family - Usage Process
+
+Data migration case:
+
+1. Request Snow Family device from AWS Console
+2. Install the snowball client / AWS OpsHub on your servers
+3. Connect the snowball to your servers and copy files using the client
+4. Ship back the device to AWS
+5. Data is loaded into an S3 bucket
+6. Snowball is completely wiped
+
+What is Edge Computing?
+
+- Process data while it's being created on an edge location
+  - A truck on the road, ship on the sea, a mining station, etc.
+- We setup a Snowball Edge / Snowcone device to do edge computing
+- Use cases of Edge Computing:
+  - Preprocess data
+  - Machine learning at the edge
+  - Transcoding media streams
+- Eventually (if need be) we can ship back the device to AWS (for transferring data for example)
+
