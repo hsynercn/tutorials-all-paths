@@ -421,3 +421,20 @@ What is Edge Computing?
   - Transcoding media streams
 - Eventually (if need be) we can ship back the device to AWS (for transferring data for example)
 
+Snow Family - Edge Computing
+
+- Snowcone & Snowcone SSD (smaller)
+  - 2CPUs, 4 GB of memory, wired or wireless access
+  - USB-C power using a cord or the optional battery
+- Snowball Edge - Compute Optimized
+  - 104 vCPU, 416 GiB of RAM
+  - Optional GPU for machine learning
+  - 24 TB NVMe or 42 TB HDD usable storage
+  - Storage Clustering available (up to 16 nodes)
+- Snowball Edge - Storage Optimized
+  - Up to 40 vCPUs, 80 GiB of RAM, 80 TB of storage
+
+All can run EC2 instances and AWS Lambda functions, using AWS IoT Greengrass.
+
+Long-term deployment options: 1 and 3 years discounted pricing options.
+
