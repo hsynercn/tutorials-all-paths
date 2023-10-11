@@ -388,3 +388,14 @@ AWS Snowcone & Snowcone SSD
 
 AWS Snowmobile
 
+- Transfer exabytes of data (1 EB = 1,000 PB = 1,000,000 TB)
+- Each Snowmobile has 100 PB of capacity
+- High security: temperature controlled, GPS, 24/7 video surveillance, alarm, etc.
+- Better than Snowball if you transfer more than 10 PB
+
+|Prop|Snowcone & Snowcone SSD|Snowball Edge Storage Optimized|Snowmobile|
+|--|--|--|--|
+|Storage|8 TB HDD or 14 TB SSD|80 TB HDD|100 PB|
+|Migration size|Up to 24 TB, online and offline|Up to 80 TB, offline|Up to exabytes, offline|
+|DataSync agent|Pre-installed|||
+
