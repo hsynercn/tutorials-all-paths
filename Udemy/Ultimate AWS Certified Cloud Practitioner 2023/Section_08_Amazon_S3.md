@@ -363,3 +363,28 @@ Challenges:
 
 AWS Snow Family: offline devices to perform data migrations. If it takes more than a week to transfer over the network, use Snowball devices.
 
+Snowball Edge (for data transfer):
+
+- Physical data transport solution that helps moving TBs or PBs of data in or out of AWS
+- Alternative to moving data over the network
+- Pay per data transfer job
+- Provide block storage and Amazon S3-compatible object storage
+- Snowball Edge Storage Optimized:
+  - 80 TB of HDD capacity for block volume and S3 compatible object storage
+- Snowball Edge Compute Optimized:
+  - 42 TB of HDD or 28 TB NVMe capacity for block volume and S3 compatible object storage
+- Use cases: large data cloud migrations, DC decommission, disaster recovery
+
+AWS Snowcone & Snowcone SSD
+
+- Small, portable computing, anywhere, rugged and secure, can withstand harsh environments
+- Light weight, 4.5 lbs (2.1 kg)
+- Device used for edge computing, storage, and data transfer
+- Snowcone - 8 TB of HDD Storage
+- Snowcone SSD - 14 TB of SSD Storage
+- Use Snowcone where Snowball doesn't fit: space constrained environments
+- Must provide your own battery, cables
+- Can be sent back to AWS offline, or connect it to internet and use AWS DataSync to send data
+
+AWS Snowmobile
+
