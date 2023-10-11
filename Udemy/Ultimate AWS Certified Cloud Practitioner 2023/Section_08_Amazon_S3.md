@@ -325,3 +325,14 @@ Both model exist in S3, by default server-side encryption is enabled.
 
 ### Shared Responsibility Model for S3
 
+|AWS|You|
+|--|--|
+|Infrastructure (global security, durability, availability, sustain concurrent loss of data in two facilities)|S3 Versioning|
+|Configuration and vulnerability analysis|S3 Bucket Policies|
+|Compliance validation|S3 Replication Setup|
+||Logging and Monitoring|
+||S3 Storage Classes|
+||Data encryption at rest and in transit|
+
+### AWS Snow Family Overview
+
