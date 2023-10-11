@@ -293,3 +293,35 @@ Behavior:
 
 ### S3 Storage Classes Hands On
 
+We will create a bucket from Amazon S3 > Buckets > Create bucket, "huseyin-s3-storage-classes-demos-2022". And we will upload a image file to this bucket.
+
+Under the bucket we can see the properties:
+
+- Standard: Frequently accessed data (more than once a month) with millisecond access
+- Intelligent Tiering: Data with changing or unknown access patterns
+- One Zone - IA: Recreateable data, infrequently accessed (once a month) stored in a single AZ with milliseconds access
+- Glacier Instant Retrieval: Long-lived archive data accessed once a quarter with instant retrieval in milliseconds
+- Glacier Flexible Retrieval (Formerly Glacier): Long-lived archive data accessed once a year with retrieval of minutes to hours
+- Glacier Deep Archive: Long-lived archive data accessed than once a year with retrieval of hours
+- Reduced redundancy: Noncritical, frequently accessed data with milliseconds access, not recommended as S3 Standard is cheaper
+
+Lifecycle Management:
+
+- Under bucket management we can create lifecycle rules
+- We can move the files to different storage classes after a period of time
+- We can review transition and expiration rules
+
+### S3 Encryption
+
+We could get one question about encryption in the exam.
+
+- Server-Side Encryption (DEFAULT)
+  - Server encrypts the file after receiving it
+
+- Client-Side Encryption
+  - Client encrypts the file and uploads the encrypted file to S3
+
+Both model exist in S3, by default server-side encryption is enabled.
+
+### Shared Responsibility Model for S3
+
