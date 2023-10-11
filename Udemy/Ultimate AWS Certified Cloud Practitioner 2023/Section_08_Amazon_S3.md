@@ -336,3 +336,30 @@ Both model exist in S3, by default server-side encryption is enabled.
 
 ### AWS Snow Family Overview
 
+- Highly-secure, portable devices to collect and process data at the edge, and migrate data into and out of AWS
+
+- Data migration:
+  - Snowcone
+  - Snowball Edge
+  - Snowmobile
+
+- Edge computing:
+  - Snowcone
+  - Snowball Edge
+
+|Data size|100 Mbps|1 Gbps|10 Gbps|
+|--|--|--|--|
+|10 TB|12 days|30 hours|3 hours|
+|100 TB|124 days|12 days|30 hours|
+|1 PB|3 years|124 days|12 days|
+
+Challenges:
+
+- Limited connectivity
+- Limited bandwidth
+- High network costs
+- Shared bandwidth, can't maximize the line
+- Connection stability
+
+AWS Snow Family: offline devices to perform data migrations. If it takes more than a week to transfer over the network, use Snowball devices.
+
