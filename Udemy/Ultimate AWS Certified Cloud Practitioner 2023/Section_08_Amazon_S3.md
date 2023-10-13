@@ -489,3 +489,13 @@ AWS Storage Gateway
 
 ### S3 Summary
 
+- Buckets vs Objects: global unique name, tied to a region
+- S3 Security: IAM policy, S3 Bucket Policy (public access), S3 Encryption
+- S3 Websites: host a static website on S3
+- S3 Versioning: multiple versions of a file in S3i prevent accidental deletes
+- S3 Replication: CRR (Cross Region Replication), SRR (Same Region Replication), must enable versioning
+- S3 Storage Classes: Standard, IA, IZ-IA, Intelligent, Glacier (Instant, Flexible, Deep)
+- Snow Family: Snowcone, Snowball Edge, Snowmobile, import data onto S3 through physical device, edge computing
+- OpsHub: desktop application to manage Snow Family devices
+- Storage Gateway: Hybrid solution to extend on-premises storage to S3
+
