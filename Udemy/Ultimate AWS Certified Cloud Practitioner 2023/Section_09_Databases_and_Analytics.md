@@ -34,3 +34,45 @@ NoSQL Databases
 
 Examples: Key-value, document, graph, in-memory, search databases
 
+NoSQL data example: JSON
+
+- JSON = JavaScript Object Notation
+- Json is a common dorm of data that fits into a NoSQL database
+- Data can be nested
+- Fields can change over time
+- Support for new types: arrays etc.
+
+```json
+{
+  "name": "John",
+  "age": 30,
+  "cars": [
+    {
+      "name": "Ford",
+      "models": ["Fiesta", "Focus", "Mustang"]
+    },
+    {
+      "name": "BMW",
+      "models": ["320", "X3", "X5"]
+    },
+    {
+      "name": "Fiat",
+      "models": ["500", "Panda"]
+    }
+  ]
+}
+```
+
+Databases and Shared Responsibility on AWS
+
+- AWS offers use to manage different types of databases
+- Benefits include:
+  - Quick Provisioning, High Availability, Vertical and Horizontal Scaling
+  - Automated Backup & Restore, Operations, Upgrades
+  - OS Patching is handled by AWS
+  - Monitoring, alerting
+
+NOTE: Many database technologies could be run on EC2, but you must handle yourself the resiliency, backup, patching, high availability, fault tolerance, scaling, etc.
+
+### RDS & Aurora Overview
+
