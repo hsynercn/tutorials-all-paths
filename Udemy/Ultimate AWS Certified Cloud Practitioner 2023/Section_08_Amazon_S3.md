@@ -438,4 +438,16 @@ All can run EC2 instances and AWS Lambda functions, using AWS IoT Greengrass.
 
 Long-term deployment options: 1 and 3 years discounted pricing options.
 
+AWS OpsHub
+
+- Historically, to use Snow Family devices, you needed a CLI
+- Today tou can use AWS OpsHub, a software you install on your computer / laptop to manage your Snow Family Device
+- You can use it to:
+  - Unlocking and configuring single or clustered devices
+  - Transferring files
+  - Launching and managing instances running on Snow Family devices
+  - Monitoring device metrics, storage capacity, active instances on your device
+  - Launch compatible AWS services on your devices, ex: Amazon EC2 instances, AWS DataSync, Network File Systems (NFS)
+
+### Storage Gateway Overview
 
