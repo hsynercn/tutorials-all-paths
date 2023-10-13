@@ -76,3 +76,12 @@ NOTE: Many database technologies could be run on EC2, but you must handle yourse
 
 ### RDS & Aurora Overview
 
+- RDS stands for Relational Database Service
+- It's managed DB service for DB use SQL as a query language
+- It allows you to create databases in the cloud that are managed by AWS
+  - Postgres
+  - MySQL
+  - MariaDB
+  - Oracle
+  - Microsoft SQL Server
+  - Aurora (AWS Proprietary database)
