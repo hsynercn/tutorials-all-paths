@@ -451,3 +451,41 @@ AWS OpsHub
 
 ### Storage Gateway Overview
 
+- AWS is pushing for "hybrid cloud"
+  - Part of your infrastructure on premise
+  - Part of your infrastructure in the cloud
+
+- This can be due to
+  - Long cloud migrations
+  - Security requirements
+  - Compliance requirements
+  - IT strategy
+
+S3 is a proprietary storage technology, so how do we expose the S3 data on-premise > AWS Storage Gateway.
+
+AWS Storage Cloud Native Options
+
+- BLOCK
+  - Amazon EBS (Elastic Block Store)
+  - Amazon EC2 Instance Store
+
+- FILE
+  - Amazon EFS (Elastic File System)
+
+- OBJECT
+  - Amazon S3 (Simple Storage Service)
+  - Amazon Glacier
+
+AWS Storage Gateway
+
+- Bridge between on-premise data and cloud data in S3
+- Hybrid storage service to allow on-premises to seamlessly use AWS Cloud
+- Use cases: disaster recovery, backup & restore, tiered storage
+
+- Types Of Storage Gateway
+  - File Gateway (NFS): store flat files directly on S3
+  - Volume Gateway (iSCSI): block-based storage, taking snapshots and storing them in S3
+  - Tape Gateway (VTL): backup/archival solution using popular backup software (Veeam, etc.)
+
+### S3 Summary
+
