@@ -85,3 +85,32 @@ NOTE: Many database technologies could be run on EC2, but you must handle yourse
   - Oracle
   - Microsoft SQL Server
   - Aurora (AWS Proprietary database)
+
+Advantages over using RDS versus deploying DB on EC2
+
+- RDS is a managed service
+  - Automated provisioning, OS patching
+  - Continuous backups and restore to specific timestamp (Point in Time Restore)
+  - Monitoring dashboards
+  - Read replicas for improved read performance
+  - Multi AZ setup for DR (Disaster Recovery)
+  - Maintenance windows for upgrades
+  - Scaling capability (vertical and horizontal)
+  - Storage backed by EBS (gp2 or io1)
+- BUT you cannot SSH into your instances
+
+RDS Solutions Architecture
+
+In our case we can create a scenario where we have a web application that has a Elastic Load Balancer and an Auto Scaling Group. The Auto Scaling Group will have EC2 instances that will be connected to a RDS instance. The RDS instance will have a Multi-AZ setup and will have a Read Replica.
+
+Amazon Aurora
+
+- Aurora is a proprietary technology from AWS (not open sourced)
+- PostgreSQL and MySQL are both supported as Aurora DB (that means your drivers will work as if Aurora was a Postgres or MySQL database)
+- Aurora is "AWS cloud optimized" and claims 5x performance improvement over MySQL on RDS, over 3x the performance of Postgres on RDS
+- Aurora storage automatically grows in increments of 10GB, up to 128TB
+- Aurora costs more than RDS (20% more) - but is more efficient
+- Not in the free tier
+
+### RDS Hands On
+
