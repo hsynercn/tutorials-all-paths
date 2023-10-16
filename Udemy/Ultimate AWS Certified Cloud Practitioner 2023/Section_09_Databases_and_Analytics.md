@@ -114,3 +114,27 @@ Amazon Aurora
 
 ### RDS Hands On
 
+We will create a database from RDS > Create database.
+
+- For hands on case we will start with standard create
+- We wil select MySQL, community edition
+- Templates > Free tier
+- We will set a password
+- For free tier we will use t2.micro
+- We will enable public access
+- We will set a nre security group: demo-database-rds
+
+After creating the DB we can take snapshots. Delete the DB and snapshot later.
+
+### RDS Deployments: Read Replicas Multi-AZ
+
+- Read replicas:
+  - Scale the read workload of your DB
+  - Can create up to 15 read replicas
+  - Data is only written to the main DB
+  - Application(s) can read from multiple replicas, but only can write to the main DB
+
+- Multi AZ (Disaster Recovery):
+  - Failover in case of AZ outage (high availability)
+  - Data in only read/written to the main database
+  - Can only have 1 other AZ as failover 
