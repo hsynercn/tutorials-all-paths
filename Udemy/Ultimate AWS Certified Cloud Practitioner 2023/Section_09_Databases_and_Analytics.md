@@ -191,4 +191,11 @@ DynamoDB Accelerator - DAX
 
 ### DynamoDB Global Tables
 
+- Make a DynamoDB table accessible with low latency in multiple-regions
+- Active-Active replication, read/write to any AWS Region
+
+Users can use a DynamoDB table in the US and in Europe and the data will be replicated between the two regions.
+
+### Redshift Overview
+
 
