@@ -137,4 +137,58 @@ After creating the DB we can take snapshots. Delete the DB and snapshot later.
 - Multi AZ (Disaster Recovery):
   - Failover in case of AZ outage (high availability)
   - Data in only read/written to the main database
-  - Can only have 1 other AZ as failover 
+  - Can only have 1 other AZ as failover
+
+RDS Deployments: Multi-Region
+
+Multi-Region (Read Replicas)
+
+- Disaster recovery in case of region issue
+- Local performance for global reads
+- Replication cost
+
+### ElastiCache Overview
+
+- The same way RDS is to get managed relational databases
+- ElastiCache is to get managed Redis or Memcached
+- Caches are in-memory databases with high performance, low latency
+- Helps reduce load off databases for read intensive workloads
+- AWS takes care of OS maintenance / patching, optimizations, setup, configuration, monitoring, failure recovery and backups
+
+ElastiCache Solution Architecture - Cache
+
+We can lift read load off our RDS database by using ElastiCache. ElastiCache could provide fast read / write access to our application. It can relieve pressure from the main database.
+
+### DynamoDB Overview
+
+- Fully managed highly available with replication across 3 AZ
+- NoSQL database - not a relational database
+- Scales to massive workloads, distributed "serverless" database
+- Millions of requests per seconds, trillions of rows, 100s of TB of storage
+- Fast and consistent in performance - low latency retrieval
+- Integrated with IAM for security, authorization and administration
+- Low cost and auto scaling capabilities
+- Standard and Infrequent Access (IA) Table Class
+
+DynamoDB is a key/value database
+
+- Primary key: Partition key and Sort key
+- Attributes: Custom attributes
+
+DynamoDB Accelerator - DAX
+
+- Fully Managed in-memory cache for DynamoDB
+- 10x performance improvement - single digit millisecond latency to microseconds latency - when accessing your DynamoDB tables
+- Secure, highly scalable, highly available
+- Difference with ElasticCache at the CCP level: DAX is only used for and is integrated with DynamoDB, while ElastiCache can be used for other databases
+
+### DynamoDB Hands On
+
+- Table name: DemoTable
+- Partition key: user_id
+- We can add items to this table
+- Delete table
+
+### DynamoDB Global Tables
+
+
