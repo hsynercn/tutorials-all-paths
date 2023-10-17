@@ -191,11 +191,44 @@ DynamoDB Accelerator - DAX
 
 ### DynamoDB Global Tables
 
-- Make a DynamoDB table accessible with low latency in multiple-regions
-- Active-Active replication, read/write to any AWS Region
+- Make a DynamoDB table accessible with low latency in multiple-regions.
+- Active-Active replication, read/write to any AWS Region.
 
 Users can use a DynamoDB table in the US and in Europe and the data will be replicated between the two regions.
 
 ### Redshift Overview
+
+- Redshift is based on PostgreSQL, but it is not used for OLTP (Online Transaction Processing)
+- It is OLAP (Online Analytical Processing) - used for Business Intelligence / Data Warehousing
+- Load data once every hour, not every second
+- 10x better performance than other data warehouses, scale PBs of data
+- Columnar storage of data (instead of row based)
+- Massively Parallel Query Execution (MPP) - highly available
+- Pay as you go based on the instances provisioned
+- Has a SQL interface for performing queries
+- BI tools such as AWS Quicksight or Tableau integrate with Redshift
+
+### Amazon EMR
+
+- EMR = Elastic MapReduce
+- EMR helps create Hadoop clusters (big data) to analyze and process vast amounts of data
+- The clusters can be made of hundreds of EC2 instances
+- Also supports Apache Spark, HBase, Presto, Flink...
+- EMR takes care of all the provisioning and configuration
+- Auto-scaling and integrated with Spot instances
+- Use cases: data processing, machine learning, web indexing, big data
+
+### Amazon Athena
+
+- Serverless query service to perform analytics directly on S3 objects
+- Uses standard SQL language to query the files
+- Supports CSV, JSON, ORC, Avro, and Parquet files (built on Presto)
+- Pricing $5 per TB of data scanned
+- Use compressed or columnar data for cost savings (less scan)
+- Use cases: Business intelligence / analytics / reporting, analyze AWS Cost and Usage reports, query VPC Flow Logs, query CloudTrail logs, etc.
+
+Exam Tip: analyze data in S3 using serverless SQL, use Athena
+
+### Amazon QuickSight
 
 
