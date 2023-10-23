@@ -266,3 +266,15 @@ Exam Tip: analyze data in S3 using serverless SQL, use Athena
 
 ### Amazon QLDB
 
+- QLDB stands for Quantum Ledger Database
+- A ledger is a book recording financial transactions
+- Fully Managed, Serverless, High available, Replications across 3 AZ
+- Used to review h,story of all changes made to your application data over time
+- Immutable system: no entry can be removed or modified, cryptographic verification
+- 2-3x better performance than common ledger blockchain frameworks, manipulate data using SQL
+- Difference with Amazon Managed Blockchain: no decentralized component, in accordance with financial regulation rules
+
+QLDB: CENTRALIZED
+
+### Managed Blockchain Overview
+
