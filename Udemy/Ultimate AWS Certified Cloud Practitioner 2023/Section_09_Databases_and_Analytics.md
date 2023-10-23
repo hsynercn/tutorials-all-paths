@@ -278,3 +278,42 @@ QLDB: CENTRALIZED
 
 ### Managed Blockchain Overview
 
+- Blockchain makes it possible to build applications where multiple parties can execute transactions without the need for a trusted, central authority
+- Amazon Managed Blockchain is managed service to:
+  - Join public blockchain networks
+  - Or create your own scalable private network
+- Compatible with the frameworks Hyperledger Fabric & Ethereum
+
+### Glue Overview
+
+- AWS Glue is a managed extract, transform, and load (ETL) service
+- Useful to prepare and transform data for analytics
+- Fully serverless service
+- Glue Data: catalog of datasets
+  - can be used by Athena, Redshift, EMR
+
+### DMS Overview
+
+- DMS = Database Migration Service
+- Quick and securely migrate databases to AWS, resilient and self-healing
+- The source database remains available during the migration
+- Supports:
+  - Homogeneous migrations: ex Oracle to Oracle
+  - Heterogeneous migrations: ex Microsoft SQL Server to Aurora
+
+### Databases & Analytics Summary in AWS
+
+- Relational Databases OLTP (Online Transaction Processing): RDS & Aurora (SQL)
+- Difference between Multi-AZ, Read Replicas, Multi-Region
+- In-memory Database: ElastiCache
+- Key/Value Database: DynamoDB (Serverless) & DAX (cache for DynamoDB)
+- Warehouse - OLAP: Redshift (SQL)
+- Hadoop Cluster: EMR
+- Athena: query data on Amazon S3 (serverless & SQL)
+- QuickSight: dashboard on your data (serverless)
+- DocumentDB: "Aurora for MongoDB" (JSON - NoSQL database)
+- Amazon QLDB: Financial Transactions Ledger (immutalbe journal, cryptographically verifiable)
+- Amazon Managed Blockchain: managed Hyperledger Fabric & Ethereum blockchains
+- Glue: Managed ETL (Extract Transform Load) and Data Catalog service
+- Database Migration Service: DMS
+- Neptune: Graph Database
