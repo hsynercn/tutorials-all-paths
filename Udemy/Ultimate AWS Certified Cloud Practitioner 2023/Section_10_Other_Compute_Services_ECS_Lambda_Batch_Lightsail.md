@@ -67,3 +67,72 @@ Some examples of Serverless services:
 - Lambda (piooneer of the Serverless movement)
 
 ### Lambda Overview
+
+Why AWS Lambda?
+
+- Amazon EC2
+  - Virtual Servers in the Cloud
+  - Limited by RAM and CPU
+  - Continuously running
+  - Scaling means intervention to add / remove servers
+
+- Amazon Lambda
+  - Virtual functions - no servers to manage
+  - Limited by time - short executions
+  - Run on-demand
+  - Scaling is automated
+
+Benefits of AWS Lambda
+
+- Easy pricing
+  - Pay per request and compute time
+  - Free tier of 1.000.000 AWS Lambda requests and 400.000 GB-seconds of compute time per month
+- Integrated with the whole AWS suite of services
+- Event-Driven: functions get invoked by AWS when needed
+- Integrated with many programming languages
+- Easy monitoring through AWS CloudWatch
+- Easy to get more resources per functions (up to 10 GB of RAM)
+- Increasing RAM will also improve CPU and network
+
+AWS Lambda language support:
+
+- Node.js (JavaScript)
+- Python
+- Java (Java 8 compatible)
+- C# (.NET Core)
+- Golang
+- C# (PowerShell)
+- Ruby
+- Custom Runtime API (Community supported, example Rust)
+
+- Lambda Container Image
+  - The container image must implement Lambda Runtime API
+  - ECS / Fargate is preferred for running arbitrary Docker images
+
+Example: Serverless Thumbnail creation
+
+- User uploads an image to S3
+- S3 triggers a Lambda function
+- Lambda function creates a 50x50 thumbnail of the image, and puts it in another S3 bucket
+- Also pushes metadata to DynamoDB
+
+Example: Serverless CRON job
+
+- CloudWatch Events Event Bridge can be used to trigger Lambda functions on a schedule
+
+AWS Lambda Pricing: example
+
+- Pay per calls:
+  - First 1.000.000 calls are free
+  - Then $0.20 per 1.000.000 calls
+- Pay per duration: (in increment of 1 ms)
+  - 400.000 GB-seconds of compute time per month is FREE
+  - 4000.000 seconds if function uses 1 GB of RAM
+  - 3.200.000 seconds if function is 128 MB of RAM
+  - After that $1.00 for 600.000 GB-seconds
+
+It is usually very cheap to run AWS Lambda so it's very popular
+
+### Lambda Hands On
+
+
