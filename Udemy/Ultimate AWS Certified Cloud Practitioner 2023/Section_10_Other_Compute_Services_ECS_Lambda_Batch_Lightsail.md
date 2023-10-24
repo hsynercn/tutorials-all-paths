@@ -52,3 +52,18 @@ ECR
 - This is where you store your Docker images so they can be run by ECS or Fargate
 
 ### Serverless Introduction
+
+- Serverless is a new paradigm in which the developers do not have to manage servers anymore
+- They just deploy functions
+- Initially Serverless == FaaS (Function as a Service)
+- Serverless was pioneered by AWS Lambda but now also includes anything that's manages: "databases, messaging, storage," etc.
+- Serverless doesn't mean there are no servers, it means you don't manage / provision / see them
+
+Some examples of Serverless services:
+
+- Amazon S3
+- DynamoDB
+- Fargate
+- Lambda (piooneer of the Serverless movement)
+
+### Lambda Overview
