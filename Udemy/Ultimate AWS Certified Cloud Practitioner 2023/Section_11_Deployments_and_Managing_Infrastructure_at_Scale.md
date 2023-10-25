@@ -45,3 +45,82 @@ CloudFormation Stack Designer
 
 ### CloudFormation Hands On
 
+Go to us-east-1, otherwise you will not be able to create a CloudFormation stack.
+
+- We will create a stack and use the 0-just-ec2.yaml for source.
+- We can check the resources from the designer.
+
+AFter submit we can see it is creating the stack and we can see the provided configuration.
+
+After this step we can update the stack and select the 1-ec2-wit-sg-eip.yaml. After we set a name for security group we can see the change set of the stack.
+
+During the changes AWs will handle the resource deletion and creation process in the background.
+
+### CDK Overview
+
+AWS Cloud Development Kit (CDK)
+
+- Define your cloud infrastructure using a familiar programming language
+  - JavaScript, TypeScript, Python, Java, C#
+- The code is "compiled" into CloudFormation template (JSON/YAML)
+- You can therefore deploy infrastructure and application runtime code together
+  - Great for Lambda functions
+  - Great for Docker containers ECS / EKS
+
+### Beanstalk Overview
+
+Developer problems on AWS
+
+- Managing infrastructure
+- Deploying Code
+- Configuring all the databases, load balancers
+- Configuring all the databases, load balancers, etc
+- Scaling concerns
+- Most web apps have the same architecture (ALB + ASG)
+- Possibly, consistently across different applications and environments
+
+AWS Elastic Beanstalk
+
+- Elastic Beanstalk is a developer centric view of deploying an application on AWS
+- It uses all components we've seen before: EC2, ASG, ELB, RDS, etc.
+- But it's all in one view that's easy to make sense of!
+- We still have full control over the configuration
+- Beanstalk = Platform as a Service (PaaS)
+- Beanstalk is free but you pay for the underlying instances
+
+Elastic Beanstalk
+
+- Managed service
+  - Instance configuration / OS is handled by Beanstalk
+  - Deployment strategy is configurable but performed by Elastic Beanstalk
+  - Capacity provisioning
+  - Load balancing and auto-scaling
+  - Application health-monitoring and responsiveness
+- Just the application code is the responsibility of the developer
+
+Three architecture models
+
+- Single instance deployment: good for dev
+- LB + ASG: great for production or pre-production web applications
+- ASG only: great for non-web apps in production (workers, etc)
+
+Beastalk supports:
+
+- Go
+- Java SE
+- Java with Tomcat
+- .NET on Windows Server with IIS
+- Node.js
+- PHP
+- Python
+- Ruby
+- Packer Builder
+- Single Container Docker
+- Multi container Docker
+- If not supported, you can write your custom platform (advanced)
+
+Beanstalk supports health monitoring.
+
+### Beanstalk Hands On
+
+
