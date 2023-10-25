@@ -135,4 +135,62 @@ It is usually very cheap to run AWS Lambda so it's very popular
 
 ### Lambda Hands On
 
+We can learn details from the begin [begin](https://us-east-2.console.aws.amazon.com/lambda/home?region=us-east-2#/begin) link.
+
+- On this page we can try different languages to see execution results.
+- We can see how to trigger Lambda functions.
+- How cost is calculated.
+
+We will create a Lambda function:
+
+- Select use a blueprint
+- Search for hello-world-python3
+- Create function
+
+After creation create a test event ant try it, we will see the duration time and logs.
+
+We can change the settings of the function:
+
+- Memory 128 MB to 10240 MB
+- Timeout 1 sec to 15 min
+
+### Amazon API Gateway
+
+- Fully manages service for developers to easily create, publish, maintain, monitor, and secure APIs
+- Serverless and scalable
+- Supports RESTful APIs and WebSocket APIs
+- Support for security, user authentication, API throttling, API keys, monitoring
+
+Example: building a serverless API
+
+- Client will send REST API calls to API Gateway
+- API Gateway make PROXY REQUEST to Lambda
+- Lambda executes the code and makes CRUD operation to DynamoDB
+
+### Batch Overview
+
+- Fully manages batch processing at any scale
+- Efficiently run 100.000s of computing batch jobs on AWS
+- A batch job is a job with a start and an end (opposed to continuous jobs)
+- Batch will dynamically launch EC2 or Spot instances
+- AWS Batch provisions the right amount of compute / memory
+- You submit or schedule batch jobs and AWS Batch does the rest
+- Batch jobs are defined as Docker images and run on ECS (Elastic Container Service)
+- Helpful for cost optimizations and focusing less on the infrastructure
+
+Batch vs Lambda
+
+- Lambda:
+  - Time limit
+  - Limited runtimes
+  - Limited temporary disk space
+  - Serverless
+- Batch:
+  - No time limit
+  - Any runtime as long as it's packages as a Docker image
+  - Rely on EBS / instance store for disk space
+  - Relies on EC2 (can be managed by AWS)
+
+### Lightsail Overview
+
 
