@@ -193,4 +193,38 @@ Batch vs Lambda
 
 ### Lightsail Overview
 
+- Virtual servers, storage, databases, and networking
+- Low and predictable pricing
+- Simpler alternative to EC2, RDS, ELB, EBS, Route 53, etc.
+- Great for people with less cloud experience
+- Can setup notifications and monitoring of your Lightsail resources
+- Use cases:
+  - Simple web applications (has templates for LAMP, Nginx, MEAN, Node.js, etc.)
+  - Websites (templates for WordPress, Magento, Plesk, Joomla, etc.)
+  - Dev / Test environments
+- Has high availability but no auto-scaling, limited AWS integrations
+
+### Other ComputeS - Summary
+
+- Docker: container technology to run applications
+- ECS: run Docker containers on EC2 instances
+- Fargate:
+  - Run Docker containers without provisioning the infrastructure
+  - Serverless offering (no EC2 instances)
+- ECR: Private Docker Images Repository
+- Batch: run batch jobs on AWS across manages EC2 instances
+- Lightsail: predictable and lw pricing for simple application and DB stacks
+
+Lambda Summary
+
+- Lambda is Serverless, Functions as a Service (FaaS), seamless scaling, reactive
+- Lambda Billing
+  - By the time run x by the RAM provisioned
+  - By the number of invocations
+- Language Support: many programming languages except arbitrary Docker images
+- Invocation time: up to 15 minutes
+- Use cases:
+  - Create Thumbnails for images uploaded onto S3
+  - Run a Serverless cron job
+- API Gateway: expose Lambda functions as HTTP API
 
