@@ -210,3 +210,37 @@ After role creation select new role for service role and create Beanstalk app wi
 
 ### CodeStar and Cloud9 Hands On
 
+If we search for CodeCommit we can see several functions.
+
+But for a better experience we can use CodeStar.
+
+- Go to CodeStar start a new project
+- Select Python (Flask) with AWS Elastic Beanstalk
+- Use "DemoProject" as project name
+- Create a dummy key pair
+- Create a new role for CodeStar
+
+After the creation we can see the project dashboard. We can initialize a Cloud9 environment and check the code. If we edit and commit the code we can see the changes in the CodeCommit.
+
+After the hands on part we can delete the project from CodeStar > Projects.
+
+### System Manager (SSM) Overview
+
+- Helps you manage your EC2 and On-Premises systems at scale
+- Another Hybrid AWS service
+- Get operational insights about the state of your infrastructure
+- Suite of 10+ products
+- Most important features are:
+  - Patching automation for enhanced compliance
+  - Run commands across an entire fleet of servers
+  - Store parameter configuration with SSM Parameter Store
+- Works for Linux, Windows, MacOS, and Raspberry Pi OS
+
+How System Manager works:
+
+- We need to install the SSM agent onto the systems we control
+- Installed by default on Amazon Linux AMI and some Ubuntu AMI
+- If an instance can't be controlled with SSM, it's probably an issue with the SSM agent
+- Thanks to the SSM agent, we can run commands, path and configure our server
+
+### SSM Session Manager
