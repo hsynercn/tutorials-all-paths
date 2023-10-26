@@ -144,3 +144,69 @@ Under service access:
 After role creation select new role for service role and create Beanstalk app with skipping other steps.
 
 ### AWS Code Deploy
+
+- We want to deploy our application automatically
+- Works with EC2 instances
+- Works with On-Premises servers
+- It is a hybrid service
+- Servers / Instances must be provisioned and configured ahead of time the CodeDeploy Agent
+
+### CodeCommit Overview
+
+- Before pushing the application code to servers, it needs to be stored somewhere
+- Developers usually store code in a repository, using the Git technology (e.g. GitHub)
+- A common public offering is GitHub, AWS' competing product is CodeCommit
+
+- CodeCommit:
+  - Source-control service that hosts Git-based repositories
+  - Makes it easy to collaborate with others on code
+  - The code changes are automatically versioned
+
+- Benefits
+  - Fully manages
+  - Scalable and highly available
+  - Private, Secured, Integrated with AWS
+
+### AWS CodeBuild
+
+- Code building service in the cloud
+- Compiles source code, run tests, and produces packages that are ready to be deployed (by CodeDeploy) for example)
+- Benefits:
+  - Fully manages, serverless
+  - Continuous scaling and highly available
+  - Secure
+  - Pay-as-you-go pricing - only pay for the build time
+
+### AWS CodePipeline
+
+- Orchestrate the different steps to have the code automatically pushed to production
+  - Code > Build > Test > Provision > Deploy
+  - Basis for CICD (Continuous Integration and Continuous Delivery)
+- Benefits:
+  - Fully managed, compatible with CodeCommit, CodeBuild, CodeDeploy, GitHub, 3rd party Git services
+  - Fast delivery and rapid updates
+
+### AWS CodeArtifact
+
+- Software packages depend on each other to be built and new ones are created
+- Storing and retrieving these dependencies is called artifact management
+- Traditionally you need to setup your own artifact management system
+- CodeArtifact is a secure, scalable, and cost-effective artifact management service
+- Works with common dependency management tools such as Maven, Gradle, npm, yarn, twine, pip, and NuGet
+- Developers and CodeBuild can retrieve these artifacts from CodeArtifact
+
+### AWS CodeStar
+
+- Unified UI to easily manage software development activities in one place
+- "Quick way" to get started to correctly set up CodeCommit, CodePipeline, CodeBuild, CodeDeploy, Elastic Beanstalk, EC2
+- Can edit the code "in the cloud" with AWS Cloud9
+
+### AWS Cloud9
+
+- AWS Cloud9 is a cloud-based IDE for writing, running, and debugging code
+- "Classic" IDE (like IntelliJ, VS Code, etc...) are downloaded on a computer before being used
+- A cloud IDE can be used within a web browser, meaning you can work on your projects from anywhere
+- AWS Cloud9 is also allows for code collaboration in real-time
+
+### CodeStar and Cloud9 Hands On
+
