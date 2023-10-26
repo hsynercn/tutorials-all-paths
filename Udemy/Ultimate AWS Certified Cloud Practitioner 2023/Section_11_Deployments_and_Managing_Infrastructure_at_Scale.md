@@ -123,4 +123,24 @@ Beanstalk supports health monitoring.
 
 ### Beanstalk Hands On
 
+- Creation process will ask about environment:
+  - Web server environment
+  - Worker environment
+- Set "MyApplication" as application name
+- Set "MyApplication-dev" as environment name
+- Select Node.js as platform
+- Select sample application
+- Use single instance
 
+Under service access:
+
+- Select "Create and use new service role"
+- Go to IAM , create a new role with
+  - AWSElasticBeanstalkWebTier
+  - AWSElasticBeanstalkWorkerTier
+  - AWSElasticBeanstalkMulticontainerDocker
+- Set "aws-elasticbeanstalk-ec2-role" as role name
+
+After role creation select new role for service role and create Beanstalk app with skipping other steps.
+
+### AWS Code Deploy
