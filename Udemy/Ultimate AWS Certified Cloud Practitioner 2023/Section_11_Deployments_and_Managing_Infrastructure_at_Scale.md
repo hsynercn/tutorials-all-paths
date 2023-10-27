@@ -244,3 +244,51 @@ How System Manager works:
 - Thanks to the SSM agent, we can run commands, path and configure our server
 
 ### SSM Session Manager
+
+- Allows you to start a secure shell on your EC2 and on-premises servers
+- No SSH access, bastion hosts, or SSH keys needed
+- No port 22 needed (better security)
+- Supports Linux, macOS, and Windows
+- Send session log data to S3 or CloudWatch Logs
+
+### SSM Parameter Store
+
+- Secure storage for configuration and secrets
+- API keys, passwords, DB connection strings, etc...
+- Serverless, scalable, durable, easy SDK
+- Control access permissions using IAM
+- version tracking and encryption (optional)
+
+### OpsWorks Overview
+
+- Chef and Puppet help you perform server configuration automatically, or repetitive actions
+- They work great with EC2 and on-premises VM
+- AWS OpsWorks = Managed Chef and Puppet
+- It's an alternative to AWS SSM
+- Only provision standard AWS resources
+  - EC2 instances, Databases, Load Balancers, EBS volumes
+
+IMPORTANT: In the exam if Chef or Puppet needed => AWS OpsWorks
+
+### Deployment Summary
+
+- CloudFormation: (AWS only)
+  - Infrastructure as code, works with almost all of AWS resources
+  - Repeat across Regions and Accounts
+- Beanstalk (AWS only)
+  - Platform as a Service (PaaS), limited to certain programming languages or Docker
+  - Deploy code consistently with a known architecture: ALB + EC2 + RDS
+- CodeDeploy (hybrid): deploy and upgrade any application onto servers
+- Systems Manager (hybrid): patch, configure and run commands at scale
+- OpsWorks (hybrid): managed Chef and Puppet in AWS
+
+### Developer Services
+
+- CodeCommit: Store code in private git repository (version controlled)
+- CodeBuild: Build and test code in AWS
+- CodeDeploy: Deploy code onto servers
+- CodePipeline: Orchestration of pipeline (from code to build to deploy)
+- CodeArtifact: Store software packages / dependencies on AWS
+- CodeStar: Unified view for allowing developers to do CICD and code
+- Cloud9: Cloud IDE (Integrated Development Environment) with collaboration features
+- AWS CDK: Define your cloud infrastructure using a familiar programming language
