@@ -19,5 +19,18 @@ There are two patterns of application communication
   - using Kinesis: real time data streaming model
 - These services can scale independently from your application
 
+### SQS Overview
+
+- Simple Queue Service (SQS) is a managed message queue service
+- Producers will send messages to the queue
+- Consumers will retrieve messages from the queue and process them
+- Oldest AWS offering (over 10 years old)
+- Fully manages service, used to decouple applications
+- Scales from 1 message per second to 10,000s per second
+- Default retention of messages: 4 days, maximum of 14 days
+- No limit to how many messages can be in the queue
+- Messages are deleted after they are read by consumers
+- Low latency (<10 ms on publish and receive)
+- Consumers share the work to read messages and scale horizontally
 
 
