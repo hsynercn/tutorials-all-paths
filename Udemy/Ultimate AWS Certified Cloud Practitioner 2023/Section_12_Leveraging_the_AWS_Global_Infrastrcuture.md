@@ -74,3 +74,11 @@ Route 53 Routing Policies:
 
 ### Route 53 Hands On
 
+- Create a registered domain name
+- We can see the domain under hosted zones
+- Create a EC2 instance with a simple web page
+- Create a record set for the domain name
+- We can see the web page when we go to the domain name
+
+### CloudFront Overview
+
