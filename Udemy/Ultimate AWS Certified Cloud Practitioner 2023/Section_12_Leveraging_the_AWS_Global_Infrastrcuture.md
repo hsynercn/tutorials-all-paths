@@ -205,3 +205,41 @@ Benefits:
 
 ### Global Applications Architecture
 
+- Single Region, Single AZ
+  - No High availability
+  - Global latency
+  - Difficulty: easy
+- Single Region, Multi AZ
+  - High availability
+  - Global latency
+  - Difficulty: medium
+- Multi Region, Active-Passive
+  - One regions is active accepts writes
+  - The other region is passive, accepts reads
+  - Good global read latency
+  - Bad global write latency
+  - Difficulty: medium
+- Multi Region, Active-Active
+  - Good read and write latency
+  - Difficulty: hard
+
+### Leveraging the AWS Global Infrastructure Summary
+
+- Global DNS: Route 53
+  - Great to route users to the closest deployment with least latency
+  - Great for disaster recovery strategies
+- Global Content Delivery Network (CDN): CloudFront
+  - Replicate part of your application to AWS Edge locations, decrease latency
+  - Cache common requests, improved user experience and decreased latency
+- S3 Transfer Acceleration
+  - Accelerate global uploads and downloads into Amazon S3
+- AWS Global Accelerator
+  - Improve global application availability and performance using the AWS global network
+- AWS Outposts
+  - Deploy Outposts racks in your own data center to extend AWS services
+- AWS Wavelength
+  - Brings AWS services to the edge of the 5G networks
+  - Ultra-low latency applications
+- AWS Local Zones
+  - Bring AWS resources closer to end users
+  - Good for latency-sensitive applications
