@@ -39,4 +39,38 @@ Global Applications in AWS
 
 ### Route 53 Overview
 
+It is a important service for global application deployment.
+
+- Route53 is a Managed DNS (Domain Name System)
+- DNS is a collection of rules and records which helps clients understand how to reach a server through URLs
+
+- In AWS the most common records are:
+  - A: URL to IPv4
+  - AAAA: URL to IPv6
+  - CNAME: URL to URL
+  - Alias: URL to AWS resource
+
+Basic flow:
+
+- Web browser makes a DNS request for "myapp.mydomain.com"
+- Route53 responds with the IP address of the web server
+- Web browser makes the HTTP request to the web server using the IP
+- Web server responds
+
+We need to know routing policies at a high-level.
+
+Route 53 Routing Policies:
+
+- Simple Routing Policy
+  - Use when you need to redirect to a single resource
+  - No health checks
+- Weighted Routing Policy
+  - Control the % of the requests that go to specific endpoints, acts like a load balancer
+  - Can use health checks
+- Latency Routing Policy
+  - Redirect to the server that has the least latency close to us
+- Failover Routing Policy
+  - Route traffic only to the healthy endpoint
+
+### Route 53 Hands On
 
