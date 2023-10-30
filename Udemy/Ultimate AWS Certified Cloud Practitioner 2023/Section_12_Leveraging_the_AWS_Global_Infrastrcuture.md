@@ -82,3 +82,48 @@ Route 53 Routing Policies:
 
 ### CloudFront Overview
 
+- CloudFront is a Content Delivery Network (CDN)
+- Improves read performance, content is cached at the edge
+- Improves user experience
+- 216 Point of Presence globally (edge locations)
+- DDoS protection, integration with Shield, AWS Web Application Firewall
+
+CloudFront Origins:
+
+- S3 bucket
+  - For distributing files and caching them at the edge
+  - Enhanced security with CloudFront Origin Access Control (OAC)
+  - OAC is replacing Origin Access Identity (OAI)
+  - CloudFront can be used as an ingress (to upload files to S3)
+- Custom Origin (HTTP)
+  - Application Load Balancer
+  - EC2 instance
+  - S3 website (must first enable the bucket as a static S3 website)
+  - Any HTTP backend you want
+
+CloudFront at a high level:
+
+- Client makes a request to CloudFront
+- If CloudFront does not have the file cached, it will forward the request to the origin S3 or HTTP
+- The origin will send the file back to CloudFront, which will cache the file and send it back to the client
+
+CloudFront vs S3 Cross Region Replication
+
+- CloudFront
+  - Global Edge network, global service
+  - Files are cached for a TTL (maybe a day)
+  - Great for static content that must be available everywhere
+- S3 Cross Region Replication
+  - Must be setup for each region you want replication to happen
+  - Files are updated in near real-time
+  - Read only
+  - Great for dynamic content that needs to be available at low-latency in few regions
+
+### S3 Transfer Acceleration
+
+- Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region
+
+We can test the speed of the transfer acceleration from this [link](https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html).
+
+### AWS Global Accelerator
+
