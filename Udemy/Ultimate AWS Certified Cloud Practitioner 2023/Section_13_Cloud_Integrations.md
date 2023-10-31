@@ -54,4 +54,20 @@ FIFO Queue: First In First Out, messages are processed in order, one by one.
 
 ### SNS Overview
 
+- SNS (Simple Notification Service)
+
+What if we need to send one message to many services?
+
+- Direct integration: Application 1 sends a message to Application 2, Application 3, Application 4
+- Pub / Sub: Application 1 sends a message to SNS, which fans out to Application 2, Application 3, Application 4
+
+
+Details:
+
+- The event publisher only sends massages to one SNS topic
+- As many event subscribers as we want to listen to the SNS topic notifications
+- Each subscriber to the topic will get all messages
+- Up to 12.500.000 subscriptions per topic, 100.000 topics limit per account
+
+### Amazon MQ Overview
 
