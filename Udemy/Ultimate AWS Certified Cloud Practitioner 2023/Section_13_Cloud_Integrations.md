@@ -33,4 +33,14 @@ There are two patterns of application communication
 - Low latency (<10 ms on publish and receive)
 - Consumers share the work to read messages and scale horizontally
 
+SQS to decouple applications or integrate applications.
 
+Video processing example:
+
+- Requests goes to web server (Auto Scaling Group)
+- SQS Queue (decoupling)
+- Video processing workers (Auto Scaling Group)
+
+FIFO Queue: First In First Out, messages are processed in order, one by one.
+
+### SQS Hands On
