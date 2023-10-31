@@ -43,4 +43,15 @@ Video processing example:
 
 FIFO Queue: First In First Out, messages are processed in order, one by one.
 
-### SQS Hands On
+### Kinesis Overview
+
+- Kinesis = real-time big data streaming
+- Managed service to collect, process, and analyze real-time streaming data at any scale
+- Kinesis Data Streams: low latency streaming ingest at scale from hundreds of thousands of sources
+- Kinesis Data Firehose: load streams into S3, Redshift, ElasticSearch, Splunk
+- Kinesis Data Analytics: perform real-time analytics on streams using SQL
+- Kinesis Video Streams: monitor real-time video streams for machine learning
+
+### SNS Overview
+
+
