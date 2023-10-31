@@ -71,3 +71,29 @@ Details:
 
 ### Amazon MQ Overview
 
+- SNS, SQS are "cloud-native" services, proprietary protocols from AWS
+- Traditional applications running from on-premises may use open protocols as:MQTT, AMQP, STOMP, OpenWire, WSS
+- When migrating to the cloud instead of re-engineering the application to use SQS and SNS we can use Amazon MQ
+- Amazon MQ is a managed message broker service for:
+  - ActiveMQ
+  - RabbitMQ
+- Amazon MQ doesn't scale as much as SQS / SNS
+- Amazon MQ runs servers, can run in Multi-AZ with failover
+- Amazon MQ has both queue feature (like SQS) and topic feature (like SNS)
+
+### Cloud Integrations Summary
+
+- SQS
+  - Queue service in AWS
+  - Multiple Producers, messages are kept up to 14 days
+  - Multiple Consumers share the read and delete messages when done
+  - Used to decouple applications in AWS
+- SNS
+  - Notification service in AWS
+  - Subscribers: Email, Lambda, SQS, HTTP, Mobile
+  - Multiple Subscribers, sends all messages to all of them
+  - No message retention
+- Kinesis: real-time data streaming, persistance and analysis
+- Amazon MQ: managed message broker service for ActiveMQ, RabbitMQ in the cloud (MQTT, AMQP, STOMP, OpenWire, WSS)
+
+
