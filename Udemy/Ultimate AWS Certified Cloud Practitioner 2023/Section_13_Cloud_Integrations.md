@@ -95,5 +95,3 @@ Details:
   - No message retention
 - Kinesis: real-time data streaming, persistance and analysis
 - Amazon MQ: managed message broker service for ActiveMQ, RabbitMQ in the cloud (MQTT, AMQP, STOMP, OpenWire, WSS)
-
-
