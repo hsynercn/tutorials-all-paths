@@ -69,3 +69,22 @@ We can see the log groups from CloudWatch > Log groups, we can see a lambda exce
 
 ### EventBridge Overview (Formerly CloudWatch Events)
 
+- Schedule: Cron jobs (scheduled scripts), schedule every hour > trigger script on Lambda function
+- Event Pattern: Event rules to react to a service doing something, IAM Root User Sign in Event > SNS Topic with Email Notification
+- Trigger Lambda functions, send SQS/SNS messages
+
+Sources can be lots of things and we can trigger many kinds of targets.
+
+Events
+
+- Default Event Bus: AWS services
+- Partner Event Bus: SaaS integration, Zendesk or DataDog
+- Custom Event Bus: your own applications
+
+Schema Registry: model event schema
+
+We can archive events (all/filter) sent to an event bus (indefinitely or set period).
+
+Ability to replay archived events.
+
+### EventBridge Hands On
