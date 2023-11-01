@@ -38,3 +38,30 @@ Amazon CloudWatch Alarms
 
 Under CloudWatch > All metrics we can see the metrics for all the services in AWS.
 
+We can go EC2 > Per-Instances Metrics > CPUUtilization and see the metrics for the CPU utilization of the instances.
+
+We can create a alarm for the CPUUtilization metric. We can choose the period of time to evaluate the alarm, the threshold, the number of periods to evaluate the alarm, the action to take when the alarm is triggered and the name of the alarm.
+
+Billing data is only available in us-east-1. We can create a billing alarm for the Total Estimated Charge metric.
+
+### CloudWatch Logs Overview
+
+- CloudWatch Logs can collect from:
+  - Elastic Beanstalk: collection of logs from application
+  - ECS: collection from containers
+  - AWS Lambda: collection from function logs
+  - CloudTrail based on filter
+  - CloudWatch log agents: on EC2 machines (can be on-premise too)
+  - Route53: Log DNS queries
+- Enables real-time monitoring of logs
+- Adjustable CloudWatch Logs retention
+
+CloudWatch Logs for EC2
+
+- By default, no logs from EC2 instance will go to CloudWatch
+- You need to run a CloudWatch agent on EC2 to push the log files you want
+- Make sure IAM permissions are correct
+- The CloudWatch log agent can be setup on-premise too
+
+### CloudWatch Logs Hands On
+
