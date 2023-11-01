@@ -65,3 +65,7 @@ CloudWatch Logs for EC2
 
 ### CloudWatch Logs Hands On
 
+We can see the log groups from CloudWatch > Log groups, we can see a lambda exception from the related log group.
+
+### EventBridge Overview (Formerly CloudWatch Events)
+
