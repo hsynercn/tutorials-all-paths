@@ -31,3 +31,17 @@
   - Example: 3ffe:1900:4545:3:200:f8ff:fe21:67cf
 
 ### VPC, Subnet, Internet Gateway, NAT Gateway
+
+VPC and Subnets Primer
+
+- VPC - Virtual Private Cloud: private network to deploy your resources (specific to regional resource)
+- Subnets allow you to partition your network inside your VPC (Availability Zone resource)
+- Public Subnet: A subnet that is accessible from the internet
+- Private Subnet: A subnet that is not accessible from the internet
+- Route Tables: We define access to the internet and between subnets.
+
+Internet Gateway and NAT Gateways
+
+- Internet Gateways helps our VPC instances connect with the internet
+- Public Subnets have a route to the internet gateway
+- NAT Gateways (AWS-managed) or NAT Instances (self-managed) allow your instances in your Private Subnets to access the internet while remaining private
