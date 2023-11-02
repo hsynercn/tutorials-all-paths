@@ -88,3 +88,10 @@ We can archive events (all/filter) sent to an event bus (indefinitely or set per
 Ability to replay archived events.
 
 ### EventBridge Hands On
+
+- We can create a rule to trigger a Lambda every hour.
+- We can create a rule to trigger notification when a root user signs in.
+- We can create a rule to trigger a Lambda when a EC2 instance state changes.
+
+### AWS CloudTrail
+
