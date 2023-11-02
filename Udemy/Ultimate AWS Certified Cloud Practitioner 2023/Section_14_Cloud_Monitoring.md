@@ -110,3 +110,55 @@ We can inspect and audit the history of events that happened in our AWS account.
 
 ### AWS X-Ray
 
+- Debugging in Production: the good old way
+  - Test locally
+  - Add log statements everywhere
+  - Re-deploy in production
+- Log formats differ across applications and logs analysis is hard
+- Debugging: one big monolith is easy, distributed services are hard
+- No common view of your entire architecture
+
+We can get visual analysis of our applications from X-Ray.
+
+AWS X-Ray advantages
+
+- Troubleshooting performance (bottlenecks)
+- Understand dependencies in a microservice architecture
+- Pinpoint service issues
+- Review request behavior
+- Find errors and exceptions
+- Are we meeting time SLA (Service Level Agreement)?
+- Where I am throttling?
+- Identify users that are impacted
+
+### AWS CodeGuru
+
+- A Machine Learning-powered service for automated code review and application performance recommendations
+- Provides two functionalities
+  - CodeGuru Reviewer: automated code reviews for static code analysis (development)
+  - CodeGuru Profiler: visibility/recommendations about application performance during runtime (production)
+
+Amazon CodeGuru Reviewer
+
+- Identify critical issues, security vulnerabilities and hard to find bugs
+- Example: common coding best practices, resource leaks, security detection, input validation
+- Uses Machine Learning and automated reasoning
+- Hard-learned lessons across millions of code reviews on 1000s of open-source and Amazon repositories
+- Supports Java and Python
+- Integrates with GitHub, Bitbucket, AWS CodeCommit
+
+Amazon CodeGuru Profiler
+
+- Helps understand the runtime behavior of your applications
+- Example: identify if your application is consuming excessive CPU on a particular method, or a particular line of code
+- Features:
+  - Identify and remove code inefficiencies
+  - Improve application performance and reduce cost
+  - Decrease compute costs
+  - Provide heap summary, identify which objects using up memory
+  - Anomaly detection
+- Support applications running on AWS or on-premise
+- Minimal overhead on application
+
+### AWS Health Dashboard
+
