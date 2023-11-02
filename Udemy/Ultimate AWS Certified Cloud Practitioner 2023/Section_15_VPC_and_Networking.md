@@ -45,3 +45,7 @@ Internet Gateway and NAT Gateways
 - Internet Gateways helps our VPC instances connect with the internet
 - Public Subnets have a route to the internet gateway
 - NAT Gateways (AWS-managed) or NAT Instances (self-managed) allow your instances in your Private Subnets to access the internet while remaining private
+
+If we go to VPC in the AWS Console, we can see the default VPC that is created for us with IPv4 CIDR block, similar to 172.31.0.0/16 and if we check the Subnets we can see the 3 subnets on different availability zones.
+
+### Security Groups and Network Access Control List (NACL)
