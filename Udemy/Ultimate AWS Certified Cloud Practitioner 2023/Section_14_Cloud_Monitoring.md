@@ -95,3 +95,18 @@ Ability to replay archived events.
 
 ### AWS CloudTrail
 
+- Provides governance, compliance and audit for your AWs Account
+- CloudTrail is enabled by default
+- G an history of events / API calls made with your AWS account by:
+  - Console
+  - SDK
+  - CLI
+  - AWS Services
+- Can put logs from CloudTrail into CloudWatch Logs or S3
+- A trail can be applied to all regions (default) or a single region
+- IMPORTANT: If a resource is deleted in AWS, look into CloudTrail first
+
+We can inspect and audit the history of events that happened in our AWS account. For long term storage we can send them to S3 Bucket or CloudWatch Logs.
+
+### AWS X-Ray
+
