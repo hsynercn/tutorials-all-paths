@@ -19,3 +19,15 @@
 
 ### IP Addresses in AWS
 
+- IPv4 Internet Protocol version 4 (4.3 Billion Addresses)
+  - Public IPv4 can be used on the Internet
+  - EC2 instance gets a new public IP address every time you stop then start it by default
+  - Private IPv4 can be used on private networks (LAN) such as internal AWS networking (eg 192.168.1.1)
+  - Private IPv4 is fixed for EC2 Instances even if you start/stop them
+- Elastic IP allows you to attach a fixed public IPv4 address to EC2 instance
+  - Note: has ongoing cost if not attached to an EC2 instance or if the EC2 instance is stopped
+- IPv6 Internet Protocol version 6
+  - Every IP address is public (no private range)
+  - Example: 3ffe:1900:4545:3:200:f8ff:fe21:67cf
+
+### VPC, Subnet, Internet Gateway, NAT Gateway
