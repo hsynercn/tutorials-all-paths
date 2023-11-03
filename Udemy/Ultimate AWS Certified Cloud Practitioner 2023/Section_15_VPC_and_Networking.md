@@ -49,3 +49,5 @@ Internet Gateway and NAT Gateways
 If we go to VPC in the AWS Console, we can see the default VPC that is created for us with IPv4 CIDR block, similar to 172.31.0.0/16 and if we check the Subnets we can see the 3 subnets on different availability zones.
 
 ### Security Groups and Network Access Control List (NACL)
+
+- NACL (Network ACL): A firewall which controls traffic from and to subnet
