@@ -94,3 +94,33 @@ VPC Peering
 
 ### VPC Endpoints - Interface and Gateway (S3 and DynamoDB)
 
+- Endpoints allow you to connect AWS Services using a private netwrok instead of the public www network
+- This gives you enhanced security and lower latency to access AWS services
+- VPC Endpoint Gateway: S3 and DynamoDB
+- VPC Endpoint Interface: the rest
+
+### AWS PrivateLink (VPC Endpoint Services)
+
+- Most secure and scalable way to expose a service to 1000s of VPCs
+- Does not require VPC peering, internet gateway, NAT, route tables
+- Requires a network load balancer (Service VPC) and ENI (Customer VPC)
+
+### Direct Connect and Site-to-Site VPN
+
+- Site to Site VPN
+  - Connect an on-premises VPN to AWS
+  - The connection is automatically encrypted
+  - Goes over the public internet
+- Direct Connect (DX)
+  - Establish a physical connection between on-premises and AWS
+  - The connection is private, secure and fast
+  - Goes over a private network
+  - Takes at least a month to establish
+
+How to implement a Site-to-Site VPN
+
+- On-premises must use a Customer Gateway (CGW)
+- AWS must use a Virtual Private Gateway (VGW)
+
+### Client VPN
+
