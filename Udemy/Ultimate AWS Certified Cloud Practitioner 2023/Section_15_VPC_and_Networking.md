@@ -129,3 +129,21 @@ How to implement a Site-to-Site VPN
 - Goes over public internet
 
 ### Transit Gateway
+
+Network topologies can become complex. To solve this issue we use Transit Gateway.
+
+- For having transitive peering between thousands of VPC and on-premises, hub and spoke (star) connection
+- One single Gateway to provide this functionality
+- Works with Direct Connect Gateway, VPN connections
+
+### VPC and Networking Summary
+
+- VPC: Virtual Private Cloud
+- Subnets: Tied to an AZ, network partition of the VPC
+- Internet Gateway: at the VPC level, provide Internet Access
+- NAT Gateway / Instances: give internet access to private subnets (NAT = Network Address Translation)
+- NACL: Stateless, subnet rules for inbound and outbound
+- Security Groups: Stateful, operate at the EC2 instance level or ENI
+- VPC Peering: Connect two VPC with non overlapping IP ranges, non transitive
+- Elastic IP: Fixed public IPv4, ongoing cost if not in-use
+
