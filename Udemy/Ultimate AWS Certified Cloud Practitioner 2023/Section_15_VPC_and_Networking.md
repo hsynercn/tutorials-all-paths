@@ -50,4 +50,47 @@ If we go to VPC in the AWS Console, we can see the default VPC that is created f
 
 ### Security Groups and Network Access Control List (NACL)
 
-- NACL (Network ACL): A firewall which controls traffic from and to subnet
+- NACL (Network ACL):
+  - A firewall which controls traffic from and to subnet
+  - Can have ALLOW and DENY rules
+  - Are attached at the SUBNET level
+  - Rules only include IP addresses
+
+- Security Groups
+  - A firewall that controls traffic to and from an ENI / an EC2 Instance
+  - Can have only ALLOW rules
+  - Rules include IP addresses and other security groups
+
+
+|Security Group|Network ACL|
+|--|--|
+|Operates at the instance level|Operates at the subnet level|
+|Supports allow rules only|Supports allow rules and deny rules|
+|Is stateful÷ Return traffic is automatically allowed, regardless of any rules|Is stateless: Return traffic must be explicitly allowed by rules|
+|We evaluate all rules before deciding whether to allow traffic|We process rules in number order when deciding whether to allow traffic|
+|Applies to an instance only if someone specifies the security group when launching the instance, or associate the security group with the instance later on|Automatically applies to all instances in the subnets it's associated with (therefore, you don't have to rely on users to specify the security group)|
+
+### VPC Flow Logs and VPC Peering
+
+VPC Flow Logs
+
+- Capture information about IP traffic going into your interfaces:
+  - VPC Flow Logs
+  - Subnet Flow Logs
+  - Elastic Network Interface Flow Logs
+- Helps to monitor and troubleshoot connectivity issues: Example:
+  - Subnets to internet
+  - Subnets to subnets
+  - Internet to subnets
+- Capture network information from AWS managed interfaces too: Elastic Load Balancers, ElastiCache, RDS, Aurora, etc...
+- VPC Flow logs data can go to S3, CloudWatch, and Kinesis Data Firehose
+
+VPC Peering
+
+- Connect two VPC, privately using AWS' network
+- Make them behave as if they were in the same network
+- Must not have overlapping CIDR (IP address range)
+- VPC Peering connection is not transitive (must be established for each VPC that need to communicate with each other)
+
+### VPC Endpoints - Interface and Gateway (S3 and DynamoDB)
+
