@@ -102,4 +102,29 @@ AWS WAf - Web Application Firewall
   - Inbound from internet
   - To / from Direct Connect and Site-to-Site VPN
 
- 
+### Penetration Testing on AWS Cloud
+
+On AWS as a customer, you can perform penetration testing on some services without prior authorization, we can test these services:
+
+- Amazon EC2 instances, NAT Gateways, and Elastic Load Balancers
+- Amazon RDS
+- Amazon CloudFront
+- Amazon Aurora
+- Amazon API Gateways
+- AWS Lambda and Lambda Edge functions
+- Amazon Lightsail resources
+- Amazon Elastic Beanstalk environments
+
+List can increase over time, exam does not test this list.
+
+Prohibited Activities
+
+- DNS zone walking via Amazon Route 53 Hosted Zones
+- Denial of Service (DoS), Distributed Denial of Service (DDoS), Simulated DoS, Simulated DDoS
+- Port flooding
+- Protocol flooding
+- Request flooding (login request flooding, API request flooding)
+- For any other simulated events, contact AWS Support
+
+### Encryption with KMS and CloudHSM
+
