@@ -128,3 +128,34 @@ Prohibited Activities
 
 ### Encryption with KMS and CloudHSM
 
+- At rest: data stored or archived on a device
+  - On a hard disk, on a RDS instance, in S3 Glacier Deep Archive, etc.
+- In transit (in motion): data being moved from one location to another
+  - Transfer from on-premises to AWS, EC2 to Dynamo DB
+  - Means data transferred on the network
+- We want to encrypt data in both states to protect it
+- For this we leverage encryption keys
+
+AWS KMS - Key Management Service
+
+- Anytime you hear encryption for an AWS service, it is most likely KMS
+- KMS = AWS manages the encryption keys for you
+- Encryption Opt-in:
+  - EBS volumes: encrypt volumes
+  - S3 bucketsÇ Server-side encryption of objects
+  - Redshift database: encryption of data
+  - RDS database: encryption of data
+  - EFS drives (Elastic File System): encryption of data
+- Encryption Automatically enabled:
+  - CloudTrail Logs
+  - S3 Glacier
+  - Storage Gateway
+
+CloudHSM - Hardware Security Module
+
+- KMS: AWS manages the software for encryption
+- CloudHSM: AWS provisions encryption hardware
+- Dedicated Hardware: Hardware Security Module
+- You manage your own encryption keys entirely (not AWS)
+- HSM device is tamper resistant, FIPS 140-2 Level 3 compliance
+
