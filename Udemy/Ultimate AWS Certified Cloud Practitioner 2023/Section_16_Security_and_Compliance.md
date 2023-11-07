@@ -57,3 +57,49 @@ Generic Shared Responsibility Model
   - Hardware / AWS Global Infrastructure: Regions, Availability Zones, Edge Locations
 
 ### DDoS Protection: WAF and Shield
+
+DDOS: Distributed Denial of Service, an attempt to make your service unavailable to your users.
+
+DDOS Protection on AWS
+
+- AWS Shield Standard: protects against DDOS attack for your website and applications, for all customers at no additional costs
+- AWS Shield Advanced: 24/7 premium DDoS protection
+- AWS WAF (Web Application Firewall): Filter specific requests based on rules
+- CloudFront and Route 53:
+  - Availability protection using global edge network
+  - Combined with AWS Shield, provides attack mitigation at the edge
+- Be read to scale, leverage AWS Auto Scaling
+
+AWS Shield
+
+- AWS Shield Standard
+  - Free service that is activated for every AWS customer
+  - Provides protection from attacks such as SYN/UDP Floods, reflection attacks and other layer 3 / layer 4 attacks
+- AWS Shield Advanced
+  - Optional DDoS mitigation service ($3,000 per month per organization)
+  - Protect against more sophisticated attacks on EC2, Elastic Load Balancing, CloudFront, Global Accelerator, Route 53
+  - 24/7 access to AWS DDoS response team (DRP)
+  - Protect against higher fees during usage spikes due to DDoS
+
+AWS WAf - Web Application Firewall
+
+- Protects your web applications from common web exploits (Layer 7)
+- Layer 7 is HTTP
+- Deploy on Application Load Balancer, API Gateway, CloudFront
+- Define WEB ACL (Web Access Control List):
+  - Rules can include IP addresses, HTTP headers, HTTP body, URI strings
+  - Protects from common attacks, SQL injection and Cross-Site Scripting (XSS)
+  - Size constraints, geo-match (block requests by country)
+  - Rate-based rules (to count occurrences of events) for DDoS protection
+
+### AWS Network Firewall
+
+- Protect your entire Amazon VPC
+- From Layer 3 to Layer 7 protection
+- Any direction, you can inspect
+  - VPC to VPC traffic
+  - Outbound to internet
+  - Inbound from internet
+  - To / from Direct Connect and Site-to-Site VPN
+
+ 
