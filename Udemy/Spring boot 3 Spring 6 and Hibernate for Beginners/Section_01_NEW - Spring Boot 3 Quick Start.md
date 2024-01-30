@@ -130,3 +130,11 @@ Maven Solution
 - Maven will go out and download the JAR files for these projects
 - And Maven will make those JAR files available to your project
 
+We can create a Spring Boot project using the Spring Initializr website [link](https://start.spring.io/).
+
+We will add the Spring Web dependency.
+
+After downloading the zip file, we can import the project into IntelliJ as a Maven project. After this step IntelliJ will download the dependencies.
+
+Lastly we can run the project from the application class.
+
