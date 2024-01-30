@@ -117,4 +117,16 @@ Do we need a special IDE for Spring Boot?
 
 No, we can use any IDE for Spring Boot apps, the Spring team provides free Spring Tool Suite (STS), IDE plugins.
 
+### 6. Spring Boot Initializr Demo
+
+- Quickly create a starter Spring project
+- Select your dependencies
+- Creates a  Maven/Gradle project
+- Import the project into your IDE: IntelliJ, Eclipse, etc.
+
+Maven Solution
+
+- Tell maven the dependencies you need
+- Maven will go out and download the JAR files for these projects
+- And Maven will make those JAR files available to your project
 
