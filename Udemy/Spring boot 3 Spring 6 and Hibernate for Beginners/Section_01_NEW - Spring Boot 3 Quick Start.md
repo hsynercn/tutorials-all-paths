@@ -70,4 +70,51 @@ Spring Boot and Spring
 - Spring Boot uses Spring behind the scenes
 - Spring Boot simply makes it easier to use Spring
 
+Spring Initializr
+
+- Quick way to create a Spring Boot project
+- Select your dependencies
+- Creates a maven/Gradle project
+- Import the project into your IDE: IntelliJ, Eclipse, etc.
+
+Spring Boot Embedded Server
+
+- Provide an embedded HTTP server
+  - Tomcat, Jetty, Undertow
+- No need to install a server separately
+
+App jar will contain the app code and the server.
+
+Running Spring Boot Apps
+
+- Spring Boot apps can be run standalone
+- We can run app from IDE or command line
+
+```bash
+java -jar mycoolapp.jar
+```
+
+Deploying Spring Boot Apps
+
+- Spring Boot apps can also be deployed in the traditional way.
+- Also we can deploy WAR file to an external server: Tomcat, JBoss, WebSphere
+
+Spring Boot FAQ 1
+
+Does Spring Boot replace Spring MVC, Spring REST etc?
+
+NO. Instead, Spring Boot actually uses those technologies.
+
+Spring Boot FAQ 2
+
+Does Spring Boot run faster than Spring?
+
+No, Spring Boot uses same code of Spring Framework.
+
+Spring Boot FAQ 3
+
+Do we need a special IDE for Spring Boot?
+
+No, we can use any IDE for Spring Boot apps, the Spring team provides free Spring Tool Suite (STS), IDE plugins.
+
 
