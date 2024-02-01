@@ -177,8 +177,31 @@ Data Access Layer
 - This is for communicating with the database
 - JDBC helper classes, reduce your JDBC code by 50%
 - ORM, integration with Hibernate, JPA, etc.
+- JMS, Java Messaging Service, for sending async messages to a message broker
+- Transactions, add transaction support to your code
+- Web, all web related stuff, servlets , web sockets, web etc.
 - Items: JDBC, ORM, Transactions, OXM, JMS
 
 ### 9. Spring Framework Overview - Part 2
 
+Infrastructure
+
+- Java agents, for monitoring and profiling, JMX (Java Management Extensions)
+- Items: AOP, Aspects, Instrumentation, Messaging
+
+Test Layer
+
+- Supports Test Driven Development (TDD)
+- Mock objects and out-of-container testing
+- Items: Unit, Integration, Mock
+
+### 10. Spring Projects
+
+- Additional Spring modules built on top of the core Spring Framework
+- Only use the required
+  - Spring Cloud, Spring Data
+  - Spring Batch, Spring Security
+  - Spring Web Services, Spring LDAP
+
+### 11. What is Maven?
 
