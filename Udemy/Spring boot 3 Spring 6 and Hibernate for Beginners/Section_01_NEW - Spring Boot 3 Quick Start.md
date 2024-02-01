@@ -334,5 +334,23 @@ Unit Tests
 
 We can add unit tests to the src/test/java directory.
 
+### 16. Spring Boot Starters
 
+Spring Boot Starters
+
+- A curated list of Maven dependencies
+- A collection of dependencies grouped together
+- Tested and verified by the Spring Development team
+- Makes it much easier to for the developer to get started with Spring
+- Reduces the amount of Maven configuration
+
+For example Spring MVC: spring-boot-starter-web
+
+There are 30+ Spring Boot Starters from the Spring Development team.
+
+- spring-boot-starter-web: Build web apps, includes validation, REST. Uses Tomcat as default embedded server.
+- spring-boot-starter-security: Adding Spring Security support.
+- spring-boot-starter-data-jpa: Spring database support with JPA and Hibernate.
+
+### 17. Spring Boot Parents for Starters
 
