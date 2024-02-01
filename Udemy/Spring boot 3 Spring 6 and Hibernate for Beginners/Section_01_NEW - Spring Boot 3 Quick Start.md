@@ -153,4 +153,32 @@ public class FunRestController {
 }
 ```
 
+### 8. Spring Framework Overview - Part 1
+
+- Lightweight development with Java POJOs (Plain Old Java Objects)
+- Dependency Injection to promote loose coupling
+- Minimize boilerplate Java code
+
+Core Container
+
+- Factory for creating beans
+- Manage bean dependencies
+- Items: Beans, Core, SpEL, Context
+
+Infrastructure
+
+- AOP: Aspect Oriented Programming
+- Add functionality to objects declaratively
+- Logging, transactions, security, etc.
+- Items: AOP, Aspects, Instrumentation, Messaging
+
+Data Access Layer
+
+- This is for communicating with the database
+- JDBC helper classes, reduce your JDBC code by 50%
+- ORM, integration with Hibernate, JPA, etc.
+- Items: JDBC, ORM, Transactions, OXM, JMS
+
+### 9. Spring Framework Overview - Part 2
+
 
