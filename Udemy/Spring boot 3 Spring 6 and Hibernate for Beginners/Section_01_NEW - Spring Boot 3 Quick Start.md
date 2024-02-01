@@ -271,4 +271,68 @@ May see this referred as GAV
 
 ### 14. Exploring Spring Boot Project Files - Part 1
 
+- src/main/java: Java source code
+- src/main/resources: Properties / config files used by your app
+- src/test/java: Unit testing source code
+
+Maven Wrapper files
+
+mvnw allows you to run Maven commands without having Maven installed on your system.
+
+- mvnw.cmd is for Windows
+- mvnw is for Mac/Linux
+
+POM File
+
+pom.xml includes info that you need to build your project.
+
+Java Source Code
+
+The Java source code is located in the src/main/java directory. Controllers, services, etc.
+
+Application Properties
+
+Created by Spring Initializr, contains properties for your app.
+
+### 15. Exploring Spring Boot Project Files - Part 2
+
+Application Properties
+
+We can use properties files to configure our application.
+
+```java
+@RestController
+public class FunRestController {
+  @Value("${coach.name}")
+  private String coachName;
+
+  @Value("${team.name}")
+  private String teamName;
+}
+```
+
+```properties
+coach.name=John Doe
+team.name=The A Team
+```
+
+Static Content
+
+Static content is located in the src/main/resources/static directory. By default, Spring Boot will serve static content from this directory.
+
+Do not use src/main/webapp directory if your application is packaged as a JAR, it works only with WAR packaging. It is silently ignored by most build tools if you generate a JAR.
+
+Templates
+
+Spring boot includes auto-configuration for following template engines:
+
+- FreeMarker
+- Thymeleaf
+- Mustache
+
+Unit Tests
+
+We can add unit tests to the src/test/java directory.
+
+
 
