@@ -386,6 +386,15 @@ Simply add the dependency yo your POM file.
 
 ![image](https://github.com/hsynercn/tutorials-all-paths/assets/28985966/c2b69e1b-5072-4ff9-80e0-6d95bb0ca266)
 
+After this steps we can add the related package to pom.xml.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-devtools</artifactId>
+</dependency>
+```
 
 
+  
 
