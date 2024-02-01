@@ -373,4 +373,14 @@ To override a default, set as a property.
 </properties>
 ```
 
+### 18. Spring Boot Dev Tools - Overview
+
+Automatically restarts your application when code is updated.
+
+Simply add the dependency yo your POM file.
+
+- For IntelliJ, we need to enable the "Build project automatically" option.
+- Allow auto-make to start the build process as soon as changes are made to the project.
+
+
 
