@@ -138,3 +138,19 @@ After downloading the zip file, we can import the project into IntelliJ as a Mav
 
 Lastly we can run the project from the application class.
 
+### 7. Spring Boot - Create a REST Controller
+
+We will create a hello world REST controller.
+
+```java
+@RestController
+public class FunRestController {
+
+    @GetMapping("/")
+    public String sayHello() {
+        return "Hello World! Time on server is " + LocalDateTime.now();
+    }
+}
+```
+
+
