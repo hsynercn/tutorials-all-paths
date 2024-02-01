@@ -382,5 +382,10 @@ Simply add the dependency yo your POM file.
 - For IntelliJ, we need to enable the "Build project automatically" option.
 - Allow auto-make to start the build process as soon as changes are made to the project.
 
+![image](https://github.com/hsynercn/tutorials-all-paths/assets/28985966/4404e934-ee48-499a-a322-9d3d13f69cc0)
+
+![image](https://github.com/hsynercn/tutorials-all-paths/assets/28985966/c2b69e1b-5072-4ff9-80e0-6d95bb0ca266)
+
+
 
 
