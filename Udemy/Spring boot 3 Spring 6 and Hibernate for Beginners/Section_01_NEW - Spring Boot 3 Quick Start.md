@@ -435,4 +435,33 @@ There are 10+ Spring Boot Actuator endpoints.
 - /beans: List of all beans registered in the Spring application context
 - /mappings: List of all @RequestMapping paths
 
+### 21. Spring Boot Actuator - Accessing Endpoints - Part 1
+
+We should add the following dependency to pom.xml.
+
+```xml
+<!-- ADD SUPPORT FOR SPRING BOOT ACTUATOR -->
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+We need to add the following properties to application.properties.
+
+```properties
+management.endpoints.web.exposure.include=*
+management.info.env.enabled=true
+```
+
+At this point we cam access the /health endpoint and we can receive a JSON response:
+
+```json
+{
+  "status": "UP",
+}
+```
+
+### 22. Spring Boot Actuator - Accessing Endpoints - Part 2
+
 
