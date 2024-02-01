@@ -603,5 +603,29 @@ We can use @Value annotation to inject properties.
 private String coachName;
 ```
 
+### 30. Injecting Custom Application Properties - Coding
 
+Let's add the following properties to application.properties.
+
+```properties
+coach.name=John Doe
+team.name=The A Team
+```
+
+We can reach the properties with @Value annotation.
+
+```java
+@Value("${coach.name}")
+private String coachName;
+
+@Value("${team.name}")
+private String teamName;
+
+@GetMappin("/teaminfo")
+public String getTeamInfo() {
+  return "Coach: " + coachName + ", Team: " + teamName;
+}
+```
+
+We can use these properties in our controller.
 
