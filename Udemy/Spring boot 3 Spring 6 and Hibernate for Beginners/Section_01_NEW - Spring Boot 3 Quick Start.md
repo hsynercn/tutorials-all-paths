@@ -245,4 +245,30 @@ Advantages of Maven
 
 ### 13. Maven Key Concepts
 
+POM  File: Project Object Model
+
+Configuration file for your project, located int he root of your Maven project.
+
+pom.xml
+
+- project metadata
+- dependencies
+- plugins
+
+Project Coordinates are the unique identifier for your project.
+
+- Group ID: Name of company, group, or organization. Convention is to use reverse domain name: com.luv2code
+- Artifact ID: Name of the project. Convention is to use lowercase with dashes: spring-boot-demo
+- Version: Version of the project. Convention is to use semantic versioning: 1.0.0
+
+Dependency Coordinates
+
+- Group ID
+- Artifact ID
+- Version is optional, best practice is to include the version
+
+May see this referred as GAV
+
+### 14. Exploring Spring Boot Project Files - Part 1
+
 
