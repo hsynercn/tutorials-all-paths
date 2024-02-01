@@ -585,3 +585,23 @@ We can use mnnw to run the app.
 ./mvnw spring-boot:run
 ```
 
+### 29. Injecting Custom Application Properties - Overview
+
+By default Spring Boot reads in properties from the application.properties file.
+
+We can define our own properties on the file.
+
+```properties
+coach.name=John Doe
+team.name=The A Team
+```
+
+We can use @Value annotation to inject properties.
+
+```java
+@Value("${coach.name}")
+private String coachName;
+```
+
+
+
