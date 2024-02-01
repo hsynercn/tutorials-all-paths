@@ -205,3 +205,44 @@ Test Layer
 
 ### 11. What is Maven?
 
+- When you generate projects using Spring Initializr, it can generate a Maven project for you
+- This section will mention
+  - Viewing dependencies in the Maven pom.xml file
+  - Spring Boot Starters for Maven
+
+Maven is a project management tool, the most popular use of maven is for build management and dependencies.
+
+Without Maven we should download the dependencies manually and add them to the project. On the other hand, Maven will go out and download the dependencies automatically.
+
+Maven - How it works?
+
+1. Maven reads the project config file
+2. Checks the local repo
+3. Gets the packages from the remote repo
+4. Saves the packages to the local repo
+5. Builds and runs the project
+
+When Maven retrieves a project dependency it will also download supporting dependencies.
+
+Standard Directory Structure
+
+- src/main/java: Your Java source code
+- src/main/resources: Properties / config files used by your app
+- src/main/webapp: JSP files and web config files other web assets (images, css, etc.)
+- src/test: Unit test code and properties
+- target: Destination directory for compiled code, automatically created by Maven.
+
+IDEs support Maven projects and developers easily share Maven projects between IDEs.
+
+Advantages of Maven
+
+- Dependency management
+  - Maven will find JAR files for you
+  - No more missing JARs
+- Building and Running your Project
+  - No more build path/classpath issues
+- Standard directory structure
+
+### 13. Maven Key Concepts
+
+
