@@ -395,6 +395,44 @@ After this steps we can add the related package to pom.xml.
 </dependency>
 ```
 
+### 20. Spring Boot Actuator - Overview
 
-  
+Exposes endpoints for monitoring and managing your Spring Boot application.
+
+REST points are automatically exposed.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+It will enable the "/health" endpoint.
+
+By default, only the health endpoint is exposed.
+
+This /info endpoint is not exposed by default.
+
+```xml
+management.endpoints.web.exposure.include=hearth,info
+management.info.env.enabled=true
+```
+
+We can provide information about application.
+
+```properties
+info.app.name=Spring Boot Demo
+info.app.description=Spring Boot Demo Project
+info.app.version=1.0.0
+```
+
+This information will be available on the /info endpoint.
+
+There are 10+ Spring Boot Actuator endpoints.
+
+- /auditevents: Audit events for the current application
+- /beans: List of all beans registered in the Spring application context
+- /mappings: List of all @RequestMapping paths
+
 
