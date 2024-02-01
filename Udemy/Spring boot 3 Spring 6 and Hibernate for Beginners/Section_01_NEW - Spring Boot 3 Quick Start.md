@@ -629,3 +629,78 @@ public String getTeamInfo() {
 
 We can use these properties in our controller.
 
+### 31. Configuring the Spring Boot Server - Overview
+
+There are 1000+ properties that can be configured.
+
+They are roughly grouped into the following categories:
+
+- Core
+- Web
+- Security
+- Data
+- Actuator
+- Integration
+- DevTools
+- Testing
+
+Core Properties
+
+```properties
+# Log levels severity mapping
+logging.level.org.springframework=DEBUG
+logging.level.org.hibernate=ERROR
+logging.level.com.luv2code=TRACE
+
+# Log file name
+logging.file.name=crazy.log
+logging.file.path=/Users/john/logs
+```
+
+Web Properties
+
+```properties
+# Server port
+server.port=8080
+
+# Context path
+server.servlet.context-path=/demo
+
+# Session timeout
+server.servlet.session.timeout=15m
+```
+
+Actuator Properties
+
+```properties
+# Enable all endpoints
+management.endpoints.web.exposure.include=*
+
+# Enable specific endpoints
+management.endpoints.web.exposure.exclude=health,info
+
+# Base path for actuator endpoints
+management.endpoints.web.base-path=/actuator
+```
+
+Security Properties
+
+```properties
+# Default username
+spring.security.user.name=admin
+
+# Enable password
+spring.security.user.password=topsecret
+```
+
+Data Properties
+
+```properties
+# JDBC URL of the database
+spring.datasource.url=jdbc:mysql://localhost:3306
+
+# Username and password
+spring.datasource.username=scott
+spring.datasource.password=tiger
+```
+
