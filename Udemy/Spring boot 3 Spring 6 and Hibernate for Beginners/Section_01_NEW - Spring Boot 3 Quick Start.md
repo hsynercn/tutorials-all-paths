@@ -354,3 +354,23 @@ There are 30+ Spring Boot Starters from the Spring Development team.
 
 ### 17. Spring Boot Parents for Starters
 
+Spring Boot provides a "Starter Parent".
+
+```xml
+<parent>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>2.5.5</version>
+  <relativePath/> <!-- lookup parent from repository -->
+</parent>
+```
+
+To override a default, set as a property.
+
+```xml
+<properties>
+  <java.version>17</java.version>
+</properties>
+```
+
+
