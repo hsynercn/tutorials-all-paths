@@ -474,11 +474,44 @@ info.app.version=1.0.0
 
 We can add Chrome extension for JSON formatting.
 
-
 We can use wildcards to expose all endpoints.
 
 ```properties
 management.endpoints.web.exposure.include=*
+```
+
+### 23. Spring Boot Actuator - Securing Endpoints - Overview
+
+You may not want to expose all endpoints to the public.
+
+We can enable security for the endpoints.
+
+Development Process
+
+1. Edit pom.xml and add spring-boot-starter-security.
+2. Verify security on actuator endpoints for /beans.
+3. Disable endpoints for /health and /info.
+
+### 24. Spring Boot Actuator - Securing Endpoints - Coding
+
+First we should add the following dependency to pom.xml.
+
+```xml
+<!-- ADD SUPPORT FOR SPRING SECURITY -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+```
+
+After this step we can access the /beans endpoint with username and password. Password can be found in the console.
+
+Still some endpoints are accessible without authentication.
+
+We can disable the /health and /info endpoints.
+
+```properties
+management.endpoints.web.exposure.exclude=health,info
 ```
 
 
