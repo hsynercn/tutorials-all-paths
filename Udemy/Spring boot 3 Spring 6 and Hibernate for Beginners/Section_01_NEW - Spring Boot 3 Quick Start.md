@@ -533,4 +533,36 @@ java -jas mycoolapp.jar
 mvn spring-boot:run
 ```
 
+### 26. Run Spring Boot Apps From the Command Line - Prep
+
+We will delete some redundant dependencies.
+
+### 27. Run Spring Boot Apps From the Command Line - Microsoft Windows
+
+Open a command prompt and navigate to the project directory.
+
+Check the Java installation.
+
+```bash
+java -version
+```
+
+Move to the target directory.
+
+```bash
+cd target
+```
+
+Run the JAR file.
+
+```bash
+java -jar spring-boot-demo-0.0.1-SNAPSHOT.jar
+```
+
+Also we can run the app with Spring Boot Maven plugin.
+
+```bash
+mvnw spring-boot:run
+```
+
 
