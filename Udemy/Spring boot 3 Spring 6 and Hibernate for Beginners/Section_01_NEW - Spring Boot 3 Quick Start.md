@@ -464,4 +464,21 @@ At this point we cam access the /health endpoint and we can receive a JSON respo
 
 ### 22. Spring Boot Actuator - Accessing Endpoints - Part 2
 
+Customize the /info endpoint.
+
+```properties
+info.app.name=Spring Boot Demo
+info.app.description=Spring Boot Demo Project
+info.app.version=1.0.0
+```
+
+We can add Chrome extension for JSON formatting.
+
+
+We can use wildcards to expose all endpoints.
+
+```properties
+management.endpoints.web.exposure.include=*
+```
+
 
