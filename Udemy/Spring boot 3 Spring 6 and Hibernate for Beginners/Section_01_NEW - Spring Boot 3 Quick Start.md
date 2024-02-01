@@ -514,4 +514,23 @@ We can disable the /health and /info endpoints.
 management.endpoints.web.exposure.exclude=health,info
 ```
 
+### 25. Run Spring Boot Apps From Command Line - Overview
+
+We can run the Spring Boot app from the command line.
+
+Since we are using Spring Boot, the server is embedded in our JAR file.
+
+Two options:
+
+- Use "java -jar"
+- Use "mvn spring-boot:run"
+
+```bash
+java -jas mycoolapp.jar
+```
+
+```bash
+mvn spring-boot:run
+```
+
 
