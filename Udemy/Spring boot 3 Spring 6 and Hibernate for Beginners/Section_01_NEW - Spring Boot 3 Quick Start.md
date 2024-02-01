@@ -565,4 +565,23 @@ Also we can run the app with Spring Boot Maven plugin.
 mvnw spring-boot:run
 ```
 
+### 28. Run Spring Boot Apps From the Command Line - Mac/Linux
+
+Package the app with Maven.
+
+```bash
+./mvnw package
+```
+
+Run the JAR file.
+
+```bash
+java -jar target/spring-boot-demo-0.0.1-SNAPSHOT.jar
+```
+
+We can use mnnw to run the app.
+
+```bash
+./mvnw spring-boot:run
+```
 
