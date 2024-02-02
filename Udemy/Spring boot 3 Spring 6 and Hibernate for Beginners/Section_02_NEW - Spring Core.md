@@ -439,4 +439,65 @@ public void setMyCoach(@Qualifier("cricketCoach") Coach theCoach) {
 
 Same name as class, first letter is lowercase.
 
+### 49. Primary - Overview
+
+We have alternative to the @Qualifier annotation.
+
+We have multiple implementations of an interface.
+
+```java
+@Component
+public class CricketCoach implements Coach {
+...
+}
+
+@Component
+public class BaseballCoach implements Coach {
+...
+}
+
+@Component
+public class HockeyCoach implements Coach {
+...
+}
+```
+
+Primary annotation use case:
+
+```java
+@Component
+@Primary
+public class CricketCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Practice fast bowling for 15 minutes";
+    }
+}
+```
+
+If we use the @Primary annotation, we don't have to add the @Qualifier annotation.
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public void setMyCoach(Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
+We can use use @Primary annotation for only one class.
+
+We can mix @Primary and @Qualifier annotations. @Qualifier will override @Primary.
+
+In general using @Qualifier is more beneficial.
+
+- More specific
+- Higher priority
+
+
+
 
