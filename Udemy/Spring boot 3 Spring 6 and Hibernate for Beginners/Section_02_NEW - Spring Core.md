@@ -323,3 +323,33 @@ Injection Types - Which one to use?
   - Use this when you have optional dependencies
   - If dependency is not provided, your app can provide reasonable default logic
 
+### 44. Setter Injection - Coding
+
+Setter injection will work:
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public void setMyCoach(Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
+Also any method can be used for injection.
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public void doSomeStuff(Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
