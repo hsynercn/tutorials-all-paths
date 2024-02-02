@@ -353,3 +353,16 @@ public class DemoController {
 }
 ```
 
+### 45. Field Injection
+
+Recommended by the spring.io development team
+
+- Constructor Injection: required dependencies
+- Setter Injection: optional dependencies
+
+Not recommended by the spring.io development team
+
+- Field Injection
+
+Field injection is not recommended by the Spring team in modern Spring applications. It is mostly used in legacy code.
+
