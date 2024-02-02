@@ -366,3 +366,55 @@ Not recommended by the spring.io development team
 
 Field injection is not recommended by the Spring team in modern Spring applications. It is mostly used in legacy code.
 
+### 46. Qualifiers - Overview
+
+If there is more than one implementation of an interface, Spring will not know which one to inject.
+
+```java
+@Component
+public class CricketCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Practice fast bowling for 15 minutes";
+    }
+}
+```
+
+```java
+@Component
+public class BaseballCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Spend 30 minutes on batting practice";
+    }
+}
+```
+
+We need to be more specific about which implementation to inject.
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public void setMyCoach(@Qualifier("cricketCoach") Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
+Setter example:
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public void setMyCoach(@Qualifier("cricketCoach") Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
