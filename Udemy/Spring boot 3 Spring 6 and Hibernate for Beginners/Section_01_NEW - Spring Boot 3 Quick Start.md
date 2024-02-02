@@ -704,3 +704,24 @@ spring.datasource.username=scott
 spring.datasource.password=tiger
 ```
 
+### 32. Configuring the Spring Boot Server - Coding
+
+We can configure the server port.
+
+```properties
+server.port=7070
+```
+
+After this change we can reach the app from the new port.
+
+[http://localhost:7070/](http://localhost:7070/)
+
+Also we can change the context path.
+
+```properties
+server.servlet.context-path=/mycoolapp
+```
+
+After this change we can reach the app from the new context path.
+
+[http://localhost:7070/mycoolapp/](http://localhost:7070/mycoolapp/)
