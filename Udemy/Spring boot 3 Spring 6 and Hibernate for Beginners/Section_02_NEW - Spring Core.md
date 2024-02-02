@@ -69,3 +69,66 @@ graph LR
   C[Coach] -->|"Practice for 15 minutes"| B
   B -->|"Practice for 15 minutes"| A
 ```
+
+Development Process
+
+1. Define the dependency interface and class
+2. Create a Demo rest Controller
+3. Create a constructor in your class for injections
+4. Add @GetMapping method to expose the endpoint
+
+Step 1: Define the dependency interface and class
+
+Coach.java
+```java
+package com.luv2code.springcoredemo;
+
+public interface Coach {
+    public String getDailyWorkout();
+}
+```
+
+CrickeCoach.java
+```java
+package com.luv2code.springcoredemo;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class CricketCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Practice fast bowling for 15 minutes";
+    }
+}
+```
+
+@Componenet annotation:
+
+- Marks the class as a Spring Bean.
+- makes the bean available for dependency injection.
+
+DemoController.java
+```java
+package com.luv2code.springcoredemo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@RestContoller
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public DemoController(Coach theCoach) {
+        myCoach = theCoach;
+    }
+
+    @GetMapping("/dailyworkout")
+    public String getDailyWorkout() {
+        return myCoach.getDailyWorkout();
+    }
+}
+```
+
+If you have only one constructor, @Autowired is optional.
