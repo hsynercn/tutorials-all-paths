@@ -266,3 +266,60 @@ We can add the package name to the @ComponentScan annotation.
     }
 )
 ```
+
+### 43. Setter Injection - Overview
+
+Spring injection types:
+
+- Constructor Injection
+- Setter Injection
+
+Setter Injection
+
+Inject dependencies by calling setter methods on your beans.
+
+AutoWiring Example
+
+- Injecting a Coach implementation
+- Spring will scan for @Components
+- Any one implements the Coach interface?
+- If so, let's inject it, for example: CricketCoach
+
+Development Process - Setter Injection
+
+1. Create setter methods in your class for injections
+2. Configure the dependency injection with @Autowired annotation
+
+DemoController.java
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public void setMyCoach(Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
+Spring Framework
+
+```java
+Coach theCoach = new CricketCoach();
+DemoController theController = new DemoController();
+theController.setMyCoach(theCoach);
+```
+
+We can inject dependencies by calling any method on our class.
+
+Injection Types - Which one to use?
+
+- Constructor Injection
+  - Use this when you have required dependencies
+  - Generally recommended by the Spring team
+- Setter Injection
+  - Use this when you have optional dependencies
+  - If dependency is not provided, your app can provide reasonable default logic
+
