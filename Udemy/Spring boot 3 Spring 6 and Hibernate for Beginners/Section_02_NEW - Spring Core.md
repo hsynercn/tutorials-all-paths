@@ -246,3 +246,23 @@ Common Pitfall - Different location: By default, Spring Boot will not component 
     }
 )
 ```
+
+### 41. Component Scanning - Coding - Part 1
+
+This part is about some file copy paste. I will not write it here.
+
+### 42. Component Scanning - Coding - Part 2
+
+If we create a new package under the main java package, Spring will not scan it. We need to add @ComponentScan annotation to the main Spring Boot application class.
+
+We can add the package name to the @ComponentScan annotation.
+
+```java
+@SpringBootApplication(
+    scanBasePackages = {
+        "com.luv2code.springcoredemo",
+        "com.luv2code.util",
+        "org.acme.cart"
+    }
+)
+```
