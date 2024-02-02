@@ -206,3 +206,43 @@ Spring for Enterprise Applications
 
 ### 40. Component Scanning - Overview
 
+Spring will scan java classes for special annotations and automatically register the beans in the Spring container.
+
+SpringcoredemoApplication.java
+```java
+package com.luv2code.springcoredemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringcoredemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SpringcoredemoApplication.class, args);
+    }
+}
+```
+
+@SpringBootApplication annotation enables
+
+- Auto-configuration
+- Component scanning
+- Additional configuration
+
+It is composed of following annotations:
+
+- @EnableAutoConfiguration: Enables Spring Boot's auto-configuration mechanism.
+- @ComponentScan: Enables component scanning of current package and sub-packages.
+- @Configuration: Able to register extra beans with @Bean or import other configuration classes.
+
+Common Pitfall - Different location: By default, Spring Boot will not component scan these packages. Only package of main Spring Boot application class and sub-packages. You can add @ComponentScan annotation to the main Spring Boot application class.
+
+```java
+@SpringBootApplication(
+    scanBasePackages = {
+        "com.luv2code.springcoredemo",
+        "com.luv2code.util",
+        "org.acme.cart"
+    }
+)
+```
