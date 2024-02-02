@@ -204,3 +204,5 @@ Spring for Enterprise Applications
   - REST API and Web MVC
   - Security
 
+### 40. Component Scanning - Overview
+
