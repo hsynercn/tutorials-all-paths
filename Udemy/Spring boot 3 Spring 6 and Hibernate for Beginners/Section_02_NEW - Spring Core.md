@@ -132,3 +132,75 @@ public class DemoController {
 ```
 
 If you have only one constructor, @Autowired is optional.
+
+### 36. Constructor Injection - Coding - Part 1
+
+This part is about some file copy paste. I will not write it here.
+
+### 37. Constructor Injection - Coding - Part 2
+
+@Component annotation is used to mark the class as a Spring Bean, it makes the bean available for dependency injection.
+
+### 38. IDE Warning - No Usages
+
+Spring is dynamically injecting the dependency. So, the IDE cannot find the usage of the class. It is normal.
+
+### 39. Constructor Injection - Behind the Scenes
+
+Coach.java
+```java
+package com.luv2code.springcoredemo;
+
+public interface Coach {
+    public String getDailyWorkout();
+}
+```
+
+CrickeCoach.java
+```java
+package com.luv2code.springcoredemo;
+
+@Component
+public class CricketCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Practice fast bowling for 15 minutes";
+    }
+}
+```
+
+DemoController.java
+```java
+package com.luv2code.springcoredemo;
+
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public DemoController(Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
+Spring Framework handles the constructor injection behind the scenes. It creates the object and injects the dependency.
+
+```java
+Coach theCoach = new CricketCoach();
+DemoController theController = new DemoController(theCoach);
+```
+
+The "new" keyword is that it?
+
+- Spring is more than just Inversion of Control and Dependency Injection.
+- For small basic apps, it may be hard to see the benefits of Spring.
+
+Spring for Enterprise Applications
+
+- Spring is targeted for enterprise, real-time / real-world applications.
+- Spring provides features such as
+  - Database access and Transactions
+  - REST API and Web MVC
+  - Security
+
