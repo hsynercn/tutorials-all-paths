@@ -371,6 +371,12 @@ Field injection is not recommended by the Spring team in modern Spring applicati
 If there is more than one implementation of an interface, Spring will not know which one to inject.
 
 ```java
+public interface Coach {
+    public String getDailyWorkout();
+}
+```
+
+```java
 @Component
 public class CricketCoach implements Coach {
     @Override
@@ -417,4 +423,20 @@ public class DemoController {
     }
 }
 ```
+
+### 47. Qualifiers - Coding - Part 1
+
+I will not write this part here. Same changes are made in the code.
+
+### 48. Qualifiers - Coding - Part 2
+
+```java
+@Autowired
+public void setMyCoach(@Qualifier("cricketCoach") Coach theCoach) {
+    myCoach = theCoach;
+}
+```
+
+Same name as class, first letter is lowercase.
+
 
