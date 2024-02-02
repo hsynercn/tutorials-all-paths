@@ -60,4 +60,12 @@ AutoWiring Example
 - Any ıne implements the Coach interface?
 - If so, let's inject it, for example: CricketCoach
 
+### 35. Defining Dependency Injection - Overview - Part 2
 
+```mermaid
+graph LR
+  A[Web Browser] -->|/dailyworkout| B 
+  B[Demo Controller] -->|getDailyWorkout| C
+  C[Coach] -->|"Practice for 15 minutes"| B
+  B -->|"Practice for 15 minutes"| A
+```
