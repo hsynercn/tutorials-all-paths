@@ -35,4 +35,9 @@ Inspector window shows the properties of the selected node.
 
 We can add a 2D sprite node under the main node. If we check the inspector we will see the texture property. We can add a texture to the sprite, there is a default icon in the Godot Engine. We can drag and drop the texture to the texture property.
 
- 
+### 5. More Interface Exploration
+
+Blue rectangle is the main viewport.
+
+We can change the viewport setting from the project settings.
+
