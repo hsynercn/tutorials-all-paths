@@ -82,3 +82,9 @@ If we want to edit individual instances we can click the instance and click the 
 
 We can enable children property to edit the children of the instance.
 
+### 14. Parent and Child Relationships
+
+If we delete a parent node all the children will be deleted.
+
+Position is relative to the parent node. If we move the parent node all the children will move with it.
+
