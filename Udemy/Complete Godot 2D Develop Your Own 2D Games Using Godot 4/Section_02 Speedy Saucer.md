@@ -154,5 +154,24 @@ func _ready():
     print(2 ** 3)
 ```
 
+### 19. Introducing Variables
+
+Variables store data.
+
+Types of variables in GDScript:
+
+- Integer
+- Float
+- String
+- Boolean
+
+var is used to define a variable.
+
+```gd
+var myInteger = 5
+var myFloat = 5.5
+var myString = "Hello, World!"
+var myBoolean = true
+```
 
 
