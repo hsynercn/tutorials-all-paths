@@ -96,3 +96,36 @@ Higher z index will be rendered on top of the lower z index.
 
 We can set a negative z index to render the node behind the other nodes.
 
+### 16. Into To Scripting
+
+Scripting:
+
+- Scripts are files containing code.
+- A node by itself has limited behavior.
+- You will attach scripts to nodes to extend the default behavior.
+- Example: Sprite2D node displays a texture by default. If you want the sprite to follow the mouse cursor, you would attach a script to it and add the movement code.
+
+Scripting Languages of Godot
+
+- GDScript
+  - Python-like language
+  - Designed for Godot
+  - Easy to learn
+  - Fast to write
+  - Optimized for Godot
+- C#
+  - Popular language
+  - Fast
+  - Large community
+  - Good for large projects
+- C/C++
+  - Fast
+  - Low-level
+  - Good for performance-critical code
+
+You can use GDScript for most of the tasks. If you need performance-critical code you can use C# or C++.
+
+We can add a script to player scene.
+
+### 17. Functions and Printing Text
+
