@@ -76,3 +76,9 @@ We can link the player scene to the main scene. We can use the link icon in the 
 
 ### 13. Editing Instances
 
+If we want to edit the player scene we can click the edit button in the main scene. We can edit the player scene in the main scene. All copies of the player scene will be updated.
+
+If we want to edit individual instances we can click the instance and click the edit button. We can edit the instance without affecting the other instances.
+
+We can enable children property to edit the children of the instance.
+
