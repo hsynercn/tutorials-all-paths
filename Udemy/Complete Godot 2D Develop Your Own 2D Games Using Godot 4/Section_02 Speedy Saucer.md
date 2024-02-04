@@ -129,3 +129,12 @@ We can add a script to player scene.
 
 ### 17. Functions and Printing Text
 
+We can add a new script to the player scene. We can add a new function to the script. It can print a text to the console from the function.
+
+```gd
+extends RigidBody2D
+
+func _ready():
+    print("Hello, World!")
+```
+
