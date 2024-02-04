@@ -50,3 +50,9 @@ Tool tab:
 
 We can use the keyboard shortcuts to change the modes.
 
+### 6. Community and Resources
+
+GameDev community is very active. We can find many resources on the internet.
+
+Discord is a good place to ask questions.
+
