@@ -138,3 +138,21 @@ func _ready():
     print("Hello, World!")
 ```
 
+### 18. Number Operations and More Printing
+
+We can do some basic number operations in GDScript.
+
+```gd
+extends RigidBody2D
+
+func _ready():
+    print(1 + 1)
+    print(2 - 1)
+    print(2 * 2)
+    print(4 / 2)
+    print(5 % 2)
+    print(2 ** 3)
+```
+
+
+
