@@ -41,3 +41,12 @@ Blue rectangle is the main viewport.
 
 We can change the viewport setting from the project settings.
 
+Tool tab:
+
+- Select mode is used to select the nodes in the scene.
+- Move mode is used to move the nodes in the scene.
+- Rotate mode is used to rotate the nodes in the scene.
+- Scale mode is used to scale the nodes in the scene.
+
+We can use the keyboard shortcuts to change the modes.
+
