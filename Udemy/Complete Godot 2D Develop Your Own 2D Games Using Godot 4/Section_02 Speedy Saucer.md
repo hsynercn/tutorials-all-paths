@@ -64,3 +64,15 @@ We will add a CollisionShape2D node under the player node. We will set the radiu
 
 Important Note: Never set the size from Transform property. Always use the size property of the CollisionShape2D node.
 
+### 12. Instancing Scenes
+
+Instancing
+
+- A scene is a tree of nodes
+- We can split our game into scenes
+- Instancing let's use scenes in other scenes
+
+We can link the player scene to the main scene. We can use the link icon in the player scene. We can add the player scene to the main scene.
+
+### 13. Editing Instances
+
