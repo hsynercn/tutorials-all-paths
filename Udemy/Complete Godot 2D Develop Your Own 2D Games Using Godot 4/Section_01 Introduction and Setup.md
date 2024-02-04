@@ -56,3 +56,8 @@ GameDev community is very active. We can find many resources on the internet.
 
 Discord is a good place to ask questions.
 
+### 7. Accessing Our Projects
+
+There is a Gitlab repository for GameDevTV.
+
+[GameDevTV Gitlab](https://gitlab.com/gamedevtv)
