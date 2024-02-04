@@ -88,3 +88,11 @@ If we delete a parent node all the children will be deleted.
 
 Position is relative to the parent node. If we move the parent node all the children will move with it.
 
+### 15. Draw Order and Z Index
+
+When we add a node it will be rendered with the default z index. We can change the z index from the inspector.
+
+Higher z index will be rendered on top of the lower z index.
+
+We can set a negative z index to render the node behind the other nodes.
+
