@@ -174,4 +174,19 @@ var myString = "Hello, World!"
 var myBoolean = true
 ```
 
+### 20. Functions Parameters and Arguments
+
+We can define functions with parameters.
+
+```gd
+extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+  test(10)
+
+func test(param1):
+  print(param1*2)
+```
 
