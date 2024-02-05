@@ -93,3 +93,17 @@ graph LR
   B <--> C[JDBC]
   C <--> D[Database]
 ```
+
+### 64. Setting Up Development Environment
+
+In this course we will use MySQL database.
+
+- MySQL includes two components:
+  - MySQL Server
+  - MySQL Workbench
+
+Installing:
+
+- MySQL Server: [link](https://dev.mysql.com/downloads/mysql/)
+- MySQL Workbench: [link](https://dev.mysql.com/downloads/workbench/)
+
