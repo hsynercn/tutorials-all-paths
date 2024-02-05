@@ -221,3 +221,21 @@ public class CruddemoApplication {
   }
 }
 ```
+
+### 68. Setting Up Spring Boot Project - Coding - Part 2
+
+We need to add properties to application.properties:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/student_tracker
+spring.datasource.username=springstudent
+spring.datasource.password=springstudent
+```
+
+If we use a wrong URL, username or password we will get an exception.
+
+Side note: We can disable the spring banner by adding `spring.main.banner-mode=off` to application.properties.
+
+We can change the logging level by adding `logging.level.org.springframework=warn` to application.properties.
+
+
