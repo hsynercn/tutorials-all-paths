@@ -830,3 +830,107 @@ The client is responsible for the complete lifecycle of the prototype object. Sp
 
 Prototype beans are lazy by default. There is no need to use the @Lazy annotation.
 
+### 59. Java Config Bean - Overview
+
+We will configure beans with Java code.
+
+A new coach implementation without annotations:
+
+```java
+public class SwimCoach implements Coach {
+    ...
+}
+```
+
+Development Process
+
+1. Create @Configuration class
+2. Define @Bean method to configure the bean
+3. Inject tge bean into our controller
+
+Step 1: Create @Configuration class
+
+```java
+@Configuration
+public class SportConfig {
+    ...
+}
+```
+
+Step 2: Define @Bean method to configure the bean
+
+```java
+@Configuration
+public class SportConfig {
+    @Bean
+    public Coach swimCoach() {
+        return new SwimCoach();
+    }
+}
+```
+
+Step 3: Inject the bean into our controller
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public DemoController(@Qualifier("swimCoach") Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
+
+Use case for @Bean
+
+- Make an existing third-party class available to Spring framework
+- You may not have access to the course code of third-party class
+- However, you would like to use the third-party class as a Spring bean
+
+Real world wxample
+
+- AWS S3, we want to use the AWS S3 client as a Spring bean in our app
+- We can't modify the AWS SDK source code
+- We can't just add @Component
+- However we can configure it as a Spring bean using @Bean
+
+Configure AWS S3 Client using @Bean
+
+```java
+@Configuration
+public class DocumentsConfig {
+    @Bean
+    public S3Client remoteClient() {
+        ProfileCredentialsProvider profileCredentialsProvider = ProfileCredentialsProvider.create();
+        Region region = Region.US_EAST_1;
+        return S3Client.builder()
+            .credentialsProvider(profileCredentialsProvider)
+            .region(region)
+            .build();
+    }
+}
+```
+
+Inject the S3Client into our service
+
+```java
+@Component
+public class DocumentService {
+    private S3Client s3Client;
+
+    @Autowired
+    public DocumentService(S3Client theS3Client) {
+        s3Client = theS3Client;
+    }
+}
+```
+
+Wrap Up
+
+- We could use the Amazon S3 client as a Spring bean
+- AWS S3 Client was not originally annotated with @Component
+- However, we configured the S3 Client as a Spring Bean using @Bean
+- It makes an existing third-party class available to Spring framework
+
