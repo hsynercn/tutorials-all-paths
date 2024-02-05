@@ -222,7 +222,7 @@ public class CruddemoApplication {
 }
 ```
 
-### 68. Setting Up Spring Boot Project - Coding - Part 2
+### 69. Setting Up Spring Boot Project - Coding - Part 2
 
 We need to add properties to application.properties:
 
@@ -238,4 +238,74 @@ Side note: We can disable the spring banner by adding `spring.main.banner-mode=o
 
 We can change the logging level by adding `logging.level.org.springframework=warn` to application.properties.
 
+### 70. JPA Annotations - Overview
+
+Hibernate is the default JPA implementation in Spring Boot.
+
+Entity Class: Java class that is mapped to a database table.
+
+```mermaid
+graph LR
+  A[Java Class] --> B 
+  B[Hibernate] --> C
+  C[Database Table] --> B
+  B --> A
+```
+
+Entity Class
+
+- Must be annotated with @Entity
+- Must have a no-arg constructor, the class can have other constructors
+
+Constructor Reminder
+
+- If you don't define any constructors, Java will provide a default no-arg constructor.
+- If you declare constructors with arguments, Java will not provide a default no-arg constructor.
+
+Java Annotations
+
+- Step 1: Map class to database table
+- Step 2: Map fields to database columns
+
+Java code:
+
+```java
+@Entity
+@Table(name="student")
+public class Student {
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  private int id;
+
+  @Column(name="first_name")
+  private String firstName;
+
+  @Column(name="last_name")
+  private String lastName;
+
+  @Column(name="email")
+  private String email;
+}
+```
+
+@Column - Optional
+
+- Actually, the use of @Column is optional.
+- If not specified, the column name is the same as Java field.
+- In general, we shouldn't use this approach.
+  - If you refactor the Java code, then it will not match existing database columns.
+  - This is a breaking change and you will need to update column.
+- Same applies to table name.
+
+Primary Key: Unique identifier for each row in the table. Cannot be null.
+
+ID Generation Strategy
+
+- GenerationType.IDENTITY: Database will automatically generate the primary key.
+- GenerationType.SEQUENCE: Database will use a database sequence to generate the primary key.
+- GenerationType.TABLE: Database will use a database table to generate the primary key.
+- GenerationType.AUTO: Hibernate will choose the generation strategy based on the database.
+
+In addition we can create our own ID generation strategy.
 
