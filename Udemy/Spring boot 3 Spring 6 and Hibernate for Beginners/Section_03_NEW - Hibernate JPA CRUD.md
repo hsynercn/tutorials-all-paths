@@ -107,3 +107,52 @@ Installing:
 - MySQL Server: [link](https://dev.mysql.com/downloads/mysql/)
 - MySQL Workbench: [link](https://dev.mysql.com/downloads/workbench/)
 
+### 65. Setting Up Database Table - Overview
+
+01-create-student-table.sql
+
+Creates a new MySQL user for our application.
+
+- user id: springstudent
+- password: springstudent
+
+02-create-student-table.sql
+
+Creates a new table in the database.
+
+- id
+- first_name
+- last_name
+- email
+
+01-create-student-table.sql
+
+```sql
+-- Drop user first if they exist
+DROP USER IF EXISTS 'springstudent'@'localhost';
+
+-- Now create user with prop privileges
+CREATE USER 'springstudent'@'localhost' IDENTIFIED BY 'springstudent';
+
+GRANT ALL PRIVILEGES ON * . * TO 'springstudent'@'localhost';
+```
+
+After we execute the script it will create a new user and grant them all privileges.
+
+02-create-student-table.sql
+
+```sql
+CRETE DATABASE IF NOT EXISTS 'student_tracker';
+USE 'student_tracker';
+
+DROP TABLE IF EXISTS 'student';
+
+CREATE TABLE 'student' (
+  'id' int(11) NOT NULL AUTO_INCREMENT,
+  'first_name' varchar(45) DEFAULT NULL,
+  'last_name' varchar(45) DEFAULT NULL,
+  'email' varchar(45) DEFAULT NULL,
+  PRIMARY KEY ('id')
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
