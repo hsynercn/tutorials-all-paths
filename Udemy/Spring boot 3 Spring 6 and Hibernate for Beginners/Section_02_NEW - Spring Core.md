@@ -822,3 +822,11 @@ public class CricketCoach implements Coach {
 
 I will not write this part here. Same changes are made in the code.
 
+### 58. Special Note about Prototype Scope - Destroy Lifecycle Metho and Lazy Init
+
+Spring does not manage the complete lifecycle of a prototype bean: the container instantiates, configures, and otherwise assembles a prototype object, and hands it to the client, with no further record of that prototype instance.
+
+The client is responsible for the complete lifecycle of the prototype object. Spring container will not call the destroy method.
+
+Prototype beans are lazy by default. There is no need to use the @Lazy annotation.
+
