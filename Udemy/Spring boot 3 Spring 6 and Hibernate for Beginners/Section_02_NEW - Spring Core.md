@@ -500,4 +500,18 @@ In general using @Qualifier is more beneficial.
 
 ### 50. Primary - Coding
 
+We can use @Primary annotation for only one class.
+
+```java
+@Component
+@Primary
+public class CricketCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Practice fast bowling for 15 minutes";
+    }
+}
+```
+
+If we use more than one we will get a unsatisfied dependency injection error.
 
