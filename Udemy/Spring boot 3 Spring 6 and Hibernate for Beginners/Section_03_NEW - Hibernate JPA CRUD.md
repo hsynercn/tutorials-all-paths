@@ -563,3 +563,7 @@ public class CruddemoApplication {
   }
 }
 ```
+
+### 78. Retrieving Objects with JPA - Coding
+
+Same as previous section.
