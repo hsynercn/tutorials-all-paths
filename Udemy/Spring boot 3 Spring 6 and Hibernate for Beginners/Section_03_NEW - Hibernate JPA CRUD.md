@@ -394,11 +394,11 @@ public interface StudentDAO {
 Step 2: Define DAO implementation
 
 ```java
-public class StudentDAOJpaImpl implements StudentDAO {
+public class StudentDAOImpl implements StudentDAO {
   private EntityManager entityManager;
 
   @Autowired
-  public StudentDAOJpaImpl(EntityManager entityManager) {
+  public StudentDAOImpl(EntityManager entityManager) {
     this.entityManager = entityManager;
   }
 
@@ -483,3 +483,83 @@ We can reset the auto increment to 1:
 TRUNCATE TABLE student_tracker.student;
 ```
 
+### 77. Retrieving Objects with JPA - Overview
+
+We will focus on reading objects.
+
+Java code:
+
+```java
+Student myStudent = entityManager.find(Student.class, 1);
+```
+
+Read from database using the primary key, if not found return null.
+
+Development Process
+
+1. Add new method to DAO interface
+2. Add new method to DAO implementation
+3. Update main app
+
+Step 1: Add new method to DAO interface
+
+```java
+public interface StudentDAO {
+  public void saveStudent(Student theStudent);
+  public Student getStudent(int theId);
+}
+```
+
+Step 2: Define DAO implementation
+
+```java
+public class StudentDAOImpl implements StudentDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public StudentDAOImpl(EntityManager entityManager) {
+    this.entityManager = entityManager;
+  }
+
+  @Override
+  @Transactional
+  public void save(Student theStudent) {
+    entityManager.persist(theStudent);
+  }
+
+  @Override
+  public Student getStudent(int id) {
+    return entityManager.find(Student.class, theId);
+  }
+}
+```
+
+Step 3: Update main app
+
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+    return runner -> {
+      createStudent(studentDAO);
+      readStudent(studentDAO);
+    };
+  }
+
+  private void createStudent(StudentDAO studentDAO) {
+    Student theStudent = new Student("Paul", "Wall", "test@gmail.com");
+    studentDAO.save(theStudent);
+    System.out.println("Student saved, id: " + theStudent.getId());
+  }
+
+  private void readStudent(StudentDAO studentDAO) {
+    Student myStudent = studentDAO.getStudent(1);
+    System.out.println("Retrieved student: " + myStudent);
+  }
+}
+```
