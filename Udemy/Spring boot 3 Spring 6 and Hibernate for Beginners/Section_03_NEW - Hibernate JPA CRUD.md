@@ -156,3 +156,49 @@ CREATE TABLE 'student' (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 
+### 67. Setting Up Spring Boot Project - Overview
+
+Automatic Data Source Configuration
+
+- In Spring Boot, Hibernate is the default implementation of JPA.
+- EntityManager is main component for creating queries etc.
+- EntityManager is from Jakarta Persistence API (JPA).
+
+Based on configs, Spring Boot will automatically create the beans: DataSource, EntityManagerFactory, ...
+
+You can then inject these into your app, for example your DAO (Data Access Object) classes.
+
+Setting up Project with Spring Initializr
+
+- MySQL Driver: mysql-connector-j
+- Spring Data JPA: spring-boot-starter-data-jpa
+
+Spring Boot will automatically configure your data source for you.
+
+application.properties
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/student_tracker
+spring.datasource.username=springstudent
+spring.datasource.password=springstudent
+```
+
+We will start with a Command Line App:
+
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(String[] args) {
+    return runner -> {
+      System.out.println("Hello World");
+    };
+  }
+}
+```
+
