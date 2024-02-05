@@ -817,3 +817,8 @@ public class CricketCoach implements Coach {
     }
 }
 ```
+
+### 57. Bean Lifecycle Methods - Coding
+
+I will not write this part here. Same changes are made in the code.
+
