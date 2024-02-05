@@ -588,6 +588,7 @@ After adding the @Lazy annotation:
 
 ```java
 @Component
+@Lazy
 public class CricketCoach implements Coach {
     public CricketCoach() {
         System.out.println("In constructor: " + getClass().getSimpleName());
@@ -626,4 +627,48 @@ Disadvantages
 - May not discover configuration issues until too late
 - need to make sure have enough memory to handle the beans when they are created
 
+### 52. Lazy Initialization - Coding - Part 1
 
+I will not write this part here. Same changes are made in the code.
+
+### 53. Lazy Initialization - Coding - Part 2
+
+```java
+@Component
+@Lazy
+public class CricketCoach implements Coach {
+    public CricketCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+}
+```
+
+After adding the @Lazy annotation we will not see the bean creation log on the console.
+
+If we add the global configuration:
+
+```properties
+spring.main.lazy-initialization=true
+```
+
+With the below controller:
+
+```java
+@RestContoller
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+        myCoach = theCoach;
+    }
+}
+```
+
+We will not see the unused beans on the console. It will create this log:
+
+```console
+In constructor: CricketCoach
+In constructor: DemoController
+```
