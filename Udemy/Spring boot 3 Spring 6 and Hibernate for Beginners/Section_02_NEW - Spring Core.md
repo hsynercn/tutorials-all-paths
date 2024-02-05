@@ -515,3 +515,115 @@ public class CricketCoach implements Coach {
 
 If we use more than one we will get a unsatisfied dependency injection error.
 
+### 51. Lazy Initialization - Overview
+
+- By default when our application starts all beans are initialized.
+- Spring will create an instance of each and make them available.
+
+We can add some diagnostics to see the bean creation.
+
+```java
+@Component
+public class CricketCoach implements Coach {
+    public CricketCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+}
+```
+
+```java
+@Component
+public class BaseballCoach implements Coach {
+    public BaseballCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+}
+```
+
+```java
+@Component
+public class TrackCoach implements Coach {
+    public TrackCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+}
+```
+
+```java
+@Component
+public class TennisCoach implements Coach {
+    public TennisCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+}
+```
+
+When we start the application we will see something like this:
+
+```console
+In constructor: CricketCoach
+In constructor: BaseballCoach
+In constructor: TrackCoach
+In constructor: TennisCoach
+```
+
+Lazy Initialization
+
+- Instead of creating all beans up front, we can specify lacy initialization.
+- A bean will only be initialized in the following cases:
+  - It is needed for dependency injection
+  - Or it is explicitly requested
+
+Giving @Lazy annotation to the class will make it lazy.
+
+Global Configuration
+
+```properties
+spring.main.lazy-initialization=true
+```
+
+All beans will be lazy initialized.
+
+After adding the @Lazy annotation:
+
+```java
+@Component
+public class CricketCoach implements Coach {
+    public CricketCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+}
+```
+
+```java
+@RestContoller
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+        myCoach = theCoach;
+    }
+}
+```
+
+When we start the application we will see something like this:
+
+```console
+In constructor: CricketCoach
+In constructor: DemoController
+```
+
+Lazy Initialization Advantages
+
+- Only create beans when needed
+- May help with faster startup time if you have large number of components
+
+Disadvantages
+
+- If you have web related components like @RestController, not created until requested
+- May not discover configuration issues until too late
+- need to make sure have enough memory to handle the beans when they are created
+
+
