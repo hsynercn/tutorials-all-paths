@@ -383,8 +383,7 @@ Student DAO
   - Inject the entity manager
 - Step 3: Update main app
 
-
-Step 1: Define DAO interface
+Step 1: Define DAO (Data Access Object) interface
 
 ```java
 public interface StudentDAO {
@@ -445,3 +444,12 @@ public class CruddemoApplication {
   }
 }
 ```
+
+### 73. Saving a Java Object with JPA - Coding - Part 1
+
+Same as previous section.
+
+### 74. Saving a Java Object with JPA - Coding - Part 2
+
+We could check the created student in MySQL Workbench after executing the app.
+
