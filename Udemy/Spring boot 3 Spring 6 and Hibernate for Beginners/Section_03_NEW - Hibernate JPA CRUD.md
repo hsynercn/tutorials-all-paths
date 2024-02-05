@@ -202,3 +202,22 @@ public class CruddemoApplication {
 }
 ```
 
+### 68. Setting Up Spring Boot Project - Coding - Part 1
+
+Java code:
+  
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
+    return runner -> {
+      System.out.println("Hello World");
+    };
+  }
+}
+```
