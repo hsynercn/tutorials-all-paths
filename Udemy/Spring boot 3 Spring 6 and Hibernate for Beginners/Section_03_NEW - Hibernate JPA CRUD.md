@@ -469,3 +469,17 @@ studentDAO.save(theStudent3);
 
 If we check the id values in MySQL Workbench we will see that they are 1, 2, 3.
 
+### 76. Changing Index of MySQL Auto Increment
+
+We can alter the start of auto increment in MySQL Workbench:
+
+```sql
+ALTER TABLE student_tracker.student AUTO_INCREMENT = 1000;
+```
+
+We can reset the auto increment to 1:
+
+```sql
+TRUNCATE TABLE student_tracker.student;
+```
+
