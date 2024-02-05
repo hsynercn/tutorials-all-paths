@@ -341,3 +341,107 @@ public class Student {
   }
 }
 ```
+
+### 72. Saving a Java Object with JPA - Overview
+
+- Create a new Student
+- Read a Student
+- Update a Student
+- Delete a Student
+
+```mermaid
+graph LR
+  A[Cruddemo App] <--> B 
+  B[Student DAO] <--> C
+  C[Databse]
+```
+
+Student Data Access Object
+
+- Our DAO needs a JPA Entity Manager
+- JPA Entity manager is the main component for saving/retrieving entities.
+
+JPA Entity Manager
+
+- Our JPA Entity Manager needs a Data Source
+- The Data Source defines database connection info
+- JPA Entity Manager and Data Source are automatically created by Spring Boot based on the application.properties file.
+- We can autowire/inject the JPA Entity Manager into our Student DAO.
+
+```mermaid
+graph LR
+  A[Student DAO] <--> B 
+  B[Entity Manager] <--> C
+  C[Data Source] <--> D
+  D[Database]
+```
+
+Student DAO
+
+- Step 1: Define DAO interface
+- Step 2: Define DAO implementation
+  - Inject the entity manager
+- Step 3: Update main app
+
+
+Step 1: Define DAO interface
+
+```java
+public interface StudentDAO {
+  public void saveStudent(Student theStudent);
+}
+```
+
+Step 2: Define DAO implementation
+
+```java
+public class StudentDAOJpaImpl implements StudentDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public StudentDAOJpaImpl(EntityManager entityManager) {
+    this.entityManager = entityManager;
+  }
+
+  @Override
+  @Transactional
+  public void save(Student theStudent) {
+    entityManager.persist(theStudent);
+  }
+}
+```
+
+Spring @Transactional
+
+- Spring provides an @Transactional annotation.
+- Automatically begin and end transaction for your JPA code.
+- Transactional means that all operations are performed as a single unit of work.
+
+Specialized Annotations for DAOs
+
+- Spring provides the @Repository annotation.
+- Spring will automatically register the DAO implementation as a Spring Bean.
+- Spring also provide translation of JPA exceptions to Spring exceptions.
+
+Step 3: Update main app
+
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+    return runner -> {
+      createStudent(studentDAO);
+    };
+
+  private void createStudent(StudentDAO studentDAO) {
+    Student theStudent = new Student("Paul", "Wall", "test@gmail.com");
+    studentDAO.save(theStudent);
+    System.out.println("Student saved, id: " + theStudent.getId());
+  }
+}
+```
