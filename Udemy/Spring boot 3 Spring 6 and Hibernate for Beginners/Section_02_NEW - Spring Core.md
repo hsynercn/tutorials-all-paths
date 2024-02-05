@@ -934,3 +934,50 @@ Wrap Up
 - However, we configured the S3 Client as a Spring Bean using @Bean
 - It makes an existing third-party class available to Spring framework
 
+### 60. Java Config Bean - Coding - Part 1
+
+I will not write this part here. Same changes are made in the code.
+
+### 61. Java Config Bean - Coding - Part 2
+
+We can create a config package and put the configuration classes in it.
+
+```java
+@Configuration
+public class SportConfig {
+    @Bean
+    public Coach swimCoach() {
+        return new SwimCoach();
+    }
+}
+```
+
+Main Use Case Idea
+
+- Take existing three-party class and expose as a Spring bean.
+
+We can give custom names to the beans.
+
+```java
+@Configuration
+public class SportConfig {
+    @Bean("aquatic")
+    public Coach swimCoach() {
+        return new SwimCoach();
+    }
+}
+```
+
+We can inject the bean with the name.
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+
+    @Autowired
+    public DemoController(@Qualifier("aquatic") Coach theCoach) {
+        myCoach = theCoach;
+    }
+}
+```
