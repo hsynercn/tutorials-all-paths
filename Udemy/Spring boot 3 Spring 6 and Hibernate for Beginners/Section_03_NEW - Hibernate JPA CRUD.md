@@ -453,3 +453,19 @@ Same as previous section.
 
 We could check the created student in MySQL Workbench after executing the app.
 
+### 75. Primary Keys
+
+If we add more than one student:
+
+```java
+Student theStudent1 = new Student("John", "Doe", "test1@gmail.com");
+Student theStudent2 = new Student("Mary", "Public", "test2@gmail.com");
+Student theStudent3 = new Student("Bon", "Jovi", "test3@gmail.com");
+
+studentDAO.save(theStudent1);
+studentDAO.save(theStudent2);
+studentDAO.save(theStudent3);
+```
+
+If we check the id values in MySQL Workbench we will see that they are 1, 2, 3.
+
