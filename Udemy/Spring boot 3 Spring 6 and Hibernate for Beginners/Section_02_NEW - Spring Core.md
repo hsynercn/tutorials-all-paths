@@ -774,4 +774,46 @@ I will not write this part here. Same changes are made in the code.
 
 ### 56. Bean Lifecycle Methods - Overview
 
+```mermaid
+graph 
+  A[Container Started] --> B 
+  B[Bean Instantiated] --> C
+  C[Dependency Injection] --> D
+  D[Internal Spring Processing] --> E
+  E[Your Custom Init Method] --> F
+  F[Bean is ready for use] --> H
+  H[Container Shutdown] --> I
+  I[Your Custom Destroy Method] --> J
+  J[Stop]
+```
 
+Bean Lifecycle Methods / Hooks
+
+- We can add custom code during bean initialization
+  - Calling custom business logic methods
+  - Setting up handles to resources (db, sockets, file, etc.)
+
+- You can add custom code during bean destruction
+  - Calling custom business logic methods
+  - Clean up handles to resources (db, sockets, file, etc.)
+
+Init and destroy method example
+
+```java
+@Component
+public class CricketCoach implements Coach {
+    public CricketCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+
+    @PostConstruct
+    public void doMyStartupStuff() {
+        System.out.println("In doMyStartupStuff()");
+    }
+
+    @PreDestroy
+    public void doMyCleanupStuff() {
+        System.out.println("In doMyCleanupStuff()");
+    }
+}
+```
