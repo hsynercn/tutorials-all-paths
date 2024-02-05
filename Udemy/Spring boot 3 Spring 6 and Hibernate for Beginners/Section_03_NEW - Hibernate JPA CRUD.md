@@ -82,3 +82,14 @@ We will cover CRUD:
 - Read
 - Update
 - Delete
+
+### 63. Hibernate, JPA and JDBC
+
+Hibernate / JPA uses JDBC for all database interactions.
+
+```mermaid
+graph LR
+  A[Java App] <--> B[JPA Hibernate]
+  B <--> C[JDBC]
+  C <--> D[Database]
+```
