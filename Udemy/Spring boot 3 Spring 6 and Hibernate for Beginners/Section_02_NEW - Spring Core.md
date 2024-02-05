@@ -672,3 +672,106 @@ We will not see the unused beans on the console. It will create this log:
 In constructor: CricketCoach
 In constructor: DemoController
 ```
+
+### 54. Bean Scopes - Overview
+
+Bean Scope 
+
+- Scope refers to lifecycle of a bean
+- How long does the bean live?
+- How many instances are created?
+- How is the bean shared?
+
+Default Scope: Default scope is Singleton
+
+- Singleton: Spring container creates only one instance of the bean
+- It is cached in memory
+- All dependency injections will point to the same object
+
+An example of Singleton Scope
+
+```java
+@RestController
+public class DemoController {
+    private Coach myCoach;
+    private Coach anotherCoach;
+
+    @Autowired
+    public DemoController(
+        @Qualifier("cricketCoach") Coach theCoach,
+        @Qualifier("cricketCoach") Coach theAnotherCoach
+    ) {
+        myCoach = theCoach;
+        anotherCoach = theAnotherCoach;
+    }
+}
+```
+
+Both point the same instance.
+
+We can explicitly define the scope of a bean with the @Scope annotation.
+
+```java
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+public class CricketCoach implements Coach {
+    ...
+}
+```
+
+Additional Bean Scopes
+
+- singleton: Create a single shared instance of the bean. Default scope.
+- prototype: Create a new bean instance for each container request.
+- request: Scoped to an HTTP web request. Only used for web apps.
+- session: Scoped to an HTTP web session. Only used for web apps.
+- global-session: Scoped to a global HTTP web session. Only used for web apps.
+
+Prototype scope
+
+```java
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class CricketCoach implements Coach {
+    ...
+}
+```
+
+Check the bean scope with the below code:
+
+```java
+@Component
+public class DemoController {
+    private Coach myCoach;
+    private Coach anotherCoach;
+
+    @Autowired
+    public DemoController(
+        @Qualifier("cricketCoach") Coach theCoach,
+        @Qualifier("cricketCoach") Coach theAnotherCoach
+    ) {
+        myCoach = theCoach;
+        anotherCoach = theAnotherCoach;
+    }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing beans: myCoach == anotherCoach: " + (myCoach == anotherCoach);
+    }
+}
+```
+
+For the check method:
+
+- Singleton: True
+- Prototype: False
+
+Prototype will create a new instance for each request.
+
+### 55. Bean Scopes - Coding
+
+I will not write this part here. Same changes are made in the code.
+
+### 56. Bean Lifecycle Methods - Overview
+
+
