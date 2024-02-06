@@ -691,4 +691,18 @@ public class CruddemoApplication {
 }
 ```
 
+### 80. Querying Objects with JPA - Coding - Part 1
+
+We can use order in the findAll method:
+
+```java
+@Override
+public List<Student> findAll() {
+  TypedQuery<Student> theQuery = entityManager.createQuery("from Student order by lastName", Student.class);
+  List<Student> students = theQuery.getResultList();
+  return students;
+}
+```
+
+Default is ascending, we can use `order by lastName desc` for descending.
 
