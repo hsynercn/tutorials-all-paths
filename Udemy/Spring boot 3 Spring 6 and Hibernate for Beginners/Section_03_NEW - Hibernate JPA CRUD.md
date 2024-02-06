@@ -567,3 +567,128 @@ public class CruddemoApplication {
 ### 78. Retrieving Objects with JPA - Coding
 
 Same as previous section.
+
+### 79. Reading Objects with JPA - Overview
+
+JPQL (Java Persistence Query Language)
+
+- Query language for retrieving objects
+- Similar to SQL: where, order by, join, ...
+- But uses Java objects instead of database tables
+
+Example: Retrieve all students
+
+```java
+TypedQuery<Student> theQuery = entityManager.createQuery("from Student", Student.class);
+List<Student> students = theQuery.getResultList();
+```
+
+Note: This is not the name of the database table, all JPQL syntax is based on entity name and entity fields.
+
+Example: Retrieve students with last name of "Doe"
+
+```java
+TypedQuery<Student> theQuery = entityManager.createQuery("from Student s where s.lastName='Doe'", Student.class);
+List<Student> students = theQuery.getResultList();
+```
+
+Example: Retrieve students with last name of "Doe" or first name of "Daffy"
+
+```java
+TypedQuery<Student> theQuery = entityManager.createQuery("from Student s where s.lastName='Doe' or s.firstName='Daffy'", Student.class);
+List<Student> students = theQuery.getResultList();
+```
+
+Example: Retrieve students with email like
+
+```java
+TypedQuery<Student> theQuery = entityManager.createQuery("from Student s where s.email like '%gmail.com'", Student.class);
+List<Student> students = theQuery.getResultList();
+```
+
+Named Parameters
+
+Example: Last name parameter
+
+```java
+public List<Student> findByLastName(String theLastName) {
+  TypedQuery<Student> theQuery = entityManager.createQuery("from Student s where s.lastName=:theLastName", Student.class);
+  theQuery.setParameter("theLastName", theLastName);
+  List<Student> students = theQuery.getResultList();
+  return students;
+}
+```
+
+Development Process
+
+1. Add new method to DAO interface
+2. Add new method to DAO implementation
+3. Update main app
+
+Step 1: Add new method to DAO interface
+
+```java
+public interface StudentDAO {
+  public void saveStudent(Student theStudent);
+  public Student getStudent(int theId);
+  public List<Student> findALl();
+}
+```
+
+Step 2: Define DAO implementation
+
+```java
+public class StudentDAOImpl implements StudentDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public StudentDAOImpl(EntityManager entityManager) {
+    this.entityManager = entityManager;
+  }
+
+  @Override
+  @Transactional
+  public void save(Student theStudent) {
+    entityManager.persist(theStudent);
+  }
+
+  @Override
+  public Student getStudent(int id) {
+    return entityManager.find(Student.class, theId);
+  }
+
+  @Override
+  public List<Student> findAll() {
+    TypedQuery<Student> theQuery = entityManager.createQuery("from Student", Student.class);
+    List<Student> students = theQuery.getResultList();
+    return students;
+  }
+}
+```
+
+Step 3: Update main app
+
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+    return runner -> {
+      queryStudents(studentDAO);
+    };
+  }
+
+  private void queryStudents(StudentDAO studentDAO) {
+    List<Student> students = studentDAO.findAll();
+    for (Student student : students) {
+      System.out.println(student);
+    }
+  }
+}
+```
+
+
