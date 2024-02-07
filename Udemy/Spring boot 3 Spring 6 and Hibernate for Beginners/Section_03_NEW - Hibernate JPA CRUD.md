@@ -721,4 +721,102 @@ public List<Student> findByLastName(String theLastName) {
 }
 ```
 
+### 82. Updating Objects with JPA - Overview
+
+We can update a Student:
+
+```java
+Student myStudent = entityManager.find(Student.class, 1);
+
+// change first name to "Scooby"
+myStudent.setFirstName("Scooby");
+
+entityManager.merge(myStudent);
+```
+
+Update last name for all students:
+
+```java
+int numRowUpdated = entityManager.createQuery("UPDATE Student SET lastName='Test'").executeUpdate();
+```
+
+Development Process
+
+1. Add new method to DAO interface
+2. Add new method to DAO implementation
+3. Update main app
+
+Step 1: Add new method to DAO interface
+  
+```java
+public interface StudentDAO {
+  public void saveStudent(Student theStudent);
+  public Student getStudent(int theId);
+  public List<Student> findALl();
+  public void updateStudent(Student theStudent);
+}
+```
+
+Step 2: Define DAP implementation
+
+```java
+public class StudentDAOImpl implements StudentDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public StudentDAOImpl(EntityManager entityManager) {
+    this.entityManager = entityManager;
+  }
+
+  @Override
+  @Transactional
+  public void save(Student theStudent) {
+    entityManager.persist(theStudent);
+  }
+
+  @Override
+  public Student getStudent(int id) {
+    return entityManager.find(Student.class, theId);
+  }
+
+  @Override
+  public List<Student> findAll() {
+    TypedQuery<Student> theQuery = entityManager.createQuery("from Student", Student.class);
+    List<Student> students = theQuery.getResultList();
+    return students;
+  }
+
+  @Override
+  @Transactional
+  public void updateStudent(Student theStudent) {
+    entityManager.merge(theStudent);
+  }
+}
+```
+
+We can @Transactional on the update method.
+
+Step 3: Update main app
+
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+    return runner -> {
+      updateStudent(studentDAO);
+    };
+  }
+
+  private void updateStudent(StudentDAO studentDAO) {
+    Student myStudent = studentDAO.getStudent(1);
+    myStudent.setFirstName("Scooby");
+    studentDAO.updateStudent(myStudent);
+  }
+}
+```
 
