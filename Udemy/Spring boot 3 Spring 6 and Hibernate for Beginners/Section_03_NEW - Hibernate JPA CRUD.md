@@ -820,3 +820,8 @@ public class CruddemoApplication {
 }
 ```
 
+### 83. Updating Objects with JPA - Coding
+
+Same as previous section.
+
+### 84. Deleting Objects with JPA - Overview
