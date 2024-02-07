@@ -706,3 +706,19 @@ public List<Student> findAll() {
 
 Default is ascending, we can use `order by lastName desc` for descending.
 
+### 81. Querying Objects with JPA - Coding - Part 2
+
+We can add findByLastName method:
+
+```java
+public List<Student> findByLastName(String theLastName) {
+  TypedQuery<Student> theQuery = entityManager.createQuery("from Student s where s.lastName=:theLastName", Student.class);
+
+  theQuery.setParameter("theLastName", theLastName);
+  
+  List<Student> students = theQuery.getResultList();
+  return students;
+}
+```
+
+
