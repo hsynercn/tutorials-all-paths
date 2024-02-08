@@ -825,3 +825,103 @@ public class CruddemoApplication {
 Same as previous section.
 
 ### 84. Deleting Objects with JPA - Overview
+
+Retrieving and deleting a Student:
+
+```java
+int id = 1;
+Student myStudent = entityManager.find(Student.class, id);
+entityManager.remove(myStudent);
+```
+
+We can also delete multiple students with condition:
+
+```java
+int numRowDeleted = entityManager.createQuery("delete from Student where lastName='Doe'").executeUpdate();
+```
+
+Update is the generic term for modifying the database.
+
+Development Process
+
+1. Add new method to DAO interface
+2. Add new method to DAO implementation
+3. Update main app
+
+Step 1: Add new method to DAO interface
+
+```java
+public interface StudentDAO {
+  public void saveStudent(Student theStudent);
+  public Student getStudent(int theId);
+  public List<Student> findALl();
+  public void updateStudent(Student theStudent);
+  public void deleteStudent(int theId);
+}
+```
+
+Step 2: Define DAO implementation
+
+```java
+public class StudentDAOImpl implements StudentDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public StudentDAOImpl(EntityManager entityManager) {
+    this.entityManager = entityManager;
+  }
+
+  @Override
+  @Transactional
+  public void save(Student theStudent) {
+    entityManager.persist(theStudent);
+  }
+
+  @Override
+  public Student getStudent(int id) {
+    return entityManager.find(Student.class, theId);
+  }
+
+  @Override
+  public List<Student> findAll() {
+    TypedQuery<Student> theQuery = entityManager.createQuery("from Student", Student.class);
+    List<Student> students = theQuery.getResultList();
+    return students;
+  }
+
+  @Override
+  @Transactional
+  public void updateStudent(Student theStudent) {
+    entityManager.merge(theStudent);
+  }
+
+  @Override
+  @Transactional
+  public void deleteStudent(int theId) {
+    Student myStudent = entityManager.find(Student.class, theId);
+    entityManager.remove(myStudent);
+  }
+}
+```
+
+Step 3: Update main app
+
+```java
+@SpringBootApplication
+public class CruddemoApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(CruddemoApplication.class, args);
+  }
+
+  @Bean
+  public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+    return runner -> {
+      deleteStudent(studentDAO);
+    };
+  }
+
+  private void deleteStudent(StudentDAO studentDAO) {
+    studentDAO.deleteStudent(1);
+  }
+}
+```
