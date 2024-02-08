@@ -81,3 +81,42 @@ Nested JSON Example:
 }
 ```
 
+### 93. Spring Boot REST HTTP Basics
+
+Most common use of REST is over HTTP.
+
+We can leverage HTTP methods to create RESTful services.
+
+- POST: Create a new entity
+- GET: Read a list of entities or a single entity
+- PUT: Update an existing entity
+- DELETE: Delete an entity
+
+HTTP Request Message
+
+- Request Line: the HTTP command
+- Header variables: request metadata
+- Message body: contents of message
+
+HTTP Response Message
+
+- Response line: server protocol and status code
+- Header variables: response metadata
+- Message body: contents of message
+
+HTTP Response Status Codes
+
+- 100-199: Informational
+- 200-299: Success
+- 300-399: Redirection
+- 400-499: Client Error
+- 500-599: Server Error
+
+MIME Content Types (Multipurpose Internet Mail Extensions)
+
+- Basic syntax: type/subtype
+- Examples:
+  - text/html, text/plain, text/xml
+  - application/json, application/xml
+
+We can use curl or Postman to test REST services. We can install Postman to test REST services.
