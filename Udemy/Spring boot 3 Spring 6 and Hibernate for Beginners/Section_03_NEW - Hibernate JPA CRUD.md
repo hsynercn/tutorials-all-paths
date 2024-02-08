@@ -930,3 +930,69 @@ public class CruddemoApplication {
 
 Same as previous section.
 
+### 86. Deleting Objects with JPA - Coding - Part 2
+
+Let's delete all students:
+
+```java
+public interface StudentDAO {
+  public void saveStudent(Student theStudent);
+  public Student getStudent(int theId);
+  public List<Student> findALl();
+  public void updateStudent(Student theStudent);
+  public void deleteStudent(int theId);
+  public int deleteAll();
+}
+```
+
+DAO implementation:
+
+```java
+public class StudentDAOImpl implements StudentDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public StudentDAOImpl(EntityManager entityManager) {
+    this.entityManager = entityManager;
+  }
+
+  @Override
+  @Transactional
+  public void save(Student theStudent) {
+    entityManager.persist(theStudent);
+  }
+
+  @Override
+  public Student getStudent(int id) {
+    return entityManager.find(Student.class, theId);
+  }
+
+  @Override
+  public List<Student> findAll() {
+    TypedQuery<Student> theQuery = entityManager.createQuery("from Student", Student.class);
+    List<Student> students = theQuery.getResultList();
+    return students;
+  }
+
+  @Override
+  @Transactional
+  public void updateStudent(Student theStudent) {
+    entityManager.merge(theStudent);
+  }
+
+  @Override
+  @Transactional
+  public void deleteStudent(int theId) {
+    Student myStudent = entityManager.find(Student.class, theId);
+    entityManager.remove(myStudent);
+  }
+
+  @Override
+  @Transactional
+  public int deleteAll() {
+    Query theQuery = entityManager.createQuery("DELETE FROM Student");
+    int numRowDeleted = theQuery.executeUpdate();
+    return numRowDeleted;
+  }
+}
+```
