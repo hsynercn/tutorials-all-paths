@@ -39,3 +39,45 @@ This part is about several examples of REST services.
 
 ### 92. JSON Basics
 
+What is JSON?
+
+- JavaScript Object Notation
+- Lightweight data format for storing and exchanging data
+- Language independent, not just for JavaScript
+- Can use with any programming language: Java, C#, Python, etc.
+
+Simple JSON Example:
+
+```json
+{
+  "name": "Ranga",
+  "age": 35,
+  "isProgrammer": true
+}
+```
+
+Curly braces define objects in JSON. Object members are name / value pairs. Name is always double quoted, "name", "age", "isProgrammer".
+
+JSON values:
+
+- numbers. no quotes
+- string: double quotes
+- boolean: true or false
+- nested JSON objects
+- arrays
+- null
+
+Nested JSON Example:
+
+```json
+{
+  "name": "Ranga",
+  "age": 35,
+  "isProgrammer": true,
+  "address": {
+    "city": "New York",
+    "state": "NY"
+  }
+}
+```
+
