@@ -996,3 +996,88 @@ public class StudentDAOImpl implements StudentDAO {
   }
 }
 ```
+
+### 87. Create Database Table from Java Code - Overview
+
+- JPA/Hibernate provides an option to automatically create database tables.
+- Creates tables based on Java code with JPA/Hibernate annotations.
+- Useful for development and testing.
+
+Configuration
+
+In Spring Boot configuration application.properties we will add this line:
+
+```properties
+spring.jpa.hibernate.ddl-auto=create
+```
+
+When we run the app JPA/Hibernate will dropt tables and create new ones basedn on the annotations in the Java code.
+
+```java
+@Entity
+@Table(name="student")
+public class Student {
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  private int id;
+
+  @Column(name="first_name")
+  private String firstName;
+
+  @Column(name="last_name")
+  private String lastName;
+
+  @Column(name="email")
+  private String email;
+}
+```
+
+This entity will create a table in the database:
+
+```sql
+CREATE TABLE student (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(45),
+  last_name VARCHAR(45),
+  email VARCHAR(45)
+);
+```
+
+Hibernate will generate and execute this SQL code.
+
+Property values for spring.jpa.hibernate.ddl-auto:
+
+- none: No action will be performed.
+- create-only: Database tables are only created.
+- drop: Database tables are dropped.
+- create: Database tables are dropped and created.
+- create-drop: Database tables are dropped and created. On application shutdown, the tables are dropped.
+- validate: Validate the database schema.
+- update: Update the database schema.
+
+For development purposes we can use create.
+
+We should keep in mind that dropped tables lose all data.
+
+Basic Projects
+
+- We ca keep the tables with update option.
+- However, it will alter the database schema on the latest code updates.
+- Still we should be vary careful with this option.
+
+Warning
+
+- Don't use create or create-drop in production.
+- Instead we should have a DBAs run SQl scripts to change the database schema.
+
+RECOMMENDATION
+
+- In general we shouldn't auto generate for enterprise, real-time applications. We can easily drop the PROD database.
+- Instead we can use SQl scripts
+  - Corporate DBAs prefer SQL scripts for governance and code review.
+  - The SQL scripts can be customized and fine-tuned for complex database changes.
+  - The SQL scripts can ve version controlled.
+  - Can also work with schema migration tools such as Liquibase or Flyway.
+
+  
