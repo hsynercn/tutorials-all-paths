@@ -1080,4 +1080,25 @@ RECOMMENDATION
   - The SQL scripts can ve version controlled.
   - Can also work with schema migration tools such as Liquibase or Flyway.
 
-  
+### 88. Create Database Table from Java Code - Coding - Part 1
+
+We can add some configs to application.properties for better debugging:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/student_tracker
+spring.datasource.username=springstudent
+spring.datasource.password=springstudent
+
+spring.main.banner-mode=off
+
+logging.level.root=warn
+
+# Add logging configs to display SQL statements
+logging.level.org.hibernate.SQL=debug
+logging.level.org.hibernate.orm.jdbc.bind=trace
+```
+
+We can see the SQL statements in the console with values.
+
+If we drop the table from SB tool and rerun the app we w,ll see the exception in console.
+
