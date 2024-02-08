@@ -925,3 +925,8 @@ public class CruddemoApplication {
   }
 }
 ```
+
+### 85. Deleting Objects with JPA - Coding - Part 1
+
+Same as previous section.
+
