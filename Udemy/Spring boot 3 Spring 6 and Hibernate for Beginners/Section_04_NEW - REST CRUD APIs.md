@@ -146,4 +146,15 @@ public class DemoRestController {
 
 For simple testing we can use browser or Postman. For advanced cases Postman is better.
 
+### 96. Spring Boot REST Controller - Overview - Part 2
+
+For REST development we need to add spring-boot-starter-web dependency.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
 
