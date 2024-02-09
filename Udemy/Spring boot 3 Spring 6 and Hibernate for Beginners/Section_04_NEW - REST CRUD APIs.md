@@ -120,3 +120,30 @@ MIME Content Types (Multipurpose Internet Mail Extensions)
   - application/json, application/xml
 
 We can use curl or Postman to test REST services. We can install Postman to test REST services.
+
+### 94. Postman Demo
+
+We nca install the Postman app to test REST services.
+
+### 95. Spring Boot REST Controller - Overview - Part 1
+
+Basic structure of a REST Controller:
+
+```java
+@RestController
+@RequestMapping("/test")
+public class DemoRestController {
+  @GetMapping("/hello")
+  public String sayHello() {
+    return "Hello World";
+  }
+}
+```
+
+- @RestController: Adds REST support.
+- Access the REST endpoint at /test/hello.
+- Return returns the content to client.
+
+For simple testing we can use browser or Postman. For advanced cases Postman is better.
+
+
