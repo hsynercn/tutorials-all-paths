@@ -157,4 +157,20 @@ For REST development we need to add spring-boot-starter-web dependency.
 </dependency>
 ```
 
+### 97. Spring Boot REST Controller - Coding
+
+We can create the project from Initializr. We can add the spring-boot-starter-web dependency.
+
+After we add the controller we can run the application and test the REST service with Postman.
+
+```java
+@RestController
+@RequestMapping("/test")
+public class DemoRestController {
+  @GetMapping("/hello")
+  public String sayHello() {
+    return "Hello World";
+  }
+}
+```
 
