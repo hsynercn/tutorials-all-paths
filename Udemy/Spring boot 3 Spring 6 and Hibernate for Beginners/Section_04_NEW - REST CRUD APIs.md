@@ -174,3 +174,63 @@ public class DemoRestController {
 }
 ```
 
+### 98. JSON Jackson Data Binding
+
+Data binding is the process of converting JSON data to Java POJO. 
+
+Data binding:
+
+```mermaid
+graph LR
+  A[JSON] --> B[Java POJO]
+  B --> A
+```
+
+Also known as:
+
+- Mapping
+- Serialization / Deserialization
+- Marshalling / Unmarshalling
+
+JSON data binding with Jackson:
+
+- Spring uses the Jackson Project behind the scenes
+- Jackson handles data binding between JSON and Java POJO
+- Jackson project URL: [link](https://github.com/FasterXML/jackson-databind)
+
+JSON to Java POJO
+
+JSON data:
+  
+  ```json
+  {
+    "id": 14,
+    "firstName": "Mario",
+    "lastName": "Rossi",
+    "active": true
+  }
+  ```
+
+Java POJO:
+
+```java
+public class Student {
+  private int id;
+  private String firstName;
+  private String lastName;
+  private boolean active;
+  // Getters and setters
+}
+```
+
+Java POJO to JSON
+
+- We cam call getter methods on POJO to get JSON data.
+
+Spring and Jackson Support
+
+- When we building Spring REST applications
+- Spring will automatically handle JSON Integration
+- JSON data being passed to REST controller is automatically converted to Java POJO
+- Java object being returned from REST controller is automatically converted to JSON
+
