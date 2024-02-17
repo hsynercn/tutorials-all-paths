@@ -190,3 +190,19 @@ func test(param1):
   print(param1*2)
 ```
 
+### 21. Vector2 and apply_impulse()
+
+Vector2 is a built-in type in Godot. It is used to store 2D vectors.
+
+We can use apply_impulse() function to apply a force to the RigidBody2D node.
+
+```gd
+extends RigidBody2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	apply_impulse(Vector2(25, -10))
+```
+
+Apply impulse is useful when we want to apply a force to the object once.
+
