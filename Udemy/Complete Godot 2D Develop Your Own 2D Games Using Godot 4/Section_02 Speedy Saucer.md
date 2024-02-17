@@ -206,3 +206,47 @@ func _ready():
 
 Apply impulse is useful when we want to apply a force to the object once.
 
+### 22. Processing and apply_force()
+
+FPS (Frames Per Second)
+
+- Higher FPS means game is running smoother
+- V-Sync: FPS is synchronized with the monitor's refresh rate
+- Godot is v-sync enabled by default
+
+If we want to add a force to the object every frame we can use apply_force() function.
+
+```gd
+extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	apply_impulse(Vector2(-250, 0))
+	
+func _process(delta):
+	print(Engine.get_frames_per_second())
+	apply_force(Vector2(25, 0))
+```
+
+If we run the game with V-Sync enabled we will get 60 FPS. If we disable the V-Sync we will get 1000+ FPS for this simple game.
+
+If we want to prevent this force being applied every frame we can use another method _physics_process().
+
+```gd
+extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	apply_impulse(Vector2(-200, 0))
+	
+func _process(delta):
+	pass
+	
+func _physics_process(delta):
+	apply_force(Vector2(25, 0))
+```
+
+This approach will provide a consistent behavior for the game.
+
