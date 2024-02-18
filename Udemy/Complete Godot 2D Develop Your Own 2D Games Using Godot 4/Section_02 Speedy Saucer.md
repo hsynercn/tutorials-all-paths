@@ -250,3 +250,38 @@ func _physics_process(delta):
 
 This approach will provide a consistent behavior for the game.
 
+### 23. If Statement and Comparison Operators
+
+If statement is used to execute a block of code if the condition is true.
+
+Sorry guys, I am writing if statements since 2016. I will skip this part.
+
+### 24. Getting Input
+
+We can get the input from the user with the Input class.
+
+```gd
+extends RigidBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+	
+func _process(delta):
+	pass
+	
+func _physics_process(delta):
+	var force = 1000
+	if Input.is_action_pressed("move_right"):
+		apply_force(Vector2(force, 0))
+	if Input.is_action_pressed("move_left"):
+		apply_force(Vector2(-force, 0))
+	if Input.is_action_pressed("move_up"):
+		apply_force(Vector2(0, -force))
+	if Input.is_action_pressed("move_down"):
+		apply_force(Vector2(0, force))
+```
+
+We can add the move_right, move_left, move_up, move_down actions from the project settings.
+
