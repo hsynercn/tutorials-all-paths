@@ -285,3 +285,5 @@ func _physics_process(delta):
 
 We can add the move_right, move_left, move_up, move_down actions from the project settings.
 
+<img width="882" alt="image" src="https://github.com/hsynercn/tutorials-all-paths/assets/28985966/b5a32386-2f26-4793-88fc-fff16b7e5701">
+
