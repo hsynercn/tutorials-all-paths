@@ -293,3 +293,12 @@ Variable scope is the area where the variable is accessible. Global variables ar
 
 Function scope is used before the global scope. If we define a variable with the same name in the function scope it will override the global variable.
 
+### 26. Function Return Values
+
+We can return a value from a function.
+
+```gd
+func test(param1):
+  return param1*2
+```
+
