@@ -289,3 +289,7 @@ We can add the move_right, move_left, move_up, move_down actions from the projec
 
 ### 25. Variable Scope
 
+Variable scope is the area where the variable is accessible. Global variables are accessible from anywhere in the script. Local variables are only accessible from the function they are defined.
+
+Function scope is used before the global scope. If we define a variable with the same name in the function scope it will override the global variable.
+
