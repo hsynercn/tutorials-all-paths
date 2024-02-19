@@ -377,3 +377,55 @@ If we use a large value for studentId we will get an error, it will cause a out 
 
 ### 105. Spring Boot REST Exception Handling - Overview - Part 1
 
+We want to see a proper exception response from the REST service, not a stack trace.
+
+```json
+{
+  "status": 404,
+  "message": "Student id not found - 9999",
+  "timeStamp": "2022-01-01T10:00:00"
+}
+```
+
+Development Process:
+
+1. Create a custom error response class
+
+2. Create a custom exception class
+3. Update REST service to throw exception if student not found
+4. Add an exception handler method using @ExceptionHandler
+
+Step 1: Create a custom error response class
+
+- Custom error response class will be sent back to client
+- We will define a Java class (POJO)
+- Jackson will handle converting it to JSON
+
+StudentErrorResponse.java:
+
+```java
+public class StudentErrorResponse {
+  private int status;
+  private String message;
+  private long timeStamp;
+
+  // Getters and setters
+
+  //constructors
+}
+```
+
+Step 2: Create a custom exception class
+
+- The custom student exception will used by our REST service
+- In our code, if we can't find student, then we will throw an exception
+- We need to define a custom student exception class, StudentNotFoundException
+
+```java
+public class StudentNotFoundException extends RuntimeException {
+  public StudentNotFoundException(String message) {
+    super(message);
+  }
+}
+```
+
