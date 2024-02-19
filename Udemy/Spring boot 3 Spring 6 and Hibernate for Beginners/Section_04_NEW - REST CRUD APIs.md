@@ -340,3 +340,32 @@ public class StudentRestController {
 }
 ```
 
+### 103. Spring Boot REST Path Variables - Coding - Part 1
+
+We can provide some default Student list to StudentRestController.
+
+```java
+@RestMapping("/api")
+public class StudentRestController {
+  private List<Student> theStudents;
+
+  @PostConstruct
+  public void loadData() {
+    theStudents = new ArrayList<>();
+    theStudents.add(new Student("Mario", "Rossi"));
+    theStudents.add(new Student("Maria", "Rossi"));
+    theStudents.add(new Student("Antonio", "Rossi"));
+  }
+
+  @GetMapping("/students")
+  public List<Student> getStudents() {
+    return theStudents;
+  }
+
+  @GetMapping("/students/{studentId}")
+  public Student getStudent(@PathVariable int studentId) {
+    return theStudents.get(studentId);
+  }
+}
+```
+
