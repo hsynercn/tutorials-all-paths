@@ -369,3 +369,11 @@ public class StudentRestController {
 }
 ```
 
+### 104. Spring Boot REST Path Variables - Coding - Part 2
+
+In this part we have already seeing the results for singular and multiple students.
+
+If we use a large value for studentId we will get an error, it will cause a out of bounds exception. We will look at exceptions in next chapter.
+
+### 105. Spring Boot REST Exception Handling - Overview - Part 1
+
