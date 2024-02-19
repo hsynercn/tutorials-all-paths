@@ -309,3 +309,6 @@ public class StudentRestController {
 I will skip the coding part.
 
 ### 101. Spring Boot REST POJO - Coding - Part 2
+
+I will skip the coding part.
+
