@@ -312,3 +312,31 @@ I will skip the coding part.
 
 I will skip the coding part.
 
+### 102. Spring Boot REST Path Variables - Overview
+
+We will create a GET /api/students/{studentId} to return a single student.
+
+This variable is a path variable.
+
+StudentRestController.java:
+
+```java
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+  
+  // define endpoint for "/students/{studentId}" - return student at index
+
+  @GetMapping("/students/{studentId}")
+  public Student getStudent(@PathVariable int studentId) {
+    List<Student> students = new ArrayList<>();
+    
+    students.add(new Student("Mario", "Rossi"));
+    students.add(new Student("Maria", "Rossi"));
+    students.add(new Student("Antonio", "Rossi"));
+
+    return students.get(studentId);
+  }
+}
+```
+
