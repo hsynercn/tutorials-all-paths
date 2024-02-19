@@ -234,3 +234,78 @@ Spring and Jackson Support
 - JSON data being passed to REST controller is automatically converted to Java POJO
 - Java object being returned from REST controller is automatically converted to JSON
 
+### 99. Spring Boot REST POJO - Overview
+
+Create new service:
+
+Return a list of students: GET /api/students Returns a list of students.
+
+We need to convert Java POJO to JSON:
+
+- Our REST Service will return List < Student >
+- We need to convert List < Student > to JSON
+- Jackson can help us out here
+
+Spring Boot and Jackson Support
+
+- Spring Boot will automatically handle Jackson integration
+- JSON data being passed to REST controller is converted to Java POJO
+- Java POJO being returned from REST controller is converted to JSON
+
+Step 1: Create Java POJO class for Student
+
+Student.java:
+
+```java
+public class Student {
+  private String firstName;
+  private String lastName;
+
+  public Student() {
+  }
+
+  public Student(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+}
+```
+
+Step 2: Create REST Controller to return List < Student >
+
+```java
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+  @GetMapping("/students")
+  public List<Student> getStudents() {
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("Mario", "Rossi"));
+    students.add(new Student("Maria", "Rossi"));
+    students.add(new Student("Antonio", "Rossi"));
+    return students;
+  }
+}
+```
+
+### 100. Spring Boot REST POJO - Coding - Part 1
+
+I will skip the coding part.
+
+### 101. Spring Boot REST POJO - Coding - Part 2
