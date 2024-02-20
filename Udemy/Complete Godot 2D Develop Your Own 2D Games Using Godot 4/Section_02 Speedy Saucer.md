@@ -302,3 +302,23 @@ func test(param1):
   return param1*2
 ```
 
+### 27. Following The Player With Camera2D
+
+We can add a Camera2D node to player node to follow the player.
+
+We can add smoothing to the camera to make the movement smoother and drag to make the camera follow the player with a delay.
+
+### 28. Making The Maze
+
+We will use a new node type, Area2D. It is used to detect the collision with other nodes.
+
+Area2D
+
+- Does not have collision resolution
+- Can only detect other physics bodies
+- We use it to detect collision with other physics bodies without affecting them
+
+Under Area2D we will add a CollisionPolygon2D and Polygon2D nodes. We will add texture to the Polygon2D node with a repeating enabled flag. In next stage we will use the collision polygon to detect the collision with the player.
+
+### 29. Using Signals To Reset The Game
+
