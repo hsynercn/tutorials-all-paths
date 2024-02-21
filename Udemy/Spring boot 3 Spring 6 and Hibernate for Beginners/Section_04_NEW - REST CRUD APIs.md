@@ -486,8 +486,87 @@ I will skip the coding part.
 
 ### 110. Spring Boot REST Exception Handling - Coding - Part 4
 
-I will skip the coding part.
+We can create a exception handler for generic exceptions.
+
+```java
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+
+  @ExceptionHandler
+  public ResponseEntity<StudentErrorResponse> handleException(Exception exc) {
+    StudentErrorResponse error = new StudentErrorResponse();
+    error.setStatus(HttpStatus.BAD_REQUEST.value());
+    error.setMessage(exc.getMessage());
+    error.setTimeStamp(System.currentTimeMillis());
+    return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+  }
+}
+```
 
 ### 111. Spring Boot REST Exception Handling Overview
 
+Creating a exception handler for a specific controller works but large projects will have many controllers.
 
+They can't be reused by other controllers.
+
+We need global exception handlers
+
+- Promotes reuse
+- Centralizes exception handling
+
+Spring @ControllerAdvice
+
+- @ControllerAdvice is similar to an interceptor / filter
+- Pre-process requests to controllers
+- Post-process responses to handle exceptions
+- Perfect for global exception handling
+
+This is a real-time use of AOP (Aspect Oriented Programming). AOP is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns.
+
+```mermaid
+graph LR
+  A[REST Client] --> B[Controller Advice > Exception Handlers]
+  B --> C[REST Service]
+  C --> B
+  B --> A
+```
+
+Development Process:
+
+1. Create new @ControllerAdvice
+2. Refactor REST service, remove exception handling code
+3. Add exception handling code to @ControllerAdvice
+
+Step 1: Create new @ControllerAdvice
+
+StudentRestExceptionHandler.java:
+
+```java
+@ControllerAdvice
+public class StudentRestExceptionHandler {
+  // Add exception handling code here
+}
+```
+
+Step 2: Refactor REST service, remove exception handling code
+
+We need to remove the @ExceptionHandler from the REST service.
+
+Step 3: Add exception handling code to @ControllerAdvice
+
+StudentRestExceptionHandler.java:
+
+```java
+@ControllerAdvice
+public class StudentRestExceptionHandler {
+  @ExceptionHandler
+  public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc) {
+    StudentErrorResponse error = new StudentErrorResponse();
+    error.setStatus(HttpStatus.NOT_FOUND.value());
+    error.setMessage(exc.getMessage());
+    error.setTimeStamp(System.currentTimeMillis());
+    return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+  }
+}
+```
