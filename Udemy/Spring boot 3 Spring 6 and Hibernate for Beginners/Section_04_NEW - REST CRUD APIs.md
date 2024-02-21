@@ -646,3 +646,24 @@ ANTI-PATTERNS
 
 Don't include actions in the endpoint URL. Instead use HTTP methods.
 
+### 114. Spring Boot REST API Design - API Design of Real-Time Projects
+
+Several real world examples:
+
+PayPal:
+
+- Invoicing API
+- POST /v1/invoicing/invoices: Create draft invoice
+- GET /v1/invoicing/invoices: List invoices
+- GET /v1/invoicing/invoices/{invoiceId}: Show invoice details
+- PUT /v1/invoicing/invoices/{invoiceId}: Update invoice
+- DELETE /v1/invoicing/invoices/{invoiceId}: Delete invoice
+
+GitHub:
+
+- Repositories API
+- POST /user/repos: Create a new repository
+- GET /user/repos: List your repositories
+- DELETE /repos/{owner}/{repo}: Delete a repository
+- GET /repos/{owner}/{repo}: Get a repository
+
