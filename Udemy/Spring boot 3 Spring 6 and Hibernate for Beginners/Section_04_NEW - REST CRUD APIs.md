@@ -667,3 +667,30 @@ GitHub:
 - DELETE /repos/{owner}/{repo}: Delete a repository
 - GET /repos/{owner}/{repo}: Get a repository
 
+### 115. Spring Boot REST Project Overview
+
+| HTTP Method | URL | CRUD Action |
+| --- | --- | --- |
+| GET | /api/employees | Read a list of employees |
+| GET | /api/employees/{employeeId} | Read a single employee |
+| POST | /api/employees | Create a new employee |
+| PUT | /api/employees | Update an existing employee |
+| DELETE | /api/employees/{employeeId} | Delete an existing employee |
+
+Development Process
+
+1. Set up Database Dev Environment
+2. Create Spring Boot project using Spring Initializr
+3. Get list of employees
+4. Get single employee by ID
+5. Add a new employee
+6. Update an existing employee
+7. Delete an existing employee
+
+```mermaid
+graph LR
+  A[Employee REST Controller] <--> B[Employee Service]
+  B <--> C[Employee DAO]
+  C <--> D[Database]
+```
+
