@@ -390,7 +390,6 @@ We want to see a proper exception response from the REST service, not a stack tr
 Development Process:
 
 1. Create a custom error response class
-
 2. Create a custom exception class
 3. Update REST service to throw exception if student not found
 4. Add an exception handler method using @ExceptionHandler
@@ -428,4 +427,67 @@ public class StudentNotFoundException extends RuntimeException {
   }
 }
 ```
+
+### 106. Spring Boot REST Exception Handling - Overview - Part 2
+
+Step 3: Update REST service to throw exception
+
+StudentRestController.java:
+
+```java
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+
+  @GetMapping("/students/{studentId}")
+  public Student getSudent(@PathVariable int studentId) {
+    if (studentId >= theStudents.size() || studentId < 0) {
+      throw new StudentNotFoundException("Student id not found - " + studentId);
+    }
+    return theStudents.get(studentId);
+  }
+}
+```
+
+Step 4: Add exception handler method
+
+- Define exception handler methods(s) with @ExceptionHandler annotation
+- Exception handler will return a ResponseEntity
+- ResponseEntity is a wrapper for the HTTP response object
+- ResponseEntity provides fine-grained control to specify: HTTP status code, HTTP headers, response body
+
+```java 
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+
+  @ExceptionHandler
+  public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException exc) {
+    StudentErrorResponse error = new StudentErrorResponse();
+    error.setStatus(HttpStatus.NOT_FOUND.value());
+    error.setMessage(exc.getMessage());
+    error.setTimeStamp(System.currentTimeMillis());
+    return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+  }
+}
+```
+
+### 107. Spring Boot REST Exception Handling - Coding - Part 1
+
+I will skip the coding part.
+
+### 108. Spring Boot REST Exception Handling - Coding - Part 2
+
+I will skip the coding part.
+
+### 109. Spring Boot REST Exception Handling - Coding - Part 3
+
+I will skip the coding part.
+
+### 110. Spring Boot REST Exception Handling - Coding - Part 4
+
+I will skip the coding part.
+
+### 111. Spring Boot REST Exception Handling Overview
+
 
