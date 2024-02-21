@@ -33,7 +33,7 @@ In this book we will focus on the following properties of data systems:
 
 Roughly it means "continue to work correctly, even when things go wrong".
 
-Thins that can go wrong called faults. Systems that anticipate faults and can cope with them are called fault-tolerant or resilient.
+Things that can go wrong called faults. Systems that anticipate faults and can cope with them are called fault-tolerant or resilient.
 
 Fault is not the same as a failure.
 

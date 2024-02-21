@@ -31,17 +31,19 @@ This book should provide architectural knowledge to make good decisions about da
 
 ## Who Should Read This Book
 
-Who should know how to make a system:
+If we need to make a system:
 
 - Scalable
 - Highly available
 - Maintainable
 
+This book can help us.
+
 ## Scope of This Book
 
 We are not interested in technical details of how to use a particular technology.
 
-The architecture of data systems and the ways are integrated into data-intensive applications.
+Main focus is on the architecture of data systems and the ways are integrated into data-intensive applications.
 
 Open platforms also reduce risk of vendor lock-in.
 
