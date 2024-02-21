@@ -568,5 +568,17 @@ public class StudentRestExceptionHandler {
     error.setTimeStamp(System.currentTimeMillis());
     return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
   }
+  @ExceptionHandler
+  public ResponseEntity<StudentErrorResponse> handleException(Exception exc) {
+    StudentErrorResponse error = new StudentErrorResponse();
+    error.setStatus(HttpStatus.BAD_REQUEST.value());
+    error.setMessage(exc.getMessage());
+    error.setTimeStamp(System.currentTimeMillis());
+    return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+  }
 }
 ```
+
+### 112. Spring Boot REST Exception Handling - Coding
+
+I will skip the coding part.
