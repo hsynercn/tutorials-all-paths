@@ -1,8 +1,10 @@
-# Dedication
+# Designing Data-Intensive Applications
+
+## Dedication
 
 Tech is a powerful force in our society. Data, software, and communication can be used for bad: to entrench unfair power structures, to undermine human rights, and to protect vested interests. But they can be used for good: to make underrepresented people's voices heard, to create opportunities for everyone, and to avert disasters. This book is dedicated to everyone working toward the good.
 
-# Preface
+## Preface
 
 In the last decade we have seen many interesting developments in databases, in distributed systems, and in the ways we build applications on top of them.
 
@@ -25,19 +27,25 @@ Tools and technologies that help us with data-intensive applications are adaptin
 
 Many applications use some combinations of these.
 
+This book should provide architectural knowledge to make good decisions about data systems.
+
 ## Who Should Read This Book
 
-Who should know:
+Who should know how to make a system:
 
-- How to make a data system scalable
+- Scalable
 - Highly available
 - Maintainable
 
 ## Scope of This Book
 
+We are not interested in technical details of how to use a particular technology.
+
 The architecture of data systems and the ways are integrated into data-intensive applications.
 
 Open platforms also reduce risk of vendor lock-in.
+
+FOSS: Free and open source software
 
 ## Outline of This Book
 
@@ -60,6 +68,8 @@ Part 3: Derived data
 
 - Chapter 10: Batch processing
 - Chapter 11: Stream processing
-- Chapter 12: The future of data systems
+- Chapter 12: Building reliable, scalable, and maintainable applications in future
+
+
 
 
