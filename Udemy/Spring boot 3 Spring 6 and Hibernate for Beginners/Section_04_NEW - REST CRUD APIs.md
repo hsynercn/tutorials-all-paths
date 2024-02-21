@@ -724,6 +724,39 @@ For a starter project we can use Spring Initializr.
 - SpringBoot DevTools
 - MySQL Driver
 
+### 117. Spring Boot REST DAO
 
+We will create a JPA (Java Persistence API) DAO (Data Access Object) to interact with the database.
 
+DAO Implementation:
 
+```java
+@Repository
+public class EmployeeDAOJpaImpl imlements EmployeeDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public EmployeeDAOJpaImpl(EntityManager theEntityManager) {
+    entityManager = theEntityManager;
+  }
+}
+```
+
+Get a list of employees:
+  
+```java
+@Override
+public List<Employee> findAll() {
+  TypedQuery<Employee> theQuery = entityManager.createQuery("from Employee", Employee.class);
+  List<Employee> employees = theQuery.getResultList();
+  return employees;
+}
+```
+
+Development Process:
+
+1. Update db configs in application.properties
+2. Create employee entity
+3. Create DAO interface
+4. Create DAO implementation
+5. Create REST controller to use DAO
