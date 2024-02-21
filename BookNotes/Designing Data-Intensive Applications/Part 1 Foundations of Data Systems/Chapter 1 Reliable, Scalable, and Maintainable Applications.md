@@ -1,4 +1,4 @@
-# Chaper 1. Reliable, Scalable, and Maintainable Applications
+# Chapter 1. Reliable, Scalable, and Maintainable Applications
 
 Many applications today are data-intensive, as opposed to compute-intensive.
 
@@ -9,6 +9,8 @@ Common building blocks for data-intensive applications:
 - Search indexes: Allow users to search data by keyword or filter it in various ways.
 - Stream processing: Send a message to another process, to be handled asynchronously.
 - Batch processing: Periodically crunch a large amount of accumulated data.
+
+When building an application, we still need to figure out which tools and which approaches are the most appropriate for the task at hand. And it can be hard to combine tools when you need to do something that a single tool can't do.
 
 ## Thinking About Data Systems
 
