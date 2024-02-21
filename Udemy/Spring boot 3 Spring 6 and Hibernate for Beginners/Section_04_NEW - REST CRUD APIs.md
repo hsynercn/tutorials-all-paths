@@ -694,3 +694,36 @@ graph LR
   C <--> D[Database]
 ```
 
+For initial DB creation we will use a SQL script:
+
+```sql
+CREATE DATABASE IF NOT EXISTS 'employee_directory';
+USE 'employee_directory';
+
+DROP TABLE IF EXISTS 'employee';
+
+CREATE TABLE 'employee' (
+  'id' int(11) NOT NULL AUTO_INCREMENT,
+  'first_name' varchar(45) DEFAULT NULL,
+  'last_name' varchar(45) DEFAULT NULL,
+  'email' varchar(45) DEFAULT NULL,
+  PRIMARY KEY ('id')
+);
+
+INSERT INTO 'employee' VALUES 
+  (1, 'Mario', 'Rossi', 'test@gmail.com'),
+  (2, 'Juan', 'Perez', 'test2@gmail.com");
+```
+
+### 116. Spring Boot REST Create Project
+
+For a starter project we can use Spring Initializr.
+
+- Spring Web
+- Spring Data JPA
+- SpringBoot DevTools
+- MySQL Driver
+
+
+
+
