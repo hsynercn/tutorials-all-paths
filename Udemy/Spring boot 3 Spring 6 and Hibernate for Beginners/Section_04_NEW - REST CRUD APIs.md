@@ -582,3 +582,67 @@ public class StudentRestExceptionHandler {
 ### 112. Spring Boot REST Exception Handling - Coding
 
 I will skip the coding part.
+
+### 113. Spring Boot REST API Design - Best Practices
+
+REST API Design
+
+- For real-time projects, who will use your API
+- How they will use your API
+- We need to design API based on requirements
+
+API design process
+
+1. Review API requirements
+2. Identify main resource / entity
+3. Use HTTP methods to assign action on resource
+
+Step 1: Review API requirements
+
+An example requirement:
+
+- Create a REST API for employee management
+- REST client should be able to
+  - Get a list of employees
+  - Get a single employee by id
+  - Add a new employee
+  - Update an employee
+  - Delete an employee
+
+Step 2: Identify main resource / entity
+
+From the requirements we can identify the main resource / entity: Employee
+
+Convention is to use plural form of resource / entity: employees
+
+- /api/employees
+
+Step 3: Use HTTP methods to assign action on resource
+
+- POST: Create a new entity
+- GET: Read a list of entities or a single entity
+- PUT: Update an existing entity
+- DELETE: Delete an existing entity
+
+FULL CRUD.
+
+We can create an URL table:
+
+| HTTP Method | URL | CRUD Action |
+| --- | --- | --- |
+| GET | /api/employees | Read a list of employees |
+| GET | /api/employees/{employeeId} | Read a single employee |
+| POST | /api/employees | Create a new employee |
+| PUT | /api/employees | Update an existing employee |
+| DELETE | /api/employees/{employeeId} | Delete an existing employee |
+
+ANTI-PATTERNS
+
+- DO NOT DO THIS: These are REST anti-patterns, bad practice
+  - /api/employeesList
+  - /api/deleteEmployee
+  - /api/addEmployee
+  - /api/updateEmployee
+
+Don't include actions in the endpoint URL. Instead use HTTP methods.
+
