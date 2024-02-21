@@ -39,6 +39,8 @@ Fault is not the same as a failure.
 
 Failure is when the system as a whole stops providing the required service to the user.
 
+It is best to design fault-tolerant systems that prevent faults from causing failures.
+
 It can make sense to increase the rate of faults by triggering them deliberately, to ensure that the system continues to work when faults occur. The Netflix Chaos Monkey is an example of this approach.
 
 We generally prefer tolerating faults over preventing faults.
@@ -46,6 +48,8 @@ We generally prefer tolerating faults over preventing faults.
 ### Hardware Faults
 
 Hardware faults are common. Hard disks crash, RAM becomes faulty, the power grid has a glitch, someone unplugs the wrong network cable. We can use hardware redundancy to mitigate the risk of individual hardware components failing. Also some platform such as Amazon Web Services (AWS) use virtual machines (VMs) to provide an abstraction of hardware.
+
+Designing for failure is an important part of building reliable systems.
 
 ### Software Errors
 
@@ -81,7 +85,37 @@ Scalability is the term we use to describe a system's ability to cope with incre
 
 ### Describing Load
 
-The best choice of parameters depends on the architecture of your system, it may be requests per second to a web server, the ratio of reads to write in a database, the number of simultaneously active users in a chat room, the hit rate on a cache, or something else.
+Firstly we need to describe the current load on the system, only then we can discuss growth questions.
+
+The best choice of parameters depends on the architecture of your system: 
+
+- It may be requests per second to a web server
+- The ratio of reads to write in a database
+- The number of simultaneously active users in a chat room, the hit rate on a cache, or something else.
+
+For a more concrete example we can look at Twitter. Two of Twitter's main operations are:
+
+- Post tweet: A user can publish a new message to their followers (4.6k requests/sec on average, 12k requests/sec at peak)
+- Home timeline: A user can view tweets from the people they follow (300k requests/sec)
+
+Main problem is fan-out. When a user posts a tweet, it needs to be delivered to all of their followers. This is a write-heavy workload.
+
+There are broadly two ways of implementing these two operations:
+
+1 - Posting a tweet simply inserts the new tweet into a global collection of tweets. When a user requests their timeline, we can look up all the people they follow, find all the tweets for each of those users, and merge them together to form the user's home timeline. This is a read-heavy workload.
+
+SQL could look like this:
+
+```sql
+SELECT tweets.*, users.* FROM tweets
+JOIN users ON tweets.sender_id = users.id
+JOIN follows ON follows.followee_id = tweets.sender_id
+WHERE follows.follower_id = :current_user
+```
+
+2 - Maintain a cache for each user's home timeline like a mailbox of tweets for each recipient. When a user posts a tweet we can look up all the people who follow that user, insert the new tweet into each of their home timeline caches. The request to read the home timeline is then cheap, because its result has been computed ahead of time.
+
+
 
 ### Describing Performance
 
