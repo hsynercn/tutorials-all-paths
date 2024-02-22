@@ -1008,3 +1008,52 @@ public class EmployeeServiceImpl implements EmployeeService {
 ### 122. Spring Boot Define Service Layer - Coding
 
 I will skip the coding part.
+
+### 123. Spring Boot DAO: Add, Update, Delete - Overview
+
+Service Layer - Best Practices
+
+- Best practice is to apply transactional boundaries to service layer
+- Is is the service layer's responsibility to manage transaction boundaries
+- For the implementation
+  - Apply @Transactional annotation to service methods
+  Remove @Transactional from DAO methods if they already exist
+
+DAO methods:
+
+- Get single employee by ID
+- Add a new employee
+- Update an existing employee
+- Delete an existing employee
+
+DAO (Data Access Object): Get a single employee
+
+```java
+@Override
+public Employee findById(int theId) {
+  return entityManager.find(Employee.class, theId);
+}
+```
+
+DAO: Add or Update an employee
+
+```java
+@Override
+public void save(Employee theEmployee) {
+  Employee dbEmployee = entityManager.merge(theEmployee);
+  theEmployee.setId(dbEmployee.getId());
+}
+```
+
+If id is 0 then it is a new employee, if id is not 0 then it is an existing employee.
+
+DAO: Delete an employee
+
+```java
+@Override
+public void deleteById(int theId) {
+  Employee theEmployee = entityManager.find(Employee.class, theId);
+  entityManager.remove(theEmployee);
+}
+```
+
