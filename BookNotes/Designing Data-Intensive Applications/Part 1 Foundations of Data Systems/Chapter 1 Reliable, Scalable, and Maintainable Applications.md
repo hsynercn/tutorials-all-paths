@@ -115,13 +115,19 @@ WHERE follows.follower_id = :current_user
 
 2 - Maintain a cache for each user's home timeline like a mailbox of tweets for each recipient. When a user posts a tweet we can look up all the people who follow that user, insert the new tweet into each of their home timeline caches. The request to read the home timeline is then cheap, because its result has been computed ahead of time.
 
+Firstly Twitter used the first approach, but the systems struggled to keep up with the load of home queries. Then they switched to the second approach. This works better because read load is much higher than write load.
 
+Downside of this approach is posting a tweet is more expensive, because it needs to be delivered to all followers.
+
+Final thing is Twitter is using a hybrid approach. Most users' tweets continue to be fanned out to home timelines at the time when they are posted. But a few users with a very large number of followers are excepted from this fan-out. Tweets from celebrities are fetched separately and merged with that user's home timeline when it is read.
 
 ### Describing Performance
 
-When you increase a load parameter and keep the system resources (CPU, memory, network bandwidth, etc.) unchanged, how is the performance of your system affected?
+When we describe the load on your system, we can investigate how system behaves under that load.
 
-When you increase a load parameter, how much do you need to increase the resources if you want to keep performance unchanged?
+- When you increase a load parameter and keep the system resources (CPU, memory, network bandwidth, etc.) unchanged, how is the performance of your system affected?
+
+- When you increase a load parameter, how much do you need to increase the resources if you want to keep performance unchanged?
 
 Latency and response time are often used synonymously, but they are not the same. Latency is the duration that a request is waiting to be handled - during which it is latent, awaiting service. Response time is the delay between a request and the response being received.
 
@@ -130,4 +136,16 @@ Usually we use average response time, but it can be misleading. Percentiles are 
 The median is also known as the 50th percentile. We can understand the outliners by looking at percentiles. For example, the 95th percentile is the value for which 95% of the data are smaller. If the 95th percentile response time of a service is 1 second, that means 95 out of 100 requests take less than 1 second, and 5 out of 100 requests take 1 second or more. 99.9th percentile is often known as the tail latency.
 
 Percentiles are often used in service level objectives (SLOs), which are a part of a service level agreement (SLA) between different teams in the same organization, or between organizations.
+
+We cannot ignore the high percentiles, they are also known as tail latencies. They can be a source of user complaints. Customers with the slowest experience are often the most valuable customers. Because they have the most data.
+
+### Percentiles In Practice
+
+High percentiles easily become important. Even in parallel requests, if one of them is slow, it can slow down the whole process on the client side. This could make the whole flow slow, this is known as tail latency amplification.
+
+We can calculate percentiles by keeping a histogram of response times.
+
+- Forward decay: Older data is exponentially less significant. This is useful for tracking recent changes in the system's performance.
+- TDigest: A data structure that allows you to estimate percentiles with a small amount of memory, even with a large number of data points and in a distributed system.
+- HdrHistogram: A data structure that allows you to accurately represent and analyze the distribution of recorded values, even at extremely large scales.
 
