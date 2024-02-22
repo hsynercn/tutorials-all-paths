@@ -763,7 +763,9 @@ Development Process:
 
 ### 118. Spring Boot REST DAO - Coding - Part 1
 
-```java	
+Let's create the Employee entity:
+
+```java
 @Entity
 @Table(name="employee")
 public class Employee {
@@ -801,6 +803,205 @@ public class Employee {
       '}';
 
   // Getters and setters
+}
+```
+
+### 119. Spring Boot REST DAO - Coding - Part 2
+
+Let's create the EmployeeDAO interface:
+
+```java
+public interface EmployeeDAO {
+  public List<Employee> findAll();
+  public Employee findById(int theId);
+  public void save(Employee theEmployee);
+  public void deleteById(int theId);
+}
+```
+
+We will create the EmployeeDAOJpaImpl class:
+
+```java
+@Repository
+public class EmployeeDAOJpaImpl implements EmployeeDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public EmployeeDAOJpaImpl(EntityManager theEntityManager) {
+    entityManager = theEntityManager;
+  }
+
+  @Override
+  public List<Employee> findAll() {
+    TypedQuery<Employee> theQuery = entityManager.createQuery("from Employee", Employee.class);
+    List<Employee> employees = theQuery.getResultList();
+    return employees;
+  }
+
+  @Override
+  public Employee findById(int theId) {
+    Employee theEmployee = entityManager.find(Employee.class, theId);
+    return theEmployee;
+  }
+
+  @Override
+  public void save(Employee theEmployee) {
+    Employee dbEmployee = entityManager.merge(theEmployee);
+    theEmployee.setId(dbEmployee.getId());
+  }
+
+  @Override
+  public void deleteById(int theId) {
+    Query theQuery = entityManager.createQuery("delete from Employee where id=:employeeId");
+    theQuery.setParameter("employeeId", theId);
+    theQuery.executeUpdate();
+  }
+}
+```
+
+### 120. Spring Boot REST DAO - Coding - Part 3
+
+Create the EmployeeRestController:
+
+```java
+@RestController
+@RequestMapping("/api")
+public class EmployeeRestController {
+  private EmployeeDAO employeeDAO;
+
+  @Autowired
+  public EmployeeRestController(EmployeeDAO theEmployeeDAO) {
+    employeeDAO = theEmployeeDAO;
+  }
+
+  @GetMapping("/employees")
+  public List<Employee> findAll() {
+    return employeeDAO.findAll();
+  }
+
+  @GetMapping("/employees/{employeeId}")
+  public Employee getEmployee(@PathVariable int employeeId) {
+    Employee theEmployee = employeeDAO.findById(employeeId);
+    if (theEmployee == null) {
+      throw new RuntimeException("Employee id not found - " + employeeId);
+    }
+    return theEmployee;
+  }
+
+  @PostMapping("/employees")
+  public Employee addEmployee(@RequestBody Employee theEmployee) {
+    theEmployee.setId(0);
+    employeeDAO.save(theEmployee);
+    return theEmployee;
+  }
+
+  @PutMapping("/employees")
+  public Employee updateEmployee(@RequestBody Employee theEmployee) {
+    employeeDAO.save(theEmployee);
+    return theEmployee;
+  }
+
+  @DeleteMapping("/employees/{employeeId}")
+  public String deleteEmployee(@PathVariable int employeeId) {
+    Employee tempEmployee = employeeDAO.findById(employeeId);
+    if (tempEmployee == null) {
+      throw new RuntimeException("Employee id not found - " + employeeId);
+    }
+    employeeDAO.deleteById(employeeId);
+    return "Deleted employee id - " + employeeId;
+  }
+}
+```
+
+### 121. Spring Boot Define Service Layer - Overview
+
+```mermaid
+graph LR
+  A[Employee REST Controller] <--> B[Employee Service]
+  B <--> C[Employee DAO]
+  C <--> D[Database]
+```
+
+In this part we will explore the service layer.
+
+A service layer is a design pattern that acts as an interface between a controller and a DAO.
+
+Purpose of Service Layer
+
+- Service Facade design pattern
+- Intermediate layer for custom business logic
+- Integrate data from multiple sources (DAOs)
+
+```mermaid
+graph LR
+  A[Employee REST Controller] <--> B[Employee Service]
+  B <--> C[Employee DAO]
+  C <--> D[Database]
+  B <--> E[Skills DAO]
+  E <--> F[Database]
+  B <--> G[Payroll DAO]
+  G <--> H[Database]
+```
+
+Employee service will provide controller with a single view of the data that we integrated from multiple backend sources.
+
+Specialized Annotation for Services
+
+- @Service applied to Service implementations
+- Spring will automatically register the Service implementation thanks to component scanning
+
+Design Steps
+
+1. Define Service interface
+2. Define Service implementation
+   - Inject DAOs into Service
+
+Step 1: Define Service interface
+
+EmployeeService.java:
+
+```java
+public interface EmployeeService {
+  public List<Employee> findAll();
+  public Employee findById(int theId);
+  public void save(Employee theEmployee);
+  public void deleteById(int theId);
+}
+```
+
+Step 2: Define Service implementation
+
+EmployeeServiceImpl.java:
+
+```java
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+  private EmployeeDAO employeeDAO;
+
+  @Autowired
+  public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
+    employeeDAO = theEmployeeDAO;
+  }
+
+  @Override
+  public List<Employee> findAll() {
+    return employeeDAO.findAll();
+  }
+
+  @Override
+  public Employee findById(int theId) {
+    return employeeDAO.findById(theId);
+  }
+
+  @Override
+  public void save(Employee theEmployee) {
+    employeeDAO.save(theEmployee);
+  }
+
+  @Override
+  public void deleteById(int theId) {
+    employeeDAO.deleteById(theId);
+  }
 }
 ```
 
