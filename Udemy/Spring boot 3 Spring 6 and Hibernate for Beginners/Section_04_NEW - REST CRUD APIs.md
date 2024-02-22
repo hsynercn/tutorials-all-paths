@@ -1057,3 +1057,59 @@ public void deleteById(int theId) {
 }
 ```
 
+### 124. Spring Boot DAO: Add, Update, Delete - Coding
+
+EmployeeDAO.java:
+
+```java
+public interface EmployeeDAO {
+  public List<Employee> findAll();
+  public Employee findById(int theId);
+  public Employee save(Employee theEmployee);
+  public void deleteById(int theId);
+}
+```
+
+EmployeeDAOJpaImpl.java:
+
+```java
+@Repository
+public class EmployeeDAOJpaImpl implements EmployeeDAO {
+  private EntityManager entityManager;
+
+  @Autowired
+  public EmployeeDAOJpaImpl(EntityManager theEntityManager) {
+    entityManager = theEntityManager;
+  }
+
+  @Override
+  public List<Employee> findAll() {
+    TypedQuery<Employee> theQuery = entityManager.createQuery("from Employee", Employee.class);
+    List<Employee> employees = theQuery.getResultList();
+    return employees;
+  }
+
+  @Override
+  public Employee findById(int theId) {
+    return entityManager.find(Employee.class, theId);
+  }
+
+  @Override
+  public Employee save(Employee theEmployee) {
+    Employee dbEmployee = entityManager.merge(theEmployee);
+    theEmployee.setId(dbEmployee.getId());
+    return theEmployee;
+  }
+
+  @Override
+  public void deleteById(int theId) {
+    Query theQuery = entityManager.createQuery("delete from Employee where id=:employeeId");
+    theQuery.setParameter("employeeId", theId);
+    theQuery.executeUpdate();
+  }
+}
+```
+
+IMPORTANT: If we are using Service layer we need to remove the @Transactional from the DAO layer. Service layer will handle the transactional boundaries.
+
+
