@@ -149,3 +149,35 @@ We can calculate percentiles by keeping a histogram of response times.
 - TDigest: A data structure that allows you to estimate percentiles with a small amount of memory, even with a large number of data points and in a distributed system.
 - HdrHistogram: A data structure that allows you to accurately represent and analyze the distribution of recorded values, even at extremely large scales.
 
+### Approaches for Coping with Load
+
+How do we maintain good performance as load increases?
+
+An architecture that is appropriate for one level of load is unlikely to cope with 10 times that load.
+
+Scaling up: Vertical scaling. Moving to a more powerful machine.
+
+Scaling out: Horizontal scaling. Distributing the load across multiple smaller machines.
+
+There is a dichotomy between scaling up and scaling out.
+
+Usually good architecture involves a combination of both.
+
+For example using several fairly powerful machines can be still can be simpler and cheaper than using many smaller machines.
+
+Some systems are elastic, they can automatically add computing resources when they detect a load increase. Others require manual intervention.
+
+Distributing stateless services is relatively easy. Distributing stateful services is much harder. Thus keeping the dat/state on a single node is easier until scaling costs become too high.
+
+In future distributed systems will become default even for small applications.
+
+Architecture is specific to problem:
+
+- volume of the reads
+- volume of the writes
+- volume of the data of store
+- complexity of the data
+- access patterns
+- mixture of everything
+
+### Maintainability
