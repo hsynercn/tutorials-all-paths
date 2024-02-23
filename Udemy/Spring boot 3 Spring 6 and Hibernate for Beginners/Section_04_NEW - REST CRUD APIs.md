@@ -1178,3 +1178,16 @@ public Employee getEmployee(@PathVariable int employeeId) {
 }
 ```
 
+### 127. Spring Boot: Add New Employee - Coding
+
+We can create the API endpoint:
+
+```java
+@PostMapping("/employees")
+public Employee addEmployee(@RequestBody Employee theEmployee) {
+  theEmployee.setId(0);
+  employeeService.save(theEmployee);
+  return theEmployee;
+}
+```
+
