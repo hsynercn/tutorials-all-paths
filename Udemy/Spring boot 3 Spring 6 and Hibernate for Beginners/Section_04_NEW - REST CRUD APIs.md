@@ -1149,17 +1149,32 @@ public class EmployeeServiceImpl implements EmployeeService {
     return employeeDAO.findById(theId);
   }
 
-  @Transactional
   @Override
   public Employee save(Employee theEmployee) {
     return employeeDAO.save(theEmployee);
   }
 
-  @Transactional
   @Override
   public void deleteById(int theId) {
     employeeDAO.deleteById(theId);
   }
+}
+```
+
+### 126. Spring Boot: Get Single Employee - Coding
+
+When we create a new entity we use POST method, we need to configure correctly the REST client. If we are using POSTMAN we should configure the body and the headers.
+
+We can create the API endpoint:
+
+```java
+@GetMapping("/employees/{employeeId}")
+public Employee getEmployee(@PathVariable int employeeId) {
+  Employee theEmployee = employeeService.findById(employeeId);
+  if (theEmployee == null) {
+    throw new RuntimeException("Employee id not found - " + employeeId);
+  }
+  return theEmployee;
 }
 ```
 
