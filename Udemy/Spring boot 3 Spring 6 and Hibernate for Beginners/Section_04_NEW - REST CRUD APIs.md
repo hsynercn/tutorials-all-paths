@@ -1203,3 +1203,21 @@ public Employee updateEmployee(@RequestBody Employee theEmployee) {
 }
 ```
 
+### 129. Spring Boot: Delete Employee - Coding
+
+We can create the API endpoint:
+
+```java
+@DeleteMapping("/employees/{employeeId}")
+public String deleteEmployee(@PathVariable int employeeId) {
+  Employee theEmployee = employeeService.findById(employeeId);
+  if (theEmployee == null) {
+    throw new RuntimeException("Employee id not found - " + employeeId);
+  }
+  employeeService.deleteById(employeeId);
+  return "Deleted employee id - " + employeeId;
+}
+```
+
+
+
