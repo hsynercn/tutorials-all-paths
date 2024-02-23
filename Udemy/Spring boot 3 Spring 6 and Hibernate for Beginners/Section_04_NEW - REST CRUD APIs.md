@@ -1328,3 +1328,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 Spring JPA repository leverages optionals.
 
+### 132. Spring Boot REST: Spring Data JPA - Coding - Part 2
+
+This part mostly contains testing the API endpoints and checking the results on the database.
+
