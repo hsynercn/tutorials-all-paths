@@ -1219,5 +1219,65 @@ public String deleteEmployee(@PathVariable int employeeId) {
 }
 ```
 
+### 130. Spring Boot REST: Spring Data JPA - Overview
 
+Previously we used JPA to create the DAO layer.
+
+Now we will focus on Spring Data JPA.
+
+Issue
+
+- We created the DAO by creating EmployeeDAO and EmployeeDAOJpaImpl. We implemented the methods to interact with the database.
+- What will happen if we need to create a DAO for other entities?
+- Do we need to repeat the same process for each entity?
+
+In a perfect scenario I should be able to tell Spring:
+
+- Create a DAO for me
+- Plug in my entity type and primary key
+- Give me all of the basic CRUD features for free
+
+Spring Data JPA (Java Persistence API) - SOLUTION
+
+- We can create a DAO and just plug in our entity type and primary key
+- Spring will give us the CRUD implementation for free, it can help us to minimize the boilerplate code
+
+Development Process
+
+1. Extend JpaRepository interface
+2. Use your Repository in your application
+
+Step 1: Extend JpaRepository interface
+
+```java
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+```
+
+No need for the implementation class. We will get these methods for free:
+
+- findAll()
+- findById()
+- save()
+- deleteById()
+
+Step 2: Use your Repository in your application
+
+```java
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+  private EmployeeRepository employeeRepository;
+
+  @Autowired
+  public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+    employeeRepository = theEmployeeRepository;
+  }
+}
+```
+
+Spring JPA Advanced Features
+
+- Extending and adding custom queries with JPQL
+- Query Domain Specific Language (Query DSL)
+- Define custom methods, low-level-code
 
