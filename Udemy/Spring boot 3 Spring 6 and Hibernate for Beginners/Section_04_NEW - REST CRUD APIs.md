@@ -1191,3 +1191,15 @@ public Employee addEmployee(@RequestBody Employee theEmployee) {
 }
 ```
 
+### 128. Spring Boot: Update Employee - Coding
+
+We can create the API endpoint:
+
+```java
+@PutMapping("/employees")
+public Employee updateEmployee(@RequestBody Employee theEmployee) {
+  Employee employee = employeeService.save(theEmployee);
+  return employee;
+}
+```
+
