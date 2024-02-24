@@ -1332,3 +1332,129 @@ Spring JPA repository leverages optionals.
 
 This part mostly contains testing the API endpoints and checking the results on the database.
 
+### 133. Spring Boot REST: Spring Data REST - Overview
+
+Previously we eliminated the boilerplate code by using Spring Data JPA.
+
+Can we do the same thing with the REST APIs?
+
+My wish:
+
+- Create a REST API for me
+- Use my existing JPA repository (entity and primary key)
+- Give me all of the basic CRUD features for free
+
+Spring Data REST - SOLUTION
+
+- Spring Data REST is the solution
+- Leverages your existing JpaRepository
+- Spring will give you a REST CRUD implementation for free, no new coding required
+
+Spring Data REST - How Does It Work?
+
+- Spring Data REST will scan your project for JpaRepository
+- Expose REST APIs for each entity type for your JpaRepository
+
+```java
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+```
+
+Development Process
+
+1. Add Spring Data REST to your Maven POM file
+
+We will add tghe spring-boot-starter-data-rest dependency.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-rest</artifactId>
+</dependency>
+```
+
+Spring Data REST will scan for JpaRepository and expose REST APIs for each entity type.
+
+In Summary
+
+For Spring Data REST, we need only 3 things:
+
+1. Entity: Employee
+2. JpaRepository: EmployeeRepository extends JpaRepository < Employee, Integer >
+3. Maven POM dependency: spring-boot-starter-data-rest
+
+```mermaid
+graph LR
+  A[Employee REST Controller] <--> B[Employee Service]
+  B <--> C[Employee Repository]
+  C <--> D[Database]
+```
+
+With Spring Data REST we can eliminate the Employee REST Controller and Employee Service.
+
+```mermaid
+graph LR
+  A[Spring Data REST /employees] <--> B[Employee Repository]
+  B <--> C[Database]
+```
+
+HATEOAS (Hypermedia as the Engine of Application State)
+
+- Spring Data REST endpoints are HATEOAS compliant
+- Hypermedia-driven sites provide information to access REST interfaces, it is metadata for REST
+
+Spring DATA REST response uses HATEOAS.
+
+For example REST response from: GET /employee/3
+
+```json
+{
+  "firstName": "Mario",
+  "lastName": "Rossi",
+  "email": "test@mail.com",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/employees/3"
+    },
+    "employees": {
+      "href": "http://localhost:8080/employees"
+    }
+  }
+}
+```
+
+- For a collection, meta-data includes page size, total elements, pages etc.
+- For example REST response from GET /employees
+
+```json
+{
+  "_embedded": {
+    "employees": [
+      {
+        "firstName": "Mario",
+        "lastName": "Rossi",
+        "email": "test@mail.com",
+      }
+    ]
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 1,
+    "totalPages": 1,
+    "number": 0
+  }
+}
+```
+
+Payload contains JSON array of employees and response mete-data information about the page.
+
+HATEOAS uses Hypertext Application Language (HAL) data format. HAL is a specific implementation of HATEOAS.
+
+Spring DATA REST advanced features:
+
+- Pagination, sorting, searching
+- Extending and adding custom queries with JPQL
+- Query Domain Specific Language (Query DSL)
+
+
+
