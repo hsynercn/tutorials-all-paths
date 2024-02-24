@@ -1569,3 +1569,6 @@ We can sort the results by using the sort parameter:
 - Sort by first name, desc: http://localhost:8080/employees?sort=firstName,desc
 - Sort by last name, then first name, asc: http://localhost:8080/employees?sort=lastName,firstName,asc
 
+### 137. Spring Boot REST: Spring Data REST Configs and Sorting - Coding
+
+I will skip the coding part.
