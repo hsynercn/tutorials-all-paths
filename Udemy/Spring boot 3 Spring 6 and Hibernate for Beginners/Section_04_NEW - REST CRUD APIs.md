@@ -1521,3 +1521,51 @@ We can change the base path for the REST API by adding the following property to
 spring.data.rest.base-path=/magic-api
 ```
 
+### 136. Spring Boot REST: Spring Data REST Configs and Sorting - Overview
+
+REST Endpoints
+
+- By default, Spring Data REST will create endpoints based on entity type
+- Simple pluralized form
+  - First char of entity type is lower case
+  - Adds an "s" to the end
+
+Problem
+
+- Spring Data REST does not handle complex pluralized forms
+- For example, "person" to "people"
+- We may need to customize the REST endpoint
+
+Solution:
+
+```java
+@RepositoryRestResource(path="members")
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+```
+
+Pagination
+
+- By default, Spring Data REST will return the first 20 elements, page size is 20
+- We navigate through pages using the page parameter
+  - http://localhost:8080/employees?page=0
+  - http://localhost:8080/employees?page=1
+
+Pages are zero-based.
+
+There are several properties that we can use to configure the pagination:
+
+| Property | Description |
+| --- | --- |
+| spring.data.rest.base-path | Base path used to expose repository resources |
+| spring.data.rest.default-page-size | Default size of pages |
+| spring.data.rest.max-page-size | Maximum size of pages |
+
+Sorting
+
+We can sort the results by using the sort parameter:
+
+- Sort by last name, asc in default: http://localhost:8080/employees?sort=lastName
+- Sort by first name, desc: http://localhost:8080/employees?sort=firstName,desc
+- Sort by last name, then first name, asc: http://localhost:8080/employees?sort=lastName,firstName,asc
+
