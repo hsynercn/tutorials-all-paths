@@ -1456,5 +1456,68 @@ Spring DATA REST advanced features:
 - Extending and adding custom queries with JPQL
 - Query Domain Specific Language (Query DSL)
 
+### 134. Spring Boot REST: Spring Data REST - Coding - Part 1
 
+This part adds the spring-boot-starter-data-rest dependency to the POM file and removes the EmployeeRestController and EmployeeService.
+
+### 135. Spring Boot REST: Spring Data REST - Coding - Part 2
+
+After making the required changes we should be able to get result from the REST API endpoints:
+
+http://localhost:8080/employees: 
+
+```json
+{
+  "_embedded": {
+    "employees": [
+      {
+        "firstName": "Mario",
+        "lastName": "Rossi",
+        "email": "mario@test.com",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/employees/1"
+          },
+          "employee": {
+            "href": "http://localhost:8080/employees/1"
+          }
+        }
+      },
+      {
+        "firstName": "Juan",
+        "lastName": "Perez",
+        "email": "juan@test.com",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/employees/2"
+          },
+          "employee": {
+            "href": "http://localhost:8080/employees/2"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/employees"
+    },
+    "profile": {
+      "href": "http://localhost:8080/profile/employees"
+    }
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 2,
+    "totalPages": 1,
+    "number": 0
+  }
+}
+```
+
+We can change the base path for the REST API by adding the following property to the application.properties file:
+
+```properties
+spring.data.rest.base-path=/magic-api
+```
 
