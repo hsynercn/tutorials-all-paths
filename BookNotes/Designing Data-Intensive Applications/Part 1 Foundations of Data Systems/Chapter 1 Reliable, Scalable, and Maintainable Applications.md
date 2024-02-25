@@ -245,4 +245,36 @@ Moseley and Marks define accidental complexity as complexity that is not inheren
 
 Abstraction is a good tool to remove accidental complexity. But it is hard to find good abstractions.
 
+#### Evolvability: Making Change Easy
 
+System requirements change over time.
+
+Agile organizational process provide a framework for adapting to change.
+
+Simple and easy-to-understand systems are easier to change than complex systems.
+
+### Summary
+
+This chapter explains the fundamental ways of thinking about data-intensive applications.
+
+An application has to meet various requirements in order to be useful:
+
+- Functional requirements: Do what it is supposed to do
+  - Store data
+  - Retrieve data
+  - Search data
+  - Process data
+- Nonfunctional requirements: General properties
+  - Reliability
+  - Scalability
+  - Maintainability
+  - Security
+  - Compatibility
+
+RELIABILITY: Making system correctly even when faults occur.
+
+SCALABILITY: Keeping the performance good even under high load.
+
+MAINTAINABILITY: Making it easy for engineers to work on the system. Reduce complexity, make it good to operate.
+
+There is no easy way to achieve these properties. However, there are some patterns and techniques that can help.
