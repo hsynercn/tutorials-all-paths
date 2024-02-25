@@ -322,3 +322,41 @@ Under Area2D we will add a CollisionPolygon2D and Polygon2D nodes. We will add t
 
 ### 29. Using Signals To Reset The Game
 
+We will use Area2D's body_entered signal to detect the collision with the player.
+
+```gd
+extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print("Hello world!")
+
+
+func _on_maze_body_exited(body):
+	get_tree().reload_current_scene()
+````
+
+Signals are used to communicate between the nodes. We can connect the signals from the inspector.
+
+In this sample we will see the trigger when the entire body of the player exits the maze area.
+
+We can reduce the size of the collision polygon to make the game more challenging.
+
+### 30. Parallax Background and Text Labels
+
+Parallax background is used to create a sense of depth in the game.
+
+Game background moves slower than the player to create a sense of depth.
+
+We can CanvasLayer node to create a parallax background. If we add a CanvasLayer and locate the background under the CanvasLayer it will become independent of the camera. It will not move with the camera.
+
+We can add text labels to the game. It is a node type called Label. In this context if we add a label to background it will move with the background. If we add a label to map area it will move with the camera.
+
+We can add:
+
+- Start
+- Finish
+- Rules
+
+labels to the game. To organize them we can add a node to level, and add the labels to this node.
+
