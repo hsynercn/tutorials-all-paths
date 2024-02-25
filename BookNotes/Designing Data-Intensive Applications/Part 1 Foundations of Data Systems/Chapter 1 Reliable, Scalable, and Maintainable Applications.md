@@ -181,3 +181,27 @@ Architecture is specific to problem:
 - mixture of everything
 
 ### Maintainability
+
+It is a known fact majority of the cost of software is not the initial development but the ongoing maintenance.
+
+- Bug fixing
+- Keeping the system operational
+- Investigating the causes of failures
+- Adapting new platforms
+- Modifying it for new use cases
+- Repaying technical debt
+- Adding new features
+
+Every legacy system is unpleasant in its own way, so it is difficult to give general advice.
+
+To minimize the pain during maintenance, we can follow some principles:
+
+- Operability: Make it easy for operations teams to keep the system running smoothly.
+- Simplicity: Make it easy for new engineers to understand the system, by removing as much complexity as possible from the system.
+- Evolvability: Make it easy for engineers to make changes to the system in the future, adapting it for unanticipated use cases as requirements change. Also known as extensibility, modifiability, or plasticity.
+
+#### Operability: Making Life Easy for Operations
+
+Good operations can often work around the limitations of bad (incomplete) software, but good software cannot run reliably with bad operations.
+
+
