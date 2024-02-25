@@ -204,4 +204,45 @@ To minimize the pain during maintenance, we can follow some principles:
 
 Good operations can often work around the limitations of bad (incomplete) software, but good software cannot run reliably with bad operations.
 
+A good operations team is responsible for:
+
+- Monitoring the health of the system and restoring service if it goes into a bad state.
+- Tracking down the cause of problems, such as system failures or degraded performance.
+- Keeping software and platforms up to date, including security patches and hardware upgrades.
+- Etc.
+
+Good operability means making routine tasks easy, allowing the operations team focus their efforts on high value activities. Data systems can do various things to make routine tasks easy:
+
+- Providing visibility into the runtime behavior of the system, with good monitoring
+- Providing good support for automation and integration with standard tools
+- Avoiding dependency on individual machines
+- Providing good documentation and an easy-to-understand operational model
+- Providing good behavior, giving admins to override the system's defaults
+- Self-healing where possible
+- Exhibiting predictable behavior, minimizing surprises
+
+#### Simplicity: Managing Complexity
+
+Small software projects are simple, when they grow they become complex.
+
+This complexity slows down everyone who needs to work on the system, further increase the cost of maintenance. A complex software project described as a "big ball of mud".
+
+There are several symptoms of complexity:
+
+- Explosion of complexity
+- Explosion of state space
+- Tight coupling of modules
+- Tangled dependencies
+- Inconsistent naming and terminology
+- Performance problem hacks
+- Special casing to work around issues
+
+When complexity makes the maintenance hard, budgets and schedules are often overrun. In complex software there is also a greater risk of bugs.
+
+Making a system simpler does not necessarily mean reducing its capabilities. It means removing accidental complexity.
+
+Moseley and Marks define accidental complexity as complexity that is not inherent in the problem that the software solves, but arises only from the implementation.
+
+Abstraction is a good tool to remove accidental complexity. But it is hard to find good abstractions.
+
 
