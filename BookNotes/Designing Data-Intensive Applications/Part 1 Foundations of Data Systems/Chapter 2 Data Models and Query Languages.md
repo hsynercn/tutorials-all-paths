@@ -25,3 +25,7 @@ In particular, we will look at:
 - Graph model
 
 We will also look at query languages for each of these models.
+
+
+## Relational Model Versus Document Model
+
