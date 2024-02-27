@@ -102,4 +102,27 @@ JSON representation has better locality than the multi-table schema. In a relati
 
 The one-to-many relationships from the user profile to the user's positions, education, and skills imply a tree structure. JSON makes the tree structure explicit.
 
+### Many-to-One and Many-to-Many Relationships
+
+In previous resume example one-to-many relationships form a tree structure.
+
+```mermaid
+graph TD
+  A[user] --> B[positions]
+  A --> C[education]
+  A --> D[first_name]
+  A --> G[last_name]
+  A --> H[summary]
+  B --> E[job_1]
+  E --> E1[job_title]
+  E --> E2[organization] 
+  C --> F[education_1]
+  F --> F1[school_name]
+  F --> F2[start]
+  F --> F3[end]
+  C --> L[education_2]
+  L --> L1[school_name]
+  L --> L2[start]
+  L --> L3[end]
+```
 
