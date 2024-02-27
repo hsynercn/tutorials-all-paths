@@ -67,3 +67,39 @@ The disconnect between the models is sometimes called the object-relational mism
 
 ORM frameworks like ActiveRecord and Hibernate reduce the amount of boilerplate code for the translation, but they don't eliminate the mismatch.
 
+The disconnection between the models sometimes called an impedance mismatch.
+
+Imagine we are creating a resume page. We will use user, education, work experience, and skills.
+
+- In traditional SQL model, the most common normalized representation is to put each type of information in a separate table.
+- Later versions of SQL added support for structured data types (arrays, JSON, XML) to allow more flexibility in the schema.
+- Third option is encoding everything into a single JSON or XML document and storing that in a single text column in a table.
+
+```json
+{
+  "user": "user1",
+  "first_name": "John",
+  "last_name": "Doe",
+  "summary": "Software Engineer",
+  "education": [
+    {"institution": "MIT", "degree": "PhD", "year": 2005},
+    {"institution": "ETH", "degree": "MSc", "year": 2001}
+  ],
+  "work_experience": [
+    {"company": "Google", "title": "Software Engineer", "year": 2010},
+    {"company": "Facebook", "title": "Software Engineer", "year": 2008}
+  ],
+  "skills": [
+    {"name": "C++", "level": "advanced"},
+    {"name": "Java", "level": "advanced"}
+  ]
+}
+```
+
+Some developers think JSON model reduces the impedance mismatch between the application code and storage layer. However there are also problems with JSON as a data encoding format. The lack of schema is often cited as an advantage.
+
+JSON representation has better locality than the multi-table schema. In a relational example we need to perform multiple queries or perform a multi-way join.
+
+The one-to-many relationships from the user profile to the user's positions, education, and skills imply a tree structure. JSON makes the tree structure explicit.
+
+
