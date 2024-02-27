@@ -26,6 +26,44 @@ In particular, we will look at:
 
 We will also look at query languages for each of these models.
 
-
 ## Relational Model Versus Document Model
+
+Best know data model today is SQL, which is based on the relational model.
+
+Data is organized into relations (called tables in SQL). Each relation is an unordered collection of tuples (rows in SQL). Each tuple is an unordered collection of attributes (columns in SQL).
+
+80s and 90s, the relational model was the only widely accepted model for database management. The dominance of relational databases lasted around 25-30 years.
+
+Root of relational databases lie in business data processing. It was performed on mainframe computers:
+
+- Transaction processing: Recording and processing of business transactions
+- Batch processing: Periodic processing of large amounts of data (e.g. payroll, billing)
+
+Today relational data bases are used for many different use cases:
+
+- Online publishing
+- Social networking
+- E-commerce
+- Games
+
+### The Birth of NoSQL
+
+NoSQL is the latest attempt to break the stranglehold of SQL.
+
+There are several reasons for the adoption of NoSQL:
+
+- Need for greater scalability than relational databases.Including very large datasets or very high write throughput.
+- Free and open source software over commercial database products.
+- Specialized query operations that are not well supported by the relational model.
+- Frustration with the restrictiveness of the relational model.
+
+Different applications have different requirements, probably NoSQL and SQL will coexist for a long time.
+
+### The Object-Relational Mismatch
+
+Most application development today is done in object-oriented programming languages. If data is stored in relational tables, an awkward translation layer is required between the objects in the application code and the database model of tables, rows, and columns.
+
+The disconnect between the models is sometimes called the object-relational mismatch.
+
+ORM frameworks like ActiveRecord and Hibernate reduce the amount of boilerplate code for the translation, but they don't eliminate the mismatch.
 
