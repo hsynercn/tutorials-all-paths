@@ -126,3 +126,25 @@ graph TD
   L --> L3[end]
 ```
 
+If user interface has free-text fields for region and industry, it could make sense to store them as plain text strings. But there are advantages to having standard values for these fields, which user could select from drop-down list or autocomplete:
+
+- Consistent style and spelling across profiles
+- Avoiding ambiguity, if there are multiple places with the same name
+- Ease of updating, if a place or industry name changes the name is stored in only one place
+- Localization support, when the site is translated into other languages, the standard values can be translated
+- Better search, if the standard values are used in search filters, it is easier to search for profiles that match a particular region or industry
+
+When we store the ID, human meaningful info will be is stored in only one place. When we store the text directly, it will duplicate the human-meaningful info in every record that uses it.
+
+Removing such duplication is the key idea behind normalization in databases.
+
+Normalization is the process of organizing the columns and tables of a database to minimize data redundancy. Denormalization is the process of trying to improve the read performance of a database at the expense of some write performance.
+
+Normalizing data creates many-to-one relationships.
+
+Which don't fit nicely into the document model. In relational databases we can refer to other to other rows in other tables by ID, because joins are easy. In document model, we don't have to make joins to create tree like structures, and support for joins are weak.
+
+If the DB does not support joins, we have to make joins in app code by making multiple queries to DB.
+
+We can start with a join-free document model, but the data has a tendency of becoming mode interconnected as features are added to applications.
+
