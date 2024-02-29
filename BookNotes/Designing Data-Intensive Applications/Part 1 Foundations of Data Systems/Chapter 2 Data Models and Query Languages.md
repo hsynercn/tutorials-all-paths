@@ -148,3 +148,24 @@ If the DB does not support joins, we have to make joins in app code by making mu
 
 We can start with a join-free document model, but the data has a tendency of becoming mode interconnected as features are added to applications.
 
+Imagine we are adding a recommendation feature to the resume page. We want to show other user who approved the user skills. We need to create a one-to-many relationship.
+
+### Are Document Databases Repeating History?
+
+We use many-to-many relationships and joins for relational databases. But document databases and NoSQL reopened the debate on how best to represent such relationships in a database.
+
+This debate is much older than NoSQL.
+
+IMS was the first hierarchical database management system. It was developed in the late 1960s by IBM.
+
+Like document databases, IMS worked well for one-to-many relationships, but it made many-to-many relationships difficult, and it didn't support joins.
+
+The two most prominent solutions were relational model and network model.
+
+- The Network Model: CODASYL (Conference on Data Systems Languages) was a consortium that defined the network model in the late 1960s. In the tree structure of the hierarchical model, a record could have exactly one parent. In the network model a record could have multiple parents. 
+
+Access Path: A path from one record to another, following the pointers. The network model allowed records to be linked in a graph, and it supported many-to-many relationships.
+
+Access Path concept made queries more complex than in the hierarchical model. It was difficult to optimize queries.
+
+- The Relational Model: 
