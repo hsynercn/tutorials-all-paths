@@ -162,10 +162,29 @@ Like document databases, IMS worked well for one-to-many relationships, but it m
 
 The two most prominent solutions were relational model and network model.
 
-- The Network Model: CODASYL (Conference on Data Systems Languages) was a consortium that defined the network model in the late 1960s. In the tree structure of the hierarchical model, a record could have exactly one parent. In the network model a record could have multiple parents. 
+- The Network Model: CODASYL (Conference on Data Systems Languages) was a consortium that defined the network model in the late 1960s. In the tree structure of the hierarchical model, a record could have exactly one parent. In the network model a record could have multiple parents.
 
 Access Path: A path from one record to another, following the pointers. The network model allowed records to be linked in a graph, and it supported many-to-many relationships.
 
 Access Path concept made queries more complex than in the hierarchical model. It was difficult to optimize queries.
 
-- The Relational Model: 
+- The Relational Model: Relational data lays out all the data in the open, this is contrast to the hierarchical and network models.
+
+There are no labyrinthine nested structures, no complicated access paths.
+
+In relational database, the query optimizer automatically decides which parts of the query to execute in which order, and which indexes to use.
+
+We don't need to change the queries when the structure of the data changes, when we add a new index queries will automatically use it.
+
+Thus relational model made it much easier to add new featured to applications.
+
+- Comparison to Document Databases: Document databases reverted back to hierarchical model in one aspect: storing nested records within their parent record rather than in a separate table.
+
+However, when it comes to representing many-to-one and many-to-many relationships, relational and document databases are not fundamentally different. 
+
+In both cases the related item is referenced by a unique identifier:
+
+- Foreign key in relational model
+- Document reference in document model
+
+That identifier resolved at read time by using a join or follow-up queries. Simple document dbs don't follow CODASYL path.
