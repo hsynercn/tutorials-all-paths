@@ -188,3 +188,26 @@ In both cases the related item is referenced by a unique identifier:
 - Document reference in document model
 
 That identifier resolved at read time by using a join or follow-up queries. Simple document dbs don't follow CODASYL path.
+
+### Relational Versus Document Databases Today
+
+There are differences between relational and document databases today:
+
+- Fault tolerance properties
+- Handling of concurrency
+- This part will inspect the data model differences
+
+Document model provides:
+
+- Better flexibility
+- Better performance due to locality
+- Closer data model to the application data structures
+
+Relational model provides:
+
+- Better support for joins
+- Many-to-one and many-to-many relationships
+
+#### Which data model leads to simpler application code?
+
+
