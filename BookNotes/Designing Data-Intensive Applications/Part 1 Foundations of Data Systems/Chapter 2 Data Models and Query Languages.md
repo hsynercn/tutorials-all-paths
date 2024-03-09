@@ -228,4 +228,6 @@ For highly interconnected data:
 - Relational model is acceptable
 - Graph model is the most natural
 
+#### Schema flexibility in the document model
+
 
