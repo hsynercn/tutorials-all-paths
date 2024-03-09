@@ -210,4 +210,22 @@ Relational model provides:
 
 #### Which data model leads to simpler application code?
 
+If our app data has document like structure, tree of one-to-many relationships, where typically the entire tree is loaded at once. Then it is a good idea to use a document model.
+
+The relational technique of shredding, splitting a document into multiple tables can lead to cumbersome schemas and unnecessary complicated application code.
+
+Document model has limitations, you cannot refer directly to a nested item within a document. This is not an issue as long as documents are not too deeply nested.
+
+Poor support of joins in a document model may or may not be a problem, it depends on the application.
+
+If you applications uses many-to-many relationships, it is a good idea to use a relational model. The document model becomes less appealing.
+
+It is possible to reduce the need for joins by denormalizing the data, but it is a trade-off. Joins can be emulated in application code, but it is not as efficient as in a relational database. I will be slower and more complex.
+
+For highly interconnected data:
+
+- Document model is awkward
+- Relational model is acceptable
+- Graph model is the most natural
+
 
