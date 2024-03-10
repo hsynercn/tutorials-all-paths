@@ -230,4 +230,26 @@ For highly interconnected data:
 
 #### Schema flexibility in the document model
 
+Most document databases, and the JSON support in relational databases, are schemaless. They do not enforce any schema on the data in documents. XML support in relational databases usually comes with the optional schema validation.
 
+No schema means that arbitrary keys and values can be added to a document, and when reading, clients have no guarantee as to what fields the documents may contain.
+
+Document databases are sometimes called schemaless, but this is misleading.
+
+The database still has an implicit schema, but it is not enforced by the database.
+
+More accurate term is schema-on-read. It means that the schema is not enforced when writing, only when reading the data.
+
+Other option is schema-on-write. It means that the schema is enforced when writing data. Relational databases use schema-on-write.
+
+Schema-on-read is similar to dynamic (runtime) type checking in programming languages, and schema-on-write is similar to static (compile-time) type checking.
+
+Schema changes have a bed reputation of being slow and requiring downtime. This reputation is not entirely deserved. Most relational databases can run ALTER TABLE statement in few milliseconds or seconds.
+
+- If we have many different types of objects, and it is not practical to define a table for each type, then a document model is a good fit.
+
+- The structure of the data is determined by external systems over which you have no control and which may change over time, then a document model is a good fit.
+
+In these cases schema will hurt you more than it helps.
+
+#### Data locality for queries
