@@ -46,3 +46,34 @@ Mostly companies follow similar interview processes.
 
 Usually there are 5-6 interviews, each 45-60 minutes long. They start with a phone screen, then 4-5 on-site interviews.
 
+- Microsoft Interview: Microsoft wants smart people.
+- Amazon Interview: Several people will check different aspects of your skills. Focus areas are scalability and object oriented design.
+- Google Interview: Focus areas are scalability and analytical algorithm skills.
+- Apple Interview: Focus on the product.
+- Facebook Interview: Facebook wants passionate people. Show them you like to build stuff.
+
+### III Special Situations
+
+Experienced Candidates
+
+Be prepared for algorithm and system design questions. In every case you will be asked.
+
+Testers and SDETs
+
+Be prepared for algorithm and coding questions.
+
+Product and Program Managers
+
+- Handle ambiguity
+- Customer focus > attitude, how user will use the product
+- Customer focus > technical skills
+- Multi-level communication
+- Passion for technology
+- Teamwork, leadership
+
+
+
+
+
+
+
