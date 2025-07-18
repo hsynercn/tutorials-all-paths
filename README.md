@@ -16,3 +16,6 @@ Taking notes with ipod is not so bad it can be fast but also problematic.
 
 
 Deleting any part is not so hard, it is also fun to use the pen with anywhere.
+I am very pleased to write with my pen, this is fun.
+
+
