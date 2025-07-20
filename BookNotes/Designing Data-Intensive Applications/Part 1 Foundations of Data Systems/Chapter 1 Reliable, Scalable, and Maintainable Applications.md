@@ -26,6 +26,10 @@ Main goal is creating reliable, scalable, maintainable data systems.
 
 We can think about databases, queues, caches, etc. as tools for solving different problems as data systems. New tools are developed to solve specific problems. A single tool can't solve all problems.
 
+We use different tools for different smaller tasks, and application creates the required integration.
+
+There will be many concerns when we creæte date system, our organization structure, legacy infrastructure, time limits. 
+
 In this book we will focus on the following properties of data systems:
 
 - Reliability: The system should continue to work correctly (performing the correct function at the desired level of performance) even in the face of adversity (hardware or software faults, and even human error).
