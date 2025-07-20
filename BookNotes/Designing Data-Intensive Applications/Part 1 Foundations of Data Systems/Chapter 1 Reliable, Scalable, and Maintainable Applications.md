@@ -156,6 +156,11 @@ Usually we use average response time, but it can be misleading. Percentiles are 
 
 The median is also known as the 50th percentile. We can understand the outliners by looking at percentiles. For example, the 95th percentile is the value for which 95% of the data are smaller. If the 95th percentile response time of a service is 1 second, that means 95 out of 100 requests take less than 1 second, and 5 out of 100 requests take 1 second or more. 99.9th percentile is often known as the tail latency.
 
+Percentiles
+- 95th → p95
+- 99th → p99
+- 99.9th → p999
+
 Percentiles are often used in service level objectives (SLOs), which are a part of a service level agreement (SLA) between different teams in the same organization, or between organizations.
 
 We cannot ignore the high percentiles, they are also known as tail latencies. They can be a source of user complaints. Customers with the slowest experience are often the most valuable customers. Because they have the most data.
