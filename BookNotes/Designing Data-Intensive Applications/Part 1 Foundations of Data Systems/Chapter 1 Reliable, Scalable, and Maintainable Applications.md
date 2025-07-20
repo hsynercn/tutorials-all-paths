@@ -199,7 +199,7 @@ Some systems are elastic, they can automatically add computing resources when th
 
 If the load is unpredictable self balancing systems could be beneficial.
 
-Distributing stateless services is relatively easy. Distributing stateful services is much harder. Thus keeping the dat/state on a single node is easier until scaling costs become too high.
+Distributing stateless services is relatively easy. Distributing stateful services is much harder. Thus keeping the data/state on a single node is easier until scaling costs become too high.
 
 In future distributed systems will become default even for small applications.
 
@@ -245,22 +245,21 @@ A good operations team is responsible for:
 
 Good operability means making routine tasks easy, allowing the operations team focus their efforts on high value activities. Data systems can do various things to make routine tasks easy:
 
-- Providing visibility into the runtime behavior of the system, with good monitoring
-- Providing good support for automation and integration with standard tools
+- Providing visibility of the system
 - Avoiding dependency on individual machines
-- Providing good documentation and an easy-to-understand operational model
-- Providing good behavior, giving admins to override the system's defaults
 - Self-healing where possible
-- Exhibiting predictable behavior, minimizing surprises
+- etc.
 
 #### Simplicity: Managing Complexity
 
 Small software projects are simple, when they grow they become complex.
 
-This complexity slows down everyone who needs to work on the system, further increase the cost of maintenance. A complex software project described as a "big ball of mud".
+This complexity slows down everyone who needs to work on the system, further increase the cost of maintenance.
+
+ A complex software project described as a "big ball of mud".
 
 There are several symptoms of complexity:
-
+- explosion of state space
 - Explosion of complexity
 - Explosion of state space
 - Tight coupling of modules
