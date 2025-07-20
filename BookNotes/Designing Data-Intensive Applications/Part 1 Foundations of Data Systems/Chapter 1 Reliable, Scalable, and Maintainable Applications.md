@@ -1,4 +1,4 @@
-# Chapter 1. Reliable, Scalable, and Maintainable Applications
+## Chapter 1. Reliable, Scalable, and Maintainable Applications
 
 Many applications today are data-intensive, as opposed to compute-intensive.
 
@@ -15,6 +15,19 @@ When building an application, we still need to figure out which tools and which 
 ## Thinking About Data Systems
 
 ```mermaid
+---
+config:
+  theme: redux
+  layout: dagre
+---
+flowchart TD
+    A(["Start"]) --> B{"Decision"}
+    B --> C["Option A"] & D["Option B"]
+    n1["cache in memory"]
+    user_node["User"]
+    n2["Application code"]
+    n1@{ shape: cyl}
+    user_node@{ icon: "fa:user", form: "circle"}
 ```
 
 We can think about databases, queues, caches, etc. as tools for solving different problems as data systems. New tools are developed to solve specific problems. A single tool can't solve all problems.
