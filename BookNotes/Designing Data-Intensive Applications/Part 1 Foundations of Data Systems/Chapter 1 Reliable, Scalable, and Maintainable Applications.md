@@ -28,7 +28,7 @@ We can think about databases, queues, caches, etc. as tools for solving differen
 
 We use different tools for different smaller tasks, and application creates the required integration.
 
-There will be many concerns when we creæte date system, our organization structure, legacy infrastructure, time limits. 
+There will be many concerns when we create# date system, our organization structure, legacy infrastructure, time limits. 
 
 In this book we will focus on the following properties of data systems:
 
@@ -51,7 +51,7 @@ Things that can go wrong called faults. Systems that anticipate faults and can c
 
 Fault is not the same as a failure.
 
-Failure is when the system as a whole stops providing the required service to the user.
+Failure is when the system as a whole stops providing the required service to the user. Fault mecens one system component is deviating from standard.
 
 It is best to design fault-tolerant systems that prevent faults from causing failures.
 
