@@ -1,5 +1,11 @@
 ## Chapter 1. Reliable, Scalable, and Maintainable Applications
 
+Reliability: tolerating hardware and software errors, human faults
+
+Scalability: measuring load and performance latency percentiles, throughput
+
+Maintain ability: operability, simplicity, easy to change
+
 Many applications today are data-intensive, as opposed to compute-intensive.
 
 Common building blocks for data-intensive applications:
