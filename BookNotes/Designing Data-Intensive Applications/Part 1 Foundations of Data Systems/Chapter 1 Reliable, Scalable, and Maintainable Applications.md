@@ -169,7 +169,9 @@ Optimizing the 99,99th percentile is too expensive, it doesn't wort it.
 
 ### Percentiles In Practice
 
-High percentiles easily become important. Even in parallel requests, if one of them is slow, it can slow down the whole process on the client side. This could make the whole flow slow, this is known as tail latency amplification.
+High percentiles easily become important. Even in parallel requests, if one of them is slow, it can slow down the whole process on the client side. 
+
+This could make the whole flow slow, this is known as tail latency amplification.
 
 We can calculate percentiles by keeping a histogram of response times.
 
@@ -194,6 +196,8 @@ Usually good architecture involves a combination of both.
 For example using several fairly powerful machines can be still can be simpler and cheaper than using many smaller machines.
 
 Some systems are elastic, they can automatically add computing resources when they detect a load increase. Others require manual intervention.
+
+If the load is unpredictable self balancing systems could be beneficial.
 
 Distributing stateless services is relatively easy. Distributing stateful services is much harder. Thus keeping the dat/state on a single node is easier until scaling costs become too high.
 
