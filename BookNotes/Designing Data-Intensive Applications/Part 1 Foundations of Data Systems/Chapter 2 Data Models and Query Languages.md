@@ -12,6 +12,8 @@ Applications are built by layering one data model on top of another:
 3. JSON/XML/Tables/Graphs are data in term of bytes in memory, on disk, or on a network. The representation may allow the data to be queried, searched, manipulated, and processed in different ways.
 4. On the lower level it is electrical signals, magnetic fields, or optical media.
 
+Application data structure → general purpose data models json xml → databæse level → hardware level
+
 Each layer hides the complexity of the layer below it providing a clean data model.
 
 Mastering a data model is already hard. But since the data model has such a profound effect on what the software above it can and can't do it, it is important to choose one that is appropriate for the application.
