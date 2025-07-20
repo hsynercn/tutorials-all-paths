@@ -26,7 +26,7 @@ Main goal is creating reliable, scalable, maintainable data systems.
 
 We can think about databases, queues, caches, etc. as tools for solving different problems as data systems. New tools are developed to solve specific problems. A single tool can't solve all problems.
 
-We use different tools for different smaller tasks, and application creates the required integration.
+! We use different tools for different smaller tasks, and application creates the required integration.
 
 There will be many concerns when we create# date system, our organization structure, legacy infrastructure, time limits. 
 
@@ -67,10 +67,13 @@ Designing for failure is an important part of building reliable systems.
 
 ### Software Errors
 
+Software errors ere messy, harder to deal.
+
+
 Another class of fault is a systematic error within the system.
 
 - A software bug that causes every instance of a service to crash when given a particular bad input.
-- A runaway process that depletes shared resources
+- A runaway process that depletes shared resources, like network or cpu#
 - A service that the system depends on is slow or unavailable
 - Cascading failures where a small fault in one component triggers a fault in another component, which in turn triggers further faults.
 
