@@ -20,7 +20,7 @@ Common building blocks for data-intensive applications:
 
 When building an application, we still need to figure out which tools and which approaches are the most appropriate for the task at hand. And it can be hard to combine tools when you need to do something that a single tool can't do.
 
-Main goal is creating, reliable, scalable, maintainable data systems.
+Main goal is creating reliable, scalable, maintainable data systems.
 
 ## Thinking About Data Systems
 
