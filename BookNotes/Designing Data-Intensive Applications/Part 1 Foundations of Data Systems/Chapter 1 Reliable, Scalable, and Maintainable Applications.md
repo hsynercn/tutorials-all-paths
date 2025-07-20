@@ -146,7 +146,11 @@ When we describe the load on your system, we can investigate how system behaves 
 
 - When you increase a load parameter, how much do you need to increase the resources if you want to keep performance unchanged?
 
-Latency and response time are often used synonymously, but they are not the same. Latency is the duration that a request is waiting to be handled - during which it is latent, awaiting service. Response time is the delay between a request and the response being received.
+In some cases we pay attention to throughput, for online services response tire is more important.
+
+Latency and response time are often used synonymously, but they are not the same.
+
+Latency is the duration that a request is waiting to be handled - during which it is latent, awaiting service. Response time is the delay between a request and the response being received.
 
 Usually we use average response time, but it can be misleading. Percentiles are a better way to describe the distribution of response times.
 
