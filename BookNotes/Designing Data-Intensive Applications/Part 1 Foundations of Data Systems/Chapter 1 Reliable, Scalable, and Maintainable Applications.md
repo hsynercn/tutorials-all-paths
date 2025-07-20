@@ -4,9 +4,11 @@ Reliability: tolerating hardware and software errors, human faults
 
 Scalability: measuring load and performance latency percentiles, throughput
 
-Maintain ability: operability, simplicity, easy to change
+Maintainability: operability, simplicity, easy to change
 
 Many applications today are data-intensive, as opposed to compute-intensive.
+
+Limiting factor is not the cpu, it is the amout and complexity of the data.
 
 Common building blocks for data-intensive applications:
 
@@ -17,6 +19,8 @@ Common building blocks for data-intensive applications:
 - Batch processing: Periodically crunch a large amount of accumulated data.
 
 When building an application, we still need to figure out which tools and which approaches are the most appropriate for the task at hand. And it can be hard to combine tools when you need to do something that a single tool can't do.
+
+Main goal is creating, reliable, scalable, maintainable data systems.
 
 ## Thinking About Data Systems
 
