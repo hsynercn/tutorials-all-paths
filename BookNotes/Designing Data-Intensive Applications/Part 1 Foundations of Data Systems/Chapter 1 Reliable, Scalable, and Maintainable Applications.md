@@ -14,6 +14,9 @@ When building an application, we still need to figure out which tools and which 
 
 ## Thinking About Data Systems
 
+```mermaid
+```
+
 We can think about databases, queues, caches, etc. as tools for solving different problems as data systems. New tools are developed to solve specific problems. A single tool can't solve all problems.
 
 In this book we will focus on the following properties of data systems:
