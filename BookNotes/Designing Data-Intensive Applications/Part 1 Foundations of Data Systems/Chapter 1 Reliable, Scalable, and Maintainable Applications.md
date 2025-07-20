@@ -165,6 +165,8 @@ Percentiles are often used in service level objectives (SLOs), which are a part 
 
 We cannot ignore the high percentiles, they are also known as tail latencies. They can be a source of user complaints. Customers with the slowest experience are often the most valuable customers. Because they have the most data.
 
+Optimizing the 99,99th percentile is too expensive, it doesn't wort it.
+
 ### Percentiles In Practice
 
 High percentiles easily become important. Even in parallel requests, if one of them is slow, it can slow down the whole process on the client side. This could make the whole flow slow, this is known as tail latency amplification.
