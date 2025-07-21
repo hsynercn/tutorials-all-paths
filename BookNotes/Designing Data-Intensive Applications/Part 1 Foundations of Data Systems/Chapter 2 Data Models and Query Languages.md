@@ -180,7 +180,7 @@ Like document databases, IMS worked well for one-to-many relationships, but it m
 
 The two most prominent solutions were relational model and network model.
 
-- The Network Model: CODASYL (Conference on Data Systems Languages) was a consortium that defined the network model in the late 1960s. In the tree structure of the hierarchical model, a record could have exactly one parent. In the network model a record could have multiple parents.
+- The Network Model: In the tree structure of the hierarchical model, a record could have exactly one parent. In the network model a record could have multiple parents.
 
 Access Path: A path from one record to another, following the pointers. The network model allowed records to be linked in a graph, and it supported many-to-many relationships.
 
@@ -196,7 +196,8 @@ We don't need to change the queries when the structure of the data changes, when
 
 Thus relational model made it much easier to add new featured to applications.
 
-- Comparison to Document Databases: Document databases reverted back to hierarchical model in one aspect: storing nested records within their parent record rather than in a separate table.
+- Comparison to Document Databases: Document databases reverted back to hierarchical model in one aspect: 
+storing nested records within their parent record rather than in a separate table.
 
 However, when it comes to representing many-to-one and many-to-many relationships, relational and document databases are not fundamentally different. 
 
@@ -205,15 +206,15 @@ In both cases the related item is referenced by a unique identifier:
 - Foreign key in relational model
 - Document reference in document model
 
-That identifier resolved at read time by using a join or follow-up queries. Simple document dbs don't follow CODASYL path.
-
 ### Relational Versus Document Databases Today
 
 There are differences between relational and document databases today:
 
 - Fault tolerance properties
 - Handling of concurrency
-- This part will inspect the data model differences
+- etc.
+
+This part will inspect the data model differences
 
 Document model provides:
 
@@ -228,23 +229,19 @@ Relational model provides:
 
 #### Which data model leads to simpler application code?
 
-If our app data has document like structure, tree of one-to-many relationships, where typically the entire tree is loaded at once. Then it is a good idea to use a document model.
+If our app data has document like structure, tree of one-to-many relationships, where typically the entire tree is used at once.
+
+Then it is a good idea to use a document model.
 
 The relational technique of shredding, splitting a document into multiple tables can lead to cumbersome schemas and unnecessary complicated application code.
 
-Document model has limitations, you cannot refer directly to a nested item within a document. This is not an issue as long as documents are not too deeply nested.
+Document model has limitations, you cannot refer directly to a nested item in a document. This is not a problem if entities are not deeply nested.
 
 Poor support of joins in a document model may or may not be a problem, it depends on the application.
 
-If you applications uses many-to-many relationships, it is a good idea to use a relational model. The document model becomes less appealing.
+If you applications uses many-to-many relationships, it is a good idea to use a relational model.
 
-It is possible to reduce the need for joins by denormalizing the data, but it is a trade-off. Joins can be emulated in application code, but it is not as efficient as in a relational database. I will be slower and more complex.
-
-For highly interconnected data:
-
-- Document model is awkward
-- Relational model is acceptable
-- Graph model is the most natural
+For interconnected data relational, graph models are better, if we use a document based db app code can become too complex.
 
 #### Schema flexibility in the document model
 
