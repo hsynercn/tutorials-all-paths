@@ -69,13 +69,13 @@ Different applications have different requirements, probably NoSQL and SQL will 
 
 ### The Object-Relational Mismatch
 
-Most application development today is done in object-oriented programming languages. If data is stored in relational tables, an awkward translation layer is required between the objects in the application code and the database model of tables, rows, and columns.
+Most application development today is done in object-oriented programming languages.
 
-The disconnect between the models is sometimes called the object-relational mismatch.
+If data is stored in relational tables, an awkward translation layer is required between the objects in the application code and the database model of tables, rows, and columns.
 
 ORM frameworks like ActiveRecord and Hibernate reduce the amount of boilerplate code for the translation, but they don't eliminate the mismatch.
 
-The disconnection between the models sometimes called an impedance mismatch.
+The disconnection between the models sometimes called an impedance mismatch (object-relational mismatch).
 
 Imagine we are creating a resume page. We will use user, education, work experience, and skills.
 
@@ -104,7 +104,9 @@ Imagine we are creating a resume page. We will use user, education, work experie
 }
 ```
 
-Some developers think JSON model reduces the impedance mismatch between the application code and storage layer. However there are also problems with JSON as a data encoding format. The lack of schema is often cited as an advantage.
+Some developers think JSON model reduces the impedance mismatch between the application code and storage layer.
+
+However there are also problems with JSON as a data encoding format. The lack of schema is often cited as an advantage.
 
 JSON representation has better locality than the multi-table schema. In a relational example we need to perform multiple queries or perform a multi-way join.
 
