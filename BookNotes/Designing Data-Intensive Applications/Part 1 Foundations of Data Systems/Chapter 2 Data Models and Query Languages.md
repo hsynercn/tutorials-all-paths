@@ -32,14 +32,18 @@ We will also look at query languages for each of these models.
 
 Best know data model today is SQL, which is based on the relational model.
 
-Data is organized into relations (called tables in SQL). Each relation is an unordered collection of tuples (rows in SQL). Each tuple is an unordered collection of attributes (columns in SQL).
+Sql: structured query language
 
-80s and 90s, the relational model was the only widely accepted model for database management. The dominance of relational databases lasted around 25-30 years.
+Data is organized into relations (called tables in SQL). Each relation is an unordered collection of tuples (rows in SQL). Each tuple is an unordered collection of attributes (columns in SQL).
 
 Root of relational databases lie in business data processing. It was performed on mainframe computers:
 
 - Transaction processing: Recording and processing of business transactions
 - Batch processing: Periodic processing of large amounts of data (e.g. payroll, billing)
+
+Relational databases provided a cleaner interface.
+
+In early times lots of alternatives emerged to relational databases but they didnt survive.
 
 Today relational data bases are used for many different use cases:
 
