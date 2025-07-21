@@ -108,7 +108,9 @@ Some developers think JSON model reduces the impedance mismatch between the appl
 
 However there are also problems with JSON as a data encoding format. The lack of schema is often cited as an advantage.
 
-JSON representation has better locality than the multi-table schema. In a relational example we need to perform multiple queries or perform a multi-way join.
+JSON representation has better locality than the multi-table schema.
+
+ In a relational example we need to perform multiple queries or perform a multi-way join.
 
 The one-to-many relationships from the user profile to the user's positions, education, and skills imply a tree structure. JSON makes the tree structure explicit.
 
@@ -136,7 +138,9 @@ graph TD
   L --> L3[end]
 ```
 
-If user interface has free-text fields for region and industry, it could make sense to store them as plain text strings. But there are advantages to having standard values for these fields, which user could select from drop-down list or autocomplete:
+If user interface has free-text fields for region and industry, it could make sense to store them as plain text strings.
+
+But there are advantages to having standard values for these fields, which user could select from drop-down list or autocomplete:
 
 - Consistent style and spelling across profiles
 - Avoiding ambiguity, if there are multiple places with the same name
