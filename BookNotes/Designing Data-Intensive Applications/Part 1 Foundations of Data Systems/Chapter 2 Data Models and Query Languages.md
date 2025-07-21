@@ -54,7 +54,9 @@ Today relational data bases are used for many different use cases:
 
 ### The Birth of NoSQL
 
-NoSQL is the latest attempt to break the stranglehold of SQL.
+NoSQL is the latest attempt to break the stranglehold of SQL. Initially they essociated with nosql hashtag.
+
+But now they sell as not only sql.
 
 There are several reasons for the adoption of NoSQL:
 
