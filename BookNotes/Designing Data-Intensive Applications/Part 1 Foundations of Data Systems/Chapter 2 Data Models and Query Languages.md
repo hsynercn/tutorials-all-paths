@@ -152,7 +152,9 @@ When we store the ID, human meaningful info will be is stored in only one place.
 
 Removing such duplication is the key idea behind normalization in databases.
 
-Normalization is the process of organizing the columns and tables of a database to minimize data redundancy. Denormalization is the process of trying to improve the read performance of a database at the expense of some write performance.
+Normalization is the process of organizing the columns and tables of a database to minimize data redundancy.
+
+Denormalization is the process of trying to improve the read performance of a database at the expense of some write performance.
 
 Normalizing data creates many-to-one relationships.
 
@@ -166,11 +168,13 @@ Imagine we are adding a recommendation feature to the resume page. We want to sh
 
 ### Are Document Databases Repeating History?
 
-We use many-to-many relationships and joins for relational databases. But document databases and NoSQL reopened the debate on how best to represent such relationships in a database.
+We use many-to-many relationships and joins for relational databases. 
+
+But document databases and NoSQL reopened the debate on how best to represent such relationships in a database.
 
 This debate is much older than NoSQL.
 
-IMS was the first hierarchical database management system. It was developed in the late 1960s by IBM.
+IMS was the first hierarchical database management system.
 
 Like document databases, IMS worked well for one-to-many relationships, but it made many-to-many relationships difficult, and it didn't support joins.
 
