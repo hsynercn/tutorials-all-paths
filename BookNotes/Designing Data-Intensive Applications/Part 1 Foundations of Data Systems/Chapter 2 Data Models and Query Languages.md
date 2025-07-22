@@ -285,14 +285,13 @@ Locality is not limited to document based db. Google spanner db provides nested 
 
 Multi-table index cluster tables is provided by oracle.
 
+### Convergence of document end relational databases
 
+Most relational dbs support xml documents, very similar to document databases. Also relational dbs support json for some time.
 
+On the other hand document databases support relational database features like optimized joins.
 
-
-
-
-
-
+This means databases ere becoming hybrid solutions which supports both perspectives.
 
 
 
