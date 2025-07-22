@@ -291,9 +291,9 @@ Most relational dbs support xml documents, very similar to document databases. A
 
 On the other hand document databases support relational database features like optimized joins.
 
-This means databases ere becoming hybrid solutions which supports both perspectives.
+This means databases ere becoming hybrid solutions which supports both perspectives by time.
 
-
+## Query languages for data
 
 
 
