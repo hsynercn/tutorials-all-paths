@@ -245,7 +245,9 @@ For interconnected data relational, graph models are better, if we use a documen
 
 #### Schema flexibility in the document model
 
-Most document databases, and the JSON support in relational databases, are schemaless. They do not enforce any schema on the data in documents. XML support in relational databases usually comes with the optional schema validation.
+Most document databases, and the JSON support in relational databases, are schemaless. 
+
+They do not enforce any schema on the data in documents. XML support in relational databases usually comes with the optional schema validation.
 
 No schema means that arbitrary keys and values can be added to a document, and when reading, clients have no guarantee as to what fields the documents may contain.
 
@@ -259,7 +261,7 @@ Other option is schema-on-write. It means that the schema is enforced when writi
 
 Schema-on-read is similar to dynamic (runtime) type checking in programming languages, and schema-on-write is similar to static (compile-time) type checking.
 
-Schema changes have a bed reputation of being slow and requiring downtime. This reputation is not entirely deserved. Most relational databases can run ALTER TABLE statement in few milliseconds or seconds.
+Schema changes have a bad reputation of being slow and requiring downtime. This reputation is not entirely deserved. Most relational databases can run ALTER TABLE statement in few milliseconds or seconds.
 
 - If we have many different types of objects, and it is not practical to define a table for each type, then a document model is a good fit.
 
@@ -267,4 +269,36 @@ Schema changes have a bed reputation of being slow and requiring downtime. This 
 
 In these cases schema will hurt you more than it helps.
 
+If the all records will be same we can use a schema.
+
 #### Data locality for queries
+
+A document is stored es a continuous string encoded as json, xml, binary.
+
+It we need to access the whole document oftenly, this is a performance benefit from storage locality.
+
+But this situation is applied if we need to access the whole document, otherwise of we change the small parts it will be wasteful.
+
+Reading and writing large documents are expensive. So keeping the document size manageble is e logical thing.
+
+Locality is not limited to document based db. Google spanner db provides nested tables for rows. Oracle also provides a similar function.
+
+Multi-table index cluster tables is provided by oracle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
