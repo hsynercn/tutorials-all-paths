@@ -376,6 +376,22 @@ Some well established algorithms can operate on graphs, we can represent complex
 
 This part will discuss property graph model and triple store model.
 
+## Property graphs
+
+
+Each vertex contains:
+- id
+- outgoing edges 
+- incoming edges
+- key value pairs
+
+Each edge contains:
+- id 
+- start vertex
+- end vertex
+- label to describe relationship
+- key value pairs
+
 
 
 
