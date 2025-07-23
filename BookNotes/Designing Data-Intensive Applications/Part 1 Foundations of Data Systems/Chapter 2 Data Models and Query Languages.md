@@ -311,12 +311,16 @@ Imperative code is hard to parellelize. Code is open for optimization at the bac
 ### Declarative queries on the web
 
 
-```css
+```xml
 <ul>
 	<li class="selected">
   </li>
 </ul>
 ```
+
+Declarative languages are not just for databases. For exmeple we went to change the css of a website.
+
+
 
 
 
