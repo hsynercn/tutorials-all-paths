@@ -311,8 +311,8 @@ Imperative code is hard to parellelize. Code is open for optimization at the bac
 ### Declarative queries on the web
 
 
-
-
+'''css
+'''
 
 
 
