@@ -313,8 +313,7 @@ Imperative code is hard to parellelize. Code is open for optimization at the bac
 
 ```css
 <ul>
-<li class="selected">
-  ...
+	<li class="selected">
   </li>
 </ul>
 ```
