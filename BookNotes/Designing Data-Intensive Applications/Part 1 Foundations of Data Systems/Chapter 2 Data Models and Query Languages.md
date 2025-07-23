@@ -322,6 +322,16 @@ Declarative languages are not just for databases. For exmeple we went to change 
 
 
 
+li.selected > p {
+	background-color: blue;
+}
+
+With this code we can change the color, selects the li element with selected class under this conditions it gets the p element.
+
+Applies the css to this element. We can do the same thing with xml. Both xml and css are declarative languages.
+
+If we try the some thing with javascript it will be harder.it will require searching for the target element.
+
 
 
 
