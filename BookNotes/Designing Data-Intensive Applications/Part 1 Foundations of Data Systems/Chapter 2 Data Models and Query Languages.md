@@ -334,6 +334,46 @@ If we try the some thing with javascript it will be harder.it will require searc
 
 Mepreduce is a programing model for processing large amounts of data in bulk across many machines.
 
+Mapreduce is not totally declerative or imperative it is between them it is partically supported by mongo db.
+
+For example if want to generate a monthly report from e sql table we will use grouping.
+
+
+If we do the same thing with mongo db ve will use a map function for every record, map function emits a key and a value.
+
+For our case value will be the monthly record count. Emitted records will be grouped by key. Reduce function will add the numbers.
+
+The map and reduce functions ere restricted at some level they need to be pure functions. They cant have side effects.
+
+Same operation can be handled by a the sql query, using javascript within a db query is beneficial but mongo db is not the only way for it.
+
+Relational db can also support calling javascript functions.
+
+Also using a declerative language provides better support for optimization. Since mongo provided a declerative query language.
+
+It is called aggregation pipeline.
+
+This is a very similar thing to sql. For mongo it is just using ison syntax not the sql grammer.
+
+Simply a no sql system is reinventing sql in disguise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
