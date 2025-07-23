@@ -320,8 +320,6 @@ Imperative code is hard to parellelize. Code is open for optimization at the bac
 
 Declarative languages are not just for databases. For exmeple we went to change the css of a website.
 
-
-
 li.selected > p {
 	background-color: blue;
 }
@@ -331,6 +329,24 @@ With this code we can change the color, selects the li element with selected cla
 Applies the css to this element. We can do the same thing with xml. Both xml and css are declarative languages.
 
 If we try the some thing with javascript it will be harder.it will require searching for the target element.
+
+### Mapreduce querying
+
+Mepreduce is a programing model for processing large amounts of data in bulk across many machines.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
