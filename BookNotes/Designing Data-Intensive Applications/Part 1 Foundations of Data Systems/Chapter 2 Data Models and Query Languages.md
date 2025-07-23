@@ -296,6 +296,39 @@ This means databases ere becoming hybrid solutions which supports both perspecti
 ## Query languages for data
 
 
+Rerational databases introduced sql, declarative query language. Codasyl is a imperative language.
+
+Programming languages are imperative mostly. An imperative language gives the instructions in a certain order.
+
+Declerative query language like sal or relational algebra you specify the pattern of data you want.
+
+Database query optimizer handles the underlying operations ,a declerative language is attractive because it is simpler and hides the details.
+
+Also with this interface db can change the underlying infrastructure without impacting the app.
+
+Imperative code is hard to parellelize. Code is open for optimization at the background. Database is free to do optimizations.
+
+### Declarative queries on the web
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
