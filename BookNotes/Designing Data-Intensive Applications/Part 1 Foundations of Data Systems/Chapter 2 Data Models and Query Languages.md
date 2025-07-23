@@ -357,27 +357,24 @@ This is a very similar thing to sql. For mongo it is just using ison syntax not 
 
 Simply a no sql system is reinventing sql in disguise.
 
+## Graph like data models
 
+It our application date has a tree structure mostly consists one to many relations or no relations it is logical to use document model.
 
+Relational model con handle some level of relational complexity.
 
+But if we ere facing many to many relations, we can use grapto model our data.
 
+A graph:
 
+- vertices (nodes)
+- edges
 
+Social media, roads, the web pages they can be counted as graphs.
 
+Some well established algorithms can operate on graphs, we can represent complex relations with graphs.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+This part will discuss property graph model and triple store model.
 
 
 
