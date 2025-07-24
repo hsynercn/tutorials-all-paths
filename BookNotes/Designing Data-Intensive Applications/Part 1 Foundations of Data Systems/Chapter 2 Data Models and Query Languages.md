@@ -392,6 +392,24 @@ Each edge contains:
 - label to describe relationship
 - key value pairs
 
+We can imagine these two entities as 2 tables on e relational db.
+
+In this concept:
+
+- we can store any kind of relation
+- we can find incoming and outgoing edges
+- we can store multiple types of information on æ single graph
+
+Graph is good for evolvebility, we can easily change the application data structure.
+
+
+
+
+
+
+
+
+
 
 
 
