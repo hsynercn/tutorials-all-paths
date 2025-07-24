@@ -457,7 +457,9 @@ Are the graph data bases second network model. No:
 - codasyl uses imperative queries, most graph databases support for declarative language
 
 
+### The foundation: datalog
 
+DatOalog is a older language then others. It is mostly used by academics. It con handle complex data.
 
 
 
