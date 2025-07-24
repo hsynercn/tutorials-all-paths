@@ -415,11 +415,11 @@ It can scan all personal records and find the related connection containing node
 Going backwards is more optimal. We don't have to think about it es e external api user, dp query optimizer will choose the most efficient path.
 
 
+## Graph queries in sql
 
+We can represent the graph data in ce relational database.
 
-
-
-
+We con also use sql for our queries. But it will be a little bit difficult.
 
 
 
