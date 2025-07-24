@@ -461,19 +461,21 @@ Are the graph data bases second network model. No:
 
 DatOalog is a older language then others. It is mostly used by academics. It con handle complex data.
 
+## Summary
 
+Date models are a huge subject.
 
+Firstly data started with the tree model, it failed at many to many relations. So we invented the relational model.
 
+In some cases relational model is also failing. So we created nonrelational data stores.
 
+They diverged two directions:
 
+1. Document databases, relations are rare and data is self contained
 
+2. Graph databases they are the opposite, anything can be related to everything
 
-
-
-
-
-
-
+We have different systems for different purposes. One model con be emulated with other the success will not be same.
 
 
 
