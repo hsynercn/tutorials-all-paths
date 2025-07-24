@@ -402,7 +402,17 @@ In this concept:
 
 Graph is good for evolvebility, we can easily change the application data structure.
 
+## Cypher query language
 
+Cypher is a declerative query language.it is created for neo4J database.
+
+We can create nodes end relations with it. We can say which person is living and born in which continent.
+
+When we went to execute a query for some specific parameters it will bring the results. There are several ways to get this result.
+
+It can scan all personal records and find the related connection containing nodes, or it can go backwards from the related continent modes.
+
+Going backwards is more optimal. We don't have to think about it es e external api user, dp query optimizer will choose the most efficient path.
 
 
 
