@@ -419,10 +419,33 @@ Going backwards is more optimal. We don't have to think about it es e external a
 
 We can represent the graph data in ce relational database.
 
-We con also use sql for our queries. But it will be a little bit difficult.
+We can also use sql for our queries. But it will be a little bit difficult. We will need to use expensive operations.
 
+For summary same query will take 4 lines in graph db but 29 lines in a relational db.
 
+## Triple stores and SPARQL
 
+Triple is very similar to property graph model. We can use triple stores for some needs.
+
+In a triple store me keep the into in three statements: subject, predicate, object.
+
+Jim likes the bananas. Jin is the subject, likes the predicate, bananas is the object.
+
+Subject is the vertex of the graph. The object is two things: e primitive value or another vertex.
+
+### The semantic web
+
+Semantic web is totally a different topic from triple stores. But they are matched on the peoples minds.
+
+Simply semantic web aimed to provide content for machines. We used resource description framework. But it is not in use at the moment.
+
+Independently triples can se a good internal data model for applications.
+
+The RDF date model is used for representing graph. It is designed for internet wise data exchange.
+
+### SPARQL query language
+
+SPARQL is a query for RDF data model.
 
 
 
