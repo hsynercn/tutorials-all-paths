@@ -445,7 +445,23 @@ The RDF date model is used for representing graph. It is designed for internet w
 
 ### SPARQL query language
 
-SPARQL is a query for RDF data model.
+SPARQL is a query for RDF data.
+
+### Graph databases us network model
+
+Are the graph data bases second network model. No:
+
+- codasyl has a defined structure, graph model is flexible
+- codasyl requires treverse to find e record - graph db addressing easier
+- graph db is not ordered i it does not keep records in a specific order
+- codasyl uses imperative queries, most graph databases support for declarative language
+
+
+
+
+
+
+
 
 
 
