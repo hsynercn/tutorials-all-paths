@@ -70,6 +70,17 @@ Values can use more space than ram, we have them so if necessary we can get them
 
 Bitcase is well suited for high count of writes - but if there are lots of distinct keys it can be infeasible.
 
+As we described if we only append to a file we can run out  disk space
+
+
+
+
+
+
+
+
+
+
 
 
 
