@@ -22,7 +22,7 @@ For this chapter we will mainly focus on relational and nosql databases, we will
 - log structured
 - page oriented
 
-
+## Data structures that power your database
 
 
 
