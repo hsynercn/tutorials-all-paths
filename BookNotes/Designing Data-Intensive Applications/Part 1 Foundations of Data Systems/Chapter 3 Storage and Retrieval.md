@@ -58,13 +58,17 @@ This is a trade off, increasing read speed slows write speed. Thus we need to se
 
 ## Hash indexes
 
+We can start with indexes for key value data, we can use indexes for different types off data.
 
+Key value store is a familiar concept to programming languages, we can find it as hash maps.
 
+For our log store simply we can store the start offset of our records on our table.
 
+Bitcost is an example which follows this approach, hash map is kept on memory.
 
+Values can use more space than ram, we have them so if necessary we can get them from memory.
 
-
-
+Bitcase is well suited for high count of writes - but if there are lots of distinct keys it can be infeasible.
 
 
 
