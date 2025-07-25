@@ -39,7 +39,7 @@ They use log, in ise append only data file. There are additional issues for a re
 
 Logs are very useful in general.
 
-
+In contrast read operation is very costly, we need to scan all of the records,
 
 
 
