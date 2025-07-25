@@ -39,7 +39,24 @@ They use log, in ise append only data file. There are additional issues for a re
 
 Logs are very useful in general.
 
-In contrast read operation is very costly, we need to scan all of the records,
+In contrast read operation is very costly, we need to scan all of the records, search cost will be o(n).
+
+Cost will increase with the increasing size of records in complexity is not good.
+
+For better search performance we can use indexes. Indexes are the tables for finding. 
+
+We can use multiple indexes to tind the data with different ways.
+
+An index is an additional data derived from the primary data. We can add indexes freely.
+
+Most of the databases allow it. But there is a cost, when we add records we need to update indexes.
+
+This will increase the cost and slow downs the writes.
+
+This is a trade off, increasing read speed slows write speed. Thus we need to select indexes manually.
+
+
+## Hash indexes
 
 
 
@@ -65,6 +82,28 @@ In contrast read operation is very costly, we need to scan all of the records,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
 
 
 
