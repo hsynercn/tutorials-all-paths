@@ -25,6 +25,31 @@ For this chapter we will mainly focus on relational and nosql databases, we will
 ## Data structures that power your database
 
 
+Imagine we have a basic database with 2 methods:
+
+- db-set
+- ab-get
+
+These functions implement a key-value store, imagine this is a text file like csv and it is storing values by appending new valves et the end of file
+, without deleting the existing records.
+
+Mostly appending to end of a file is a efficient operation. Similarly many databases ux e similar mechanism.
+
+They use log, in ise append only data file. There are additional issues for a real database like concurrency, reclaiming disk.
+
+Logs are very useful in general.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
