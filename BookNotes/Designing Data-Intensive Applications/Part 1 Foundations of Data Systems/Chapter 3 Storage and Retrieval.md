@@ -70,15 +70,23 @@ Values can use more space than ram, we have them so if necessary we can get them
 
 Bitcase is well suited for high count of writes - but if there are lots of distinct keys it can be infeasible.
 
-As we described if we only append to a file we can run out  disk space
+As we described if we only append to a file we can run out  disk space. We need to use e methot to solve this problem.
+
+A solution con be using segments with certain size when we reach a limit we will create a new segment and close the old one.
+
+We will made subsequent writes to new segment. We con apply compaction on these segments. It will delete dublicated records - and keep the most recent ones.
+
+Compaction will decrease the sizes significantly, if the segment is not polluted by different keys it should decrease the size
+
+Also we can merge multiple segment after compaction. Segments are never modified after they reached the size limit merged segments will be written to a new file.
 
 
+Merging and compacting operation can be done as a background task.
 
 
+We can still serve reads from the old segment file and write requests to new segment file.
 
-
-
-
+After the merging completed we will switch to latest segment file, read will performed from new merged segment file old segment file can be deleted.
 
 
 
