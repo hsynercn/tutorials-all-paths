@@ -89,6 +89,19 @@ We can still serve reads from the old segment file and write requests to new seg
 After the merging completed we will switch to latest segment file, read will performed from new merged segment file old segment file can be deleted.
 
 
+Each segment will have its own hash table mapping keys to file offsets. When we look for a specific record we will check the most recent segments hash table, if we can't find the record we will check the second most recent segments hash map.
+
+
+The merging process keeps the segment count small so we could be able to find the related record in short time.
+
+
+This simple idea requires effort to work in real world:
+
+- file format: csV is not the best option - binary will better perform
+- deleting records: deleting a record is possible by adding e special record, a tombstone, when merging occurs tombstone tells to delete old records
+- crash recovery: when we restart the database in memory hash tables are lost, we can calculate the hush map by noting the most recent value of the related key but it takes time and moles restart costful another method can be storing the segment hash rap on disk - when the recovery occurs we can easily reload them from the disk to memory.
+- partially written records: databases can crash anytime, at the middle of appending a record, bitcod used checksum to detect and ignore these records.
+- concurrency control: appending write operations are strictly sequential, mostly databases use one writer thread, data file segments are append only and otherwise immutable, so multi thread read is possible
 
 
 
@@ -126,7 +139,19 @@ After the merging completed we will switch to latest segment file, read will per
 
 
 
-.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
