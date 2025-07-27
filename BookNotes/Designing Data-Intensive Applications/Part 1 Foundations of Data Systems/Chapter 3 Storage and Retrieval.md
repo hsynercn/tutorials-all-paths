@@ -103,11 +103,11 @@ This simple idea requires effort to work in real world:
 - partially written records: databases can crash anytime, at the middle of appending a record, bitcod used checksum to detect and ignore these records.
 - concurrency control: appending write operations are strictly sequential, mostly databases use one writer thread, data file segments are append only and otherwise immutable, so multi thread read is possible
 
+Append only design has some benefits I at the fist glance it looks wasteful:
 
-
-
-
-
+- Appending and segment merging are sequential operations these operations are much faster if ve compare ther with random writes. Also sequential writes perform better on physical storage devices.
+- Concurrency and crash recovery are simpler with append only and immutable segments.
+- Merging operation prevents fragmented data files over time.
 
 
 
