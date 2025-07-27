@@ -109,6 +109,16 @@ Append only design has some benefits I at the fist glance it looks wasteful:
 - Concurrency and crash recovery are simpler with append only and immutable segments.
 - Merging operation prevents fragmented data files over time.
 
+Problems ut append only approach:
+
+- The hash table must fit in memory, if we need to deal with large number of keys it cant solve our problem. Storing the hash table on dist is not a good solution it requires lots of random io.
+- Range queries can't perform efficiently, we need to check individual records.
+
+In next section we will look an indexing structure that doesn't have these limitations.
+
+
+
+
 
 
 
