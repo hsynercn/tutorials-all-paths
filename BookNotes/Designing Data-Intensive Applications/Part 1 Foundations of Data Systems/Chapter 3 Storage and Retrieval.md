@@ -148,9 +148,11 @@ This design has one problem, if the database crashes memtable gets lost to avoid
 
 That log can recover the memtable - we will reset after each segment write.
 
+### Making an LSM-tree out of SSTable
 
+Loy structured merge tree, it is based on earlier work on log structured file systems.
 
-
+Storage engines that are based on this principle of merging end compacting sorted files are often called LSM storage engines.
 
 
 
