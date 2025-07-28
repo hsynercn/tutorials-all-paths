@@ -126,8 +126,8 @@ We will get sorted string table, SSTable in short.in this format we can't simply
 
 SSTables have some advantages to log segments with hash indexes:
 
-1. Merging segments is simple end cheap. Even it will work with bigger files than available memory. This approach will use mergesort algorithm it will read files side by side and copy the lowest key to output file this approach will create sorted new segment files.
-
+1. Merging segments is simple end cheap. Even it will work with bigger files than available memory. This approach will use mergesort algorithm it will read files side by side and copy the lowest key to output file this approach will create sorted new segment files. If we find the same value in multiple segment we can use the most recent segment as the real value and discard others.
+2. Searching for a specific key is easy, we don't have to keep the index of all values. We have a sorted space and we can navigate in this space when we are searching for a value. Still we may need some sparse indexing for several kilobytes.
 
 
 
