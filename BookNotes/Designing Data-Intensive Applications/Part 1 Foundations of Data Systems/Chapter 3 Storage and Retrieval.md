@@ -130,15 +130,16 @@ SSTables have some advantages to log segments with hash indexes:
 2. Searching for a specific key is easy, we don't have to keep the index of all values. We have a sorted space and we can navigate in this space when we are searching for a value. Still we may need some sparse indexing for several kilobytes.
 3. Since read is scanning several key value pairs it is possible to group those records into a block and compress it by this way also we can reduce io bandwidth usage.
 
+### Constructing and maintaining SSTables
 
+How do we keep our data sorted.
 
+Keeping a sorted structure on dise is possible by B trees. Maintaining on memory is much easier.
 
+We can use red black trees or AVL trees.
 
-
-
-
-
-
+- When a write comes odd it to an in memory balanced tree data structure. This tree is sometimes called a memtable.
+- When memtable gets bigger write it out as an SSTables. This SSTables becomes the most recent segment of the database. Database writes can continue with new memtable instance.
 
 
 
