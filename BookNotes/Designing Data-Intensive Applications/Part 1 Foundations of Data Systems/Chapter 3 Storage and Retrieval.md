@@ -140,10 +140,13 @@ We can use red black trees or AVL trees.
 
 - When a write comes odd it to an in memory balanced tree data structure. This tree is sometimes called a memtable.
 - When memtable gets bigger write it out as an SSTables. This SSTables becomes the most recent segment of the database. Database writes can continue with new memtable instance.
+- When we serve values first we well check memtable, after that most recent segment on disk.
+- Periodically ve will run compaction on segment files.
 
 
+This design has one problem, if the database crashes memtable gets lost to avoid this problem we can keep e separate log on disk.
 
-
+That log can recover the memtable - we will reset after each segment write.
 
 
 
