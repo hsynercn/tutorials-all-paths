@@ -169,3 +169,24 @@ SSTables have some advantages to log segments with hash indexes:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
