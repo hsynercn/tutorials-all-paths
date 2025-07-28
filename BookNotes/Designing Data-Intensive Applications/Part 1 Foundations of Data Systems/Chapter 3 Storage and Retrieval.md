@@ -118,14 +118,15 @@ In next section we will look an indexing structure that doesn't have these limit
 
 ## SSTables and LSM-Trees
 
-Log structered storage segment is a sequence of key-value pairs.
+Log structered storage segment is a sequence of key-value pairs. We use the most recent value for a specific key. Other than that we don't care about order of key value pairs.
 
+If we change the segment format and mode key value pairs ordered by key.
 
+We will get sorted string table, SSTable in short.in this format we can't simply append new records.
 
+SSTables have some advantages to log segments with hash indexes:
 
-
-
-
+1. Merging segments is simple end cheap. Even it will work with bigger files than available memory. This approach will use mergesort algorithm it will read files side by side and copy the lowest key to output file this approach will create sorted new segment files.
 
 
 
