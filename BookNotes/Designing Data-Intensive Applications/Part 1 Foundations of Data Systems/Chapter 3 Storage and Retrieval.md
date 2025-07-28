@@ -116,6 +116,9 @@ Problems ut append only approach:
 
 In next section we will look an indexing structure that doesn't have these limitations.
 
+## SSTables and LSM-Trees
+
+Log structered storage segment is a sequence of key-value pairs.
 
 
 
