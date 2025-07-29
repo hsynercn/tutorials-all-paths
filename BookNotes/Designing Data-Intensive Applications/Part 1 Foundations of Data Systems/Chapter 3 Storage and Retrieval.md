@@ -154,7 +154,17 @@ Loy structured merge tree, it is based on earlier work on log structured file sy
 
 Storage engines that are based on this principle of merging end compacting sorted files are often called LSM storage engines.
 
-Lucene
+Lucene is an indexing engine for full text search, it uses a term dictionary. It stores word as keys and the list of ids of the documents as values. This mapping sotred as a SSTable-like sorted file, merged at the background if needed.
+
+### Performance optimizations
+
+We need to pay attention to details when we optimize a storage engine.
+
+As an example LSM-tree algorithm is slow whne we check an unexisting value. First we check the memtable, after we check the segments from most recent one to oldest one. After that we can be sure the value does not exists.
+
+To optimize this operation we can use a Bloom filter, it is a memory efficient data structure to approximate contents of a set.
+
+There are also different strategies for order and timing of compaction and merging operations.
 
 
 
