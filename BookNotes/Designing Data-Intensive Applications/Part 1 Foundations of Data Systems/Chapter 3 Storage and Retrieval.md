@@ -164,7 +164,7 @@ As an example LSM-tree algorithm is slow whne we check an unexisting value. Firs
 
 To optimize this operation we can use a Bloom filter, it is a memory efficient data structure to approximate contents of a set.
 
-There are also different strategies for order and timing of compaction and merging operations.
+There are also different strategies for order and timing of compaction and merging operations. Common options are size tiered and leveled compaction. Size tiered compaction new and smaller SSTables are merged into older und larger SSTables. Leveled compaction splits key range into smaller SSTables and older data is moved into separate levels.
 
 
 
