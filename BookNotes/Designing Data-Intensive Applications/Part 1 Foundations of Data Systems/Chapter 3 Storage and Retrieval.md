@@ -168,6 +168,21 @@ There are also different strategies for order and timing of compaction and mergi
 
 The basic idea of log structured merge tree ( LSM-tree ) is keeping SSTables and merging them in the background.
 
+## B-Trees
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
