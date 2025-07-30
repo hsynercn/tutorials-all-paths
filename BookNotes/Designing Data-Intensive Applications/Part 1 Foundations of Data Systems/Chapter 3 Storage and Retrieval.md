@@ -170,13 +170,13 @@ The basic idea of log structured merge tree ( LSM-tree ) is keeping SSTables and
 
 ## B-Trees
 
+Log structured indexes have sone level of acceptance but they ere not the most common index type.
 
+Most popular indexing type is B-Trees.
 
+It is introduced in 1970, still it is the common index type for relational databases and for some nonrelational databases.
 
-
-
-
-
+B-Trees and SSTable keep the key value pairs sorted. With different ways.
 
 
 
