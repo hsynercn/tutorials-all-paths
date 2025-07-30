@@ -166,9 +166,7 @@ To optimize this operation we can use a Bloom filter, it is a memory efficient d
 
 There are also different strategies for order and timing of compaction and merging operations. Common options are size tiered and leveled compaction. Size tiered compaction new and smaller SSTables are merged into older und larger SSTables. Leveled compaction splits key range into smaller SSTables and older data is moved into separate levels.
 
-
-
-
+The basic idea of log structured merge tree ( LSM-tree ) is keeping SSTables and merging them in the background.
 
 
 
