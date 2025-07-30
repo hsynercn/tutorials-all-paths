@@ -181,6 +181,19 @@ B-Trees and SSTable keep the key value pairs sorted. With different ways.
 
 Log structured indexes splits database into variable size segments. Commonly several megabytes or more. Log structured indexes write a segment sequentially always.
 
+B-Trees break the database into fixed size blocks. Most commonly 4 KB pages ( blocks ). And B-Trees will read or write one page at a time.
+
+This approach is closer to disk hardware, disks are also arranged in fixed size blocks.
+
+
+
+
+
+
+
+
+
+
 
 
 
