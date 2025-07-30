@@ -179,7 +179,7 @@ It is introduced in 1970, still it is the common index type for relational datab
 B-Trees and SSTable keep the key value pairs sorted. With different ways.
 
 
-
+Log structured indexes splits database into variable size segments. Commonly several megabytes or more. Log structured indexes write a segment sequentially always.
 
 
 
