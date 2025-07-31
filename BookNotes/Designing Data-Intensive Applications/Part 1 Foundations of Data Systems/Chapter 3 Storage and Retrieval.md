@@ -195,7 +195,9 @@ When ve update a record we will find the related page and write that page with t
 
 Adding a new record can be tricky. We need to find the related key range page and insert to record there. But if there is no space in that page we need to splot that page to 2 and insert that record.
 
+This approach keeps the tree balanced, n keys will always has a depth of O ( log n ).
 
+A 4 level tree of 4 KB pages with a 500 branching factor can store 250 TB.
 
 
 
