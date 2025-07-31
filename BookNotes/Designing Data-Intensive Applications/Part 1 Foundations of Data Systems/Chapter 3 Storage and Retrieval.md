@@ -185,6 +185,26 @@ B-Trees break the database into fixed size blocks. Most commonly 4 KB pages ( bl
 
 This approach is closer to disk hardware, disks are also arranged in fixed size blocks.
 
+Each page can be identified with en addres, by this way one page can refer to another page and create a tree.
+
+One page will be the root, when we look for a key we start from there. The page will store several keys and references to child pages. Each child will store a range of keys. We will go down until we find the individual record.
+
+Branching factor: number of child page references in a page. Generally it is several hundreds.
+
+When ve update a record we will find the related page and write that page with the updated value.
+
+Adding a new record can be tricky. We need to find the related key range page and insert to record there. But if there is no space in that page we need to splot that page to 2 and insert that record.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
