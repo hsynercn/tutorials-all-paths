@@ -199,12 +199,15 @@ This approach keeps the tree balanced, n keys will always has a depth of O ( log
 
 A 4 level tree of 4 KB pages with a 500 branching factor can store 250 TB.
 
+### Making B-Trees reliable
 
+Basic write operation of a B-Tree is to overwrite a page ondish with new data.
 
+We accept overwrite does not change the location of the page. This is opposite to LSM-trees, they work append only.
 
+We can think overwriting a page as a hardware operation. A magnetic hard drive positions head to correct location and overwrite that sector. SSD will word differently in some aspects yet it does the same thing.
 
-
-
+Some operations require different pages to be overwritten. If we split a page because of size adjustment we need to write 2 pages also ve need to update parent page.
 
 
 
