@@ -210,7 +210,7 @@ We can think overwriting a page as a hardware operation. A magnetic hard drive p
 Some operations require different pages to be overwritten. If we split a page because of size adjustment we need to write 2 pages also ve need to update parent page.
 
 
-
+.
 
 
 
