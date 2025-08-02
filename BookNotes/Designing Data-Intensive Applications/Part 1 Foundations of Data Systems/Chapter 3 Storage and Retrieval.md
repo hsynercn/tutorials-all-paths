@@ -231,6 +231,31 @@ There are several optimizations:
 
 ## Comparing B-Trees and LSM-Tree
 
+B-Tree implementations are usually more mature than LSM-Tree implementations. LSM-Tree is faster for writes, B-Tree is faster for reads.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
