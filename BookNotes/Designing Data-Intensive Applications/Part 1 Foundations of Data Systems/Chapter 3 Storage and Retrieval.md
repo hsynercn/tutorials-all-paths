@@ -217,13 +217,11 @@ Another complication is providing concurrent access to pages .B-Trees use latche
 
 ### B-Tree optimizations
 
+There are several optimizations:
 
+1. Some databases use copy on write scheme. A modified page is written to a different location and parent pages will be replaced.
 
-
-
-
-
-
+2. We can use shorter keys for boundaries, we don't have to store full keys.
 
 
 
