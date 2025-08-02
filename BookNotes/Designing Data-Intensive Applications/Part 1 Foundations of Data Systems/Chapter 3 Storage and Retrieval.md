@@ -209,11 +209,13 @@ We can think overwriting a page as a hardware operation. A magnetic hard drive p
 
 Some operations require different pages to be overwritten. If we split a page because of size adjustment we need to write 2 pages also ve need to update parent page.
 
+Updating multiple pages at a time is a risky job. If the task gets interrupted we will face corrupted records even with a orphan page.
+ 
+B-Trees usually include a write ahead log ( WAL or redo log ), this file contairs the tree changes. This log can be used for restore operation after a crash.
 
-.
+Another complication is providing concurrent access to pages .B-Trees use latches (lightweight locks).
 
-
-
+### B-Tree optimizations
 
 
 
