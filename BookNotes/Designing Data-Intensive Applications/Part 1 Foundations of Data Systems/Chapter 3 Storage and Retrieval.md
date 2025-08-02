@@ -229,7 +229,7 @@ There are several optimizations:
 
 5. B-Tree variants such as fractal trees uses some log structured applications to reduce disk seeks.
 
-
+## Comparing B-Trees and LSM-Tree
 
 
 
