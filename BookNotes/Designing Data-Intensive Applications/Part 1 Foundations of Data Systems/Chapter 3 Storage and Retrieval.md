@@ -225,10 +225,9 @@ There are several optimizations:
 
 3. In general pages can be randomly distributed on disk. They don't have to be ordered. Some B-Tree implementions are trying to keep pages in order but it is hard because growing creates new pages. In contrast LSM-tree does compaction and merging which keeps keys sequential. If we need sorted order key scans performance will be different.
 
+4. Leaf pages can contain left and right sibling page pointer for ordered key scans.
 
-
-
-
+5. B-Tree variants such as fractal trees uses some log structured applications to reduce disk seeks.
 
 
 
