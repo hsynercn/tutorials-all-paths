@@ -221,9 +221,9 @@ There are several optimizations:
 
 1. Some databases use copy on write scheme. A modified page is written to a different location and parent pages will be replaced.
 
-2. We can use shorter keys for boundaries, we don't have to store full keys.
+2. We can use shorter keys for boundaries, we don't have to store full keys. More keys in a page provides higher branching factor which means fewer levels.
 
-
+3. In general pages can be randomly distributed on disk. They don't have to be ordered. Some B-Tree implementions are trying to keep pages in order but it is hard because growing creates new pages. In contrast LSM-tree does compaction and merging which keeps keys sequential. If we need sorted order key scans performance will be different.
 
 
 
