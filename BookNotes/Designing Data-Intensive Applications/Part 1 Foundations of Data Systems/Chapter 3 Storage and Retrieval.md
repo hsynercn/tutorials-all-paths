@@ -267,6 +267,13 @@ Under high write pressure unmerged pages take over the storage space and we run 
 
 A positive side of B-Trees is that each key exists one place only. This is a benefit when we look for strong transactional semantics.
 
+In many relational databases transactional isolation is implemented using locks on key ranges. For B-Trees those locks can be directly attached to the tree.
+
+
+
+
+
+
 
 
 
