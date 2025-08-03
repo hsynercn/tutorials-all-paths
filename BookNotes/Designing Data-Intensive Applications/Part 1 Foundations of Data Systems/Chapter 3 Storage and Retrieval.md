@@ -271,15 +271,13 @@ In many relational databases transactional isolation is implemented using locks 
 
 ## Other Indexing Structures
 
+Until this point we discussed about key value indexes which is very similar to primary key index in relational modal.
 
+Primary key identifies an unique row in a relational table or a document in a document database.
 
+We con refer that record ( or row or document ) by its primary key.
 
-
-
-
-
-
-
+Also it is very common to use secondary indexes.
 
 
 
