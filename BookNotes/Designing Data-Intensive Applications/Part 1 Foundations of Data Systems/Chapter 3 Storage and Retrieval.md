@@ -233,26 +233,21 @@ There are several optimizations:
 
 B-Tree implementations are usually more mature than LSM-Tree implementations. LSM-Tree is faster for writes, B-Tree is faster for reads.
  
+### Advantages of LSM-Tree
 
+B-Tree index writes every data twice at minimum, first on the write ahead log, later on the tree page.
 
+Also ve have overhead from writing the entire page. Some storage engines writes whole page twice for redundancy.
 
+Log structured indexes also rewrite data multiple times because of compaction and merging.
 
+This write abundancy creates the write amplification. And it could be a concern for SSD hardware which the write operations are limited.
 
+Write amplification can also harm the performance of database by creating write bottlenecks.
 
+LSM-Trees sustain higher write through put than B-Trees, partly this caused by lesser write amplification, partly they write pages sequentially rather than overwriting pages. This is a important difference for magnetic hard drives.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+LSM-Trees can be compressed better and create smaller files on the disk than B-Trees. B-Trees can create fragmentation because of split pages.
 
 
 
