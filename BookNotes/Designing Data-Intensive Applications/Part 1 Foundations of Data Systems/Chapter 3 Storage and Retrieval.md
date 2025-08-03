@@ -265,6 +265,25 @@ During the initial phase on a log structured storage we can use most of the disk
 
 Under high write pressure unmerged pages take over the storage space and we run out of disk space. Also increased number of pages is not a good environment for our queries, we to check more pages when we look for a key.
 
+A positive side of B-Trees is that each key exists one place only. This is a benefit when we look for strong transactional semantics.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
