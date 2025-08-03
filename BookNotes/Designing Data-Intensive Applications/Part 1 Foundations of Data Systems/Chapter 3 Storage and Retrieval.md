@@ -253,9 +253,13 @@ Most ot SSDs use un interned log structure algorithm to turn random writes into 
 
 Still lower write amplification is a benefit on SSDs.
 
+### Downsides of LSM-Trees
 
+Log structured storage can suffer from compaction. Disk io is a limited source and if we try to write something during compaction we need to wait.
 
+Average impact is small.
 
+But the higher percentile response time of log structured storage engines can be quite high. B-Trees are more predictable in this aspect.
 
 
 
