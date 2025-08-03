@@ -261,7 +261,9 @@ Average impact is small.
 
 But the higher percentile response time of log structured storage engines can be quite high. B-Trees are more predictable in this aspect.
 
-During the initial phase on a log structured storage we can use most of the disk io for
+During the initial phase on a log structured storage we can use most of the disk io for initial writes. After some time compaction begins and under high write throughput compaction cannot keep up.
+
+Under high write pressure unmerged pages take over the storage space and we run out of disk space. Also increased number of pages is not a good environment for our queries, we to check more pages when we look for a key.
 
 
 
