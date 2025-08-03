@@ -261,11 +261,7 @@ Average impact is small.
 
 But the higher percentile response time of log structured storage engines can be quite high. B-Trees are more predictable in this aspect.
 
-
-
-
-
-
+During the initial phase on a log structured storage we can use most of the disk io for
 
 
 
