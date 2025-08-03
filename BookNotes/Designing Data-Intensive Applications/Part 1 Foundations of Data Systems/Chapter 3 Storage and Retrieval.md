@@ -269,7 +269,7 @@ A positive side of B-Trees is that each key exists one place only. This is a ben
 
 In many relational databases transactional isolation is implemented using locks on key ranges. For B-Trees those locks can be directly attached to the tree.
 
-
+## Other Indexing Structures
 
 
 
