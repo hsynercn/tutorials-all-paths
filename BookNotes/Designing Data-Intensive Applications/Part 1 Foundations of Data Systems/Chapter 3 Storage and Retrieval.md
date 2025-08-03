@@ -249,6 +249,36 @@ LSM-Trees sustain higher write through put than B-Trees, partly this caused by l
 
 LSM-Trees can be compressed better and create smaller files on the disk than B-Trees. B-Trees can create fragmentation because of split pages.
 
+Most ot SSDs use un interned log structure algorithm to turn random writes into sequential writes on the low level chip.
+
+Still lower write amplification is a benefit on SSDs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
