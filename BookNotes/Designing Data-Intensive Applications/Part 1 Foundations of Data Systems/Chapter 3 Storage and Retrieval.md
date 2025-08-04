@@ -288,9 +288,9 @@ The key of an index is the thing that we look for. But value can be 2 things.
 - it can be the actual row
 - it can be the reference to that row ( document or vertex)
 
+We store the rows in a heap file, it does not store the data in any particular order.
 
-
-
+Each index just references a location in the heap file. Actual data is kept in one place.
 
 
 
