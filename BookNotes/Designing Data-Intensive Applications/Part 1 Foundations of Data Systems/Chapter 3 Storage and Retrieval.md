@@ -279,9 +279,9 @@ We con refer that record ( or row or document ) by its primary key.
 
 Also it is very common to use secondary indexes.
 
+Main difference between primary and secondary indexes is, secondary indexes are not necessarily unique.
 
-
-
+### Storing values within the index
 
 
 
