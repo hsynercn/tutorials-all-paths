@@ -283,10 +283,10 @@ Main difference between primary and secondary indexes is, secondary indexes are 
 
 ### Storing values within the index
 
+The key of an index is the thing that we look for. But value can be 2 things.
 
-
-
-
+- it can be the actual row
+- it can be the reference to that row ( document or vertex)
 
 
 
