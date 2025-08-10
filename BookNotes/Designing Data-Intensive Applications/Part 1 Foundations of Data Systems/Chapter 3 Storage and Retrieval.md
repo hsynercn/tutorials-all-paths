@@ -317,7 +317,7 @@ If we need to query multiple columns of a table simultaneously single value inde
 
 The most common type of multi-column index is called concatenated index - simply it combines several fields into one key by appending one column to another.
 
-
+This type of index is useless if we want to find records with a particular key part.
 
 
 
