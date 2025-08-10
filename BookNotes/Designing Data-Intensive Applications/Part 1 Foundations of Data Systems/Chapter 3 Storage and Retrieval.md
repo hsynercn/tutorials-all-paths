@@ -307,6 +307,38 @@ For example inno db storage uses primary key of a table as clustered index. Seco
 
 In sql server we can specify one clustured index per table.
 
+If we compare clustered index ( storing all row data within the index) and non clustured index (storing only references to the data within index) is known as covering index, covering index stores some of tables columns within the index.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
