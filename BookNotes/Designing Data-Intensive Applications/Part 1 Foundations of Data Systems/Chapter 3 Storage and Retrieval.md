@@ -292,10 +292,14 @@ We store the rows in a heap file, it does not store the data in any particular o
 
 Each index just references a location in the heap file. Actual data is kept in one place.
 
+Heap file approach is popular because of this reason, it prevents duplications.
 
+Also updating a value without changing the key is an effective method. We can override the old value if the sizes are same. Otherwise if we are dealing with a much larger record we need a new location.
 
+ Using a new location is an expensive operation we can do 2 things:
 
-
+- set a forwarding pointer to old heap location to new location
+- update all indexes to new heap location
 
 
 
