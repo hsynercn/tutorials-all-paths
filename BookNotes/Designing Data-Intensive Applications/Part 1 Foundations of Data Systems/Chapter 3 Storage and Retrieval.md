@@ -301,9 +301,11 @@ Also updating a value without changing the key is an effective method. We can ov
 - set a forwarding pointer to old heap location to new location
 - update all indexes to new heap location
 
+For some cases hopping between index to heap file is a expensive operation, to overcome this issue some engines use clustered index.
 
+For example inno db storage uses primary key of a table as clustered index. Secondary indexes refer to primary key.
 
-
+In sql server we can specify one clustured index per table.
 
 
 
