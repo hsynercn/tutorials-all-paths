@@ -311,9 +311,9 @@ If we compare clustered index ( storing all row data within the index) and non c
 
 Indexes speed up the reeds but they create overhead. They require additional storage and overhead to writes.
 
+### Multi column indexes
 
-
-
+If we need to query multiple columns of a table simultaneously single value index is not enough.
 
 
 
