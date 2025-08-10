@@ -319,7 +319,7 @@ The most common type of multi-column index is called concatenated index - simply
 
 This type of index is useless if we want to find records with a particular key part.
 
-
+Multi dimensional indexes are a more general way of querying several columns at once. One use can be geospatial data.
 
 
 
