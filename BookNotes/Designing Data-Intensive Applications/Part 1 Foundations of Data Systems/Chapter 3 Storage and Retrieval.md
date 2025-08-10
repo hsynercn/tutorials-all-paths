@@ -315,7 +315,7 @@ Indexes speed up the reeds but they create overhead. They require additional sto
 
 If we need to query multiple columns of a table simultaneously single value index is not enough.
 
-
+The most common type of multi-column index is called concatenated index - simply it combines several fields into one key by appending one column to another.
 
 
 
