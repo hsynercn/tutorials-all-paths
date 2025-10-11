@@ -329,7 +329,7 @@ A method could be translating two-dimensional location to a single number using 
 
 ### Full text search and fuzzy indexes
 
-
+What happens if we don't have the full and complete key of the search.
 
 
 
