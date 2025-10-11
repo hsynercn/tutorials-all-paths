@@ -325,7 +325,7 @@ For example we need to find the closest branch of an organization to a customer.
 
 We need to access latitude and longitude of the records. A standard b-tree or LSM index tree cant to this. They will work for one value not two.
 
-
+A method could be translating two-dimensional location to a single number using a space filling curve. Then we can use a regular b-tree index. For this purpose r-trees are commonly used.
 
 
 
