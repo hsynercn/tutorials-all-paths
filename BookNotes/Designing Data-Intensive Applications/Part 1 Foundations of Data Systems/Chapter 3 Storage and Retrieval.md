@@ -321,9 +321,9 @@ This type of index is useless if we want to find records with a particular key p
 
 Multi dimensional indexes are a more general way of querying several columns at once. One use can be geospatial data.
 
+For example we need to find the closest branch of an organization to a customer.
 
-
-
+We need to access latitude and longitude of the records. A standard b-tree or LSM index tree cant to this. They will work for one value not two.
 
 
 
