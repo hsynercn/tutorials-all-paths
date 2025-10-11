@@ -28,7 +28,7 @@ We can think about databases, queues, caches, etc. as tools for solving differen
 
 ! We use different tools for different smaller tasks, and application creates the required integration.
 
-There will be many concerns when we create# date system, our organization structure, legacy infrastructure, time limits. 
+There will be many concerns when we create date system, our organization structure, legacy infrastructure, time limits. 
 
 In this book we will focus on the following properties of data systems:
 
