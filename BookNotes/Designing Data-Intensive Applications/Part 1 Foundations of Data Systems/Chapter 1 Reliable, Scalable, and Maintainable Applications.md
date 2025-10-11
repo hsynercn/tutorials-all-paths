@@ -73,7 +73,7 @@ Software errors ere messy, harder to deal.
 Another class of fault is a systematic error within the system.
 
 - A software bug that causes every instance of a service to crash when given a particular bad input.
-- A runaway process that depletes shared resources, like network or cpu#
+- A runaway process that depletes shared resources, like network or cpu
 - A service that the system depends on is slow or unavailable
 - Cascading failures where a small fault in one component triggers a fault in another component, which in turn triggers further faults.
 
