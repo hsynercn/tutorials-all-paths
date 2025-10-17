@@ -336,11 +336,14 @@ Full text search engines commonly allow a search for one word to be expanded to 
 
 ### Keeping everything in memory
 
+Using disk for storage has some significant details which requires attention. We need to lay out data carefully for better performance.
 
+We tolerate this awkward behavior because disks are two advantages:
+ 
+- they are durable we don't lose data in case of power loss
+- lower cost per gigabyte than ram
 
-
-
-
+As Ram becomes cheaper the advantage of disks are eroded by time also many databases are not that big we can fit them into memory easily.
 
 
 
