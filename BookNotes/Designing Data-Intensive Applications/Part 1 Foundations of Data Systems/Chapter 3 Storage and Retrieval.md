@@ -343,7 +343,11 @@ We tolerate this awkward behavior because disks are two advantages:
 - they are durable we don't lose data in case of power loss
 - lower cost per gigabyte than ram
 
-As Ram becomes cheaper the advantage of disks are eroded by time also many databases are not that big we can fit them into memory easily.
+As Ram becomes cheaper the advantage of disks are eroded by time also many databases are not that big we can fit them into memory easily potentially distributed across several machines.
+
+This situation led to development of in memory databases.
+
+Some in memory key value stores such as Memcached eirs to act as a cache. Data loss is acceptable for this purpose. Other databases can increase the durability by battery powered rams, writing a log or taking periodic snapshots.
 
 
 
