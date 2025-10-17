@@ -334,7 +334,7 @@ What happens if we don't have the full and complete key of the search. What happ
 Full text search engines commonly allow a search for one word to be expanded to include synonyms of the word. Also we can include some level of edit distance.
 
 
-
+### Keeping everything in memory
 
 
 
