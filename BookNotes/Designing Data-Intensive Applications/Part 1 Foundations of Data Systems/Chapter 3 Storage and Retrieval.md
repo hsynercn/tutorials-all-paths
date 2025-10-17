@@ -349,6 +349,8 @@ This situation led to development of in memory databases.
 
 Some in memory key value stores such as Memcached eirs to act as a cache. Data loss is acceptable for this purpose. Other databases can increase the durability by battery powered rams, writing a log or taking periodic snapshots.
 
+Main advantage of the memory solution is we skip the part which we encode the in memory data structure to dist form.
+
 
 
 
