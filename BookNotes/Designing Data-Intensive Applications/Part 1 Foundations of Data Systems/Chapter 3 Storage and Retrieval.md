@@ -329,7 +329,9 @@ A method could be translating two-dimensional location to a single number using 
 
 ### Full text search and fuzzy indexes
 
-What happens if we don't have the full and complete key of the search.
+What happens if we don't have the full and complete key of the search. What happens if we want to search for similar words.
+
+Full text search engines commonly allow a search for one word to be expanded to include synonyms of the word. Also we can include some level of edit distance.
 
 
 
